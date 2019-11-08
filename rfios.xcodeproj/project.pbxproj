@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B15FFF25D24A9B802316B60 /* Pods_rfios_rfiosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8255601FBC0BCC0FE4CDF397 /* Pods_rfios_rfiosUITests.framework */; };
+		AAAFFF20820A93A4A14F8D48 /* Pods_rfiosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC37973D26179E855959141 /* Pods_rfiosTests.framework */; };
 		E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */; };
 		E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */; };
 		E0FB6F4C2374FAAF00241EC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F4B2374FAAF00241EC7 /* ViewController.swift */; };
@@ -15,6 +17,7 @@
 		E0FB6F542374FAB100241EC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F522374FAB100241EC7 /* LaunchScreen.storyboard */; };
 		E0FB6F5F2374FAB100241EC7 /* rfiosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F5E2374FAB100241EC7 /* rfiosTests.swift */; };
 		E0FB6F6A2374FAB100241EC7 /* rfiosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F692374FAB100241EC7 /* rfiosUITests.swift */; };
+		FACC31FD56AE4EC6093490CC /* Pods_rfios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 401BF1C6D3695679693467CA /* Pods_rfios.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1723BAA576F4DEF2DBC8B49C /* Pods-rfios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios.release.xcconfig"; path = "Target Support Files/Pods-rfios/Pods-rfios.release.xcconfig"; sourceTree = "<group>"; };
+		401BF1C6D3695679693467CA /* Pods_rfios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.debug.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6DC37973D26179E855959141 /* Pods_rfiosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfiosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8255601FBC0BCC0FE4CDF397 /* Pods_rfios_rfiosUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfios_rfiosUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8813671D4436E150807764D4 /* Pods-rfios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios.debug.xcconfig"; path = "Target Support Files/Pods-rfios/Pods-rfios.debug.xcconfig"; sourceTree = "<group>"; };
+		C5F309D6FB59200402D04CC0 /* Pods-rfiosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.release.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.release.xcconfig"; sourceTree = "<group>"; };
+		C764368E035609018CA59DF7 /* Pods-rfios-rfiosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios-rfiosUITests.debug.xcconfig"; path = "Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		DBA256DB615E4636EBD022F6 /* Pods-rfios-rfiosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios-rfiosUITests.release.xcconfig"; path = "Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests.release.xcconfig"; sourceTree = "<group>"; };
 		E0FB6F442374FAAF00241EC7 /* rfios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rfios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FACC31FD56AE4EC6093490CC /* Pods_rfios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAFFF20820A93A4A14F8D48 /* Pods_rfiosTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,12 +84,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B15FFF25D24A9B802316B60 /* Pods_rfios_rfiosUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2F337B3A097B9CC3D41BF923 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				401BF1C6D3695679693467CA /* Pods_rfios.framework */,
+				8255601FBC0BCC0FE4CDF397 /* Pods_rfios_rfiosUITests.framework */,
+				6DC37973D26179E855959141 /* Pods_rfiosTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		701C94E25E1A9EAF2EEF5512 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				8813671D4436E150807764D4 /* Pods-rfios.debug.xcconfig */,
+				1723BAA576F4DEF2DBC8B49C /* Pods-rfios.release.xcconfig */,
+				C764368E035609018CA59DF7 /* Pods-rfios-rfiosUITests.debug.xcconfig */,
+				DBA256DB615E4636EBD022F6 /* Pods-rfios-rfiosUITests.release.xcconfig */,
+				411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */,
+				C5F309D6FB59200402D04CC0 /* Pods-rfiosTests.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		E0FB6F3B2374FAAF00241EC7 = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +122,8 @@
 				E0FB6F5D2374FAB100241EC7 /* rfiosTests */,
 				E0FB6F682374FAB100241EC7 /* rfiosUITests */,
 				E0FB6F452374FAAF00241EC7 /* Products */,
+				701C94E25E1A9EAF2EEF5512 /* Pods */,
+				2F337B3A097B9CC3D41BF923 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -135,9 +176,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0FB6F6E2374FAB100241EC7 /* Build configuration list for PBXNativeTarget "rfios" */;
 			buildPhases = (
+				8B8AAB0F108EAC0BE2D6F48C /* [CP] Check Pods Manifest.lock */,
 				E0FB6F402374FAAF00241EC7 /* Sources */,
 				E0FB6F412374FAAF00241EC7 /* Frameworks */,
 				E0FB6F422374FAAF00241EC7 /* Resources */,
+				9FAAF71C485482649F556E77 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -152,6 +195,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0FB6F712374FAB100241EC7 /* Build configuration list for PBXNativeTarget "rfiosTests" */;
 			buildPhases = (
+				202D614B90DB7413FB659391 /* [CP] Check Pods Manifest.lock */,
 				E0FB6F562374FAB100241EC7 /* Sources */,
 				E0FB6F572374FAB100241EC7 /* Frameworks */,
 				E0FB6F582374FAB100241EC7 /* Resources */,
@@ -170,9 +214,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = E0FB6F742374FAB100241EC7 /* Build configuration list for PBXNativeTarget "rfiosUITests" */;
 			buildPhases = (
+				9E08DFC6F7820DD7C78796F6 /* [CP] Check Pods Manifest.lock */,
 				E0FB6F612374FAB100241EC7 /* Sources */,
 				E0FB6F622374FAB100241EC7 /* Frameworks */,
 				E0FB6F632374FAB100241EC7 /* Resources */,
+				F909511B1DD1CD717AD79CFB /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -253,6 +299,109 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		202D614B90DB7413FB659391 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-rfiosTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8B8AAB0F108EAC0BE2D6F48C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-rfios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9E08DFC6F7820DD7C78796F6 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-rfios-rfiosUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9FAAF71C485482649F556E77 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-rfios/Pods-rfios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-rfios/Pods-rfios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rfios/Pods-rfios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F909511B1DD1CD717AD79CFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		E0FB6F402374FAAF00241EC7 /* Sources */ = {
@@ -432,6 +581,7 @@
 		};
 		E0FB6F6F2374FAB100241EC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8813671D4436E150807764D4 /* Pods-rfios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -444,12 +594,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = avon.rfios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		E0FB6F702374FAB100241EC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1723BAA576F4DEF2DBC8B49C /* Pods-rfios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -462,12 +613,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = avon.rfios;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
 		E0FB6F722374FAB100241EC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -490,6 +642,7 @@
 		};
 		E0FB6F732374FAB100241EC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C5F309D6FB59200402D04CC0 /* Pods-rfiosTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -512,6 +665,7 @@
 		};
 		E0FB6F752374FAB100241EC7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C764368E035609018CA59DF7 /* Pods-rfios-rfiosUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -532,6 +686,7 @@
 		};
 		E0FB6F762374FAB100241EC7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DBA256DB615E4636EBD022F6 /* Pods-rfios-rfiosUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
