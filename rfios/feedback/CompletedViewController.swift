@@ -1,14 +1,14 @@
 //
-//  SideMenuViewController.swift
+//  CompletedViewController.swift
 //  rfios
 //
-//  Created by Taeheon Woo on 2019/11/09.
+//  Created by Taeheon Woo on 2019/11/10.
 //  Copyright © 2019 avon. All rights reserved.
 //
 
 import UIKit
 
-class SideMenuViewController: UIViewController {
+class CompletedViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

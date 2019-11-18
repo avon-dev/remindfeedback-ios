@@ -6,10 +6,22 @@
 //  Copyright © 2019 avon. All rights reserved.
 //
 
+import RxSwift
 import UIKit
 
 class FeedbackCell: UITableViewCell {
+    
+    static let identifier = "feedbackCell"
 
+    @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var feedbackLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var userPic: UIImageView!
+    
+//    required init?(coder aDecoder: NSCoder) { 
+//        super.init(coder: aDecoder)
+//    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

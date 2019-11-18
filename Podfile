@@ -7,11 +7,22 @@ target 'rfios' do
 
   # Pods for rfios
 
-  pod 'SideMenu'
+  pod 'SideMenuSwift'
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'RxRelay'
+  pod 'RxOptional'
+  pod 'RxViewController'
+  pod 'RxGesture'
+  pod 'RxAlamofire'
+  pod 'RxRealm'
+  pod 'Hero'
 
   target 'rfiosTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'RxTest'
+    pod 'RxBlocking'
   end
 
   target 'rfiosUITests' do
