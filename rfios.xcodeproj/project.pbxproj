@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		0B15FFF25D24A9B802316B60 /* Pods_rfios_rfiosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8255601FBC0BCC0FE4CDF397 /* Pods_rfios_rfiosUITests.framework */; };
+		1C17BED82383F5F1001FB4C4 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BED72383F5F1001FB4C4 /* UILabel+Extension.swift */; };
+		1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BED92383FDA0001FB4C4 /* EdgeInsetLabel.swift */; };
+		1C17BEDC2383FEA3001FB4C4 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */; };
+		1C17BEDE23841741001FB4C4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */; };
 		AAAFFF20820A93A4A14F8D48 /* Pods_rfiosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC37973D26179E855959141 /* Pods_rfiosTests.framework */; };
 		E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45822382971D005F8CA0 /* NWLabel.swift */; };
 		E02F45862382AAE9005F8CA0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E02F45852382AAE9005F8CA0 /* User.storyboard */; };
@@ -55,6 +59,10 @@
 
 /* Begin PBXFileReference section */
 		1723BAA576F4DEF2DBC8B49C /* Pods-rfios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios.release.xcconfig"; path = "Target Support Files/Pods-rfios/Pods-rfios.release.xcconfig"; sourceTree = "<group>"; };
+		1C17BED72383F5F1001FB4C4 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		1C17BED92383FDA0001FB4C4 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
+		1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
+		1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		401BF1C6D3695679693467CA /* Pods_rfios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.debug.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DC37973D26179E855959141 /* Pods_rfiosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfiosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +131,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C17BED62383F5C4001FB4C4 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				1C17BED72383F5F1001FB4C4 /* UILabel+Extension.swift */,
+				1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		2F337B3A097B9CC3D41BF923 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +167,8 @@
 			isa = PBXGroup;
 			children = (
 				E02F45822382971D005F8CA0 /* NWLabel.swift */,
+				1C17BED92383FDA0001FB4C4 /* EdgeInsetLabel.swift */,
+				1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -213,6 +232,7 @@
 		E0FB6F462374FAAF00241EC7 /* rfios */ = {
 			isa = PBXGroup;
 			children = (
+				1C17BED62383F5C4001FB4C4 /* extension */,
 				E02F4581238294CF005F8CA0 /* custom */,
 				E04085142376E6C8008C9F8F /* feedback */,
 				E0D25C392376A1FE001697F9 /* login */,
@@ -510,12 +530,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C17BEDE23841741001FB4C4 /* UIViewController+Extension.swift in Sources */,
 				E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */,
 				E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */,
+				1C17BED82383F5F1001FB4C4 /* UILabel+Extension.swift in Sources */,
+				1C17BEDC2383FEA3001FB4C4 /* RoundView.swift in Sources */,
 				E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */,
 				E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */,
 				E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */,
 				E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */,
+				1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */,
 				E04085192376ED16008C9F8F /* SideBarViewController.swift in Sources */,
 				E04085122376E6B9008C9F8F /* FeedbackCell.swift in Sources */,
 				E02F45882382AC51005F8CA0 /* FriendListViewController.swift in Sources */,

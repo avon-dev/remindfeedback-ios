@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (4.9.1)
-  - Hero (1.5.0)
+  - iOSDropDown (0.3.4)
   - Realm (3.20.0):
     - Realm/Headers (= 3.20.0)
   - Realm/Headers (3.20.0)
@@ -36,7 +36,7 @@ PODS:
   - SideMenuSwift (2.0.3)
 
 DEPENDENCIES:
-  - Hero
+  - iOSDropDown
   - RxAlamofire
   - RxBlocking
   - RxCocoa
@@ -52,7 +52,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
-    - Hero
+    - iOSDropDown
     - Realm
     - RealmSwift
     - RxAlamofire
@@ -69,7 +69,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
-  Hero: b7385b75e7259da62f4f85462f59a5082d66b058
+  iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
   RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
   RxAlamofire: a2d7621de4c23a0c6e7b476b504acc32838ee341
@@ -84,6 +84,6 @@ SPEC CHECKSUMS:
   RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
   SideMenuSwift: 5c2b1496544ce3f1f08f4dddf4810eaac49f543d
 
-PODFILE CHECKSUM: 2bf054336091af27fa00efeb5059d9eefc8ed111
+PODFILE CHECKSUM: 86629625c7e9c7f2a3e6502837bd3a32ca450d7b
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

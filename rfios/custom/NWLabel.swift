@@ -8,9 +8,52 @@
 
 import UIKit
 
-class OngoingLabel: UILabel {
+@IBDesignable class NWLabel: UILabel {
     
-    @IBInspectable var padding: UIEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 4)
+    @IBInspectable var topPadding: CGFloat {
+        set {
+            self.topPadding = newValue
+        }
+        get {
+            return self.topPadding
+        }
+    }
+
+    @IBInspectable var leftPadding: CGFloat {
+        set {
+            self.leftPadding = newValue
+        }
+        get {
+            return self.leftPadding
+        }
+    }
+
+    @IBInspectable var bottomPadding: CGFloat {
+        set {
+            self.bottomPadding = newValue
+        }
+        get {
+            return self.bottomPadding
+        }
+    }
+
+    @IBInspectable var rightPadding: CGFloat {
+        set {
+            self.rightPadding = newValue
+        }
+        get {
+            return self.rightPadding
+        }
+    }
+
+    @IBInspectable var padding: UIEdgeInsets { 
+        set {
+            self.padding = UIEdgeInsets(top: self.topPadding, left: self.leftPadding, bottom: self.bottomPadding, right: self.rightPadding)
+        }
+        get {
+            return self.padding
+        }
+    }
     
     override func drawText(in rect: CGRect) {
         let paddingRect = rect.inset(by: padding)

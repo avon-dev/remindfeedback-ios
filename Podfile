@@ -16,7 +16,8 @@ target 'rfios' do
   pod 'RxGesture'
   pod 'RxAlamofire'
   pod 'RxRealm'
-  pod 'Hero'
+  # pod 'Hero'
+  pod 'iOSDropDown'
 
   target 'rfiosTests' do
     inherit! :search_paths

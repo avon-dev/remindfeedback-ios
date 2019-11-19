@@ -6,7 +6,7 @@
 //  Copyright © 2019 avon. All rights reserved.
 //
 
-import Hero
+//import Hero
 import RxCocoa
 import RxGesture
 import RxSwift

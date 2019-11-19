@@ -6,6 +6,7 @@
 //  Copyright © 2019 avon. All rights reserved.
 //
 
+import iOSDropDown
 import RxCocoa
 import RxSwift
 import RxViewController
@@ -17,6 +18,10 @@ class MainViewController: UIViewController {
     
     var viewModel: MainViewModelType
     var disposeBag = DisposeBag()
+    
+    @IBOutlet weak var dropDown: DropDown!
+    
+    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -34,6 +39,11 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // The list of array to display. Can be changed dynamically
+        dropDown.optionArray = ["Option 1", "Option 2", "Option 3"]
+        //Its Id Values and its optional
+//        dropDown.optionIds = [1,23,54,22]
+        
         let cellName = UINib(nibName: "FeedbackCell", bundle: nil)
         tableView.register(cellName, forCellReuseIdentifier: "feedbackCell")
         tableView.estimatedRowHeight = 80.0
@@ -44,25 +54,11 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("main viewWillAppear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        print("main viewDidAppear")
         self.checkLogin()
-        
-//        let transition = CATransition()
-//        transition.duration = 0.2
-//        transition.type = CATransitionType.push
-//        transition.subtype = CATransitionSubtype.fromRight
-//        self.view.window!.layer.add(transition, forKey: kCATransition)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(true)
-        print("main viewWillDisappear")
-        self.navigationController?.navigationBar.frame.height
     }
     
     func setBinding() {
@@ -94,12 +90,12 @@ class MainViewController: UIViewController {
     @IBAction func showSideMenu(_ sender: Any) {
         sideMenuController?.revealMenu()
     }
+    
     // 로그인 여부를 체크하는 함수
     func checkLogin() {
-        let isLogin = true
+        let isLogin = false
 
         guard isLogin else {
-
 
 //            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") {
 //
