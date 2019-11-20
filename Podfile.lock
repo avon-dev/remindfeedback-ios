@@ -1,16 +1,89 @@
 PODS:
-  - SideMenu (6.4.6)
+  - Alamofire (4.9.1)
+  - iOSDropDown (0.3.4)
+  - Realm (3.20.0):
+    - Realm/Headers (= 3.20.0)
+  - Realm/Headers (3.20.0)
+  - RealmSwift (3.20.0):
+    - Realm (= 3.20.0)
+  - RxAlamofire (5.1.0):
+    - RxAlamofire/Core (= 5.1.0)
+  - RxAlamofire/Core (5.1.0):
+    - Alamofire (~> 4.8)
+    - RxSwift (~> 5.0)
+  - RxBlocking (5.0.0):
+    - RxSwift (~> 5)
+  - RxCocoa (5.0.0):
+    - RxRelay (~> 5)
+    - RxSwift (~> 5)
+  - RxGesture (3.0.1):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - RxOptional (4.0.0):
+    - RxCocoa (~> 5)
+    - RxSwift (~> 5)
+  - RxRealm (1.0.0):
+    - RealmSwift (~> 3.14)
+    - RxSwift (~> 5.0)
+  - RxRelay (5.0.0):
+    - RxSwift (~> 5)
+  - RxSwift (5.0.0)
+  - RxTest (5.0.0):
+    - RxSwift (~> 5)
+  - RxViewController (1.0.0):
+    - RxCocoa (~> 5.0)
+    - RxSwift (~> 5.0)
+  - SideMenuSwift (2.0.3)
 
 DEPENDENCIES:
-  - SideMenu
+  - iOSDropDown
+  - RxAlamofire
+  - RxBlocking
+  - RxCocoa
+  - RxGesture
+  - RxOptional
+  - RxRealm
+  - RxRelay
+  - RxSwift
+  - RxTest
+  - RxViewController
+  - SideMenuSwift
 
 SPEC REPOS:
   trunk:
-    - SideMenu
+    - Alamofire
+    - iOSDropDown
+    - Realm
+    - RealmSwift
+    - RxAlamofire
+    - RxBlocking
+    - RxCocoa
+    - RxGesture
+    - RxOptional
+    - RxRealm
+    - RxRelay
+    - RxSwift
+    - RxTest
+    - RxViewController
+    - SideMenuSwift
 
 SPEC CHECKSUMS:
-  SideMenu: 43910eb6dc994dd59771f8e82573d04a9e776361
+  Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
+  Realm: 8b2ca5bc6479a91f379b6b42b5922e396cd5ba5a
+  RealmSwift: 1949ef26a279e1845bd51d591b9103adfcd121df
+  RxAlamofire: a2d7621de4c23a0c6e7b476b504acc32838ee341
+  RxBlocking: c67185d26498ea3cbe3e121917c3c16739e43123
+  RxCocoa: fcf32050ac00d801f34a7f71d5e8e7f23026dcd8
+  RxGesture: a3f8dd6adf078110ed5e1c9c30d09d705a09852e
+  RxOptional: 9904e2219d59260c3c171273d475b2126de187e8
+  RxRealm: 1e81dcfca1fb50c3e9b3e1f8102bc875c5156a2e
+  RxRelay: 4f7409406a51a55cd88483f21ed898c234d60f18
+  RxSwift: 8b0671caa829a763bbce7271095859121cbd895f
+  RxTest: 4349afe98f564e0a9bc19063368904622d17d49a
+  RxViewController: 7330a46e5c31cd680db169da4c9fc8676e975a81
+  SideMenuSwift: 5c2b1496544ce3f1f08f4dddf4810eaac49f543d
 
-PODFILE CHECKSUM: dd85117151ffda58ec919b2266834df1374ffea4
+PODFILE CHECKSUM: 86629625c7e9c7f2a3e6502837bd3a32ca450d7b
 
-COCOAPODS: 1.8.3
+COCOAPODS: 1.8.4

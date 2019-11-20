@@ -3,15 +3,35 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0B15FFF25D24A9B802316B60 /* Pods_rfios_rfiosUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8255601FBC0BCC0FE4CDF397 /* Pods_rfios_rfiosUITests.framework */; };
+		1C17BED82383F5F1001FB4C4 /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BED72383F5F1001FB4C4 /* UILabel+Extension.swift */; };
+		1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BED92383FDA0001FB4C4 /* EdgeInsetLabel.swift */; };
+		1C17BEDC2383FEA3001FB4C4 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */; };
+		1C17BEDE23841741001FB4C4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */; };
 		AAAFFF20820A93A4A14F8D48 /* Pods_rfiosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC37973D26179E855959141 /* Pods_rfiosTests.framework */; };
+		E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45822382971D005F8CA0 /* NWLabel.swift */; };
+		E02F45862382AAE9005F8CA0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E02F45852382AAE9005F8CA0 /* User.storyboard */; };
+		E02F45882382AC51005F8CA0 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45872382AC51005F8CA0 /* FriendListViewController.swift */; };
+		E02F458B2382B7C3005F8CA0 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45892382B7C3005F8CA0 /* FriendCell.swift */; };
+		E02F458C2382B7C3005F8CA0 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E02F458A2382B7C3005F8CA0 /* FriendCell.xib */; };
+		E02F458E2382BE93005F8CA0 /* FriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */; };
+		E04085122376E6B9008C9F8F /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04085102376E6B9008C9F8F /* FeedbackCell.swift */; };
+		E04085132376E6B9008C9F8F /* FeedbackCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E04085112376E6B9008C9F8F /* FeedbackCell.xib */; };
+		E04085192376ED16008C9F8F /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04085182376ED16008C9F8F /* SideBarViewController.swift */; };
+		E040851B2376F3E6008C9F8F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040851A2376F3E5008C9F8F /* MainViewModel.swift */; };
+		E040851F2377274C008C9F8F /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E040851E2377274C008C9F8F /* Feedback.storyboard */; };
+		E040852123772C8D008C9F8F /* CompletedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040852023772C8D008C9F8F /* CompletedViewController.swift */; };
+		E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */; };
+		E0D25C3623750A71001697F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3523750A71001697F9 /* LoginViewController.swift */; };
+		E0D25C3823751063001697F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D25C3723751063001697F9 /* Login.storyboard */; };
+		E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3A2376A586001697F9 /* RegisterViewController.swift */; };
 		E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */; };
 		E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */; };
-		E0FB6F4C2374FAAF00241EC7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F4B2374FAAF00241EC7 /* ViewController.swift */; };
+		E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */; };
 		E0FB6F4F2374FAAF00241EC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F4D2374FAAF00241EC7 /* Main.storyboard */; };
 		E0FB6F512374FAB100241EC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* Assets.xcassets */; };
 		E0FB6F542374FAB100241EC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F522374FAB100241EC7 /* LaunchScreen.storyboard */; };
@@ -39,6 +59,10 @@
 
 /* Begin PBXFileReference section */
 		1723BAA576F4DEF2DBC8B49C /* Pods-rfios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios.release.xcconfig"; path = "Target Support Files/Pods-rfios/Pods-rfios.release.xcconfig"; sourceTree = "<group>"; };
+		1C17BED72383F5F1001FB4C4 /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
+		1C17BED92383FDA0001FB4C4 /* EdgeInsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsetLabel.swift; sourceTree = "<group>"; };
+		1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
+		1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		401BF1C6D3695679693467CA /* Pods_rfios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.debug.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DC37973D26179E855959141 /* Pods_rfiosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfiosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -47,10 +71,26 @@
 		C5F309D6FB59200402D04CC0 /* Pods-rfiosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.release.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.release.xcconfig"; sourceTree = "<group>"; };
 		C764368E035609018CA59DF7 /* Pods-rfios-rfiosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios-rfiosUITests.debug.xcconfig"; path = "Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBA256DB615E4636EBD022F6 /* Pods-rfios-rfiosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios-rfiosUITests.release.xcconfig"; path = "Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E02F45822382971D005F8CA0 /* NWLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWLabel.swift; sourceTree = "<group>"; };
+		E02F45852382AAE9005F8CA0 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
+		E02F45872382AC51005F8CA0 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
+		E02F45892382B7C3005F8CA0 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
+		E02F458A2382B7C3005F8CA0 /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
+		E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewModel.swift; sourceTree = "<group>"; };
+		E04085102376E6B9008C9F8F /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
+		E04085112376E6B9008C9F8F /* FeedbackCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedbackCell.xib; sourceTree = "<group>"; };
+		E04085182376ED16008C9F8F /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
+		E040851A2376F3E5008C9F8F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		E040851E2377274C008C9F8F /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
+		E040852023772C8D008C9F8F /* CompletedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedViewController.swift; sourceTree = "<group>"; };
+		E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFeedbackViewController.swift; sourceTree = "<group>"; };
+		E0D25C3523750A71001697F9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		E0D25C3723751063001697F9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		E0D25C3A2376A586001697F9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E0FB6F442374FAAF00241EC7 /* rfios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rfios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E0FB6F4B2374FAAF00241EC7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E0FB6F4E2374FAAF00241EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E0FB6F502374FAB100241EC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0FB6F532374FAB100241EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -91,6 +131,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1C17BED62383F5C4001FB4C4 /* extension */ = {
+			isa = PBXGroup;
+			children = (
+				1C17BED72383F5F1001FB4C4 /* UILabel+Extension.swift */,
+				1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */,
+			);
+			path = extension;
+			sourceTree = "<group>";
+		};
 		2F337B3A097B9CC3D41BF923 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -111,8 +160,51 @@
 				411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */,
 				C5F309D6FB59200402D04CC0 /* Pods-rfiosTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E02F4581238294CF005F8CA0 /* custom */ = {
+			isa = PBXGroup;
+			children = (
+				E02F45822382971D005F8CA0 /* NWLabel.swift */,
+				1C17BED92383FDA0001FB4C4 /* EdgeInsetLabel.swift */,
+				1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */,
+			);
+			path = custom;
+			sourceTree = "<group>";
+		};
+		E02F45842382A616005F8CA0 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				E02F458A2382B7C3005F8CA0 /* FriendCell.xib */,
+				E02F45892382B7C3005F8CA0 /* FriendCell.swift */,
+				E02F45852382AAE9005F8CA0 /* User.storyboard */,
+				E02F45872382AC51005F8CA0 /* FriendListViewController.swift */,
+				E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
+		E04085142376E6C8008C9F8F /* feedback */ = {
+			isa = PBXGroup;
+			children = (
+				E04085112376E6B9008C9F8F /* FeedbackCell.xib */,
+				E04085102376E6B9008C9F8F /* FeedbackCell.swift */,
+				E040851E2377274C008C9F8F /* Feedback.storyboard */,
+				E040852023772C8D008C9F8F /* CompletedViewController.swift */,
+				E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */,
+			);
+			path = feedback;
+			sourceTree = "<group>";
+		};
+		E0D25C392376A1FE001697F9 /* login */ = {
+			isa = PBXGroup;
+			children = (
+				E0D25C3723751063001697F9 /* Login.storyboard */,
+				E0D25C3523750A71001697F9 /* LoginViewController.swift */,
+				E0D25C3A2376A586001697F9 /* RegisterViewController.swift */,
+			);
+			path = login;
 			sourceTree = "<group>";
 		};
 		E0FB6F3B2374FAAF00241EC7 = {
@@ -140,12 +232,19 @@
 		E0FB6F462374FAAF00241EC7 /* rfios */ = {
 			isa = PBXGroup;
 			children = (
+				1C17BED62383F5C4001FB4C4 /* extension */,
+				E02F4581238294CF005F8CA0 /* custom */,
+				E04085142376E6C8008C9F8F /* feedback */,
+				E0D25C392376A1FE001697F9 /* login */,
+				E02F45842382A616005F8CA0 /* user */,
+				E0FB6F522374FAB100241EC7 /* LaunchScreen.storyboard */,
+				E0FB6F4D2374FAAF00241EC7 /* Main.storyboard */,
 				E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */,
 				E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */,
-				E0FB6F4B2374FAAF00241EC7 /* ViewController.swift */,
-				E0FB6F4D2374FAAF00241EC7 /* Main.storyboard */,
+				E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */,
+				E040851A2376F3E5008C9F8F /* MainViewModel.swift */,
+				E04085182376ED16008C9F8F /* SideBarViewController.swift */,
 				E0FB6F502374FAB100241EC7 /* Assets.xcassets */,
-				E0FB6F522374FAB100241EC7 /* LaunchScreen.storyboard */,
 				E0FB6F552374FAB100241EC7 /* Info.plist */,
 			);
 			path = rfios;
@@ -199,6 +298,7 @@
 				E0FB6F562374FAB100241EC7 /* Sources */,
 				E0FB6F572374FAB100241EC7 /* Frameworks */,
 				E0FB6F582374FAB100241EC7 /* Resources */,
+				B6B06070FAFE84AA793D12BD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -278,9 +378,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E0D25C3823751063001697F9 /* Login.storyboard in Resources */,
+				E04085132376E6B9008C9F8F /* FeedbackCell.xib in Resources */,
 				E0FB6F542374FAB100241EC7 /* LaunchScreen.storyboard in Resources */,
 				E0FB6F512374FAB100241EC7 /* Assets.xcassets in Resources */,
 				E0FB6F4F2374FAAF00241EC7 /* Main.storyboard in Resources */,
+				E02F45862382AAE9005F8CA0 /* User.storyboard in Resources */,
+				E040851F2377274C008C9F8F /* Feedback.storyboard in Resources */,
+				E02F458C2382B7C3005F8CA0 /* FriendCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,6 +489,23 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rfios/Pods-rfios-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		B6B06070FAFE84AA793D12BD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-rfiosTests/Pods-rfiosTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-rfiosTests/Pods-rfiosTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-rfiosTests/Pods-rfiosTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F909511B1DD1CD717AD79CFB /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -408,9 +530,24 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E0FB6F4C2374FAAF00241EC7 /* ViewController.swift in Sources */,
+				1C17BEDE23841741001FB4C4 /* UIViewController+Extension.swift in Sources */,
+				E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */,
+				E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */,
+				1C17BED82383F5F1001FB4C4 /* UILabel+Extension.swift in Sources */,
+				1C17BEDC2383FEA3001FB4C4 /* RoundView.swift in Sources */,
+				E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */,
+				E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */,
 				E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */,
 				E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */,
+				1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */,
+				E04085192376ED16008C9F8F /* SideBarViewController.swift in Sources */,
+				E04085122376E6B9008C9F8F /* FeedbackCell.swift in Sources */,
+				E02F45882382AC51005F8CA0 /* FriendListViewController.swift in Sources */,
+				E040852123772C8D008C9F8F /* CompletedViewController.swift in Sources */,
+				E02F458E2382BE93005F8CA0 /* FriendListViewModel.swift in Sources */,
+				E0D25C3623750A71001697F9 /* LoginViewController.swift in Sources */,
+				E02F458B2382B7C3005F8CA0 /* FriendCell.swift in Sources */,
+				E040851B2376F3E6008C9F8F /* MainViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
