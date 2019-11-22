@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LDA-8A-IhM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -152,6 +152,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aSf-tZ-u15"/>
                     </view>
+                    <connections>
+                        <outlet property="registerBtn" destination="UKR-Uc-Ng1" id="NHW-5m-4F3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7m-XB-fE3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -369,6 +372,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Eu9-DT-Zd3"/>
                     </view>
+                    <connections>
+                        <outlet property="chkPwdTextField" destination="QBK-OT-uvm" id="kVr-wx-JAW"/>
+                        <outlet property="emailTextField" destination="jjL-wa-qEc" id="XpB-HF-5co"/>
+                        <outlet property="nicknameTextField" destination="6hn-gC-20K" id="bPH-CQ-CNx"/>
+                        <outlet property="pwdTextField" destination="PGo-1h-ala" id="n8U-7k-0la"/>
+                        <outlet property="reqRegisterBtn" destination="oF2-jh-Oef" id="B5s-yv-83O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9R-AS-RsV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
