@@ -16,11 +16,15 @@ protocol RegisterViewModelType {
     var pwdInput: BehaviorSubject<String> { get }
     var chkPwdInput: BehaviorSubject<String> { get }
     
+    // output
     var emailValid: Observable<Bool> { get }
     var pwdValid: Observable<Bool> { get }
     var chkPwdValid: Observable<Bool> { get }
     
     var registerValid: Observable<Bool> { get }
+    
+    // to Model
+    func reqRegister(email: String, nickName: String, pwd: String) -> Observable<[Bool:String?]>
     
 }
 
@@ -58,8 +62,26 @@ class RegisterViewModel: RegisterViewModelType {
             pwd == chk
         })
         
+        // 회원가입 가능 여부 체크
         registerValid = Observable.combineLatest(emailValid, pwdValid, chkPwdValid, resultSelector: { $0 && $1 && $2 })
         
+    }
+    
+    func reqRegister(email: String, nickName: String, pwd: String) -> Observable<[Bool:String?]> {
+        
+        var params: [String: Any] = [:]
+        params["email"] = email
+        params["nickname"] = nickName
+        params["password"] = pwd
+        
+        return APIHelper.sharedInstance.rxPushRequest(.register(params))
+            .map {
+                if $0.isSuccess {
+                    return [true : nil]
+                } else {
+                    return [false : "회원가입 실패"]
+                }
+            }
     }
     
 }

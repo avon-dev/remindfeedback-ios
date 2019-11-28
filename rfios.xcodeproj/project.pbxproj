@@ -13,6 +13,8 @@
 		1C17BEDC2383FEA3001FB4C4 /* RoundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */; };
 		1C17BEDE23841741001FB4C4 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */; };
 		1C17BEE1238D16F2001FB4C4 /* BaseAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEE0238D16F2001FB4C4 /* BaseAPI.swift */; };
+		1C17BEE4238FB4BC001FB4C4 /* UserDefaultHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEE3238FB4BC001FB4C4 /* UserDefaultHelper.swift */; };
+		1C17BEE8238FB6D1001FB4C4 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEE7238FB6D1001FB4C4 /* APIHelper.swift */; };
 		AAAFFF20820A93A4A14F8D48 /* Pods_rfiosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC37973D26179E855959141 /* Pods_rfiosTests.framework */; };
 		E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45822382971D005F8CA0 /* NWLabel.swift */; };
 		E02F45862382AAE9005F8CA0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E02F45852382AAE9005F8CA0 /* User.storyboard */; };
@@ -71,6 +73,8 @@
 		1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundView.swift; sourceTree = "<group>"; };
 		1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
 		1C17BEE0238D16F2001FB4C4 /* BaseAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAPI.swift; sourceTree = "<group>"; };
+		1C17BEE3238FB4BC001FB4C4 /* UserDefaultHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultHelper.swift; sourceTree = "<group>"; };
+		1C17BEE7238FB6D1001FB4C4 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
 		401BF1C6D3695679693467CA /* Pods_rfios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.debug.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DC37973D26179E855959141 /* Pods_rfiosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfiosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,12 +159,21 @@
 			path = extension;
 			sourceTree = "<group>";
 		};
-		1C17BEDF238D169B001FB4C4 /* network */ = {
+		1C17BEE5238FB576001FB4C4 /* data */ = {
 			isa = PBXGroup;
 			children = (
-				1C17BEE0238D16F2001FB4C4 /* BaseAPI.swift */,
 			);
-			path = network;
+			path = data;
+			sourceTree = "<group>";
+		};
+		1C17BEE6238FB5E8001FB4C4 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				1C17BEE3238FB4BC001FB4C4 /* UserDefaultHelper.swift */,
+				1C17BEE0238D16F2001FB4C4 /* BaseAPI.swift */,
+				1C17BEE7238FB6D1001FB4C4 /* APIHelper.swift */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 		2F337B3A097B9CC3D41BF923 /* Frameworks */ = {
@@ -230,7 +243,7 @@
 			path = feedback;
 			sourceTree = "<group>";
 		};
-		E0D25C392376A1FE001697F9 /* login */ = {
+		E0D25C392376A1FE001697F9 /* auth */ = {
 			isa = PBXGroup;
 			children = (
 				E0D25C3723751063001697F9 /* Login.storyboard */,
@@ -239,7 +252,7 @@
 				E0D25C3A2376A586001697F9 /* RegisterViewController.swift */,
 				E03A08CE2386B57E0073477D /* RegisterViewModel.swift */,
 			);
-			path = login;
+			path = auth;
 			sourceTree = "<group>";
 		};
 		E0FB6F3B2374FAAF00241EC7 = {
@@ -267,12 +280,13 @@
 		E0FB6F462374FAAF00241EC7 /* rfios */ = {
 			isa = PBXGroup;
 			children = (
-				1C17BEDF238D169B001FB4C4 /* network */,
-				E03A08CB2386B5060073477D /* scenes */,
 				E02F4581238294CF005F8CA0 /* custom */,
 				1C17BED62383F5C4001FB4C4 /* extension */,
+				1C17BEE5238FB576001FB4C4 /* data */,
+				1C17BEE6238FB5E8001FB4C4 /* util */,
+				E03A08CB2386B5060073477D /* scenes */,
+				E0D25C392376A1FE001697F9 /* auth */,
 				E04085142376E6C8008C9F8F /* feedback */,
-				E0D25C392376A1FE001697F9 /* login */,
 				E02F45842382A616005F8CA0 /* user */,
 				E0FB6F522374FAB100241EC7 /* LaunchScreen.storyboard */,
 				E0FB6F4D2374FAAF00241EC7 /* Main.storyboard */,
@@ -567,6 +581,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C17BEE8238FB6D1001FB4C4 /* APIHelper.swift in Sources */,
+				1C17BEE4238FB4BC001FB4C4 /* UserDefaultHelper.swift in Sources */,
 				1C17BEDE23841741001FB4C4 /* UIViewController+Extension.swift in Sources */,
 				E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */,
 				E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */,
