@@ -6,11 +6,16 @@
 //  Copyright © 2019 avon. All rights reserved.
 //
 
+
 import RxCocoa
 import RxGesture
 import RxSwift
 import RxViewController
 import UIKit
+
+import Moya
+import RealmSwift
+import SwiftyJSON
 
 class RegisterViewController: UIViewController {
     
@@ -36,6 +41,7 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
         setBinding()
     }
     
@@ -44,6 +50,8 @@ class RegisterViewController: UIViewController {
     }
     
     func setUI() {
+        // VIEW가 처음에 화면에 보여질 때는 회원가입이 불가능하게끔 만들어 놓음
+        // 그래서 버튼을 비활성화 처리함
         self.reqRegisterBtn.isEnabled = false
     }
     
@@ -75,10 +83,58 @@ class RegisterViewController: UIViewController {
         
         //
         viewModel.registerValid
-            .subscribe(onNext: {
+            .subscribe(
+                onNext: {
                 print("가입가능", $0)
-                self.reqRegisterBtn.isEnabled = $0
-            } )
+                    self.reqRegisterBtn.isEnabled = $0
+                }
+            )
+            .disposed(by: disposeBag)
+        
+        
+        self.reqRegisterBtn.rx.tap
+            .subscribe(
+                onNext: {
+                    print("회원가입 시도")
+                    
+                    let provider = MoyaProvider<BaseAPI>()
+                    
+                    var params: [String: Any] = [:]
+                    params["email"] = "z@www.com"
+                    params["nickname"] = "www"
+                    params["password"] = "12345"
+                    
+                    provider.request(.register(params)) { result in
+                        
+                        print("body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
+                        
+                        switch result {
+                        case let .success(moyaResponse):
+                            let header = moyaResponse.response?.allHeaderFields
+                            let data = moyaResponse.data
+                            let statusCode = moyaResponse.statusCode
+                            
+                            do {
+                              // 4
+                              print(try moyaResponse.mapJSON())
+                            } catch {
+                              
+                            }
+                            
+                            print("moyaResponse", moyaResponse)
+                            print("header", header)
+                            print("data", data)
+                            print("status",statusCode)
+
+                        case let .failure(error):
+                            print("error",error)
+                        }
+                    }
+                    
+                    
+                    
+                } // END : onNext
+            )
             .disposed(by: disposeBag)
         
     }

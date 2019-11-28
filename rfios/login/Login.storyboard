@@ -153,6 +153,8 @@
                         <viewLayoutGuide key="safeArea" id="aSf-tZ-u15"/>
                     </view>
                     <connections>
+                        <outlet property="appleBtn" destination="d6p-AV-r0J" id="DoY-4p-DZz"/>
+                        <outlet property="loginBtn" destination="u5a-bh-h9y" id="tTy-ty-wYK"/>
                         <outlet property="registerBtn" destination="UKR-Uc-Ng1" id="NHW-5m-4F3"/>
                     </connections>
                 </viewController>
