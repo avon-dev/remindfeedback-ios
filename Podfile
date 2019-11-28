@@ -18,6 +18,10 @@ target 'rfios' do
   pod 'RxRealm'
   # pod 'Hero'
   pod 'iOSDropDown'
+  pod 'Action'
+  pod 'RxFlow'
+  pod 'Moya/RxSwift'
+  pod 'SwiftyJSON'
 
   target 'rfiosTests' do
     inherit! :search_paths

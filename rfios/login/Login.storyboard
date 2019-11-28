@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="LDA-8A-IhM">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15509"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -152,6 +152,11 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="aSf-tZ-u15"/>
                     </view>
+                    <connections>
+                        <outlet property="appleBtn" destination="d6p-AV-r0J" id="DoY-4p-DZz"/>
+                        <outlet property="loginBtn" destination="u5a-bh-h9y" id="tTy-ty-wYK"/>
+                        <outlet property="registerBtn" destination="UKR-Uc-Ng1" id="NHW-5m-4F3"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t7m-XB-fE3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -183,7 +188,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RemindFeedback에 오신 것을 환영합니다. 회원가입을 통해 서비스를 이용할 수 있습니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uhs-zW-12f">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RemindFeedback에 오신 것을 환영합니다. 회원가입을 통해 서비스를 이용할 수 있습니다." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uhs-zW-12f">
                                 <rect key="frame" x="45" y="202.5" width="324" height="43"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -369,6 +374,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Eu9-DT-Zd3"/>
                     </view>
+                    <connections>
+                        <outlet property="chkPwdTextField" destination="QBK-OT-uvm" id="kVr-wx-JAW"/>
+                        <outlet property="emailTextField" destination="jjL-wa-qEc" id="XpB-HF-5co"/>
+                        <outlet property="nicknameTextField" destination="6hn-gC-20K" id="bPH-CQ-CNx"/>
+                        <outlet property="pwdTextField" destination="PGo-1h-ala" id="n8U-7k-0la"/>
+                        <outlet property="reqRegisterBtn" destination="oF2-jh-Oef" id="B5s-yv-83O"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c9R-AS-RsV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
