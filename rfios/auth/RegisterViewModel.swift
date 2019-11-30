@@ -8,6 +8,7 @@
 
 import Foundation
 import RxSwift
+import RxCocoa
 
 protocol RegisterViewModelType {
     // Input
@@ -24,11 +25,14 @@ protocol RegisterViewModelType {
     var registerValid: Observable<Bool> { get }
     
     // to Model
-    func reqRegister(email: String, nickName: String, pwd: String) -> Observable<[Bool:String?]>
+    func reqRegister() -> Observable<(Bool, String?)>
+    
     
 }
 
 class RegisterViewModel: RegisterViewModelType {
+    
+    var disposeBag = DisposeBag()
     
     let emailInput: BehaviorSubject<String>
     let nicknameInput: BehaviorSubject<String>
@@ -40,6 +44,8 @@ class RegisterViewModel: RegisterViewModelType {
     let chkPwdValid: Observable<Bool>
     
     let registerValid: Observable<Bool>
+        
+    var params: [String:Any] = [:]
     
     init() {
         
@@ -65,24 +71,39 @@ class RegisterViewModel: RegisterViewModelType {
         // 회원가입 가능 여부 체크
         registerValid = Observable.combineLatest(emailValid, pwdValid, chkPwdValid, resultSelector: { $0 && $1 && $2 })
         
+        Observable.combineLatest(emailInput, nicknameInput, pwdInput, resultSelector: {
+
+            var params: [String:Any] = [:]
+            params["email"] = $0
+            params["nickname"] = $1
+            params["password"] = $2
+            return params
+
+            })
+            .subscribe(onNext: { [weak self] in
+                self?.params = $0
+            })
+            .disposed(by: disposeBag)
+        /**
+        TODO
+         회원가입버튼 누르면 릴레이 터트리고
+         릴레이가 api 콜하고
+         뷰컨에서 이를 서브스크라이브 해야한다
+         */
+        
     }
     
-    func reqRegister(email: String, nickName: String, pwd: String) -> Observable<[Bool:String?]> {
+    func reqRegister() -> Observable<(Bool, String?)> {
         
-        var params: [String: Any] = [:]
-        params["email"] = email
-        params["nickname"] = nickName
-        params["password"] = pwd
-        
-        return APIHelper.sharedInstance.rxPushRequest(.register(params))
+        return APIHelper.sharedInstance.rxPushRequest(.register(self.params))
             .map {
                 if $0.isSuccess {
-                    return [true : nil]
+                    return (true, nil)
                 } else {
-                    return [false : "회원가입 실패"]
+                    return (false , "회원가입 실패")
                 }
             }
     }
-    
+
 }
 

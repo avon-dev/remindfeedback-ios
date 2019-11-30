@@ -46,6 +46,11 @@ class RegisterViewController: UIViewController {
         setBinding()
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(false)
+        self.disposeBag = DisposeBag()
+    }
+    
     @IBAction func dismissThisView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -83,77 +88,52 @@ extension RegisterViewController {
             .bind(to: viewModel.chkPwdInput)
             .disposed(by: disposeBag)
         
+//        self.reqRegisterBtn.rx.tap
+//            .subscribe(
+//                onNext: {
+//                    print("회원가입 시도")
+//
+//                    let observable = self.viewModel.reqRegister(email: self.emailTextField.text!, nickName: self.nicknameTextField.text!, pwd: self.pwdTextField.text!)
+//
+//                    observable.subscribe(
+//                        onNext: { resultTuple in
+//                            print(resultTuple)
+//                        }
+//                    )
+//                    .disposed(by: self.disposeBag)
+//
+//
+//                } // END : onNext
+//            )
+//            .disposed(by: disposeBag)
+        
+        self.reqRegisterBtn.rx.tap
+            .subscribe(onNext: {
+            })
+            .disposed(by: disposeBag)
+        
+//        self.reqRegisterBtn.rx.tap
+//            .bind(to: viewModel.registerEvent)
+//            .disposed(by: disposeBag)
+        
+        
         // - MARK: VIEWMODEL to VIEW
         
 //        viewModel.emailInput.asObserver()
 //            .subscribe(onNext: { print("이메일", $0) } )
 //            .disposed(by: disposeBag)
         
-        //
+        // 가입가능 여부 체크
         viewModel.registerValid
-            .subscribe(
-                onNext: {
-                print("가입가능?", $0)
-                    self.reqRegisterBtn.isEnabled = $0
-                }
-            )
+//            .subscribe(
+//                onNext: {
+//                print("가입가능?", $0)
+//                    self.reqRegisterBtn.isEnabled = $0
+//                }
+//            )
+            .bind(to: self.reqRegisterBtn.rx.isEnabled)
             .disposed(by: disposeBag)
         
-        
-        self.reqRegisterBtn.rx.tap
-            .subscribe(
-                onNext: {
-                    print("회원가입 시도")
-                    
-                    let observable = self.viewModel.reqRegister(email: self.emailTextField.text!, nickName: self.nicknameTextField.text!, pwd: self.pwdTextField.text!)
-                    
-                    observable.subscribe(
-                        onNext: { event in
-                            print(event)
-                        }
-                    )
-                    
-                    
-                    
-//                    let provider = MoyaProvider<BaseAPI>()
-//
-//                    var params: [String: Any] = [:]
-//                    params["email"] = "z@www.com"
-//                    params["nickname"] = "www"
-//                    params["password"] = "12345"
-//
-//                    provider.request(.register(params)) { result in
-//
-//                        print("body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
-//
-//                        switch result {
-//                        case let .success(moyaResponse):
-//                            let header = moyaResponse.response?.allHeaderFields
-//                            let data = moyaResponse.data
-//                            let statusCode = moyaResponse.statusCode
-//
-//                            do {
-//                              // 4
-//                              print(try moyaResponse.mapJSON())
-//                            } catch {
-//
-//                            }
-//
-//                            print("moyaResponse", moyaResponse)
-//                            print("header", header)
-//                            print("data", data)
-//                            print("status",statusCode)
-//
-//                        case let .failure(error):
-//                            print("error",error)
-//                        }
-//                    }
-                    
-                    
-                    
-                } // END : onNext
-            )
-            .disposed(by: disposeBag)
         
     }
     
