@@ -88,40 +88,18 @@ extension RegisterViewController {
             .bind(to: viewModel.chkPwdInput)
             .disposed(by: disposeBag)
         
-//        self.reqRegisterBtn.rx.tap
-//            .subscribe(
-//                onNext: {
-//                    print("회원가입 시도")
-//
-//                    let observable = self.viewModel.reqRegister(email: self.emailTextField.text!, nickName: self.nicknameTextField.text!, pwd: self.pwdTextField.text!)
-//
-//                    observable.subscribe(
-//                        onNext: { resultTuple in
-//                            print(resultTuple)
-//                        }
-//                    )
-//                    .disposed(by: self.disposeBag)
-//
-//
-//                } // END : onNext
-//            )
-//            .disposed(by: disposeBag)
-        
+        // 회원가입 요청
         self.reqRegisterBtn.rx.tap
-            .subscribe(onNext: {
-            })
+            .flatMap{ self.viewModel.reqRegister() }
+            .subscribe(
+                onNext: {
+                    print("회원가입 시도", $0)
+                }
+            )
             .disposed(by: disposeBag)
-        
-//        self.reqRegisterBtn.rx.tap
-//            .bind(to: viewModel.registerEvent)
-//            .disposed(by: disposeBag)
         
         
         // - MARK: VIEWMODEL to VIEW
-        
-//        viewModel.emailInput.asObserver()
-//            .subscribe(onNext: { print("이메일", $0) } )
-//            .disposed(by: disposeBag)
         
         // 가입가능 여부 체크
         viewModel.registerValid
@@ -133,6 +111,8 @@ extension RegisterViewController {
 //            )
             .bind(to: self.reqRegisterBtn.rx.isEnabled)
             .disposed(by: disposeBag)
+        
+        
         
         
     }
