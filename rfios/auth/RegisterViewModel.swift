@@ -23,7 +23,7 @@ protocol RegisterViewModelType {
     var chkPwdValid: Observable<Bool> { get }
     var registerValid: Observable<Bool> { get }
     
-    // to Model
+    // ViewModel to NetworkService
     func reqRegister() -> Observable<(Bool, String?)>
     
 }

@@ -30,6 +30,8 @@ class LoginViewController: UIViewController {
         viewModel = LoginViewModel()
         super.init(coder: aDecoder)
     }
+    @IBOutlet weak var emailTxtField: UITextField!
+    @IBOutlet weak var pwdTxtField: UITextField!
     
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var registerBtn: UIButton!
@@ -51,114 +53,92 @@ class LoginViewController: UIViewController {
 }
 
 extension LoginViewController {
+
     func setBinding() {
         
-        registerBtn.rx.tap
-            .subscribe(
-                onNext: {
-                    self.viewModel.onRegister()
-                }
-            )
-            .disposed(by: disposeBag)
+        // Input
+        self.emailTxtField.rx.text.orEmpty
+            .bind(to: self.viewModel.emailInput)
+            .disposed(by: self.disposeBag)
+        
+        self.pwdTxtField.rx.text.orEmpty
+            .bind(to: self.viewModel.pwdInput)
+            .disposed(by: self.disposeBag)
         
         self.loginBtn.rx.tap
-        .subscribe(
-            onNext: {
-                print("로그인 시도")
-                
-                let provider = MoyaProvider<BaseAPI>()
-                
-                var params: [String: Any] = [:]
-                params["email"] = "z@www.com"
-                params["password"] = "12345"
-                
-                provider.request(.login(params)) { result in
-                    
-//                    print("body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
-                    
-                    switch result {
-                    case let .success(moyaResponse):
-                        let header = moyaResponse.response?.allHeaderFields
-                        self.cookie = header?["Set-Cookie"] as! String
-                        self.connectSid = String(self.cookie.split(separator: ";")[0].split(separator: "=")[1])
-                        let data = moyaResponse.data
-                        let statusCode = moyaResponse.statusCode
-                        
-                        if let headerFields = moyaResponse.response?.allHeaderFields as? [String: String], let URL = moyaResponse.request?.url
-                        {
-                             let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
-                            HTTPCookieStorage.shared.setCookie(cookies.first!)
-                             print("mCookie", cookies)
-                        }
-                        
-                        do {
-                          // 4
-                          print(try moyaResponse.mapJSON())
-                        } catch {
-                          
-                        }
-                        
-                        print("moyaResponse", moyaResponse)
-                        print("header", header)
-                        print("cookie", self.cookie)
-                        print("connect.sid", self.connectSid)
-                        print("data", data)
-                        print("status",statusCode)
+            .flatMap { self.viewModel.reqLogin() }
+            .subscribe(onNext: {
+                print("로그인", $0.0, $0.2 ?? "")
+            })
+            .disposed(by: self.disposeBag)
+        
 
-                    case let .failure(error):
-                        print("error",error)
-                    }
-                }
-                
-                
-                
-            } // END : onNext
-        )
-        .disposed(by: disposeBag)
-        
-        
-        appleBtn.rx.tap
-        .subscribe(
-            onNext: {
-                let provider = MoyaProvider<BaseAPI>()
-                                
-//                HTTPCookieStorage.shared.setCookie(self.cookies!)
-                
-                provider.request(.me) { result in
-                    print("내 정보")
-//                    print("body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
-                    
-                    switch result {
-                    case let .success(moyaResponse):
-                        let header = moyaResponse.response?.allHeaderFields
-                        let data = moyaResponse.data
-                        let statusCode = moyaResponse.statusCode
-                        
-                        do {
-                          // 4
-                          print(try moyaResponse.mapJSON())
-                        } catch {
-                          
-                        }
-                        
-                        print("moyaResponse", moyaResponse)
-                        print("header", header)
-                        print("data", data)
-                        print("status",statusCode)
+        // Scene
+        self.registerBtn.rx.tap
+            .subscribe(onNext: {
+                self.viewModel.onRegister()
+            })
+            .disposed(by: self.disposeBag)
 
-                    case let .failure(error):
-                        print("error",error)
-                    }
-                }
-                
-            }// END : onNext
-        )
-        .disposed(by: disposeBag)
-        
-    }
+    } // END : setBinding()
+
 }
 
-// - MARK: Scene
-extension LoginViewController {
-    
-}
+
+//
+//extension LoginViewController {
+//    func setBinding() {
+//
+//        registerBtn.rx.tap
+//            .subscribe(
+//                onNext: {
+//                    self.viewModel.onRegister()
+//                }
+//            )
+//            .disposed(by: disposeBag)
+//
+//
+//
+//
+//        appleBtn.rx.tap
+//        .subscribe(
+//            onNext: {
+//                let provider = MoyaProvider<BaseAPI>()
+//
+////                HTTPCookieStorage.shared.setCookie(self.cookies!)
+//
+//                provider.request(.me) { result in
+//                    print("내 정보")
+////                    print("body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
+//
+//                    switch result {
+//                    case let .success(moyaResponse):
+//                        let header = moyaResponse.response?.allHeaderFields
+//                        let data = moyaResponse.data
+//                        let statusCode = moyaResponse.statusCode
+//
+//                        do {
+//                          // 4
+//                          print(try moyaResponse.mapJSON())
+//                        } catch {
+//
+//                        }
+//
+//                        print("moyaResponse", moyaResponse)
+//                        print("header", header)
+//                        print("data", data)
+//                        print("status",statusCode)
+//
+//                    case let .failure(error):
+//                        print("error",error)
+//                    }
+//                }
+//
+//            }// END : onNext
+//        )
+//        .disposed(by: disposeBag)
+//
+//    }
+//}
+//
+

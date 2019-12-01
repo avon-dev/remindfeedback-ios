@@ -15,8 +15,9 @@ struct APIResult {
     var isSuccess = false
     var statusCode: Int
     var msg: String?
+    var data: String?
         
-    init(_ statusCode: Int, msg: String? = nil) {
+    init(_ statusCode: Int, msg: String? = nil, data: String? = nil) {
         
         if statusCode == 201 {
             self.isSuccess = true
@@ -24,6 +25,7 @@ struct APIResult {
         
         self.statusCode = statusCode
         self.msg = msg
+        self.data = data
     }
 }
 
@@ -41,6 +43,23 @@ class APIHelper {
         return provider.rx.request(task)
             .asObservable()
             .map {  return APIResult($0.statusCode)  }
+    }
+    
+    func rxPostRequest(_ task: BaseAPI) -> Observable<APIResult> {
+        return provider.rx.request(task)
+            .asObservable()
+            .do(onNext: {
+                if let headerFields = $0.response?.allHeaderFields as? [String: String], let URL = $0.request?.url {
+                    
+                    let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
+                    print("쿠키", cookies)
+                    
+                    if let connectSid = cookies.first {
+                        HTTPCookieStorage.shared.setCookie(connectSid)
+                    }
+                }
+            })
+            .map { return APIResult($0.statusCode, data: try $0.mapString()) }
     }
     
     func pushRequest(_ task: BaseAPI) {
@@ -81,5 +100,45 @@ class APIHelper {
         
         
     } // END : func pushRequest(_ task:)
+    
+    func postRequest(_ task: BaseAPI) {
+        provider.request(task) { result in
+
+//            print("body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
+
+            switch result {
+            case let .success(moyaResponse):
+                let header = moyaResponse.response?.allHeaderFields
+                let cookie = header?["Set-Cookie"] as! String
+                let connectSid = String(cookie.split(separator: ";")[0].split(separator: "=")[1])
+                let data = moyaResponse.data
+                let statusCode = moyaResponse.statusCode
+
+                if let headerFields = moyaResponse.response?.allHeaderFields as? [String: String], let URL = moyaResponse.request?.url
+                {
+                     let cookies = HTTPCookie.cookies(withResponseHeaderFields: headerFields, for: URL)
+                    HTTPCookieStorage.shared.setCookie(cookies.first!)
+                     print("mCookie", cookies)
+                }
+
+                do {
+                  // 4
+                  print(try moyaResponse.mapJSON())
+                } catch {
+
+                }
+
+                print("moyaResponse", moyaResponse)
+                print("header", header)
+                print("cookie", cookie)
+                print("connect.sid", connectSid)
+                print("data", data)
+                print("status",statusCode)
+
+            case let .failure(error):
+                print("error",error)
+            }
+        }
+    }
     
 }

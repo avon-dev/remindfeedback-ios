@@ -94,6 +94,12 @@ extension RegisterViewController {
             .subscribe(
                 onNext: {
                     print("회원가입 시도", $0)
+                    if $0.0 {
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        // - TODO: 회원가입 실패 시, Alert 실행
+                    }
+                    
                 }
             )
             .disposed(by: disposeBag)
