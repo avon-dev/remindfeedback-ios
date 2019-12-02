@@ -51,6 +51,10 @@ class RegisterViewController: UIViewController {
         self.disposeBag = DisposeBag()
     }
     
+    deinit {
+        self.disposeBag = DisposeBag()
+    }
+    
     @IBAction func dismissThisView(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -70,7 +74,7 @@ extension RegisterViewController {
     
     func setBinding() {
         
-        // - MARK: VIEW to VIEWMODEL
+        // Input
         
         self.emailTextField.rx.text.orEmpty
             .bind(to: viewModel.emailInput)
@@ -88,7 +92,7 @@ extension RegisterViewController {
             .bind(to: viewModel.chkPwdInput)
             .disposed(by: disposeBag)
         
-        // 회원가입 요청
+        /// 회원가입 요청
         self.reqRegisterBtn.rx.tap
             .flatMap{ self.viewModel.reqRegister() }
             .subscribe(
@@ -104,8 +108,15 @@ extension RegisterViewController {
             )
             .disposed(by: disposeBag)
         
+        // Scene
+        self.rx.isVisible
+            .subscribe(onNext: { [weak self] in
+                if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
+            })
+            .disposed(by: self.disposeBag)
         
-        // - MARK: VIEWMODEL to VIEW
+        
+        // Output
         
         // 가입가능 여부 체크
         viewModel.registerValid

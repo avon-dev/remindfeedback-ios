@@ -37,17 +37,13 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var registerBtn: UIButton!
     @IBOutlet weak var appleBtn: UIButton!
     
-    var cookie = ""
-    var connectSid = ""
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setBinding()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        SceneCoordinator.sharedInstance.setCurrnentViewController(self)
+    deinit {
+        self.disposeBag = DisposeBag()
     }
     
 }
@@ -55,6 +51,13 @@ class LoginViewController: UIViewController {
 extension LoginViewController {
 
     func setBinding() {
+        
+        // Scene
+        self.rx.isVisible
+            .subscribe(onNext: { [weak self] in
+                if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
+            })
+            .disposed(by: self.disposeBag)
         
         // Input
         self.emailTxtField.rx.text.orEmpty
@@ -69,16 +72,24 @@ extension LoginViewController {
             .flatMap { self.viewModel.reqLogin() }
             .subscribe(onNext: {
                 print("로그인", $0.0, $0.2 ?? "")
+                if $0.0 { self.dismiss(animated: true, completion: nil) }
             })
             .disposed(by: self.disposeBag)
         
-
-        // Scene
-        self.registerBtn.rx.tap
+        self.appleBtn.rx.tap
+            .flatMap { self.viewModel.reqMe() }
             .subscribe(onNext: {
-                self.viewModel.onRegister()
+                print("ME", $0.0, $0.2 ?? "")
             })
             .disposed(by: self.disposeBag)
+        
+        self.registerBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.onRegister()
+            })
+            .disposed(by: self.disposeBag)
+        
+        
 
     } // END : setBinding()
 

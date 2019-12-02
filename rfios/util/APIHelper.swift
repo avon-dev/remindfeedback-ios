@@ -42,10 +42,10 @@ class APIHelper {
     func rxPushRequest(_ task: BaseAPI) -> Observable<APIResult> {
         return provider.rx.request(task)
             .asObservable()
-            .map {  return APIResult($0.statusCode)  }
+            .map {  return APIResult($0.statusCode, data: try $0.mapString())  }
     }
     
-    func rxPostRequest(_ task: BaseAPI) -> Observable<APIResult> {
+    func rxSetSession(_ task: BaseAPI) -> Observable<APIResult> {
         return provider.rx.request(task)
             .asObservable()
             .do(onNext: {
@@ -56,6 +56,7 @@ class APIHelper {
                     
                     if let connectSid = cookies.first {
                         HTTPCookieStorage.shared.setCookie(connectSid)
+                        UserDefaultsHelper.sharedInstantce.setCookie(connectSid)
                     }
                 }
             })
@@ -101,7 +102,7 @@ class APIHelper {
         
     } // END : func pushRequest(_ task:)
     
-    func postRequest(_ task: BaseAPI) {
+    func setSession(_ task: BaseAPI) {
         provider.request(task) { result in
 
 //            print("body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))

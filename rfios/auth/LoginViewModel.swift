@@ -9,7 +9,7 @@
 import Foundation
 import RxSwift
 
-protocol LoginViewModelType {
+protocol LoginViewModelType: BaseViewModelType {
     // Input
     var emailInput: BehaviorSubject<String> { get }
     var pwdInput: BehaviorSubject<String> { get }
@@ -17,16 +17,16 @@ protocol LoginViewModelType {
     // Output
     
     // Scene
+//    func setScene(_ viewController: UIViewController)
     func onRegister()
     
     // ViewModel to NetworkService
     func reqLogin() -> Observable<(Bool, String?, String?)>
+    func reqMe() -> Observable<(Bool, String?, String?)>
     
 }
 
-class LoginViewModel: LoginViewModelType {
-    
-    var disposeBag = DisposeBag()
+class LoginViewModel: BaseViewModel, LoginViewModelType {
     
     // Input
     let emailInput: BehaviorSubject<String>
@@ -34,10 +34,12 @@ class LoginViewModel: LoginViewModelType {
     
     var params: [String: Any?] = [:]
     
-    init() {
+    override init() {
         // 로그인할 때 필요한 입력값을 받을 subject
         emailInput = BehaviorSubject(value: "")
         pwdInput = BehaviorSubject(value: "")
+        
+        super.init()
         
         // 로그인 요청할 때 필요한 파라미터 값을 딕셔너리형태로 저장
         Observable.combineLatest(emailInput, pwdInput, resultSelector: {
@@ -51,10 +53,9 @@ class LoginViewModel: LoginViewModelType {
             .subscribe(onNext: { [weak self] in
                 self?.params = $0
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
+        
     }
-    
-    
     
     
 }
@@ -64,7 +65,6 @@ extension LoginViewModel {
     
     // 회원가입 뷰컨으로 이동
     func onRegister() {
-        NWLog.cLog()
         let registerViewModel = RegisterViewModel()
         SceneCoordinator.sharedInstance.showRegisterView(registerViewModel)
     }
@@ -73,9 +73,18 @@ extension LoginViewModel {
 
 //
 extension LoginViewModel {
+    
+    //
     func reqLogin() -> Observable<(Bool, String?, String?)> {
-        print(self.params)
-        return APIHelper.sharedInstance.rxPostRequest(.login(self.params))
+        print("로그인 요청", self.params)
+        return APIHelper.sharedInstance.rxSetSession(.login(self.params))
             .map { ($0.isSuccess, $0.msg, $0.data) }
     }
+    
+    //
+    func reqMe() -> Observable<(Bool, String?, String?)> {
+        return APIHelper.sharedInstance.rxPushRequest(.me)
+        .map { ($0.isSuccess, $0.msg, $0.data) }
+    }
+    
 }

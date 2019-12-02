@@ -13,7 +13,7 @@ class NWLog {
         
         let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? ""
 
-        print("POPIECE LOG(CHECK) \(file)(\(line)) \(funcname) ", terminator: "")
+        print("RF LOG(CHECK) \(file)(\(line)) \(funcname) ", terminator: "")
 
         print()
         
@@ -23,7 +23,7 @@ class NWLog {
         
         let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? ""
         
-        print("POPIECE LOG(SPECIAL) \(file)(\(line)) \(funcname) ", terminator: "")
+        print("RF LOG(SPECIAL) \(file)(\(line)) \(funcname) ", terminator: "")
         print("\(contentName) : \(String(describing: contents))")
         print()
         
@@ -33,7 +33,7 @@ class NWLog {
         
         let file = URL(string: filename)?.lastPathComponent.components(separatedBy: ".").first ?? ""
         
-        print("POPIECE LOG(DEBUG) \(file)(\(line)) \(funcname) ", terminator: "")
+        print("RF LOG(DEBUG) \(file)(\(line)) \(funcname) ", terminator: "")
         print("\(contentName)")
         print()
         debugPrint(contents as Any)

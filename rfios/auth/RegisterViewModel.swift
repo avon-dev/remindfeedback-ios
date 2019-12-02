@@ -10,7 +10,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-protocol RegisterViewModelType {
+protocol RegisterViewModelType: BaseViewModelType {
     // Input
     var emailInput: BehaviorSubject<String> { get }
     var nicknameInput: BehaviorSubject<String> { get }
@@ -28,9 +28,7 @@ protocol RegisterViewModelType {
     
 }
 
-class RegisterViewModel: RegisterViewModelType {
-    
-    var disposeBag = DisposeBag()
+class RegisterViewModel: BaseViewModel, RegisterViewModelType {
     
     // Input
     let emailInput: BehaviorSubject<String>
@@ -47,7 +45,7 @@ class RegisterViewModel: RegisterViewModelType {
     // 회원가입에 필요한
     var params: [String:Any] = [:]
      
-    init() {
+    override init() {
         
         // 회원가입할 때 필요한 입력값을 받을 subject
         emailInput = BehaviorSubject(value: "")
@@ -71,6 +69,7 @@ class RegisterViewModel: RegisterViewModelType {
         // 회원가입 가능 여부 체크
         registerValid = Observable.combineLatest(emailValid, pwdValid, chkPwdValid, resultSelector: { $0 && $1 && $2 })
         
+        super.init()
 
         // 회원가입 요청할 때 필요한 파라미터 값을 딕셔너리형태로 저장
         Observable.combineLatest(emailInput, nicknameInput, pwdInput, resultSelector: {
@@ -85,7 +84,7 @@ class RegisterViewModel: RegisterViewModelType {
             .subscribe(onNext: { [weak self] in
                 self?.params = $0
             })
-            .disposed(by: disposeBag)
+            .disposed(by: self.disposeBag)
         
     }
     
