@@ -9,16 +9,17 @@
 import Foundation
 import RxSwift
 
-protocol MainViewModelType {
+protocol MainViewModelType: BaseViewModelType {
     // output
     var feedbackList: Observable<[String]> { get }
 }
 
-class MainViewModel: MainViewModelType {
+class MainViewModel: BaseViewModel, MainViewModelType {
     
     let feedbackList: Observable<[String]>
     
-    init() {
+    override init() {
         self.feedbackList = Observable.of(["ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹ", "222", "333"])
+        super.init()
     }
 }

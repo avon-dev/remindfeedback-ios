@@ -93,10 +93,9 @@ class MainViewController: UIViewController {
     
     // 로그인 여부를 체크하는 함수
     func checkLogin() {
-        let isLogin = false
-
-        guard isLogin else {
-
+        print("로그인 체크")
+        guard let cookie = UserDefaultsHelper.sharedInstantce.getCookie() else {
+            
 //            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") {
 //
 //                vc.modalPresentationStyle = .fullScreen
@@ -113,6 +112,9 @@ class MainViewController: UIViewController {
 
             return
         }
+        
+        print("쿠키?", cookie)
+        
     }
     
 

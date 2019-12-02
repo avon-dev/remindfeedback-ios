@@ -154,7 +154,9 @@
                     </view>
                     <connections>
                         <outlet property="appleBtn" destination="d6p-AV-r0J" id="DoY-4p-DZz"/>
+                        <outlet property="emailTxtField" destination="tC0-rP-Fdw" id="RRa-JN-bk5"/>
                         <outlet property="loginBtn" destination="u5a-bh-h9y" id="tTy-ty-wYK"/>
+                        <outlet property="pwdTxtField" destination="jfM-Ce-thn" id="0L2-gz-6A2"/>
                         <outlet property="registerBtn" destination="UKR-Uc-Ng1" id="NHW-5m-4F3"/>
                     </connections>
                 </viewController>
