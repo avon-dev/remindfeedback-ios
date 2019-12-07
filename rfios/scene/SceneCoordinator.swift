@@ -46,8 +46,15 @@ class SceneCoordinator: SceneCoordinatorType {
         SceneCoordinator.sharedInstance.setCurrentViewController(viewController)
     }
     
+    // 회원가입 화면으로 이동
     func showRegisterView(_ registerViewModel: RegisterViewModel) {
         self.present(Scene.registerView(registerViewModel).viewController())
+    }
+    
+    // 카테고리 화면으로 이동
+    func showCategoryView(_ categoryViewModel: CategoryViewModel) {
+        print(self.currentViewController)
+        self.currentViewController?.present(Scene.categoryView(categoryViewModel).viewController(), animated: true)
     }
     
 }

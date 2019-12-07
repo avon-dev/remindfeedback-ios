@@ -12,12 +12,15 @@ import UIKit
 enum Scene {
     case loginView(LoginViewModel)
     case registerView(RegisterViewModel)
+    
+    case categoryView(CategoryViewModel)
 }
 
 extension Scene {
     func viewController() -> UIViewController {
         
         let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
+        let feedbackStoryboard = UIStoryboard(name: "Feedback", bundle: nil)
         let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
         
         switch self {
@@ -29,6 +32,11 @@ extension Scene {
         
         case .registerView(let viewModel):
             let viewController = loginStoryboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
+            viewController.viewModel = viewModel
+            return viewController
+            
+        case .categoryView(let viewModel):
+            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "categoryVC") as! CategoryViewController
             viewController.viewModel = viewModel
             return viewController
 

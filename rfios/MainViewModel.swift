@@ -10,8 +10,11 @@ import Foundation
 import RxSwift
 
 protocol MainViewModelType: BaseViewModelType {
-    // output
+    // Output
     var feedbackList: Observable<[String]> { get }
+    
+    // Scene
+    func onCategory()
 }
 
 class MainViewModel: BaseViewModel, MainViewModelType {
@@ -21,5 +24,14 @@ class MainViewModel: BaseViewModel, MainViewModelType {
     override init() {
         self.feedbackList = Observable.of(["ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹ", "222", "333"])
         super.init()
+    }
+    
+    
+}
+
+extension MainViewModel {
+    func onCategory() {
+        let categoryViewModel = CategoryViewModel()
+        SceneCoordinator.sharedInstance.showCategoryView(categoryViewModel)
     }
 }

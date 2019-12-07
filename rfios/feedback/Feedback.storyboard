@@ -7,10 +7,96 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--editSubjectVC-->
+        <!--categoryVC-->
+        <scene sceneID="L3x-Gr-8z8">
+            <objects>
+                <viewController storyboardIdentifier="categoryVC" title="categoryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uCB-xM-F7R" customClass="CategoryViewController" customModule="rfios" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="j1g-AO-BpR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FaP-4e-Lut">
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                                <color key="barTintColor" red="0.019607843140000001" green="0.1529411765" blue="0.28627450980000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <textAttributes key="titleTextAttributes">
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </textAttributes>
+                                <items>
+                                    <navigationItem title="피드백 주제" id="3hE-jY-c5X">
+                                        <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="oL1-I0-Ayl">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" title="추가" id="zqo-4g-cJ5">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="52" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bf8-Zo-bBR">
+                                <rect key="frame" x="0.0" y="88" width="414" height="774"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="categoryCell" rowHeight="52" id="etv-Hc-wA7" customClass="CategoryCell" customModule="rfios" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="52"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="etv-Hc-wA7" id="dlk-co-eg4">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="52"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="caz-43-IM3" userLabel="colorView">
+                                                    <rect key="frame" x="0.0" y="0.0" width="41.5" height="52"/>
+                                                    <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </view>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기본" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fBA-cu-j0J">
+                                                    <rect key="frame" x="62" y="2.5" width="331.5" height="47"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="fBA-cu-j0J" firstAttribute="centerY" secondItem="dlk-co-eg4" secondAttribute="centerY" id="16x-O7-Hwh"/>
+                                                <constraint firstItem="fBA-cu-j0J" firstAttribute="centerX" secondItem="dlk-co-eg4" secondAttribute="centerX" multiplier="1.1" id="2sr-GX-3Bc"/>
+                                                <constraint firstItem="caz-43-IM3" firstAttribute="leading" secondItem="dlk-co-eg4" secondAttribute="leading" id="4Wl-R0-hxn"/>
+                                                <constraint firstItem="fBA-cu-j0J" firstAttribute="height" secondItem="dlk-co-eg4" secondAttribute="height" multiplier="0.9" id="88L-Xr-s2l"/>
+                                                <constraint firstItem="caz-43-IM3" firstAttribute="centerY" secondItem="dlk-co-eg4" secondAttribute="centerY" id="AfO-Fz-gtW"/>
+                                                <constraint firstItem="caz-43-IM3" firstAttribute="width" secondItem="dlk-co-eg4" secondAttribute="width" multiplier="0.1" id="aTE-x8-G2z"/>
+                                                <constraint firstItem="caz-43-IM3" firstAttribute="height" secondItem="dlk-co-eg4" secondAttribute="height" id="cac-W6-DdG"/>
+                                                <constraint firstItem="fBA-cu-j0J" firstAttribute="width" secondItem="dlk-co-eg4" secondAttribute="width" multiplier="0.8" id="uwD-Mc-SnZ"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="colorView" destination="caz-43-IM3" id="1ox-bA-fQg"/>
+                                            <outlet property="titleLabel" destination="fBA-cu-j0J" id="3AI-7S-Y5j"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="bf8-Zo-bBR" firstAttribute="width" secondItem="8u5-4S-LNH" secondAttribute="width" id="25D-kd-rAQ"/>
+                            <constraint firstItem="FaP-4e-Lut" firstAttribute="top" secondItem="8u5-4S-LNH" secondAttribute="top" id="JjS-IS-NyW"/>
+                            <constraint firstItem="bf8-Zo-bBR" firstAttribute="bottom" secondItem="8u5-4S-LNH" secondAttribute="bottom" id="dpY-PV-9bY"/>
+                            <constraint firstItem="bf8-Zo-bBR" firstAttribute="top" secondItem="FaP-4e-Lut" secondAttribute="bottom" id="g1W-rS-5ri"/>
+                            <constraint firstItem="FaP-4e-Lut" firstAttribute="width" secondItem="8u5-4S-LNH" secondAttribute="width" id="j06-Em-5ed"/>
+                            <constraint firstItem="FaP-4e-Lut" firstAttribute="centerX" secondItem="j1g-AO-BpR" secondAttribute="centerX" id="tK2-vh-uuR"/>
+                            <constraint firstItem="bf8-Zo-bBR" firstAttribute="centerX" secondItem="j1g-AO-BpR" secondAttribute="centerX" id="yxr-wt-g8b"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="8u5-4S-LNH"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="bf8-Zo-bBR" id="asQ-mZ-f4q"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="suh-hV-24P" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-899" y="21"/>
+        </scene>
+        <!--editCategoryVC-->
         <scene sceneID="ALd-Zw-LGO">
             <objects>
-                <viewController storyboardIdentifier="editSubjectVC" title="editSubjectVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DcU-Se-g9g" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editCategoryVC" title="editCategoryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="DcU-Se-g9g" customClass="EditCategoryViewController" customModule="rfios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="eRc-8K-xig">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -26,7 +112,7 @@
                                         <barButtonItem key="leftBarButtonItem" image="xmark" catalog="system" id="D6O-4v-K4b">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="생성" id="n6F-dD-Zor">
+                                        <barButtonItem key="rightBarButtonItem" title="완료" id="n6F-dD-Zor">
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </barButtonItem>
                                     </navigationItem>

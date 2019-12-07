@@ -30,6 +30,11 @@ class LoginViewController: UIViewController {
         viewModel = LoginViewModel()
         super.init(coder: aDecoder)
     }
+    
+    deinit {
+        self.disposeBag = DisposeBag()
+    }
+    
     @IBOutlet weak var emailTxtField: UITextField!
     @IBOutlet weak var pwdTxtField: UITextField!
     
@@ -42,9 +47,7 @@ class LoginViewController: UIViewController {
         setBinding()
     }
     
-    deinit {
-        self.disposeBag = DisposeBag()
-    }
+
     
 }
 
@@ -85,6 +88,7 @@ extension LoginViewController {
         
         self.registerBtn.rx.tap
             .subscribe(onNext: { [weak self] in
+                print("on회원가입")
                 self?.viewModel.onRegister()
             })
             .disposed(by: self.disposeBag)
