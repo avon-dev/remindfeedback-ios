@@ -14,6 +14,7 @@ enum Scene {
     case registerView(RegisterViewModel)
     
     case categoryView(CategoryViewModel)
+    case editCategoryView(CategoryViewModel)
 }
 
 extension Scene {
@@ -39,8 +40,13 @@ extension Scene {
             let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "categoryVC") as! CategoryViewController
             viewController.viewModel = viewModel
             return viewController
+            
+        case .editCategoryView(let viewModel):
+            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "editCategoryVC") as! EditCategoryViewController
+            viewController.viewModel = viewModel
+            return viewController
 
-        }
+        } 
         
     }
 }

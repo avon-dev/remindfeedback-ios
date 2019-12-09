@@ -35,9 +35,23 @@ class CategoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUI()
         setBinding()
     }
    
+}
+
+extension CategoryViewController {
+    func setUI() {
+        // 네비게이션 바 타이틀 설정
+        self.navigationItem.title = "피드백 주제" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
+        
+        // 네비게이션 바 색상 지정
+        self.navigationController?.navigationBar.tintColor = UIColor.white
+        
+        // 네비게이션 바 우측버튼
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
+    }
 }
 
 extension CategoryViewController {
@@ -62,6 +76,14 @@ extension CategoryViewController {
                 
             }
         .disposed(by: disposeBag)
+        
+        // Input
+        self.navigationItem.rightBarButtonItem?.rx.tap
+            .subscribe(onNext: {
+                print("on카테고리 추가")
+                self.viewModel.onAdd()
+            })
+            .disposed(by: self.disposeBag)
         
     }
     

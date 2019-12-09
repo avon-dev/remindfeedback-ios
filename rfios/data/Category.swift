@@ -12,7 +12,7 @@ struct Category {
     var title = ""
     var color = "#000000"
     
-    init(title: String, color: String) {
+    init(title: String = "", color: String = "#000000") {
         self.title = title
         self.color = color
     }

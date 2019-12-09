@@ -42,7 +42,8 @@ class SceneCoordinator: SceneCoordinatorType {
     
     //
     func present(_ viewController: UIViewController) {
-        self.currentViewController?.present(viewController, animated: false, completion: nil)
+        viewController.modalPresentationStyle = .fullScreen
+        self.currentViewController?.present(viewController, animated: true, completion: nil)
         SceneCoordinator.sharedInstance.setCurrentViewController(viewController)
     }
     
@@ -51,10 +52,15 @@ class SceneCoordinator: SceneCoordinatorType {
         self.present(Scene.registerView(registerViewModel).viewController())
     }
     
-    // 카테고리 화면으로 이동
+    // 카테고리 리스트 화면으로 이동
     func showCategoryView(_ categoryViewModel: CategoryViewModel) {
-        print(self.currentViewController)
-        self.currentViewController?.present(Scene.categoryView(categoryViewModel).viewController(), animated: true)
+    self.currentViewController?.navigationController?.pushViewController(Scene.categoryView(categoryViewModel).viewController(), animated: true)
+        
+    }
+    
+    // 카테고리 편집 화면으로 이동
+    func showEditCategoryView(_ categoryViewModel: CategoryViewModel) {
+        self.present(Scene.editCategoryView(categoryViewModel).viewController())
     }
     
 }
