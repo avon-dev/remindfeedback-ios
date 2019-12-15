@@ -37,7 +37,7 @@ extension Scene {
             return viewController
             
         case .categoryView(let viewModel):
-            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "categoryVC") as! CategoryViewController
+            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "categoryVC") as! CategoryListViewController
             viewController.viewModel = viewModel
             return viewController
             

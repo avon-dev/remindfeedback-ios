@@ -10,7 +10,7 @@
         <!--categoryVC-->
         <scene sceneID="L3x-Gr-8z8">
             <objects>
-                <viewController storyboardIdentifier="categoryVC" title="categoryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uCB-xM-F7R" customClass="CategoryViewController" customModule="rfios" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="categoryVC" title="categoryVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uCB-xM-F7R" customClass="CategoryListViewController" customModule="rfios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="j1g-AO-BpR">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -139,6 +139,8 @@
                         <viewLayoutGuide key="safeArea" id="m2h-aJ-1TK"/>
                     </view>
                     <connections>
+                        <outlet property="completedBtn" destination="n6F-dD-Zor" id="g1X-ad-oG1"/>
+                        <outlet property="titleTxtFld" destination="Mho-Rl-mud" id="4dx-eQ-Th2"/>
                         <outlet property="xBtn" destination="D6O-4v-K4b" id="t6t-Rg-R4d"/>
                     </connections>
                 </viewController>

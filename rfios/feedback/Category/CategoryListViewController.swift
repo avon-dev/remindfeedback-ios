@@ -12,7 +12,7 @@ import RxSwift
 import RxViewController
 import UIKit
 
-class CategoryViewController: UIViewController {
+class CategoryListViewController: UIViewController {
     
     var viewModel: CategoryViewModelType
     var disposeBag = DisposeBag()
@@ -38,10 +38,14 @@ class CategoryViewController: UIViewController {
         setUI()
         setBinding()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+    }
    
 }
 
-extension CategoryViewController {
+extension CategoryListViewController {
     func setUI() {
         // 네비게이션 바 타이틀 설정
         self.navigationItem.title = "피드백 주제" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
@@ -54,7 +58,7 @@ extension CategoryViewController {
     }
 }
 
-extension CategoryViewController {
+extension CategoryListViewController {
     
     func setBinding() {
         
@@ -66,13 +70,13 @@ extension CategoryViewController {
             .disposed(by: self.disposeBag)
         
         // Output
-        self.viewModel.categoryList
-            .bind(to: self.tableView.rx.items(cellIdentifier: CategoryCell.identifier, cellType: CategoryCell.self)) {
+        self.viewModel.categoryListOb
+            .bind(to:
+            self.tableView.rx.items(cellIdentifier: CategoryCell.identifier, cellType: CategoryCell.self)) {
                 
                 _, item, cell in
                 
-                cell.titleLabel.text = item.title
-                cell.colorView.backgroundColor = ColorUtil.hexStringToUIColor(item.color)
+                cell.onData.onNext(item)
                 
             }
         .disposed(by: disposeBag)
@@ -84,6 +88,7 @@ extension CategoryViewController {
                 self.viewModel.onAdd()
             })
             .disposed(by: self.disposeBag)
+        
         
     }
     

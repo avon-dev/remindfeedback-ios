@@ -32,22 +32,47 @@ class EditCategoryViewController: UIViewController {
     }
     
     @IBOutlet weak var xBtn: UIBarButtonItem!
+    @IBOutlet weak var completedBtn: UIBarButtonItem!
+    @IBOutlet weak var titleTxtFld: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
 //        guard let statusBarView = UIApplication.statusBarView else { return }
 //        UIApplication.statusBarBackgroundColor = .blue
-
+        setBinding()
         
+    }
+
+}
+
+
+extension EditCategoryViewController {
+    
+    func setBinding() {
         
         self.xBtn.rx.tap
             .subscribe(onNext: {
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: self.disposeBag)
-
-        // Do any additional setup after loading the view.
+        
+        self.completedBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.addCategory()
+                self?.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
+        
+        self.titleTxtFld.rx.text.orEmpty
+            .bind(to: self.viewModel.titleInput)
+            .disposed(by: self.disposeBag)
+        
+        Observable.of("#000000")
+            .bind(to: self.viewModel.colorInput)
+            .disposed(by: self.disposeBag)
+        
+        
     }
-
+    
 }
