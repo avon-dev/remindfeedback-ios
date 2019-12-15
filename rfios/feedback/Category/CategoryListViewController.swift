@@ -76,19 +76,28 @@ extension CategoryListViewController {
                 
                 _, item, cell in
                 
+                print(item)
                 cell.onData.onNext(item)
-                
+                cell.viewModel = self.viewModel
             }
-        .disposed(by: disposeBag)
+            .disposed(by: disposeBag)
         
         // Input
+        
+        // 화면 상단의 추가버튼을 눌렀을 때
         self.navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: {
-                print("on카테고리 추가")
+                print("on주제 추가")
                 self.viewModel.onAdd()
             })
             .disposed(by: self.disposeBag)
         
+        // 테이블 뷰 셀을 좌측으로 스와이프할 때
+        self.tableView.rx.itemDeleted
+            .subscribe(onNext: {
+                self.viewModel.delCategory($0.item)
+            })
+            .disposed(by: self.disposeBag)
         
     }
     

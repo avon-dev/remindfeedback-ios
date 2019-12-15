@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,13 +36,23 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GEn-dp-Nom" userLabel="modifyBtn">
+                                                    <rect key="frame" x="362" y="0.0" width="52" height="52"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="GEn-dp-Nom" secondAttribute="height" multiplier="1:1" id="8uI-hX-W5e"/>
+                                                    </constraints>
+                                                    <state key="normal" image="pencil" catalog="system"/>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="fBA-cu-j0J" firstAttribute="centerY" secondItem="dlk-co-eg4" secondAttribute="centerY" id="16x-O7-Hwh"/>
                                                 <constraint firstItem="fBA-cu-j0J" firstAttribute="centerX" secondItem="dlk-co-eg4" secondAttribute="centerX" multiplier="1.1" id="2sr-GX-3Bc"/>
                                                 <constraint firstItem="caz-43-IM3" firstAttribute="leading" secondItem="dlk-co-eg4" secondAttribute="leading" id="4Wl-R0-hxn"/>
                                                 <constraint firstItem="fBA-cu-j0J" firstAttribute="height" secondItem="dlk-co-eg4" secondAttribute="height" multiplier="0.9" id="88L-Xr-s2l"/>
+                                                <constraint firstItem="GEn-dp-Nom" firstAttribute="centerY" secondItem="dlk-co-eg4" secondAttribute="centerY" id="A0A-wm-mAD"/>
                                                 <constraint firstItem="caz-43-IM3" firstAttribute="centerY" secondItem="dlk-co-eg4" secondAttribute="centerY" id="AfO-Fz-gtW"/>
+                                                <constraint firstItem="GEn-dp-Nom" firstAttribute="height" secondItem="dlk-co-eg4" secondAttribute="height" id="Aif-pj-e9y"/>
+                                                <constraint firstItem="GEn-dp-Nom" firstAttribute="trailing" secondItem="dlk-co-eg4" secondAttribute="trailing" id="Crf-tC-SBW"/>
                                                 <constraint firstItem="caz-43-IM3" firstAttribute="width" secondItem="dlk-co-eg4" secondAttribute="width" multiplier="0.1" id="aTE-x8-G2z"/>
                                                 <constraint firstItem="caz-43-IM3" firstAttribute="height" secondItem="dlk-co-eg4" secondAttribute="height" id="cac-W6-DdG"/>
                                                 <constraint firstItem="fBA-cu-j0J" firstAttribute="width" secondItem="dlk-co-eg4" secondAttribute="width" multiplier="0.8" id="uwD-Mc-SnZ"/>
@@ -50,6 +60,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="colorView" destination="caz-43-IM3" id="1ox-bA-fQg"/>
+                                            <outlet property="modifyBtn" destination="GEn-dp-Nom" id="Zfa-js-isv"/>
                                             <outlet property="titleLabel" destination="fBA-cu-j0J" id="3AI-7S-Y5j"/>
                                         </connections>
                                     </tableViewCell>
@@ -305,6 +316,7 @@
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="64" height="52"/>
+        <image name="pencil" catalog="system" width="64" height="56"/>
         <image name="plus.circle" catalog="system" width="64" height="60"/>
         <image name="xmark" catalog="system" width="64" height="56"/>
     </resources>

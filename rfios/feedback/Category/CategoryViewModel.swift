@@ -21,6 +21,7 @@ protocol CategoryViewModelType: BaseViewModelType {
     func onAdd()
     
     func addCategory()
+    func delCategory(_ index: Int)
 }
 
 class CategoryViewModel: BaseViewModel, CategoryViewModelType {
@@ -36,10 +37,6 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
     override init() {
         
         // -MARK: List
-        categoryList.append(Category(title:"기본", color: "#000000"))
-        categoryList.append(Category(title:"기본2", color: "#ffffff"))
-        categoryList.append(Category(title:"기본3", color: "#000000"))
-        
         self.categoryListOb = BehaviorRelay<[Category]>(value: categoryList)
         
         // -MARK: Edit
@@ -65,12 +62,18 @@ extension CategoryViewModel {
     }
 }
 
-// -MARK: Add
+// -MARK: CRUD
 extension CategoryViewModel {
     
     func addCategory() {
         print("주제 추가")
         self.categoryList.append(self.category)
+        self.categoryListOb.accept(self.categoryList)
+    }
+    
+    func delCategory(_ index: Int) {
+        print("주제 삭제")
+        self.categoryList.remove(at: index)
         self.categoryListOb.accept(self.categoryList)
     }
     

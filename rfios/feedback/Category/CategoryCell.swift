@@ -12,9 +12,10 @@ import UIKit
 class CategoryCell: UITableViewCell {
     
     static let identifier = "categoryCell"
-    
+
     private let cellDisposeBag = DisposeBag()
     
+    var viewModel: CategoryViewModelType? = nil
     var disposeBag = DisposeBag()
     let onData: AnyObserver<Category>
     
@@ -22,14 +23,14 @@ class CategoryCell: UITableViewCell {
         
         let data = PublishSubject<Category>()
         onData = data.asObserver()
-
+        
         super.init(coder: aDecoder)
 
         data.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
-                
                 self?.titleLabel.text = $0.title
                 self?.colorView.backgroundColor = ColorUtil.hexStringToUIColor($0.color)
+                self?.setBindings()
             })
             .disposed(by: cellDisposeBag)
     }
@@ -39,20 +40,31 @@ class CategoryCell: UITableViewCell {
         disposeBag = DisposeBag()
     }
     
+    deinit {
+        self.disposeBag = DisposeBag()
+    }
+    
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
+    @IBOutlet weak var modifyBtn: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
         self.colorView.backgroundColor = ColorUtil.hexStringToUIColor("#000000")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    }
+    
+    func setBindings() {
+        self.modifyBtn.rx.tap
+            .subscribe(onNext: {
+                print("on주제 수정")
+                self.viewModel?.onAdd()
+            })
+            .disposed(by: self.disposeBag)
     }
 
 }

@@ -54,8 +54,9 @@ class SceneCoordinator: SceneCoordinatorType {
     
     // 카테고리 리스트 화면으로 이동
     func showCategoryView(_ categoryViewModel: CategoryViewModel) {
-    self.currentViewController?.navigationController?.pushViewController(Scene.categoryView(categoryViewModel).viewController(), animated: true)
-        
+        self.currentViewController?.navigationController?
+            .pushViewController(Scene.categoryView(categoryViewModel).viewController(), animated: true)
+        SceneCoordinator.sharedInstance.setCurrentViewController(self.currentViewController)
     }
     
     // 카테고리 편집 화면으로 이동
