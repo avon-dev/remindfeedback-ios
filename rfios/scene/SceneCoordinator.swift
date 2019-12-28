@@ -42,12 +42,26 @@ class SceneCoordinator: SceneCoordinatorType {
     
     //
     func present(_ viewController: UIViewController) {
-        self.currentViewController?.present(viewController, animated: false, completion: nil)
+        viewController.modalPresentationStyle = .fullScreen
+        self.currentViewController?.present(viewController, animated: true, completion: nil)
         SceneCoordinator.sharedInstance.setCurrentViewController(viewController)
     }
     
+    // 회원가입 화면으로 이동
     func showRegisterView(_ registerViewModel: RegisterViewModel) {
         self.present(Scene.registerView(registerViewModel).viewController())
+    }
+    
+    // 카테고리 리스트 화면으로 이동
+    func showCategoryView(_ categoryViewModel: CategoryViewModel) {
+        self.currentViewController?.navigationController?
+            .pushViewController(Scene.categoryView(categoryViewModel).viewController(), animated: true)
+        SceneCoordinator.sharedInstance.setCurrentViewController(self.currentViewController)
+    }
+    
+    // 카테고리 편집 화면으로 이동
+    func showEditCategoryView(_ categoryViewModel: CategoryViewModel) {
+        self.present(Scene.editCategoryView(categoryViewModel).viewController())
     }
     
 }

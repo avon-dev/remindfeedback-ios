@@ -71,7 +71,7 @@ extension LoginViewModel {
     
 }
 
-//
+// - MARK: Network
 extension LoginViewModel {
     
     //
