@@ -74,10 +74,11 @@ extension CategoryListViewController {
             .bind(to:
             self.tableView.rx.items(cellIdentifier: CategoryCell.identifier, cellType: CategoryCell.self)) {
                 
-                _, item, cell in
+                index, item, cell in
                 
-                print(item)
+                print("카테고리 테이블 뷰 인덱스", index)
                 cell.onData.onNext(item)
+                cell.index = index
                 cell.viewModel = self.viewModel
             }
             .disposed(by: disposeBag)

@@ -29,7 +29,8 @@ class CategoryCell: UITableViewCell {
         data.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.titleLabel.text = $0.title
-                self?.colorView.backgroundColor = ColorUtil.hexStringToUIColor($0.color)
+                NWLog.sLog(contentName: "헥스스트링 디버그", contents: $0.color)
+                self?.colorView.backgroundColor = UIUtil.hexStringToUIColor($0.color)
                 self?.setBindings()
             })
             .disposed(by: cellDisposeBag)
@@ -48,10 +49,11 @@ class CategoryCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var modifyBtn: UIButton!
+    var index: Int = -1
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.colorView.backgroundColor = ColorUtil.hexStringToUIColor("#000000")
+        self.colorView.backgroundColor = UIUtil.hexStringToUIColor("#000000")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -60,9 +62,9 @@ class CategoryCell: UITableViewCell {
     
     func setBindings() {
         self.modifyBtn.rx.tap
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
                 print("on주제 수정")
-                self.viewModel?.onAdd()
+                self?.viewModel?.onModify(self?.index ?? -1)
             })
             .disposed(by: self.disposeBag)
     }

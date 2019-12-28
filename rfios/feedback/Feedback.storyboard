@@ -115,10 +115,19 @@
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftTextInset">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="leftPadding">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="주제 이름을 입력해주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mho-Rl-mud" userLabel="subjectTextField">
                                 <rect key="frame" x="0.0" y="170" width="414" height="81.5"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주제 색상" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ojJ-RT-6wz">
@@ -128,8 +137,48 @@
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="nyX-Xp-d2A" userLabel="colorHStack1">
+                                <rect key="frame" x="55" y="333.5" width="304" height="44.5"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CkO-jV-fe1" userLabel="colorBtn11">
+                                        <rect key="frame" x="0.0" y="0.0" width="45" height="44.5"/>
+                                        <color key="backgroundColor" red="0.3803921569" green="0.84313725490000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="CkO-jV-fe1" secondAttribute="height" multiplier="1:1" id="10E-sK-QTR"/>
+                                        </constraints>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XFd-HF-eO4" userLabel="colorBtn12">
+                                        <rect key="frame" x="65" y="0.0" width="44.5" height="44.5"/>
+                                        <color key="backgroundColor" red="0.3803921569" green="0.84313725490000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="XFd-HF-eO4" secondAttribute="height" multiplier="1:1" id="47e-N1-W4F"/>
+                                        </constraints>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kIv-Ub-ZXT" userLabel="colorBtn13">
+                                        <rect key="frame" x="129.5" y="0.0" width="45" height="44.5"/>
+                                        <color key="backgroundColor" red="0.3803921569" green="0.84313725490000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="kIv-Ub-ZXT" secondAttribute="height" multiplier="1:1" id="A5I-UG-D9h"/>
+                                        </constraints>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qsb-tY-hlG" userLabel="colorBtn14">
+                                        <rect key="frame" x="194.5" y="0.0" width="44.5" height="44.5"/>
+                                        <color key="backgroundColor" red="0.3803921569" green="0.84313725490000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Qsb-tY-hlG" secondAttribute="height" multiplier="1:1" id="oKW-lC-nyl"/>
+                                        </constraints>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ppd-hy-6Fc" userLabel="colorBtn15">
+                                        <rect key="frame" x="259" y="0.0" width="45" height="44.5"/>
+                                        <color key="backgroundColor" red="0.3803921569" green="0.84313725490000002" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Ppd-hy-6Fc" secondAttribute="height" multiplier="1:1" id="Lvc-OA-t2g"/>
+                                        </constraints>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
-                        <color key="backgroundColor" red="0.83138185740000003" green="0.82744938140000002" blue="0.86820369959999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Mho-Rl-mud" firstAttribute="width" secondItem="m2h-aJ-1TK" secondAttribute="width" id="Cd1-JB-IGu"/>
                             <constraint firstItem="ojJ-RT-6wz" firstAttribute="height" secondItem="m2h-aJ-1TK" secondAttribute="height" multiplier="0.1" id="EoK-Zx-IuH"/>
@@ -138,26 +187,36 @@
                             <constraint firstItem="m6e-eX-KcO" firstAttribute="centerX" secondItem="eRc-8K-xig" secondAttribute="centerX" id="NDB-dU-K5o"/>
                             <constraint firstItem="m6e-eX-KcO" firstAttribute="top" secondItem="oTg-tJ-1Jm" secondAttribute="bottom" id="RlX-cV-MYD"/>
                             <constraint firstItem="Mho-Rl-mud" firstAttribute="height" secondItem="m2h-aJ-1TK" secondAttribute="height" multiplier="0.1" id="U67-Y2-U50"/>
+                            <constraint firstItem="nyX-Xp-d2A" firstAttribute="centerX" secondItem="eRc-8K-xig" secondAttribute="centerX" id="WXD-TF-X9h"/>
+                            <constraint firstItem="nyX-Xp-d2A" firstAttribute="top" secondItem="ojJ-RT-6wz" secondAttribute="bottom" id="Zo7-2k-uzA"/>
                             <constraint firstItem="oTg-tJ-1Jm" firstAttribute="width" secondItem="m2h-aJ-1TK" secondAttribute="width" id="bcI-fd-Rbk"/>
                             <constraint firstItem="oTg-tJ-1Jm" firstAttribute="top" secondItem="m2h-aJ-1TK" secondAttribute="top" id="c8v-oD-sld"/>
                             <constraint firstItem="m6e-eX-KcO" firstAttribute="height" secondItem="m2h-aJ-1TK" secondAttribute="height" multiplier="0.1" id="g4u-0j-RvE"/>
                             <constraint firstItem="ojJ-RT-6wz" firstAttribute="centerX" secondItem="m2h-aJ-1TK" secondAttribute="centerX" id="kUX-c8-KDn"/>
                             <constraint firstItem="ojJ-RT-6wz" firstAttribute="top" secondItem="Mho-Rl-mud" secondAttribute="bottom" id="kaB-D5-cen"/>
                             <constraint firstItem="oTg-tJ-1Jm" firstAttribute="centerX" secondItem="eRc-8K-xig" secondAttribute="centerX" id="nIW-bf-DY4"/>
+                            <constraint firstItem="nyX-Xp-d2A" firstAttribute="height" secondItem="eRc-8K-xig" secondAttribute="height" multiplier="0.05" id="oke-Z9-aap"/>
                             <constraint firstItem="Mho-Rl-mud" firstAttribute="top" secondItem="m6e-eX-KcO" secondAttribute="bottom" id="sYm-RO-QEc"/>
                             <constraint firstItem="ojJ-RT-6wz" firstAttribute="width" secondItem="m2h-aJ-1TK" secondAttribute="width" id="x8W-7s-lur"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="m2h-aJ-1TK"/>
                     </view>
                     <connections>
+                        <outlet property="colorBtn11" destination="CkO-jV-fe1" id="DtA-g9-cxN"/>
+                        <outlet property="colorBtn12" destination="XFd-HF-eO4" id="QgL-3d-5sS"/>
+                        <outlet property="colorBtn13" destination="kIv-Ub-ZXT" id="qLc-3s-wJE"/>
+                        <outlet property="colorBtn14" destination="Qsb-tY-hlG" id="pMi-0R-Xox"/>
+                        <outlet property="colorBtn15" destination="Ppd-hy-6Fc" id="Td1-wb-qUc"/>
+                        <outlet property="colorLabel" destination="ojJ-RT-6wz" id="ZP5-p2-caJ"/>
                         <outlet property="completedBtn" destination="n6F-dD-Zor" id="g1X-ad-oG1"/>
+                        <outlet property="titleLabel" destination="m6e-eX-KcO" id="7Ht-Xu-eGb"/>
                         <outlet property="titleTxtFld" destination="Mho-Rl-mud" id="4dx-eQ-Th2"/>
                         <outlet property="xBtn" destination="D6O-4v-K4b" id="t6t-Rg-R4d"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gRo-SR-bpw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-107" y="21"/>
+            <point key="canvasLocation" x="-107.24637681159422" y="20.758928571428569"/>
         </scene>
         <!--editFeedbackVC-->
         <scene sceneID="bUw-ZK-Wps">

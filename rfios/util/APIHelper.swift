@@ -9,6 +9,7 @@
 import Foundation
 import Moya
 import RxSwift
+import SwiftyJSON
 
 struct APIResult {
     
@@ -16,16 +17,18 @@ struct APIResult {
     var statusCode: Int
     var msg: String?
     var data: String?
+    var dataDic: [[String:Any]]?
         
-    init(_ statusCode: Int, msg: String? = nil, data: String? = nil) {
+    init(_ statusCode: Int, msg: String? = nil, data: String? = nil, dataDic: [[String:Any]]? = nil) {
         
-        if statusCode == 201 {
+        if statusCode == 200 || statusCode == 201 {
             self.isSuccess = true
         }
         
         self.statusCode = statusCode
         self.msg = msg
         self.data = data
+        self.dataDic = dataDic
     }
 }
 
@@ -40,9 +43,31 @@ class APIHelper {
     }
     
     func rxPushRequest(_ task: BaseAPI) -> Observable<APIResult> {
+        
         return provider.rx.request(task)
             .asObservable()
             .map {  return APIResult($0.statusCode, data: try $0.mapString())  }
+    }
+    
+    func rxPullResponse(_ task: BaseAPI) -> Observable<APIResult> {
+        
+        return provider.rx.request(task)
+        .asObservable()
+        .map {
+            NWLog.sLog(contentName: "response", contents: $0)
+            var dic: [String: Any]? = [:]
+            
+            do {
+                dic = try $0.mapJSON() as? [String: Any]
+                print("dictionary", dic)
+            } catch {
+                print("mapJSON 실패")
+                dic = nil
+            }
+            print(JSON(dic?["data"]))
+            return APIResult($0.statusCode, msg: dic?["message"] as? String, data: dic?["data"] as? String, dataDic: dic?["data"] as? [[String:Any]] )
+            
+        }
     }
     
     func rxSetSession(_ task: BaseAPI) -> Observable<APIResult> {
@@ -67,7 +92,9 @@ class APIHelper {
         
         provider.request(task) { result in
             
-//            print("body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
+            print("요청 url", result.value?.request?.url)
+            print("요청 method", result.value?.request?.httpMethod)
+            print("요청 body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
             
             switch result {
             case let .success(moyaResponse):
@@ -77,7 +104,7 @@ class APIHelper {
                 
                 switch moyaResponse.statusCode {
                     
-                case 201:
+                case 200...201:
                     do {
                         print(try moyaResponse.mapJSON())
                     } catch {
@@ -86,6 +113,12 @@ class APIHelper {
                     
                 default:
                     print("응답 실패")
+                    do {
+                        print(try moyaResponse.statusCode)
+                        print(try String(data: moyaResponse.data, encoding: String.Encoding.utf8))
+                    } catch {
+                        
+                    }
                     
                 }
 

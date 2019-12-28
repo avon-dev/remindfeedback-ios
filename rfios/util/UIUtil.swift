@@ -8,7 +8,17 @@
 
 import UIKit
 
-class ColorUtil {
+class UIUtil {
+    
+    /// 사용자가 사용하는 단말기의 화면 크기
+    static var screenSize: CGRect!
+    
+    /// 단말기 화면의 가로 크기
+    static var screenWidth: CGFloat!
+    
+    /// 단말기 화면의 세로 크기
+    static var screenHeight: CGFloat!
+    
     static func hexStringToUIColor (_ hex:String) -> UIColor {
         var hexFormatted = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
 
@@ -28,4 +38,5 @@ class ColorUtil {
             alpha: CGFloat(1.0)
         )
     }
+    
 }

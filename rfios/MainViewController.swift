@@ -118,6 +118,7 @@ class MainViewController: UIViewController {
             return
         }
         
+        HTTPCookieStorage.shared.setCookie(cookie)
         print("쿠키?", cookie)
         
     }
