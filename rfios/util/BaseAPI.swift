@@ -52,12 +52,10 @@ extension BaseAPI: TargetType {
     var method: Moya.Method {
         
         switch self {
-        case .register, .login, .addCategory:
+        case .register, .login, .addCategory, .modCategory:
             return .post
         case .me, .getCategories:
             return .get
-        case .modCategory:
-            return .put
         case .delCategory:
             return .delete
         }
