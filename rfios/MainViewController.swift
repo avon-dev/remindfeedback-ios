@@ -21,8 +21,6 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var dropDown: DropDown!
     
-    
-    
     @IBOutlet weak var tableView: UITableView!
     
     init(viewModel: MainViewModelType = MainViewModel()) {
@@ -62,6 +60,13 @@ class MainViewController: UIViewController {
     }
     
     func setBinding() {
+        
+        // Scene
+        self.rx.isVisible
+            .subscribe(onNext: { [weak self] in
+                if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
+            })
+            .disposed(by: self.disposeBag)
         
         // 테이블뷰 설정
         viewModel.feedbackList
@@ -113,6 +118,7 @@ class MainViewController: UIViewController {
             return
         }
         
+        HTTPCookieStorage.shared.setCookie(cookie)
         print("쿠키?", cookie)
         
     }

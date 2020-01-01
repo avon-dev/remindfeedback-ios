@@ -11,9 +11,16 @@ import Moya
 import Alamofire
 
 enum BaseAPI {
+    // Auth
     case register(_ params: [String:Any?]?)
     case login(_ params: [String:Any?]?)
     case me
+    
+    // Category
+    case getCategories
+    case addCategory(_ params: [String:Any?]?)
+    case modCategory(_ params: [String:Any?]?, id: String)
+    case delCategory(_ id: String)
 }
 
 extension BaseAPI: TargetType {
@@ -31,18 +38,26 @@ extension BaseAPI: TargetType {
             return "/auth/login"
         case .me:
             return "/auth/me"
+        case .getCategories:
+            return "/category/selectall"
+        case .addCategory:
+            return "/category/insert"
+        case .modCategory(_, let id):
+            return "/category/update/\(id)"
+        case .delCategory(let id):
+            return "/category/deleteone/\(id)"
         }
     }
     
     var method: Moya.Method {
         
         switch self {
-        case .register:
+        case .register, .login, .addCategory, .modCategory:
             return .post
-        case .login:
-            return .post
-        case .me:
+        case .me, .getCategories:
             return .get
+        case .delCategory:
+            return .delete
         }
         
     }
@@ -55,7 +70,6 @@ extension BaseAPI: TargetType {
         
         switch self {
         case .register(let params):
-
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default) // ??
             
         case .login(let params):
@@ -63,6 +77,18 @@ extension BaseAPI: TargetType {
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default) // ??
             
         case .me:
+            return .requestPlain
+         
+        case .getCategories:
+            return .requestPlain
+            
+        case .addCategory(let params):
+            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+            
+        case .modCategory(let params, _):
+            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+            
+        case .delCategory(let id):
             return .requestPlain
         }
         

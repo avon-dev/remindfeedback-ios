@@ -16,6 +16,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        UIUtil.screenSize = UIScreen.main.bounds // 단말기의 화면 크기를 저장
+        UIUtil.screenWidth = UIUtil.screenSize.width // 단말기 화면의 가로 길이 저장
+        UIUtil.screenHeight = UIUtil.screenSize.height // 단말기 화면의 세로 길이 저장
+        
         return true
     }
 
@@ -35,4 +39,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
+
+extension UIApplication {
+    class var statusBarView: UIView? {
+        var statusBarView: UIView?
+        
+        if #available(iOS 13.0, *) {
+            let tag = 38482458385
+            if let statusBar = UIApplication.shared.keyWindow?.viewWithTag(tag) {
+                statusBarView = statusBar
+                
+            } else {
+                let statusBar = UIView(frame: UIApplication.shared.statusBarFrame)
+                statusBar.tag = tag
+                UIApplication.shared.keyWindow?.addSubview(statusBar)
+                statusBarView = statusBar
+                
+            }
+            
+        } else {
+            statusBarView = UIApplication.shared.value(forKey: "statusBar") as? UIView
+            
+        }
+        
+        return statusBarView
+        
+    }
+    
+    class var statusBarBackgroundColor: UIColor? {
+        get {
+            return statusBarView?.backgroundColor
+            
+        }
+        set {
+            statusBarView?.backgroundColor = newValue
+            
+        }
+        
+    }
+    
+}
+
 

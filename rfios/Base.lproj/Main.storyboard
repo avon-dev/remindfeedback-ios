@@ -342,6 +342,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="1IZ-pv-qNF"/>
                     <connections>
+                        <outlet property="categoryBtn" destination="Gul-Xe-AE9" id="L5r-K5-RgK"/>
                         <outlet property="friendListBtn" destination="ccW-6d-smo" id="Eek-sn-EgP"/>
                     </connections>
                 </viewController>
