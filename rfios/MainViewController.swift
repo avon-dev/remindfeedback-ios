@@ -6,6 +6,7 @@
 //  Copyright © 2019 avon. All rights reserved.
 //
 
+import Floaty
 import iOSDropDown
 import RxCocoa
 import RxSwift
@@ -16,12 +17,9 @@ import UIKit
 class MainViewController: UIViewController {
     
     
+    // - MARK: RX
     var viewModel: MainViewModelType
     var disposeBag = DisposeBag()
-    
-    @IBOutlet weak var dropDown: DropDown!
-    
-    @IBOutlet weak var tableView: UITableView!
     
     init(viewModel: MainViewModelType = MainViewModel()) {
         self.viewModel = viewModel
@@ -32,21 +30,18 @@ class MainViewController: UIViewController {
         viewModel = MainViewModel()
         super.init(coder: aDecoder)
     }
+    
+    // - MARK: View
+    @IBOutlet weak var dropDown: DropDown! // 주제선택 드롭다운
+    @IBOutlet weak var tableView: UITableView! // 피드백 테이블 뷰
+    let floatingBtn = Floaty()
 
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // The list of array to display. Can be changed dynamically
-        dropDown.optionArray = ["Option 1", "Option 2", "Option 3"]
-        //Its Id Values and its optional
-//        dropDown.optionIds = [1,23,54,22]
-        
-        let cellName = UINib(nibName: "FeedbackCell", bundle: nil)
-        tableView.register(cellName, forCellReuseIdentifier: "feedbackCell")
-        tableView.estimatedRowHeight = 80.0
-//        tableView.rowHeight = UITableView.automaticDimension
-//        self.tableView.rowHeight = 80
+
+        setUI()
         setBinding()
     }
     
@@ -56,7 +51,54 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.checkLogin()
+//        self.checkLogin()
+    }
+    
+    func setUI() {
+        // 드롭다운 설정
+        // The list of array to display. Can be changed dynamically
+        dropDown.optionArray = ["Option 1", "Option 2", "Option 3"]
+        // Its Id Values and its optional
+//        dropDown.optionIds = [1,23,54,22]
+        
+        // 테이블 뷰 설정
+        let cellName = UINib(nibName: "FeedbackCell", bundle: nil)
+        tableView.register(cellName, forCellReuseIdentifier: "feedbackCell")
+        tableView.estimatedRowHeight = 80.0
+//        tableView.rowHeight = UITableView.automaticDimension
+//        self.tableView.rowHeight = 80
+        
+        // 플로팅 버튼 설정
+        // 플로팅 버튼 위치 상향 조정
+        // floaty.paddingY = 80.0
+        
+        // 태헌 : 사용자가 플로팅 버튼을 클릭했을 때, 화면에 표시되는 하위 플로팅 버튼을 추가하는 코드
+        
+//        floaty.itemButtonColor = floaty.buttonColor
+        
+        // [예산추가] 하위 플로팅 버튼 추가, 해당 버튼을 눌렀을 때, 예산추가 화면으로 이동하기 위해 사용되는 코드
+        self.floatingBtn.addItem("피드백추가", icon: nil, handler: {
+
+            item in
+
+            let storyBoard = UIStoryboard(name: "Feedback", bundle: nil)
+            let viewController = storyBoard.instantiateViewController(withIdentifier: "editFeedbackVC") as! EditFeedbackViewController
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
+//            categoryBtn.rx.tap
+//            .subscribe(onNext: { [weak self] in
+//                print("on주제설정")
+//                self?.sideMenuController?.hideMenu()
+//                self?.viewModel.onCategory()
+//            })
+//            .disposed(by: self.disposeBag)
+
+        })
+        
+        // 화면에 플로팅 버튼 추가
+        self.view.addSubview(self.floatingBtn)
+        
+        
     }
     
     func setBinding() {

@@ -3,6 +3,7 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - Alamofire (4.9.1)
+  - Floaty (4.2.0)
   - iOSDropDown (0.3.4)
   - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
@@ -50,6 +51,7 @@ PODS:
 
 DEPENDENCIES:
   - Action
+  - Floaty (~> 4.2.0)
   - iOSDropDown
   - Moya/RxSwift
   - RxAlamofire
@@ -70,6 +72,7 @@ SPEC REPOS:
   trunk:
     - Action
     - Alamofire
+    - Floaty
     - iOSDropDown
     - Moya
     - Realm
@@ -92,6 +95,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Action: 689181e4c3f6566844178d8a7da6fef39a9597fc
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   Realm: 38e9dcb19104b58407167d99f70d4995f7c16023
@@ -111,6 +115,6 @@ SPEC CHECKSUMS:
   SideMenuSwift: 5c2b1496544ce3f1f08f4dddf4810eaac49f543d
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 196e09e0f3faa53fbcd95d48f5e8f259dcbf7194
+PODFILE CHECKSUM: 0b1c74ecea6a24b018c0d238c8b472f8fe05b58f
 
 COCOAPODS: 1.8.4

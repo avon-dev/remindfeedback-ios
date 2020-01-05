@@ -22,6 +22,7 @@ target 'rfios' do
   pod 'RxFlow'
   pod 'Moya/RxSwift'
   pod 'SwiftyJSON'
+  pod 'Floaty', '~> 4.2.0'
 
   target 'rfiosTests' do
     inherit! :search_paths
