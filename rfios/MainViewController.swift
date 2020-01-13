@@ -9,6 +9,7 @@
 import Floaty
 import iOSDropDown
 import RxCocoa
+import RxDataSources
 import RxSwift
 import RxViewController
 import SideMenuSwift
@@ -39,7 +40,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         setUI()
         setBinding()
@@ -111,6 +111,8 @@ class MainViewController: UIViewController {
             .disposed(by: self.disposeBag)
         
         // 테이블뷰 설정
+        
+        
         viewModel.feedbackList
 //            .bind(to: tableView.rx.items) {
 //                (tableView, index, element) in
@@ -128,7 +130,7 @@ class MainViewController: UIViewController {
 //                index, element, cell in
                 _, item, cell in
                 
-                cell.feedbackLabel.text = item
+                cell.feedbackLabel.text = item.title
             }
             .disposed(by: disposeBag)
 

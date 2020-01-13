@@ -6,23 +6,28 @@
 //  Copyright © 2019 avon. All rights reserved.
 //
 
+import Action
 import Foundation
+import RxDataSources
 import RxSwift
 
 protocol MainViewModelType: BaseViewModelType {
     // Output
-    var feedbackList: Observable<[String]> { get }
+    var feedbackList: Observable<[Feedback]> { get }
     
     // Scene
     func onCategory()
 }
 
+typealias FeedbackSection = AnimatableSectionModel<String, Feedback>
+
 class MainViewModel: BaseViewModel, MainViewModelType {
     
-    let feedbackList: Observable<[String]>
+    let feedbackList: Observable<[Feedback]>
     
     override init() {
-        self.feedbackList = Observable.of(["ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹ", "222", "333"])
+//        self.feedbackList = Observable.of(["ㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹㄴㅇㄹ", "222", "333"])
+        self.feedbackList = Observable.of([Feedback()])
         super.init()
     }
     
