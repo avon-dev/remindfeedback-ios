@@ -76,6 +76,13 @@ extension EditCategoryViewController {
     
     func setBinding() {
         
+        // Scene
+        self.rx.isVisible
+            .subscribe(onNext: { [weak self] in
+                if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
+            })
+            .disposed(by: self.disposeBag)
+        
         // Output
         if let index = self.viewModel.selectedIndex {
             self.viewModel.categoryListOb

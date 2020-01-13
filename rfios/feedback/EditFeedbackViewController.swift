@@ -30,8 +30,11 @@ class EditFeedbackViewController: UIViewController {
     }
     
 //    @IBOutlet weak var titleTextview: UITextView!
+    @IBOutlet weak var categoryColor: UIView! // 피드백 주제 컬러를 표시하는 이미지뷰
+    @IBOutlet weak var categoryTitle: UILabel! // 피드백 주제 이름을 표시하는 이미지뷰
     @IBOutlet weak var categoryBtn: UIButton! // 피드백 주제를 선택할 수 있게 하는 버튼
     @IBOutlet weak var titleTxtFld: UITextField! // 피드백 제목을 입력하는 버튼
+    @IBOutlet weak var dateLabel: UILabel! // 피드백 날짜가 표시되는 레이블
     @IBOutlet weak var dateBtn: UIButton! // 피드백 날짜를 선택할 수 있게 하는 버튼
     @IBOutlet weak var friendBtn: UIButton! // 피드백 조언자를 선택할 수 있게 하는 버튼
     
@@ -39,6 +42,7 @@ class EditFeedbackViewController: UIViewController {
         super.viewDidLoad()
 //        self.titleTextview.delegate = self
         self.setUI()
+        self.setBinding()
     }
 
 }
@@ -50,6 +54,12 @@ extension EditFeedbackViewController {
 //        self.titleTextview.textContainer.maximumNumberOfLines = 2
 //        self.titleTextview.textContainer.lineBreakMode = .byTruncatingTail
         self.setNavUI()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"    // date format
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        
+        self.dateLabel.text = dateFormatter.string(from: Date())
         
     }
     
@@ -68,6 +78,13 @@ extension EditFeedbackViewController {
 extension EditFeedbackViewController {
     func setBinding() {
         
+        // Scene
+        self.rx.isVisible
+            .subscribe(onNext: { [weak self] in
+                if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
+            })
+            .disposed(by: self.disposeBag)
+        
         // 피드백 주제 선택
         self.categoryBtn.rx.tap
             .subscribe(onNext: {
@@ -77,7 +94,8 @@ extension EditFeedbackViewController {
         
         // 피드백 제목 입력
         self.titleTxtFld.rx.text.orEmpty
-        
+            .bind(to: self.viewModel.titleInput)
+            .disposed(by: self.disposeBag)
         
         // 피드백 날짜 선택
         self.dateBtn.rx.tap
@@ -88,6 +106,15 @@ extension EditFeedbackViewController {
         
         // 피드백 조언자 선택
         // - TODO: 친구기능 완성 후
+        
+        // 피드백 추가
+        self.navigationItem.rightBarButtonItem?.rx.tap
+//            .flatMap{  }
+            .subscribe(onNext: {
+                self.viewModel.reqAddFeedback()
+                self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
             
     }
 }

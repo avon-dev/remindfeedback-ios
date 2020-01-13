@@ -15,4 +15,8 @@ extension UIViewController {
         self.view.endEditing(true)
     }
     
+    func setSence() {
+        SceneCoordinator.sharedInstance.setCurrentViewController(self)
+    }
+    
 }

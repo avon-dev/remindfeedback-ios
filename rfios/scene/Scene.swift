@@ -15,6 +15,8 @@ enum Scene {
     
     case categoryView(CategoryViewModel)
     case editCategoryView(CategoryViewModel)
+    
+    case editFeedbackView(FeedbackViewModel)
 }
 
 extension Scene {
@@ -26,23 +28,29 @@ extension Scene {
         
         switch self {
         
+        // auth
         case .loginView(let viewModel):
             let viewController = loginStoryboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
             viewController.viewModel = viewModel
             return viewController
-        
         case .registerView(let viewModel):
             let viewController = loginStoryboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
             viewController.viewModel = viewModel
             return viewController
             
+        // category
         case .categoryView(let viewModel):
             let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "categoryVC") as! CategoryListViewController
             viewController.viewModel = viewModel
             return viewController
-            
         case .editCategoryView(let viewModel):
             let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "editCategoryVC") as! EditCategoryViewController
+            viewController.viewModel = viewModel
+            return viewController
+            
+        // feedback
+        case .editFeedbackView(let viewModel):
+            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "editFeedbackVC") as! EditFeedbackViewController
             viewController.viewModel = viewModel
             return viewController
 

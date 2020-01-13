@@ -227,7 +227,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="피드백 주제" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Ke8-ew-YmB">
-                                <rect key="frame" x="21" y="44" width="373" height="66"/>
+                                <rect key="frame" x="20.5" y="44" width="373" height="65.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="1lG-mL-zl3"/>
@@ -249,14 +249,14 @@
                                 <rect key="frame" x="41.5" y="109.5" width="331" height="49"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aym-cc-IaS" userLabel="categoryColorView">
-                                        <rect key="frame" x="0.0" y="10" width="29" height="29"/>
+                                        <rect key="frame" x="0.0" y="10" width="29.5" height="29"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="aym-cc-IaS" secondAttribute="height" multiplier="1:1" id="6d2-Ih-Ljq"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="기본" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uf3-80-ZiC">
-                                        <rect key="frame" x="66" y="2" width="265" height="44"/>
+                                        <rect key="frame" x="66" y="2.5" width="265" height="44"/>
                                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -279,7 +279,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="피드백 제목" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="Wvc-s8-cUp">
-                                <rect key="frame" x="21" y="159" width="373" height="65"/>
+                                <rect key="frame" x="20.5" y="158.5" width="373" height="65.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -303,7 +303,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="피드백 날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="SuU-4h-rlP">
-                                <rect key="frame" x="21" y="273" width="373" height="66"/>
+                                <rect key="frame" x="20.5" y="273" width="373" height="65.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -354,7 +354,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="피드백 조언자" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="AVJ-Da-YSD">
-                                <rect key="frame" x="21" y="388" width="373" height="65"/>
+                                <rect key="frame" x="20.5" y="387.5" width="373" height="65.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -404,7 +404,7 @@
                                 <rect key="frame" x="0.0" y="453" width="414" height="73.5"/>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="주의) 조언자를 지정하지 않으면 조언자가 없는 '없음' 상태로 피드백이 생성됩니다." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="81E-4m-tUa" userLabel="cautionLabel">
-                                <rect key="frame" x="21" y="527" width="373" height="82"/>
+                                <rect key="frame" x="20.5" y="526.5" width="373" height="82"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -470,7 +470,10 @@
                     </view>
                     <connections>
                         <outlet property="categoryBtn" destination="vdC-oJ-fnA" id="2xT-nI-KQD"/>
+                        <outlet property="categoryColor" destination="aym-cc-IaS" id="nRL-Q1-jAZ"/>
+                        <outlet property="categoryTitle" destination="uf3-80-ZiC" id="IuL-F3-0AL"/>
                         <outlet property="dateBtn" destination="N6h-pY-Ie1" id="nGf-dC-jCm"/>
+                        <outlet property="dateLabel" destination="s4t-vP-BiV" id="UWm-Vl-q1u"/>
                         <outlet property="friendBtn" destination="3CU-Kd-uey" id="qjv-sG-lTU"/>
                         <outlet property="titleTxtFld" destination="hbD-uk-Pie" id="ivA-jG-UcX"/>
                     </connections>

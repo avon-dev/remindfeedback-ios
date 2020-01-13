@@ -40,7 +40,6 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setUI()
         setBinding()
     }
@@ -51,7 +50,7 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-//        self.checkLogin()
+        self.checkLogin()
     }
     
     func setUI() {
@@ -81,17 +80,11 @@ class MainViewController: UIViewController {
 
             item in
 
-            let storyBoard = UIStoryboard(name: "Feedback", bundle: nil)
-            let viewController = storyBoard.instantiateViewController(withIdentifier: "editFeedbackVC") as! EditFeedbackViewController
-            self.navigationController?.pushViewController(viewController, animated: true)
+//            let storyBoard = UIStoryboard(name: "Feedback", bundle: nil)
+//            let viewController = storyBoard.instantiateViewController(withIdentifier: "editFeedbackVC") as! EditFeedbackViewController
+//            self.navigationController?.pushViewController(viewController, animated: true)
             
-//            categoryBtn.rx.tap
-//            .subscribe(onNext: { [weak self] in
-//                print("on주제설정")
-//                self?.sideMenuController?.hideMenu()
-//                self?.viewModel.onCategory()
-//            })
-//            .disposed(by: self.disposeBag)
+            self.viewModel.onAddFeedback()
 
         })
         
@@ -113,7 +106,7 @@ class MainViewController: UIViewController {
         // 테이블뷰 설정
         
         
-        viewModel.feedbackList
+        viewModel.feedbackListOb
 //            .bind(to: tableView.rx.items) {
 //                (tableView, index, element) in
 //
@@ -122,17 +115,32 @@ class MainViewController: UIViewController {
 //                guard let cell = tableView.dequeueReusableCell(withIdentifier: "feedbackCell", for: indexPath) as? FeedbackCell else { return UITableViewCell() }
 //
 //                cell.feedbackLabel.text = element
+            
 //
 //                return cell
 //            }
             .bind(to: tableView.rx.items(cellIdentifier: FeedbackCell.identifier, cellType: FeedbackCell.self)) {
                 
-//                index, element, cell in
-                _, item, cell in
+                index, item, cell in
                 
                 cell.feedbackLabel.text = item.title
+                cell.rx.longPressGesture()
+                    .when(.recognized)
+                    .take(1) // 이게 다른 화면 갔다가 오면 중복으로 등록되는 경우가 있음, 다른 디스포즈백을 사용해야 할 듯(계속 등록되면 낭비될 것 같음)
+                    .subscribe(onNext: { [weak self] in
+                        print($0)
+                        self?.viewModel.onModFeedback(index)
+                    })
+                    .disposed(by: self.disposeBag)
             }
             .disposed(by: disposeBag)
+        
+        // 테이블 뷰 셀을 좌측으로 스와이프할 때
+        self.tableView.rx.itemDeleted
+            .subscribe(onNext: {
+                self.viewModel.delFeedback($0.item)
+            })
+            .disposed(by: self.disposeBag)
 
     }
     
@@ -144,26 +152,21 @@ class MainViewController: UIViewController {
     func checkLogin() {
         print("로그인 체크")
         guard let cookie = UserDefaultsHelper.sharedInstantce.getCookie() else {
-            
-//            if let vc = self.storyboard?.instantiateViewController(withIdentifier: "loginVC") {
-//
-//                vc.modalPresentationStyle = .fullScreen
-//                self.present(vc, animated: true, completion: nil)
-//            }
-
             // 옵셔널이 없네;;
             let vc = UIStoryboard(name: "Login", bundle: nil)
                 .instantiateViewController(withIdentifier: "loginVC")
-
             vc.modalPresentationStyle = .fullScreen
             self.present(vc, animated: false, completion: nil)
-
 
             return
         }
         
+//        guard !(HTTPCookieStorage.shared.cookies?.contains(cookie) ?? false) else { return }
+        
         HTTPCookieStorage.shared.setCookie(cookie)
         print("쿠키?", cookie)
+        
+        self.viewModel.reqGetMyFeedbacks()
         
     }
     

@@ -18,7 +18,7 @@ class Feedback: Object {
     @objc dynamic var auid = ""
     @objc dynamic var title = ""
     @objc dynamic var category = 0
-    @objc dynamic var date: Date? = nil
+    @objc dynamic var date = Date()
     
     override class func primaryKey() -> String? {
       return "id"
@@ -29,10 +29,15 @@ class Feedback: Object {
         var dic: [String: Any?] = [:]
         dic["seq"] = self.seq
         dic["id"] = self.id
-        dic["user_uid"] = self.uuid
-        dic["adviser_uid"] = self.auid
+//        dic["user_uid"] = self.uuid
+//        dic["adviser"] = self.auid
+        dic["title"] = self.title
         dic["category"] = self.category
-        dic["write_date"] = self.date
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        dic["write_date"] = dateFormatter.string(from: self.date)
         
         return dic
     }

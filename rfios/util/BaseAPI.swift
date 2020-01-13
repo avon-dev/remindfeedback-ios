@@ -21,6 +21,14 @@ enum BaseAPI {
     case addCategory(_ params: [String:Any?]?)
     case modCategory(_ params: [String:Any?]?, id: String)
     case delCategory(_ id: String)
+    
+    // Feedback
+    case getFeedbacks(lastId: String)
+    case getMyFeedbacks(lastId: String)
+    case getYourFeedbacks(lastId: String)
+    case addFeedback(_ params: [String:Any?]?)
+    case modFeedback(_ params: [String:Any?]?, id: String)
+    case delFeedback(_ id: String)
 }
 
 extension BaseAPI: TargetType {
@@ -38,6 +46,7 @@ extension BaseAPI: TargetType {
             return "/auth/login"
         case .me:
             return "/auth/me"
+            
         case .getCategories:
             return "/category/selectall"
         case .addCategory:
@@ -46,18 +55,34 @@ extension BaseAPI: TargetType {
             return "/category/update/\(id)"
         case .delCategory(let id):
             return "/category/deleteone/\(id)"
+        
+        case .getFeedbacks(let lastId):
+            return "/feedback/all/\(lastId)"
+        case .getMyFeedbacks(let lastId):
+            return "/feedback/my/\(lastId)"
+        case .getYourFeedbacks(let lastId):
+            return "/feedback/your/\(lastId)"
+        case .addFeedback:
+            return "/feedback/create"
+        case .modFeedback(_, let id):
+            return "/feedback/update/\(id)"
+        case .delFeedback(let id):
+            return "/feedback/\(id)"
+        
         }
     }
     
     var method: Moya.Method {
         
         switch self {
-        case .register, .login, .addCategory, .modCategory:
+        case .register, .login, .addCategory, .modCategory, .addFeedback:
             return .post
-        case .me, .getCategories:
+        case .me, .getCategories, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks:
             return .get
-        case .delCategory:
+        case .delCategory, .delFeedback:
             return .delete
+        case .modFeedback:
+            return .put
         }
         
     }
@@ -75,21 +100,33 @@ extension BaseAPI: TargetType {
         case .login(let params):
 //            return .requestPlain
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default) // ??
-            
+        
+        // category
         case .me:
             return .requestPlain
-         
         case .getCategories:
             return .requestPlain
-            
         case .addCategory(let params):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
-            
         case .modCategory(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
-            
         case .delCategory(let id):
             return .requestPlain
+            
+        // feedback
+        case .getFeedbacks(let lastId):
+            return .requestPlain
+        case .getMyFeedbacks(let lastId):
+            return .requestPlain
+        case .getYourFeedbacks(let lastId):
+            return .requestPlain
+        case .addFeedback(let params):
+            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+        case .modFeedback(let params, _):
+            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+        case .delFeedback(let id):
+            return .requestPlain
+            
         }
         
         

@@ -64,4 +64,11 @@ class SceneCoordinator: SceneCoordinatorType {
         self.present(Scene.editCategoryView(categoryViewModel).viewController())
     }
     
+    // 피드백 편집 화면으로 이동
+    func showEditFeedbackView(_ feedbackViewModel: FeedbackViewModel) {
+        self.currentViewController?.navigationController?.pushViewController(Scene.editFeedbackView(feedbackViewModel).viewController(), animated: true)
+        
+        SceneCoordinator.sharedInstance.setCurrentViewController(self.currentViewController)
+    }
+    
 }

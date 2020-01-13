@@ -23,6 +23,7 @@
 		1C1D316E239BA00400F4C864 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D316D239BA00400F4C864 /* Category.swift */; };
 		1C1D3170239BA1F900F4C864 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D316F239BA1F900F4C864 /* CategoryCell.swift */; };
 		1C1D3172239BA4B000F4C864 /* UIUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D3171239BA4B000F4C864 /* UIUtil.swift */; };
+		1C922F8423CC77D1001177B8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C922F8323CC77D1001177B8 /* User.swift */; };
 		AAAFFF20820A93A4A14F8D48 /* Pods_rfiosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC37973D26179E855959141 /* Pods_rfiosTests.framework */; };
 		E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45822382971D005F8CA0 /* NWLabel.swift */; };
 		E02F45862382AAE9005F8CA0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E02F45852382AAE9005F8CA0 /* User.storyboard */; };
@@ -92,6 +93,7 @@
 		1C1D316D239BA00400F4C864 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		1C1D316F239BA1F900F4C864 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		1C1D3171239BA4B000F4C864 /* UIUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtil.swift; sourceTree = "<group>"; };
+		1C922F8323CC77D1001177B8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		401BF1C6D3695679693467CA /* Pods_rfios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.debug.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DC37973D26179E855959141 /* Pods_rfiosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfiosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -182,6 +184,7 @@
 			children = (
 				1C1D316D239BA00400F4C864 /* Category.swift */,
 				E06D86A323C0BB5400AB2D48 /* Feedback.swift */,
+				1C922F8323CC77D1001177B8 /* User.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */,
 				E03A08CF2386B57E0073477D /* RegisterViewModel.swift in Sources */,
 				E04085192376ED16008C9F8F /* SideBarViewController.swift in Sources */,
+				1C922F8423CC77D1001177B8 /* User.swift in Sources */,
 				1C1D316C239B9DD100F4C864 /* CategoryListViewController.swift in Sources */,
 				E04085122376E6B9008C9F8F /* FeedbackCell.swift in Sources */,
 				E03A08DB23881B890073477D /* String+Extension.swift in Sources */,
