@@ -58,7 +58,6 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
                 
                 self?.category.title = $0.title
                 if $0.color != "" {
-                    print("들어오나", $0.color)
                     self?.category.color = $0.color
                 }
                 
@@ -68,9 +67,6 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
         reqGetCategories()
     }
     
-    deinit {
-        self.disposeBag = DisposeBag()
-    }
     
 }
 
@@ -131,7 +127,7 @@ extension CategoryViewModel {
                 
                 for data in dataList {
                     var category = Category()
-                    category.seq = data["category_id"] as? Int ?? -1
+                    category.id = data["category_id"] as? Int ?? -1
                     category.title = data["category_title"] as? String ?? ""
                     category.color = data["category_color"] as? String ?? ""
                     
@@ -148,7 +144,7 @@ extension CategoryViewModel {
     // 카테고리 추가 요청
     func reqAddCategory() {
         print("카테고리 추가 서버에 요청")
-        APIHelper.sharedInstance.rxPullResponse(.addCategory(self.category.toDistionary()))
+        APIHelper.sharedInstance.rxPullResponse(.addCategory(self.category.toDictionary()))
             .subscribe(onNext: {
                 print($0.msg)
             })
@@ -158,21 +154,21 @@ extension CategoryViewModel {
     // 카테고리 수정 요청
     func reqModCategory() {
         NWLog.dLog(contentName: "카테고리 수정 서버에 수정", contents: nil)
-//        APIHelper.sharedInstance.rxPullResponse(.modCategory(self.category.toDistionary(), id: String(self.category.seq)))
+//        APIHelper.sharedInstance.rxPullResponse(.modCategory(self.category.toDistionary(), id: String(self.category.id)))
 //            .subscribe(onNext: {
 //                print($0.msg)
 //            })
 //            .disposed(by: self.disposeBag)
-        APIHelper.sharedInstance.pushRequest(.modCategory(self.category.toDistionary(), id: String(self.category.seq)))
+        APIHelper.sharedInstance.pushRequest(.modCategory(self.category.toDictionary(), id: String(self.category.id)))
     }
     
     func reqDelCategory() {
-        APIHelper.sharedInstance.rxPullResponse(.delCategory(String(self.category.seq)))
+        APIHelper.sharedInstance.rxPullResponse(.delCategory(String(self.category.id))) 
         .subscribe(onNext: {
             print($0.msg)
         })
         .disposed(by: self.disposeBag)
-//        APIHelper.sharedInstance.pushRequest(.delCategory(String(self.category.seq)))
+//        APIHelper.sharedInstance.pushRequest(.delCategory(String(self.category.id)))
     }
     
 }

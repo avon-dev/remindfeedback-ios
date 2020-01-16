@@ -76,11 +76,18 @@ extension EditCategoryViewController {
     
     func setBinding() {
         
+        // Scene
+        self.rx.isVisible
+            .subscribe(onNext: { [weak self] in
+                if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
+            })
+            .disposed(by: self.disposeBag)
+        
         // Output
         if let index = self.viewModel.selectedIndex {
             self.viewModel.categoryListOb
                 .flatMap{ Observable.of($0[index]) }
-                .take(1)
+                .take(1) // 왜 했더라...
                 .subscribe(onNext: { [weak self] in
                     // 화면에 기존 데이터가 보이기 위한 코드
                     self?.titleTxtFld.text = $0.title
@@ -96,8 +103,8 @@ extension EditCategoryViewController {
         
         // 주제 추가 및 수정 취소
         self.xBtn.rx.tap
-            .subscribe(onNext: {
-                self.dismiss(animated: true, completion: nil)
+            .subscribe(onNext: { [weak self] in
+                self?.dismiss(animated: true, completion: nil)
             })
             .disposed(by: self.disposeBag)
         

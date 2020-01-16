@@ -3,6 +3,8 @@ PODS:
     - RxCocoa (~> 4.0)
     - RxSwift (~> 4.0)
   - Alamofire (4.9.1)
+  - Differentiator (3.1.0)
+  - Floaty (4.2.0)
   - iOSDropDown (0.3.4)
   - Moya/Core (13.0.1):
     - Alamofire (~> 4.1)
@@ -25,6 +27,10 @@ PODS:
     - RxSwift (>= 4.4.2, ~> 4.4)
   - RxCocoa (4.5.0):
     - RxSwift (>= 4.4.2, ~> 4.4)
+  - RxDataSources (3.1.0):
+    - Differentiator (~> 3.0)
+    - RxCocoa (~> 4.0)
+    - RxSwift (~> 4.0)
   - RxFlow (2.2.0):
     - RxCocoa (>= 4.5.0)
     - RxSwift (>= 4.5.0)
@@ -50,11 +56,13 @@ PODS:
 
 DEPENDENCIES:
   - Action
+  - Floaty (~> 4.2.0)
   - iOSDropDown
   - Moya/RxSwift
   - RxAlamofire
   - RxBlocking
   - RxCocoa
+  - RxDataSources
   - RxFlow
   - RxGesture
   - RxOptional
@@ -70,6 +78,8 @@ SPEC REPOS:
   trunk:
     - Action
     - Alamofire
+    - Differentiator
+    - Floaty
     - iOSDropDown
     - Moya
     - Realm
@@ -78,6 +88,7 @@ SPEC REPOS:
     - RxAlamofire
     - RxBlocking
     - RxCocoa
+    - RxDataSources
     - RxFlow
     - RxGesture
     - RxOptional
@@ -92,6 +103,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Action: 689181e4c3f6566844178d8a7da6fef39a9597fc
   Alamofire: 85e8a02c69d6020a0d734f6054870d7ecb75cf18
+  Differentiator: be49ca3408f0ecfc761e4c7763d20c62be01b9ad
+  Floaty: e2bd5a0f6f7f70899e26ff2da31081c8bee8d1b0
   iOSDropDown: c10a761f9a00c3f1cc9d3bce43ae504628e2f692
   Moya: f4a4b80ff2f8a4ffc208dfb31cd91636622fee6e
   Realm: 38e9dcb19104b58407167d99f70d4995f7c16023
@@ -100,6 +113,7 @@ SPEC CHECKSUMS:
   RxAlamofire: ed65f451f5a9a59419b0b9e705043dc01410edd9
   RxBlocking: 79413e4d916f44bb3e113c5b2cc059e36fe58910
   RxCocoa: cbf70265dc65a981d4ac982e513c10cf23df24a0
+  RxDataSources: a843bad90c29817f5923ec8163f4af2de084ceb3
   RxFlow: f8cdfc0be3c837464fad1fcd28187fd414bcc716
   RxGesture: c1b7bf17166b0ef9d642a9510f8bac5785f18990
   RxOptional: 80426a0ddbd092573e4c482d8cc13302078c4d5e
@@ -111,6 +125,6 @@ SPEC CHECKSUMS:
   SideMenuSwift: 5c2b1496544ce3f1f08f4dddf4810eaac49f543d
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 196e09e0f3faa53fbcd95d48f5e8f259dcbf7194
+PODFILE CHECKSUM: 7e30b9af3cf9c1bca6f1bfcefb5af285a5b81542
 
 COCOAPODS: 1.8.4

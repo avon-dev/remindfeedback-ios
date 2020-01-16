@@ -11,6 +11,7 @@ import Foundation
 struct Category {
     
     var seq = -1
+    var id = -1
     var title = ""
     var color = "#000000"
     
@@ -19,9 +20,10 @@ struct Category {
         self.color = color
     }
     
-    func toDistionary() -> [String: Any?] {
+    func toDictionary() -> [String: Any?] {
         var dic: [String: Any?] = [:]
         dic["seq"] = self.seq
+        dic["id"] = self.id
         dic["category_title"] = self.title
         dic["category_color"] = self.color
         

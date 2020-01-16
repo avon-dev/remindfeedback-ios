@@ -21,6 +21,10 @@ class BaseViewModel: BaseViewModelType {
         
     }
     
+    deinit {
+        self.disposeBag = DisposeBag()
+    }
+    
     //
     func setScene(_ viewController: UIViewController) {
         NWLog.sLog(contentName: "Current Scene", contents: viewController.title)
