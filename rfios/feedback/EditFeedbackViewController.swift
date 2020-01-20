@@ -85,10 +85,20 @@ extension EditFeedbackViewController {
             })
             .disposed(by: self.disposeBag)
         
+        //
+        self.viewModel.categoryOb
+            .skip(1) // 디폴트값 걷어내기
+            .subscribe(onNext: { [weak self] in
+                print($0.title)
+                self?.categoryColor.backgroundColor = UIUtil.hexStringToUIColor($0.color)
+                self?.categoryTitle.text = $0.title
+            })
+            .disposed(by: self.disposeBag)
+        
         // 피드백 주제 선택
         self.categoryBtn.rx.tap
-            .subscribe(onNext: {
-                
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.onCategory()
             })
             .disposed(by: self.disposeBag)
         

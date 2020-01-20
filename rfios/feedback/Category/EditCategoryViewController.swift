@@ -45,6 +45,12 @@ class EditCategoryViewController: UIViewController {
     @IBOutlet weak var colorBtn13: UIButton!
     @IBOutlet weak var colorBtn14: UIButton!
     @IBOutlet weak var colorBtn15: UIButton!
+    @IBOutlet weak var colorBtn21: UIButton!
+    @IBOutlet weak var colorBtn22: UIButton!
+    @IBOutlet weak var colorBtn23: UIButton!
+    @IBOutlet weak var colorBtn24: UIButton!
+    @IBOutlet weak var colorBtn25: UIButton!
+    var selectedBtn: UIButton?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,8 +66,8 @@ class EditCategoryViewController: UIViewController {
 
 extension EditCategoryViewController {
     func setUI() {
-        colorHexStringList = ["#1389FF", "#61D761", "#FF1289", "#052749", "#000000"]
-        colorBtnList = [self.colorBtn11, self.colorBtn12, self.colorBtn13, self.colorBtn14, self.colorBtn15]
+        colorHexStringList = ["#E51C23", "#FF5722", "#FFFF00", "#259B24", "#18FFFF", "#3F51B5", "#9C27B0", "#FF4081", "#964B00", "#000000"]
+        colorBtnList = [self.colorBtn11, self.colorBtn12, self.colorBtn13, self.colorBtn14, self.colorBtn15, self.colorBtn21, self.colorBtn22, self.colorBtn23, self.colorBtn24, self.colorBtn25]
         
         for i in 0..<colorBtnList.count {
             colorBtnList[i].backgroundColor = UIUtil.hexStringToUIColor(colorHexStringList[i])
@@ -91,7 +97,12 @@ extension EditCategoryViewController {
                 .subscribe(onNext: { [weak self] in
                     // 화면에 기존 데이터가 보이기 위한 코드
                     self?.titleTxtFld.text = $0.title
-                        // TODO: 컬러 설정 추가 필요
+                    
+                    for (offset,hex) in (self?.colorHexStringList ?? []).enumerated() {
+                        if hex == $0.color {
+                            self?.colorBtnList[offset].setImage(.checkmark, for: .normal)
+                        }
+                    }
                     
                     // 기존의 데이터 중 일부만 수정해도 에러없이 저장할 수 있도록 특정 인스턴스에 기존의 값 저장
                 })
@@ -137,6 +148,10 @@ extension EditCategoryViewController {
                     Observable.of(self?.colorHexStringList[btn.tag] ?? "")
                 }
                 .subscribe(onNext:{ [weak self] in
+                    self?.selectedBtn?.setImage(nil, for: .normal)
+                    self?.selectedBtn = nil
+                    self?.selectedBtn = btn
+                    btn.setImage(.checkmark, for: .normal)
                     self?.viewModel.colorInput.onNext($0)
                 })
                 .disposed(by: self.disposeBag)

@@ -19,6 +19,10 @@ protocol FeedbackViewModelType: BaseViewModelType {
     var dateInput: BehaviorSubject<Date> { get }
     
     var selectedIndex: Int? { get }
+    var categoryOb: BehaviorRelay<Category> { get }
+    
+    //
+    func onCategory()
     
     //
     func reqAddFeedback()
@@ -33,11 +37,15 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
     let dateInput: BehaviorSubject<Date>
     
     var selectedIndex: Int?
+    var categoryOb: BehaviorRelay<Category>
     
     override init() {
         self.categoryInput = BehaviorSubject(value: 0)
         self.titleInput = BehaviorSubject(value: "")
         self.dateInput = BehaviorSubject(value: Date())
+        
+        self.categoryOb = BehaviorRelay<Category>(value: Category())
+        
         super.init()
         
         Observable.combineLatest(self.categoryInput, self.titleInput, dateInput, resultSelector: {
@@ -54,6 +62,15 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
         
     }
     
+}
+
+extension FeedbackViewModel {
+    func onCategory() {
+        let categoryViewModel = CategoryViewModel()
+        categoryViewModel.isSelection = true
+        categoryViewModel.feedbackViewModel = self
+        SceneCoordinator.sharedInstance.showCategoryView(categoryViewModel)
+    }
 }
 
 extension FeedbackViewModel {

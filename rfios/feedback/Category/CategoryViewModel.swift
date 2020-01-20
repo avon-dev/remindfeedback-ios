@@ -21,11 +21,16 @@ protocol CategoryViewModelType: BaseViewModelType {
     
     func onAdd()
     func onModify(_ selectedIndex: Int)
-    var selectedIndex: Int? { get }
+    var selectedIndex: Int? { get set }
     
     func addCategory()
     func modCategory()
     func delCategory(_ index: Int)
+    
+    //
+    var isSelection: Bool { get }
+    var feedbackViewModel: FeedbackViewModelType? { get }
+    func selCategory()
 }
 
 class CategoryViewModel: BaseViewModel, CategoryViewModelType {
@@ -39,6 +44,9 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
     var category: Category = Category()
     
     var selectedIndex: Int?
+    
+    var isSelection = false
+    var feedbackViewModel: FeedbackViewModelType?
     
     override init() {
         
@@ -110,6 +118,12 @@ extension CategoryViewModel {
         reqDelCategory()
         self.categoryList.remove(at: index)
         self.categoryListOb.accept(self.categoryList)
+    }
+    
+    func selCategory() {
+        print("주제 선택 완료", self.category.title)
+        self.category = self.categoryList[selectedIndex ?? 0]
+        self.feedbackViewModel?.categoryOb.accept(self.category)
     }
     
 }
