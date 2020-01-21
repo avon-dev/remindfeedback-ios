@@ -25,6 +25,7 @@
 		1C1D3172239BA4B000F4C864 /* UIUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D3171239BA4B000F4C864 /* UIUtil.swift */; };
 		1C922F8423CC77D1001177B8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C922F8323CC77D1001177B8 /* User.swift */; };
 		AAAFFF20820A93A4A14F8D48 /* Pods_rfiosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC37973D26179E855959141 /* Pods_rfiosTests.framework */; };
+		E006C2DD23D5DD8900DF5015 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006C2DC23D5DD8900DF5015 /* RealmHelper.swift */; };
 		E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45822382971D005F8CA0 /* NWLabel.swift */; };
 		E02F45862382AAE9005F8CA0 /* User.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E02F45852382AAE9005F8CA0 /* User.storyboard */; };
 		E02F45882382AC51005F8CA0 /* FriendListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45872382AC51005F8CA0 /* FriendListViewController.swift */; };
@@ -102,6 +103,7 @@
 		C5F309D6FB59200402D04CC0 /* Pods-rfiosTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.release.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.release.xcconfig"; sourceTree = "<group>"; };
 		C764368E035609018CA59DF7 /* Pods-rfios-rfiosUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios-rfiosUITests.debug.xcconfig"; path = "Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		DBA256DB615E4636EBD022F6 /* Pods-rfios-rfiosUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfios-rfiosUITests.release.xcconfig"; path = "Target Support Files/Pods-rfios-rfiosUITests/Pods-rfios-rfiosUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E006C2DC23D5DD8900DF5015 /* RealmHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmHelper.swift; sourceTree = "<group>"; };
 		E02F45822382971D005F8CA0 /* NWLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NWLabel.swift; sourceTree = "<group>"; };
 		E02F45852382AAE9005F8CA0 /* User.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = User.storyboard; sourceTree = "<group>"; };
 		E02F45872382AC51005F8CA0 /* FriendListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewController.swift; sourceTree = "<group>"; };
@@ -193,6 +195,7 @@
 			isa = PBXGroup;
 			children = (
 				1C17BEE3238FB4BC001FB4C4 /* UserDefaultsHelper.swift */,
+				E006C2DC23D5DD8900DF5015 /* RealmHelper.swift */,
 				1C17BEE0238D16F2001FB4C4 /* BaseAPI.swift */,
 				1C17BEE7238FB6D1001FB4C4 /* APIHelper.swift */,
 				1C1D31612393A85300F4C864 /* NWLog.swift */,
@@ -632,6 +635,7 @@
 				E03A08D32386BDCA0073477D /* SceneCoordinatorType.swift in Sources */,
 				E03A08CD2386B5390073477D /* Scene.swift in Sources */,
 				E03A08D92386C1490073477D /* SceneCoordinator.swift in Sources */,
+				E006C2DD23D5DD8900DF5015 /* RealmHelper.swift in Sources */,
 				1C17BED82383F5F1001FB4C4 /* UILabel+Extension.swift in Sources */,
 				1C17BEDC2383FEA3001FB4C4 /* RoundView.swift in Sources */,
 				E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */,

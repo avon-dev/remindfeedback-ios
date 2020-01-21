@@ -18,6 +18,7 @@ enum BaseAPI {
     
     // Category
     case getCategories
+    case getCategory(_ id: String)
     case addCategory(_ params: [String:Any?]?)
     case modCategory(_ params: [String:Any?]?, id: String)
     case delCategory(_ id: String)
@@ -49,12 +50,14 @@ extension BaseAPI: TargetType {
             
         case .getCategories:
             return "/category/selectall"
+        case .getCategory(let id):
+            return "/category/selectone/\(id)"
         case .addCategory:
-            return "/category/insert"
+            return "/category/create"
         case .modCategory(_, let id):
             return "/category/update/\(id)"
         case .delCategory(let id):
-            return "/category/deleteone/\(id)"
+            return "/category/delete/\(id)"
         
         case .getFeedbacks(let lastId):
             return "/feedback/all/\(lastId)"
@@ -75,13 +78,13 @@ extension BaseAPI: TargetType {
     var method: Moya.Method {
         
         switch self {
-        case .register, .login, .addCategory, .modCategory, .addFeedback:
+        case .register, .login, .addCategory, .addFeedback:
             return .post
-        case .me, .getCategories, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks:
+        case .me, .getCategories, .getCategory, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks:
             return .get
         case .delCategory, .delFeedback:
             return .delete
-        case .modFeedback:
+        case  .modCategory, .modFeedback:
             return .put
         }
         
@@ -105,6 +108,8 @@ extension BaseAPI: TargetType {
         case .me:
             return .requestPlain
         case .getCategories:
+            return .requestPlain
+        case .getCategory(let id):
             return .requestPlain
         case .addCategory(let params):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)

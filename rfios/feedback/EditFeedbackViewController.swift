@@ -38,11 +38,19 @@ class EditFeedbackViewController: UIViewController {
     @IBOutlet weak var dateBtn: UIButton! // 피드백 날짜를 선택할 수 있게 하는 버튼
     @IBOutlet weak var friendBtn: UIButton! // 피드백 조언자를 선택할 수 있게 하는 버튼
     
+    // 추가사항. 피드백 날짜를 datepicker형태로 변경
+    @IBOutlet weak var datePicker: UIDatePicker! // 피드백 날짜를 선택하고 표시하는 뷰
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.titleTextview.delegate = self
         self.setUI()
         self.setBinding()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.viewModel.setFeedback()
     }
 
 }
@@ -108,11 +116,15 @@ extension EditFeedbackViewController {
             .disposed(by: self.disposeBag)
         
         // 피드백 날짜 선택
-        self.dateBtn.rx.tap
-            .subscribe(onNext: {
-                
-            })
+//        self.dateBtn.rx.tap
+//            .subscribe(onNext: {
+//
+//            })
+//            .disposed(by: self.disposeBag)
+        self.datePicker.rx.value // value대산에 date를 사용해도 되는듯
+            .bind(to: self.viewModel.dateInput)
             .disposed(by: self.disposeBag)
+        
         
         // 피드백 조언자 선택
         // - TODO: 친구기능 완성 후
@@ -123,6 +135,14 @@ extension EditFeedbackViewController {
             .subscribe(onNext: {
                 self.viewModel.reqAddFeedback()
                 self.dismiss(animated: true, completion: nil)
+            })
+            .disposed(by: self.disposeBag)
+        
+        //
+        self.viewModel.feedbackOb
+            .subscribe(onNext: { [weak self] in
+                print("cpzmzmzmzmmmzmzmzmzm", $0)
+                self?.titleTxtFld.text = $0.title
             })
             .disposed(by: self.disposeBag)
             

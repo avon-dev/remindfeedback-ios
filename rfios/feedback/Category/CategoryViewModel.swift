@@ -8,6 +8,7 @@
 
 import Foundation
 import RxCocoa
+import RxRealm
 import RxSwift
 import SwiftyJSON
 
@@ -60,15 +61,18 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
         super.init()
         
         Observable.combineLatest(titleInput, colorInput, resultSelector: {
-                return Category(title: $0, color: $1)
+                let _category = self.category
+                _category.title = $0
+                _category.color = $1
+                return _category
             })
             .subscribe(onNext: { [weak self] in
+                self?.category = $0
                 
-                self?.category.title = $0.title
-                if $0.color != "" {
-                    self?.category.color = $0.color
-                }
-                
+//                self?.category.title = $0.title
+//                if $0.color != "" {
+//                    self?.category.color = $0.color
+//                }
             })
             .disposed(by: self.disposeBag)
         
@@ -140,7 +144,7 @@ extension CategoryViewModel {
                 guard let dataList = $0.dataDic else { return }
                 
                 for data in dataList {
-                    var category = Category()
+                    let category = Category()
                     category.id = data["category_id"] as? Int ?? -1
                     category.title = data["category_title"] as? String ?? ""
                     category.color = data["category_color"] as? String ?? ""
@@ -149,6 +153,7 @@ extension CategoryViewModel {
                 }
                 
                 self?.categoryListOb.accept(self?.categoryList ?? [])
+                RealmHelper.sharedInstantce.overwrite(Category.self, objs: self?.categoryList ?? [])
                 
             })
             .disposed(by: self.disposeBag)
@@ -185,5 +190,11 @@ extension CategoryViewModel {
 //        APIHelper.sharedInstance.pushRequest(.delCategory(String(self.category.id)))
     }
     
+}
+
+extension CategoryViewModel {
+    func setCategories() {
+        
+    }
 }
 

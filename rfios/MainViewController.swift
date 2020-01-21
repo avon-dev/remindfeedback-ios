@@ -8,6 +8,7 @@
 
 import Floaty
 import iOSDropDown
+import RealmSwift
 import RxCocoa
 import RxDataSources
 import RxSwift
@@ -40,6 +41,7 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        NWLog.sLog(contentName: "기본 Realm 위치", contents: Realm.Configuration.defaultConfiguration.fileURL!)
         setUI()
         setBinding()
     }
@@ -124,21 +126,31 @@ class MainViewController: UIViewController {
                 index, item, cell in
                 
                 cell.feedbackLabel.text = item.title
+                // 사실 bind안에 subscribe하는 방법은 좋지 않은 방법이라고 생각된다.
+                // 추후 바꿔줄 필요가 있을 것 같다.
                 cell.rx.longPressGesture()
                     .when(.recognized)
                     .take(1) // 이게 다른 화면 갔다가 오면 중복으로 등록되는 경우가 있음, 다른 디스포즈백을 사용해야 할 듯(계속 등록되면 낭비될 것 같음)
                     .subscribe(onNext: { [weak self] in
-                        print($0)
+                        NWLog.sLog(contentName: "feedback cell", contents: $0)
                         self?.viewModel.onModFeedback(index)
                     })
                     .disposed(by: self.disposeBag)
             }
-            .disposed(by: disposeBag)
+        .disposed(by: self.disposeBag)
         
         // 테이블 뷰 셀을 좌측으로 스와이프할 때
         self.tableView.rx.itemDeleted
             .subscribe(onNext: {
                 self.viewModel.delFeedback($0.item)
+            })
+            .disposed(by: self.disposeBag)
+        
+        //
+        self.tableView.rx.itemSelected
+            .map{ $0.item }
+            .subscribe(onNext: {
+//                self.viewModel.onModFeedback($0)
             })
             .disposed(by: self.disposeBag)
 

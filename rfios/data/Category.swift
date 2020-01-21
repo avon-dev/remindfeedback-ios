@@ -7,18 +7,37 @@
 //
 
 import Foundation
+import RealmSwift
+import RxDataSources
 
-struct Category {
+class Category: Object {
     
-    var seq = -1
-    var id = -1
-    var title = ""
-    var color = "#000000"
+    @objc dynamic var seq = -1
+    @objc dynamic var id = -1
+    @objc dynamic var title = ""
+    @objc dynamic var color = "#000000"
     
-    init(title: String = "", color: String = "#000000") {
-        self.title = title
-        self.color = color
+    override static func primaryKey() -> String? {
+        return "seq"
     }
+    
+//    init(title: String = "", color: String = "#000000") {
+//        self.title = title
+//        self.color = color
+//        super.init()
+//    }
+//
+//    required init() {
+//        fatalError("init() has not been implemented")
+//    }
+//
+//    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+//        fatalError("init(realm:schema:) has not been implemented")
+//    }
+//
+//    required init(value: Any, schema: RLMSchema) {
+//        fatalError("init(value:schema:) has not been implemented")
+//    }
     
     func toDictionary() -> [String: Any?] {
         var dic: [String: Any?] = [:]
@@ -29,4 +48,10 @@ struct Category {
         
         return dic
     }
+}
+
+extension Category: IdentifiableType {
+  var identity: Int {
+    return self.isInvalidated ? 0 : id
+  }
 }
