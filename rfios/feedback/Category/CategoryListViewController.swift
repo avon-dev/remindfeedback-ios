@@ -38,10 +38,6 @@ class CategoryListViewController: UIViewController {
         setUI()
         setBinding()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
    
 }
 

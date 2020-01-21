@@ -150,7 +150,7 @@ class MainViewController: UIViewController {
         self.tableView.rx.itemSelected
             .map{ $0.item }
             .subscribe(onNext: {
-//                self.viewModel.onModFeedback($0)
+                self.viewModel.onBoard($0)
             })
             .disposed(by: self.disposeBag)
 

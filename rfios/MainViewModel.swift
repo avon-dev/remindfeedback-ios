@@ -20,6 +20,7 @@ protocol MainViewModelType: BaseViewModelType {
     func onCategory()
     func onAddFeedback()
     func onModFeedback(_ selectedIndex: Int)
+    func onBoard(_ selectedIndex: Int)
     
     // CRUD
     func delFeedback(_ index: Int)
@@ -61,6 +62,11 @@ extension MainViewModel {
         let feedbackViewModel = FeedbackViewModel()
         feedbackViewModel.feedback = self.feedbackList[selectedIndex]
         SceneCoordinator.sharedInstance.showEditFeedbackView(feedbackViewModel)
+    }
+    
+    func onBoard(_ selectedIndex: Int) {
+        let boardViewModel = BoardViewModel()
+        SceneCoordinator.sharedInstance.showBoardView(boardViewModel)
     }
 }
 

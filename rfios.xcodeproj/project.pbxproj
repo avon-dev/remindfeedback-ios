@@ -24,6 +24,8 @@
 		1C1D3170239BA1F900F4C864 /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D316F239BA1F900F4C864 /* CategoryCell.swift */; };
 		1C1D3172239BA4B000F4C864 /* UIUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C1D3171239BA4B000F4C864 /* UIUtil.swift */; };
 		1C922F8423CC77D1001177B8 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C922F8323CC77D1001177B8 /* User.swift */; };
+		1CE7643723D6EB6F00D1F53F /* BoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7643623D6EB6F00D1F53F /* BoardViewController.swift */; };
+		1CE7643923D6F74C00D1F53F /* BoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1CE7643823D6F74C00D1F53F /* BoardViewModel.swift */; };
 		AAAFFF20820A93A4A14F8D48 /* Pods_rfiosTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6DC37973D26179E855959141 /* Pods_rfiosTests.framework */; };
 		E006C2DD23D5DD8900DF5015 /* RealmHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = E006C2DC23D5DD8900DF5015 /* RealmHelper.swift */; };
 		E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45822382971D005F8CA0 /* NWLabel.swift */; };
@@ -95,6 +97,8 @@
 		1C1D316F239BA1F900F4C864 /* CategoryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
 		1C1D3171239BA4B000F4C864 /* UIUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIUtil.swift; sourceTree = "<group>"; };
 		1C922F8323CC77D1001177B8 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		1CE7643623D6EB6F00D1F53F /* BoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewController.swift; sourceTree = "<group>"; };
+		1CE7643823D6F74C00D1F53F /* BoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardViewModel.swift; sourceTree = "<group>"; };
 		401BF1C6D3695679693467CA /* Pods_rfios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		411955965A68F4E5EEC775A7 /* Pods-rfiosTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-rfiosTests.debug.xcconfig"; path = "Target Support Files/Pods-rfiosTests/Pods-rfiosTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6DC37973D26179E855959141 /* Pods_rfiosTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_rfiosTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -204,6 +208,15 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		1CE7643523D6EA6800D1F53F /* Board */ = {
+			isa = PBXGroup;
+			children = (
+				1CE7643623D6EB6F00D1F53F /* BoardViewController.swift */,
+				1CE7643823D6F74C00D1F53F /* BoardViewModel.swift */,
+			);
+			path = Board;
+			sourceTree = "<group>";
+		};
 		2F337B3A097B9CC3D41BF923 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -263,6 +276,7 @@
 		E04085142376E6C8008C9F8F /* feedback */ = {
 			isa = PBXGroup;
 			children = (
+				1CE7643523D6EA6800D1F53F /* Board */,
 				E0717FA323A4FD6400E586F3 /* Category */,
 				E04085112376E6B9008C9F8F /* FeedbackCell.xib */,
 				E04085102376E6B9008C9F8F /* FeedbackCell.swift */,
@@ -641,10 +655,12 @@
 				E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */,
 				E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */,
 				E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */,
+				1CE7643923D6F74C00D1F53F /* BoardViewModel.swift in Sources */,
 				E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */,
 				1C1D3170239BA1F900F4C864 /* CategoryCell.swift in Sources */,
 				1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */,
 				E03A08CF2386B57E0073477D /* RegisterViewModel.swift in Sources */,
+				1CE7643723D6EB6F00D1F53F /* BoardViewController.swift in Sources */,
 				E04085192376ED16008C9F8F /* SideBarViewController.swift in Sources */,
 				1C922F8423CC77D1001177B8 /* User.swift in Sources */,
 				1C1D316C239B9DD100F4C864 /* CategoryListViewController.swift in Sources */,
