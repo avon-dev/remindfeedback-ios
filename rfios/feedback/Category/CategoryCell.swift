@@ -30,7 +30,11 @@ class CategoryCell: UITableViewCell {
             .subscribe(onNext: { [weak self] in
                 self?.titleLabel.text = $0.title
                 NWLog.sLog(contentName: "헥스스트링 디버그", contents: $0.color)
-                self?.colorView.backgroundColor = UIUtil.hexStringToUIColor($0.color)
+                if $0.color == "" {
+                    self?.colorView.backgroundColor = UIUtil.hexStringToUIColor("#000000")
+                } else {
+                    self?.colorView.backgroundColor = UIUtil.hexStringToUIColor($0.color)
+                }
                 self?.setBindings()
             })
             .disposed(by: cellDisposeBag)
@@ -58,6 +62,7 @@ class CategoryCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
+        self.viewModel?.selectedIndex = self.index
     }
     
     func setBindings() {

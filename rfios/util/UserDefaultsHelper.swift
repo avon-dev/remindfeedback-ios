@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 class UserDefaultsHelper {
     
@@ -18,6 +19,7 @@ class UserDefaultsHelper {
         userDefaults = UserDefaults(suiteName: "group.avon")!
     }
     
+    /// 쿠키 저장 함수
     func setCookie(_ cookie: HTTPCookie) {
         NWLog.sLog(contentName: "set 쿠키", contents: cookie)
         
@@ -25,6 +27,7 @@ class UserDefaultsHelper {
         userDefaults.synchronize()
     }
     
+    /// 저장된 쿠키 불러오는 함수
     func getCookie() -> HTTPCookie? {
         
         guard let cookieObj = userDefaults.object(forKey: "cookie") else { return nil }

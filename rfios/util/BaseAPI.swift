@@ -15,9 +15,12 @@ enum BaseAPI {
     case register(_ params: [String:Any?]?)
     case login(_ params: [String:Any?]?)
     case me
+    case logout
+    case unregister
     
     // Category
     case getCategories
+    case getCategory(_ id: String)
     case addCategory(_ params: [String:Any?]?)
     case modCategory(_ params: [String:Any?]?, id: String)
     case delCategory(_ id: String)
@@ -34,39 +37,39 @@ enum BaseAPI {
 extension BaseAPI: TargetType {
     
     var baseURL: URL {
-        return URL(string: "http://54.180.118.35")! // 반드시 URL형태가 되기 때문에
+        return URL(string: "http://api.remindfeedback.com")! // 반드시 URL형태가 되기 때문에
     }
     
     var path: String {
         
         switch self {
         case .register:
-            return "/auth/signup"
+            return "/auth/register"
         case .login:
             return "/auth/login"
         case .me:
             return "/auth/me"
+        case .logout:
+            return "/auth/logout"
+        case .unregister:
+            return "/auth/unregister"
             
-        case .getCategories:
-            return "/category/selectall"
-        case .addCategory:
-            return "/category/insert"
-        case .modCategory(_, let id):
-            return "/category/update/\(id)"
-        case .delCategory(let id):
-            return "/category/deleteone/\(id)"
+            // category
+        case .getCategories, .addCategory:
+            return "/categories"
+        case .getCategory(let id), .modCategory(_, let id), .delCategory(let id):
+            return "/categories/\(id)"
         
+            // feedback
         case .getFeedbacks(let lastId):
-            return "/feedback/all/\(lastId)"
+            return "/feedbacks/\(lastId)/20"
         case .getMyFeedbacks(let lastId):
-            return "/feedback/my/\(lastId)"
+            return "/feedbacks/mine/\(lastId)/10"
         case .getYourFeedbacks(let lastId):
-            return "/feedback/your/\(lastId)"
+            return "/feedbacks/yours/\(lastId)/10"
         case .addFeedback:
-            return "/feedback/create"
-        case .modFeedback(_, let id):
-            return "/feedback/update/\(id)"
-        case .delFeedback(let id):
+            return "/feedbacks"
+        case .modFeedback(_, let id), .delFeedback(let id):
             return "/feedback/\(id)"
         
         }
@@ -75,13 +78,13 @@ extension BaseAPI: TargetType {
     var method: Moya.Method {
         
         switch self {
-        case .register, .login, .addCategory, .modCategory, .addFeedback:
+        case .register, .login, .addCategory, .addFeedback:
             return .post
-        case .me, .getCategories, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks:
+        case .me, .logout, .getCategories, .getCategory, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks:
             return .get
-        case .delCategory, .delFeedback:
+        case .unregister, .delCategory, .delFeedback:
             return .delete
-        case .modFeedback:
+        case  .modCategory, .modFeedback:
             return .put
         }
         
@@ -94,38 +97,23 @@ extension BaseAPI: TargetType {
     var task: Task {
         
         switch self {
-        case .register(let params):
+        // auth
+        case .register(let params), .login(let params):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default) // ??
-            
-        case .login(let params):
-//            return .requestPlain
-            return .requestParameters(parameters: params!, encoding: JSONEncoding.default) // ??
+        case .me, .logout, .unregister:
+            return .requestPlain
         
         // category
-        case .me:
+        case .getCategories, .getCategory(_), .delCategory(_):
             return .requestPlain
-        case .getCategories:
-            return .requestPlain
-        case .addCategory(let params):
+        case .addCategory(let params), .modCategory(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
-        case .modCategory(let params, _):
-            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
-        case .delCategory(let id):
-            return .requestPlain
             
         // feedback
-        case .getFeedbacks(let lastId):
+        case .getFeedbacks(_), .getMyFeedbacks(_), .getYourFeedbacks(_), .delFeedback(_):
             return .requestPlain
-        case .getMyFeedbacks(let lastId):
-            return .requestPlain
-        case .getYourFeedbacks(let lastId):
-            return .requestPlain
-        case .addFeedback(let params):
+        case .addFeedback(let params), .modFeedback(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
-        case .modFeedback(let params, _):
-            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
-        case .delFeedback(let id):
-            return .requestPlain
             
         }
         

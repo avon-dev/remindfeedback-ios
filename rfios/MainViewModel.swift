@@ -20,6 +20,7 @@ protocol MainViewModelType: BaseViewModelType {
     func onCategory()
     func onAddFeedback()
     func onModFeedback(_ selectedIndex: Int)
+    func onBoard(_ selectedIndex: Int)
     
     // CRUD
     func delFeedback(_ index: Int)
@@ -29,8 +30,7 @@ protocol MainViewModelType: BaseViewModelType {
     func reqDelFeedback()
 }
 
-typealias FeedbackSection = AnimatableSectionModel<String, Feedback>
-
+// - MARK: Variable and init
 class MainViewModel: BaseViewModel, MainViewModelType {
     
     let feedbackListOb: BehaviorRelay<[Feedback]>
@@ -46,27 +46,39 @@ class MainViewModel: BaseViewModel, MainViewModelType {
     
 }
 
+// - MARK: Scene
 extension MainViewModel {
+    
+    /// 피드백 주제 리스트 화면으로 이동
     func onCategory() {
         let categoryViewModel = CategoryViewModel()
         SceneCoordinator.sharedInstance.showCategoryView(categoryViewModel)
     }
     
+    /// 피드백을 추가하는 화면으로 이동
     func onAddFeedback() {
         let feedbackViewModel = FeedbackViewModel()
         SceneCoordinator.sharedInstance.showEditFeedbackView(feedbackViewModel)
     }
     
+    /// 피드백을 수정하는 화면으로 이동
     func onModFeedback(_ selectedIndex: Int) {
         let feedbackViewModel = FeedbackViewModel()
         feedbackViewModel.feedback = self.feedbackList[selectedIndex]
         SceneCoordinator.sharedInstance.showEditFeedbackView(feedbackViewModel)
     }
+    
+    /// 피드백 개선사항을 추가하는 화면으로 이동
+    func onBoard(_ selectedIndex: Int) {
+        let boardViewModel = BoardViewModel()
+        SceneCoordinator.sharedInstance.showBoardView(boardViewModel)
+    }
 }
 
+// - MARK: CRUD
 extension MainViewModel {
     func delFeedback(_ index: Int) {
-        print("피드백 삭제")
+        NWLog.sLog(contentName: "피드백 삭제", contents: nil)
         self.feedback = self.feedbackList[index]
         self.reqDelFeedback()
         self.feedbackList.remove(at: index)
@@ -74,13 +86,14 @@ extension MainViewModel {
     }
 }
 
+// - MARK: Network
 extension MainViewModel {
     func reqGetMyFeedbacks() {
         APIHelper.sharedInstance.rxPullResponse(.getMyFeedbacks(lastId: String(lastFID)))
             .subscribe(onNext: { [weak self] in
                 guard let dataList = $0.dataDic else { return }
                 
-                self?.feedbackList.removeAll()
+//                self?.feedbackList.removeAll()
                 
                 for data in dataList {
                     let feedback = Feedback()
@@ -90,10 +103,11 @@ extension MainViewModel {
                     feedback.category = data["category"] as? Int ?? 0
                     
                     let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
                     dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
                     
-                    feedback.date = dateFormatter.date(from: data["write_date"] as? String ?? "") ?? Date()
+                    let dateStr: String = data["write_date"] as? String ?? ""
+                    feedback.date = dateFormatter.date(from: dateStr) ?? Date()
                     
                     self?.feedbackList.append(feedback)
                 }
@@ -106,7 +120,7 @@ extension MainViewModel {
     func reqDelFeedback() {
         APIHelper.sharedInstance.rxPullResponse(.delFeedback(String(self.feedback.id)))
             .subscribe(onNext: {
-                print($0.msg)
+                NWLog.sLog(contentName: "피드백 삭제 요청 결과", contents: $0.msg)
             })
             .disposed(by: self.disposeBag)
     }

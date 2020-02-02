@@ -8,6 +8,7 @@
 
 import Foundation
 import RxCocoa
+import RxRealm
 import RxSwift
 import SwiftyJSON
 
@@ -21,11 +22,16 @@ protocol CategoryViewModelType: BaseViewModelType {
     
     func onAdd()
     func onModify(_ selectedIndex: Int)
-    var selectedIndex: Int? { get }
+    var selectedIndex: Int? { get set }
     
     func addCategory()
     func modCategory()
     func delCategory(_ index: Int)
+    
+    //
+    var isSelection: Bool { get }
+    var feedbackViewModel: FeedbackViewModelType? { get }
+    func selCategory()
 }
 
 class CategoryViewModel: BaseViewModel, CategoryViewModelType {
@@ -40,6 +46,9 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
     
     var selectedIndex: Int?
     
+    var isSelection = false
+    var feedbackViewModel: FeedbackViewModelType?
+    
     override init() {
         
         // -MARK: List
@@ -52,15 +61,18 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
         super.init()
         
         Observable.combineLatest(titleInput, colorInput, resultSelector: {
-                return Category(title: $0, color: $1)
+                let _category = self.category
+                _category.title = $0
+                _category.color = $1
+                return _category
             })
             .subscribe(onNext: { [weak self] in
+                self?.category = $0
                 
-                self?.category.title = $0.title
-                if $0.color != "" {
-                    self?.category.color = $0.color
-                }
-                
+//                self?.category.title = $0.title
+//                if $0.color != "" {
+//                    self?.category.color = $0.color
+//                }
             })
             .disposed(by: self.disposeBag)
         
@@ -112,6 +124,12 @@ extension CategoryViewModel {
         self.categoryListOb.accept(self.categoryList)
     }
     
+    func selCategory() {
+        print("주제 선택 완료", self.category.title)
+        self.category = self.categoryList[selectedIndex ?? 0]
+        self.feedbackViewModel?.categoryOb.accept(self.category)
+    }
+    
 }
 
 // -MARK: Network
@@ -126,7 +144,7 @@ extension CategoryViewModel {
                 guard let dataList = $0.dataDic else { return }
                 
                 for data in dataList {
-                    var category = Category()
+                    let category = Category()
                     category.id = data["category_id"] as? Int ?? -1
                     category.title = data["category_title"] as? String ?? ""
                     category.color = data["category_color"] as? String ?? ""
@@ -135,6 +153,7 @@ extension CategoryViewModel {
                 }
                 
                 self?.categoryListOb.accept(self?.categoryList ?? [])
+//                RealmHelper.sharedInstantce.overwrite(Category.self, objs: self?.categoryList ?? [])
                 
             })
             .disposed(by: self.disposeBag)
@@ -171,5 +190,11 @@ extension CategoryViewModel {
 //        APIHelper.sharedInstance.pushRequest(.delCategory(String(self.category.id)))
     }
     
+}
+
+extension CategoryViewModel {
+    func setCategories() {
+        
+    }
 }
 

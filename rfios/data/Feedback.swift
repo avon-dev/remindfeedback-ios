@@ -18,10 +18,11 @@ class Feedback: Object {
     @objc dynamic var auid = ""
     @objc dynamic var title = ""
     @objc dynamic var category = 0
+    @objc dynamic var categoryColor = "#000000"
     @objc dynamic var date = Date()
     
     override class func primaryKey() -> String? {
-      return "id"
+      return "seq"
     }
     
     

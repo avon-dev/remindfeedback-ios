@@ -38,10 +38,6 @@ class CategoryListViewController: UIViewController {
         setUI()
         setBinding()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
    
 }
 
@@ -54,7 +50,12 @@ extension CategoryListViewController {
         self.navigationController?.navigationBar.tintColor = UIColor.white
         
         // 네비게이션 바 우측버튼
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
+        if self.viewModel.isSelection {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: nil)
+        } else {
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
+        }
+        
     }
 }
 
@@ -80,6 +81,9 @@ extension CategoryListViewController {
                 cell.onData.onNext(item)
                 cell.index = index
                 cell.viewModel = self.viewModel
+                if self.viewModel.isSelection {
+                    cell.modifyBtn.isHidden = true
+                }
             }
             .disposed(by: disposeBag)
         
@@ -87,9 +91,17 @@ extension CategoryListViewController {
         
         // 화면 상단의 추가버튼을 눌렀을 때
         self.navigationItem.rightBarButtonItem?.rx.tap
-            .subscribe(onNext: {
-                print("on주제 추가")
-                self.viewModel.onAdd()
+            .subscribe(onNext: { [weak self] in
+                if self?.viewModel.isSelection ?? false {
+                    print("주제 선택 완료")
+                    if let vm = self?.viewModel.feedbackViewModel {
+                        self?.viewModel.selCategory()
+                        self?.navigationController?.popViewController(animated: true)
+                    }
+                } else {
+                    print("on주제 추가")
+                    self?.viewModel.onAdd()
+                }
             })
             .disposed(by: self.disposeBag)
         
@@ -99,6 +111,7 @@ extension CategoryListViewController {
                 self.viewModel.delCategory($0.item)
             })
             .disposed(by: self.disposeBag)
+        
         
     }
     

@@ -12,6 +12,35 @@ import UIKit
 class FeedbackCell: UITableViewCell {
     
     static let identifier = "feedbackCell"
+    
+    private let cellDisposeBag = DisposeBag()
+    
+    var viewModel: FeedbackViewModelType? = nil
+    var disposeBag = DisposeBag()
+    let onData: AnyObserver<Feedback>
+    
+    required init?(coder aDecoder: NSCoder) {
+        
+        let data = PublishSubject<Feedback>()
+        onData = data.asObserver()
+        
+        super.init(coder: aDecoder)
+
+        data.observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                NWLog.dLog(contentName: "", contents: $0)
+            })
+            .disposed(by: cellDisposeBag)
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        disposeBag = DisposeBag()
+    }
+    
+    deinit {
+        self.disposeBag = DisposeBag()
+    }
 
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var feedbackLabel: UILabel!
