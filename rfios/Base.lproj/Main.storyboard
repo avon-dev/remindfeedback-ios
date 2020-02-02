@@ -210,7 +210,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="  완료 요청한 피드백" image="checkmark.square" catalog="system">
+                                <state key="normal" title="  요청받은 피드백" image="chevron.left" catalog="system">
                                     <color key="titleColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                             </button>
@@ -394,7 +394,8 @@
     </scenes>
     <resources>
         <image name="bell" catalog="system" width="64" height="62"/>
-        <image name="checkmark.square" catalog="system" width="64" height="56"/>
+        <image name="chevron.left" catalog="system" width="48" height="64"/>
+        <image name="chevron.right" catalog="system" width="48" height="64"/>
         <image name="escape" catalog="system" width="64" height="60"/>
         <image name="gear" catalog="system" width="64" height="58"/>
         <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
@@ -402,7 +403,6 @@
         <image name="person.2" catalog="system" width="64" height="40"/>
         <image name="person.crop.circle" catalog="system" width="64" height="60"/>
         <image name="plus" catalog="system" width="64" height="56"/>
-        <image name="square" catalog="system" width="64" height="56"/>
         <image name="text.justifyleft" catalog="system" width="64" height="50"/>
     </resources>
 </document>
