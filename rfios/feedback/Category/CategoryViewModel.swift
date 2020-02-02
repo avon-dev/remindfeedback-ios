@@ -153,7 +153,7 @@ extension CategoryViewModel {
                 }
                 
                 self?.categoryListOb.accept(self?.categoryList ?? [])
-                RealmHelper.sharedInstantce.overwrite(Category.self, objs: self?.categoryList ?? [])
+//                RealmHelper.sharedInstantce.overwrite(Category.self, objs: self?.categoryList ?? [])
                 
             })
             .disposed(by: self.disposeBag)

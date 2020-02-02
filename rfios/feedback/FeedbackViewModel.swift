@@ -84,10 +84,9 @@ extension FeedbackViewModel {
 
 extension FeedbackViewModel {
     func reqAddFeedback() {
-       print("피드백 추가 요청")
         APIHelper.sharedInstance.rxPullResponse(.addFeedback(self.feedback.toDictionary()))
             .subscribe(onNext: {
-                print($0.msg)
+                NWLog.sLog(contentName: "피드백 추가 응답 결과", contents: $0.msg)
             })
             .disposed(by: self.disposeBag)
     }

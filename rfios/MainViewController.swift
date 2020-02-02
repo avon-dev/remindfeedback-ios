@@ -37,6 +37,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var dropDown: DropDown! // 주제선택 드롭다운
     @IBOutlet weak var tableView: UITableView! // 피드백 테이블 뷰
     let floatingBtn = Floaty()
+    
+    var isLogin = false
 
     
     override func viewDidLoad() {
@@ -52,7 +54,7 @@ class MainViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
-        self.checkLogin()
+        if !isLogin { self.checkLogin() }
     }
     
     func setUI() {
@@ -126,13 +128,20 @@ class MainViewController: UIViewController {
                 index, item, cell in
                 
                 cell.feedbackLabel.text = item.title
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+                
+                cell.dateLabel.text = dateFormatter.string(from: item.date)
+                
                 // 사실 bind안에 subscribe하는 방법은 좋지 않은 방법이라고 생각된다.
                 // 추후 바꿔줄 필요가 있을 것 같다.
                 cell.rx.longPressGesture()
                     .when(.recognized)
                     .take(1) // 이게 다른 화면 갔다가 오면 중복으로 등록되는 경우가 있음, 다른 디스포즈백을 사용해야 할 듯(계속 등록되면 낭비될 것 같음)
                     .subscribe(onNext: { [weak self] in
-                        NWLog.sLog(contentName: "feedback cell", contents: $0)
+                        NWLog.sLog(contentName: "피드백 셀 롱 클릭", contents: $0)
                         self?.viewModel.onModFeedback(index)
                     })
                     .disposed(by: self.disposeBag)
@@ -146,7 +155,7 @@ class MainViewController: UIViewController {
             })
             .disposed(by: self.disposeBag)
         
-        //
+        // 테이블 뷰 셀을 선택했을 때
         self.tableView.rx.itemSelected
             .map{ $0.item }
             .subscribe(onNext: {
@@ -160,9 +169,18 @@ class MainViewController: UIViewController {
         sideMenuController?.revealMenu()
     }
     
-    // 로그인 여부를 체크하는 함수
+
+    
+
+}
+
+// - MARK: Login
+extension MainViewController {
+    
+    /// 로그인 여부를 체크하는 함수
     func checkLogin() {
         print("로그인 체크")
+        NWLog.sLog(contentName: "로그인 체크", contents: nil)
         guard let cookie = UserDefaultsHelper.sharedInstantce.getCookie() else {
             // 옵셔널이 없네;;
             let vc = UIStoryboard(name: "Login", bundle: nil)
@@ -180,8 +198,7 @@ class MainViewController: UIViewController {
         
         self.viewModel.reqGetMyFeedbacks()
         
+        self.isLogin = true
     }
-    
-
 }
 
