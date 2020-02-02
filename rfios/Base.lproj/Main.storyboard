@@ -196,7 +196,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="  내가 작성한 피드백" image="square" catalog="system">
+                                <state key="normal" title="  나의 피드백" image="chevron.right" catalog="system">
                                     <color key="titleColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
