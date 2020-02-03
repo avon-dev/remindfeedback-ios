@@ -1,8 +1,8 @@
 //
-//  BoardViewModel.swift
+//  CardViewModel.swift
 //  rfios
 //
-//  Created by Taeheon Woo on 2020/01/21.
+//  Created by Taeheon Woo on 2020/02/02.
 //  Copyright © 2020 avon. All rights reserved.
 //
 
@@ -10,11 +10,11 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol BoardViewModelType: BaseViewModelType {
+protocol CardViewModelType: BaseViewModelType {
     
 }
 
-class BoardViewModel: BaseViewModel, BoardViewModelType {
+class CardViewModel: BaseViewModel, CardViewModelType {
     
     override init() {
         super.init()

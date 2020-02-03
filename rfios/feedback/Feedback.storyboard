@@ -690,15 +690,18 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="spU-wF-2ei"/>
                     </view>
+                    <connections>
+                        <outlet property="addCardBtn" destination="4Gi-dA-vsh" id="myc-zE-d4r"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DkT-Z7-tMO" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1398.5507246376812" y="20.758928571428569"/>
         </scene>
-        <!--textBoardVC-->
+        <!--textCardVC-->
         <scene sceneID="Uxk-zv-mWn">
             <objects>
-                <viewController storyboardIdentifier="textBoardVC" title="textBoardVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qxF-es-vLV" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="textCardVC" title="textCardVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="qxF-es-vLV" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ug9-Tl-yxk">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -774,10 +777,10 @@
             </objects>
             <point key="canvasLocation" x="2255" y="-281"/>
         </scene>
-        <!--editTextBoardVC-->
+        <!--editTextCardVC-->
         <scene sceneID="GdJ-16-q3C">
             <objects>
-                <viewController storyboardIdentifier="editTextBoardVC" title="editTextBoardVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Caz-3k-nAd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="editTextCardVC" title="editTextCardVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Caz-3k-nAd" customClass="EditTextCardViewController" customModule="rfios" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Fac-AN-4Ja">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

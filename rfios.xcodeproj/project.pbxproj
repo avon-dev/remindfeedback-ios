@@ -51,6 +51,11 @@
 		E0D25C3623750A71001697F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3523750A71001697F9 /* LoginViewController.swift */; };
 		E0D25C3823751063001697F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D25C3723751063001697F9 /* Login.storyboard */; };
 		E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3A2376A586001697F9 /* RegisterViewController.swift */; };
+		E0E667CB23E6984400934102 /* TextCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CA23E6984400934102 /* TextCardViewController.swift */; };
+		E0E667CD23E6985B00934102 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CC23E6985B00934102 /* CardViewModel.swift */; };
+		E0E667CF23E6995800934102 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CE23E6995800934102 /* CustomViewController.swift */; };
+		E0E667D123E6998700934102 /* CustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667D023E6998700934102 /* CustomViewModel.swift */; };
+		E0E667D323E69D2A00934102 /* EditTextCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */; };
 		E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */; };
 		E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */; };
 		E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */; };
@@ -131,6 +136,11 @@
 		E0D25C3523750A71001697F9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E0D25C3723751063001697F9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E0D25C3A2376A586001697F9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E0E667CA23E6984400934102 /* TextCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCardViewController.swift; sourceTree = "<group>"; };
+		E0E667CC23E6985B00934102 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		E0E667CE23E6995800934102 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		E0E667D023E6998700934102 /* CustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewModel.swift; sourceTree = "<group>"; };
+		E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextCardViewController.swift; sourceTree = "<group>"; };
 		E0FB6F442374FAAF00241EC7 /* rfios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rfios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -208,13 +218,14 @@
 			path = util;
 			sourceTree = "<group>";
 		};
-		1CE7643523D6EA6800D1F53F /* Board */ = {
+		1CE7643523D6EA6800D1F53F /* board */ = {
 			isa = PBXGroup;
 			children = (
+				E0E667C923E697FF00934102 /* card */,
 				1CE7643623D6EB6F00D1F53F /* BoardViewController.swift */,
 				1CE7643823D6F74C00D1F53F /* BoardViewModel.swift */,
 			);
-			path = Board;
+			path = board;
 			sourceTree = "<group>";
 		};
 		2F337B3A097B9CC3D41BF923 /* Frameworks */ = {
@@ -247,6 +258,8 @@
 				E02F45822382971D005F8CA0 /* NWLabel.swift */,
 				1C17BED92383FDA0001FB4C4 /* EdgeInsetLabel.swift */,
 				1C1D3163239509B700F4C864 /* BaseViewModel.swift */,
+				E0E667CE23E6995800934102 /* CustomViewController.swift */,
+				E0E667D023E6998700934102 /* CustomViewModel.swift */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -276,8 +289,8 @@
 		E04085142376E6C8008C9F8F /* feedback */ = {
 			isa = PBXGroup;
 			children = (
-				1CE7643523D6EA6800D1F53F /* Board */,
-				E0717FA323A4FD6400E586F3 /* Category */,
+				1CE7643523D6EA6800D1F53F /* board */,
+				E0717FA323A4FD6400E586F3 /* category */,
 				E04085112376E6B9008C9F8F /* FeedbackCell.xib */,
 				E04085102376E6B9008C9F8F /* FeedbackCell.swift */,
 				E040851E2377274C008C9F8F /* Feedback.storyboard */,
@@ -287,7 +300,7 @@
 			path = feedback;
 			sourceTree = "<group>";
 		};
-		E0717FA323A4FD6400E586F3 /* Category */ = {
+		E0717FA323A4FD6400E586F3 /* category */ = {
 			isa = PBXGroup;
 			children = (
 				1C1D316F239BA1F900F4C864 /* CategoryCell.swift */,
@@ -295,7 +308,7 @@
 				1C1D3167239B902300F4C864 /* EditCategoryViewController.swift */,
 				1C1D3169239B952B00F4C864 /* CategoryViewModel.swift */,
 			);
-			path = Category;
+			path = category;
 			sourceTree = "<group>";
 		};
 		E0D25C392376A1FE001697F9 /* auth */ = {
@@ -308,6 +321,16 @@
 				E03A08CE2386B57E0073477D /* RegisterViewModel.swift */,
 			);
 			path = auth;
+			sourceTree = "<group>";
+		};
+		E0E667C923E697FF00934102 /* card */ = {
+			isa = PBXGroup;
+			children = (
+				E0E667CA23E6984400934102 /* TextCardViewController.swift */,
+				E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */,
+				E0E667CC23E6985B00934102 /* CardViewModel.swift */,
+			);
+			path = card;
 			sourceTree = "<group>";
 		};
 		E0FB6F3B2374FAAF00241EC7 = {
@@ -647,20 +670,25 @@
 				E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */,
 				1C1D31622393A85300F4C864 /* NWLog.swift in Sources */,
 				E03A08D32386BDCA0073477D /* SceneCoordinatorType.swift in Sources */,
+				E0E667D123E6998700934102 /* CustomViewModel.swift in Sources */,
 				E03A08CD2386B5390073477D /* Scene.swift in Sources */,
 				E03A08D92386C1490073477D /* SceneCoordinator.swift in Sources */,
+				E0E667CF23E6995800934102 /* CustomViewController.swift in Sources */,
 				E006C2DD23D5DD8900DF5015 /* RealmHelper.swift in Sources */,
 				1C17BED82383F5F1001FB4C4 /* UILabel+Extension.swift in Sources */,
 				1C17BEDC2383FEA3001FB4C4 /* RoundView.swift in Sources */,
 				E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */,
 				E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */,
 				E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */,
+				E0E667D323E69D2A00934102 /* EditTextCardViewController.swift in Sources */,
 				1CE7643923D6F74C00D1F53F /* BoardViewModel.swift in Sources */,
+				E0E667CD23E6985B00934102 /* CardViewModel.swift in Sources */,
 				E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */,
 				1C1D3170239BA1F900F4C864 /* CategoryCell.swift in Sources */,
 				1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */,
 				E03A08CF2386B57E0073477D /* RegisterViewModel.swift in Sources */,
 				1CE7643723D6EB6F00D1F53F /* BoardViewController.swift in Sources */,
+				E0E667CB23E6984400934102 /* TextCardViewController.swift in Sources */,
 				E04085192376ED16008C9F8F /* SideBarViewController.swift in Sources */,
 				1C922F8423CC77D1001177B8 /* User.swift in Sources */,
 				1C1D316C239B9DD100F4C864 /* CategoryListViewController.swift in Sources */,

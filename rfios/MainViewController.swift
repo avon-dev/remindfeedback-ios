@@ -16,10 +16,10 @@ import RxViewController
 import SideMenuSwift
 import UIKit
 
+/// 앱이 실행되고 처음 실행되는 컨트롤러. 사용자의 피드백 리스트가 보이는 화면
 class MainViewController: UIViewController {
     
-    
-    // - MARK: RX
+    // - MARK: Rx
     var viewModel: MainViewModelType
     var disposeBag = DisposeBag()
     
@@ -34,22 +34,23 @@ class MainViewController: UIViewController {
     }
     
     // - MARK: View
-    @IBOutlet weak var dropDown: DropDown! // 주제선택 드롭다운
-    @IBOutlet weak var tableView: UITableView! // 피드백 테이블 뷰
+    /// 주제선택 드롭다운
+    @IBOutlet weak var dropDown: DropDown!
+    /// 피드백 테이블 뷰
+    @IBOutlet weak var tableView: UITableView!
+    /// 플로팅 버튼
     let floatingBtn = Floaty()
     
+    // - MARK: Variable
+    /// 로그인 여부를 확인하는 플래그 변수, 기본값은 false
     var isLogin = false
 
-    
+    // - MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         NWLog.sLog(contentName: "기본 Realm 위치", contents: Realm.Configuration.defaultConfiguration.fileURL!)
         setUI()
         setBinding()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -98,7 +99,21 @@ class MainViewController: UIViewController {
         
     }
     
+
+    
+
+    
+
+    
+
+}
+
+// - MARK: Binding
+extension MainViewController {
+    
     func setBinding() {
+        
+        // - MARK: V to VM
         
         // Scene
         self.rx.isVisible
@@ -107,22 +122,27 @@ class MainViewController: UIViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // 테이블 뷰 셀을 좌측으로 스와이프할 때
+        self.tableView.rx.itemDeleted
+            .subscribe(onNext: {
+                // 해당 피드백을 삭제
+                self.viewModel.delFeedback($0.item)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // 테이블 뷰 셀을 선택했을 때
+        self.tableView.rx.itemSelected
+            .map{ $0.item }
+            .subscribe(onNext: {
+                // 해당 피드백에 대한 상세 화면으로 이동
+                self.viewModel.onBoard($0)
+            })
+            .disposed(by: self.disposeBag)
+        
+        // - MARK: VM to V
+        
         // 테이블뷰 설정
-        
-        
         viewModel.feedbackListOb
-//            .bind(to: tableView.rx.items) {
-//                (tableView, index, element) in
-//
-//                let indexPath = IndexPath(item: index, section: 0)
-//
-//                guard let cell = tableView.dequeueReusableCell(withIdentifier: "feedbackCell", for: indexPath) as? FeedbackCell else { return UITableViewCell() }
-//
-//                cell.feedbackLabel.text = element
-            
-//
-//                return cell
-//            }
             .bind(to: tableView.rx.items(cellIdentifier: FeedbackCell.identifier, cellType: FeedbackCell.self)) {
                 
                 index, item, cell in
@@ -147,31 +167,15 @@ class MainViewController: UIViewController {
                     .disposed(by: self.disposeBag)
             }
         .disposed(by: self.disposeBag)
-        
-        // 테이블 뷰 셀을 좌측으로 스와이프할 때
-        self.tableView.rx.itemDeleted
-            .subscribe(onNext: {
-                self.viewModel.delFeedback($0.item)
-            })
-            .disposed(by: self.disposeBag)
-        
-        // 테이블 뷰 셀을 선택했을 때
-        self.tableView.rx.itemSelected
-            .map{ $0.item }
-            .subscribe(onNext: {
-                self.viewModel.onBoard($0)
-            })
-            .disposed(by: self.disposeBag)
 
     }
-    
+}
+
+// - MARK: Side Menu
+extension MainViewController {
     @IBAction func showSideMenu(_ sender: Any) {
-        sideMenuController?.revealMenu()
+        self.sideMenuController?.revealMenu()
     }
-    
-
-    
-
 }
 
 // - MARK: Login
@@ -179,25 +183,27 @@ extension MainViewController {
     
     /// 로그인 여부를 체크하는 함수
     func checkLogin() {
-        print("로그인 체크")
-        NWLog.sLog(contentName: "로그인 체크", contents: nil)
+        NWLog.cLog()
+        
         guard let cookie = UserDefaultsHelper.sharedInstantce.getCookie() else {
             // 옵셔널이 없네;;
-            let vc = UIStoryboard(name: "Login", bundle: nil)
+            let viewController = UIStoryboard(name: "Login", bundle: nil)
                 .instantiateViewController(withIdentifier: "loginVC")
-            vc.modalPresentationStyle = .fullScreen
-            self.present(vc, animated: false, completion: nil)
-
+            viewController.modalPresentationStyle = .fullScreen
+            self.present(viewController, animated: false, completion: nil)
             return
         }
         
 //        guard !(HTTPCookieStorage.shared.cookies?.contains(cookie) ?? false) else { return }
         
+        // 쿠키값 설정
         HTTPCookieStorage.shared.setCookie(cookie)
-        print("쿠키?", cookie)
+        NWLog.sLog(contentName: "쿠키", contents: cookie)
         
+        // 사용자의 피드백 요청
         self.viewModel.reqGetMyFeedbacks()
         
+        // 로그인 여부 : true
         self.isLogin = true
     }
 }

@@ -76,4 +76,14 @@ class SceneCoordinator: SceneCoordinatorType {
         self.currentViewController?.navigationController?.pushViewController(Scene.boardView(boardViewModel).viewController(), animated: true)
     }
     
+    /// 글 형태의 게시물 상세 화면으로 이동
+    func showTextCardView(_ cardViewModel: CardViewModel) {
+        self.currentViewController?.navigationController?.pushViewController(Scene.textCardView(cardViewModel).viewController(), animated: true)
+    }
+    
+    /// 글 형태의 게시물을 추가/수정할 수 있는 화면으로 이동
+    func showEditTextCardView(_ cardViewModel: CardViewModel) {
+        self.currentViewController?.navigationController?.pushViewController(Scene.editTextCardView(cardViewModel).viewController(), animated: true)
+    }
+    
 }

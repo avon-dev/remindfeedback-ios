@@ -18,12 +18,13 @@ enum Scene {
     
     case editFeedbackView(FeedbackViewModel)
     case boardView(BoardViewModel)
+    case textCardView(CardViewModel)
+    case editTextCardView(CardViewModel)
 }
 
 extension Scene {
     func viewController() -> UIViewController {
         
-//        let mainStoryboard = UIStoryboard(name: "Main", bundle: nil)
         let feedbackStoryboard = UIStoryboard(name: "Feedback", bundle: nil)
         let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
         
@@ -60,8 +61,18 @@ extension Scene {
             let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "boardVC") as! BoardViewController
             viewController.viewModel = viewModel
             return viewController
+        case .textCardView(let viewModel):
+            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "textCardVC") as! TextCardViewController
+            viewController.viewModel = viewModel
+            return viewController
+        case .editTextCardView(let viewModel):
+            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "editTextCardVC") as! EditTextCardViewController
+            viewController.viewModel = viewModel
+            return viewController
 
-        } 
+        }
+        
+        
         
     }
 }
