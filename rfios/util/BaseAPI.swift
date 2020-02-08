@@ -32,6 +32,9 @@ enum BaseAPI {
     case addFeedback(_ params: [String:Any?]?)
     case modFeedback(_ params: [String:Any?]?, id: String)
     case delFeedback(_ id: String)
+    
+    // Card
+    case addTextCard(_ params: [String:Any?]?)
 }
 
 extension BaseAPI: TargetType {
@@ -70,7 +73,11 @@ extension BaseAPI: TargetType {
         case .addFeedback:
             return "/feedbacks"
         case .modFeedback(_, let id), .delFeedback(let id):
-            return "/feedback/\(id)"
+            return "/feedbacks/\(id)"
+            
+            // card
+        case .addTextCard:
+            return "/board/cards/text"
         
         }
     }
@@ -78,7 +85,7 @@ extension BaseAPI: TargetType {
     var method: Moya.Method {
         
         switch self {
-        case .register, .login, .addCategory, .addFeedback:
+        case .register, .login, .addCategory, .addFeedback, .addTextCard:
             return .post
         case .me, .logout, .getCategories, .getCategory, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks:
             return .get
@@ -113,6 +120,10 @@ extension BaseAPI: TargetType {
         case .getFeedbacks(_), .getMyFeedbacks(_), .getYourFeedbacks(_), .delFeedback(_):
             return .requestPlain
         case .addFeedback(let params), .modFeedback(let params, _):
+            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+            
+        // card
+        case .addTextCard(let params):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
             
         }

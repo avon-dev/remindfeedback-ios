@@ -797,10 +797,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M9d-ew-Rcr" userLabel="titleDataGroup">
-                                <rect key="frame" x="0.0" y="109.5" width="414" height="52"/>
+                                <rect key="frame" x="0.0" y="109.5" width="414" height="49"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="제목을 입력하세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xJM-kL-MmO" userLabel="titleTxtFld">
-                                        <rect key="frame" x="41.5" y="2.5" width="331" height="47"/>
+                                        <rect key="frame" x="41.5" y="2.5" width="331" height="44"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -815,77 +815,51 @@
                                     <constraint firstItem="xJM-kL-MmO" firstAttribute="width" secondItem="M9d-ew-Rcr" secondAttribute="width" multiplier="0.8" id="ssy-BR-XU1"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="날짜" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="rhX-c2-4Xl">
-                                <rect key="frame" x="20.5" y="161.5" width="373" height="65.5"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
-                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEu-4G-D0H" userLabel="dateBGView">
-                                <rect key="frame" x="0.0" y="227" width="414" height="104"/>
-                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="내용" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="16" translatesAutoresizingMaskIntoConstraints="NO" id="4K0-lo-RHC">
-                                <rect key="frame" x="20.5" y="331" width="373" height="65.5"/>
+                                <rect key="frame" x="20.5" y="158.5" width="373" height="65.5"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Gj0-47-2ka">
-                                <rect key="frame" x="20.5" y="396.5" width="373" height="327"/>
+                                <rect key="frame" x="20.5" y="224" width="373" height="327"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="lessThanOrEqual" constant="328" id="0UY-29-emN"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="300" id="m0e-Op-J2v"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" translatesAutoresizingMaskIntoConstraints="NO" id="eJF-za-UB4">
-                                <rect key="frame" x="47" y="227" width="320" height="104"/>
-                                <date key="minimumDate" timeIntervalSinceReferenceDate="-978267600">
-                                    <!--1970-01-01 11:00:00 +0000-->
-                                </date>
-                                <locale key="locale" localeIdentifier="ko_KR"/>
-                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="4yj-8J-pXH" firstAttribute="top" secondItem="Ucj-Sl-zEo" secondAttribute="top" id="0DP-1C-ZUO"/>
-                            <constraint firstItem="4K0-lo-RHC" firstAttribute="height" secondItem="rhX-c2-4Xl" secondAttribute="height" id="3PN-8G-B00"/>
                             <constraint firstItem="M9d-ew-Rcr" firstAttribute="width" secondItem="Ucj-Sl-zEo" secondAttribute="width" id="4pX-KG-gtX"/>
                             <constraint firstItem="4yj-8J-pXH" firstAttribute="centerX" secondItem="Fac-AN-4Ja" secondAttribute="centerX" id="5ra-UO-cvF"/>
                             <constraint firstItem="Gj0-47-2ka" firstAttribute="width" secondItem="Ucj-Sl-zEo" secondAttribute="width" multiplier="0.9" id="8Ka-pw-LDh"/>
+                            <constraint firstItem="4K0-lo-RHC" firstAttribute="width" secondItem="4yj-8J-pXH" secondAttribute="width" id="9cZ-Hh-fEM"/>
                             <constraint firstItem="Gj0-47-2ka" firstAttribute="top" secondItem="4K0-lo-RHC" secondAttribute="bottom" id="CLs-ER-hgI"/>
                             <constraint firstItem="Gj0-47-2ka" firstAttribute="centerX" secondItem="Ucj-Sl-zEo" secondAttribute="centerX" id="HIV-sy-E6R"/>
-                            <constraint firstItem="zEu-4G-D0H" firstAttribute="top" secondItem="rhX-c2-4Xl" secondAttribute="bottom" id="Liv-Ez-ewX"/>
+                            <constraint firstItem="4K0-lo-RHC" firstAttribute="height" secondItem="4yj-8J-pXH" secondAttribute="height" id="NLT-VB-pNE"/>
                             <constraint firstItem="M9d-ew-Rcr" firstAttribute="top" secondItem="4yj-8J-pXH" secondAttribute="bottom" id="Res-hy-zoP"/>
-                            <constraint firstItem="zEu-4G-D0H" firstAttribute="centerX" secondItem="Fac-AN-4Ja" secondAttribute="centerX" id="Ut3-NP-Mc5"/>
-                            <constraint firstItem="zEu-4G-D0H" firstAttribute="height" secondItem="M9d-ew-Rcr" secondAttribute="height" multiplier="2" id="V0S-9x-0Ip"/>
                             <constraint firstItem="4yj-8J-pXH" firstAttribute="height" secondItem="Ucj-Sl-zEo" secondAttribute="height" multiplier="0.08" priority="750" id="VQu-t0-Fca"/>
-                            <constraint firstItem="4K0-lo-RHC" firstAttribute="width" secondItem="rhX-c2-4Xl" secondAttribute="width" id="XkO-ZN-eA0"/>
-                            <constraint firstItem="rhX-c2-4Xl" firstAttribute="centerX" secondItem="Ucj-Sl-zEo" secondAttribute="centerX" id="ZJP-cb-x2f"/>
                             <constraint firstItem="4yj-8J-pXH" firstAttribute="width" secondItem="Ucj-Sl-zEo" secondAttribute="width" multiplier="0.9" id="aLK-k5-Yvu"/>
-                            <constraint firstItem="eJF-za-UB4" firstAttribute="centerY" secondItem="zEu-4G-D0H" secondAttribute="centerY" id="c1v-X3-kLA"/>
-                            <constraint firstItem="zEu-4G-D0H" firstAttribute="width" secondItem="M9d-ew-Rcr" secondAttribute="width" id="cOp-rX-p3y"/>
-                            <constraint firstItem="eJF-za-UB4" firstAttribute="height" secondItem="zEu-4G-D0H" secondAttribute="height" id="czm-8f-KUC"/>
-                            <constraint firstItem="eJF-za-UB4" firstAttribute="width" secondItem="zEu-4G-D0H" secondAttribute="width" multiplier="0.772947" id="hZs-4t-zJ8"/>
                             <constraint firstItem="M9d-ew-Rcr" firstAttribute="centerX" secondItem="Fac-AN-4Ja" secondAttribute="centerX" id="let-lQ-Sq2"/>
-                            <constraint firstItem="rhX-c2-4Xl" firstAttribute="top" secondItem="M9d-ew-Rcr" secondAttribute="bottom" id="mdJ-RY-w80"/>
-                            <constraint firstItem="rhX-c2-4Xl" firstAttribute="width" secondItem="4yj-8J-pXH" secondAttribute="width" id="nvr-V4-SbS"/>
                             <constraint firstItem="4K0-lo-RHC" firstAttribute="centerX" secondItem="Ucj-Sl-zEo" secondAttribute="centerX" id="oAd-9p-hJF"/>
-                            <constraint firstItem="4K0-lo-RHC" firstAttribute="top" secondItem="zEu-4G-D0H" secondAttribute="bottom" id="phL-2A-dyO"/>
-                            <constraint firstItem="rhX-c2-4Xl" firstAttribute="height" secondItem="4yj-8J-pXH" secondAttribute="height" id="qZl-QB-bk8"/>
+                            <constraint firstItem="4K0-lo-RHC" firstAttribute="top" secondItem="M9d-ew-Rcr" secondAttribute="bottom" id="pNg-ZX-8l9"/>
                             <constraint firstItem="Gj0-47-2ka" firstAttribute="height" secondItem="Ucj-Sl-zEo" secondAttribute="height" multiplier="0.4" priority="750" id="qib-58-NRj"/>
                             <constraint firstItem="M9d-ew-Rcr" firstAttribute="height" secondItem="Ucj-Sl-zEo" secondAttribute="height" multiplier="0.06" priority="750" id="rHs-MM-YZ1"/>
-                            <constraint firstItem="eJF-za-UB4" firstAttribute="centerX" secondItem="zEu-4G-D0H" secondAttribute="centerX" id="sEv-t6-VlH"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Ucj-Sl-zEo"/>
                     </view>
+                    <connections>
+                        <outlet property="contentTxtView" destination="Gj0-47-2ka" id="cSY-ag-4YI"/>
+                        <outlet property="titleTxtFld" destination="xJM-kL-MmO" id="gZz-dB-eZs"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UdR-nc-wOr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

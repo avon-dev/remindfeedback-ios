@@ -16,6 +16,7 @@ import RxSwift
 protocol MainViewModelType: BaseViewModelType {
     // VM to V
     var feedbackListOb: BehaviorRelay<[Feedback]> { get }
+    var feedbackOb: BehaviorRelay<[SectionOfFeedback]> { get }
     
     // Scene
     /// 피드백 주제 리스트 화면으로 이동
@@ -43,6 +44,7 @@ class MainViewModel: BaseViewModel, MainViewModelType {
     
     /// 뷰에 출력할 피드백 리스트 옵저버블
     let feedbackListOb: BehaviorRelay<[Feedback]>
+    let feedbackOb: BehaviorRelay<[SectionOfFeedback]>
     var feedbackList: [Feedback] = []
     var feedback = Feedback()
     /// 마지막으로 응답받은 피드백 ID 저장 변수
@@ -50,6 +52,7 @@ class MainViewModel: BaseViewModel, MainViewModelType {
     
     override init() {
         self.feedbackListOb = BehaviorRelay<[Feedback]>(value: feedbackList)
+        self.feedbackOb = BehaviorRelay<[SectionOfFeedback]>(value: [])
         super.init()
     }
     
@@ -102,6 +105,7 @@ extension MainViewModel {
                 guard let dataList = $0.dataDic else { return }
                 
 //                self?.feedbackList.removeAll()
+                
                 
                 for data in dataList {
                     let feedback = Feedback()

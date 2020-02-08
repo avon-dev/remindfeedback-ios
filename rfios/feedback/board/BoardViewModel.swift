@@ -36,6 +36,7 @@ extension BoardViewModel {
     /// on 글 형태 게시물
     func onEditTextCard() {
         let cardViewModel = CardViewModel()
+        cardViewModel.card.feedbackID = feedback.id
         SceneCoordinator.sharedInstance.showEditTextCardView(cardViewModel)
     }
 }

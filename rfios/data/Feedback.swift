@@ -49,3 +49,17 @@ extension Feedback: IdentifiableType {
     return self.isInvalidated ? 0 : id
   }
 }
+
+struct SectionOfFeedback {
+    var header: String
+    var items: [Item]
+}
+
+extension SectionOfFeedback: SectionModelType {
+    typealias Item = Feedback
+    
+    init(original: Self, items: [Self.Item]) {
+        self = original
+        self.items = items
+    }
+}

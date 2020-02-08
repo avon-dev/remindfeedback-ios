@@ -144,17 +144,17 @@ extension MainViewController {
         // 테이블뷰 설정
         viewModel.feedbackListOb
             .bind(to: tableView.rx.items(cellIdentifier: FeedbackCell.identifier, cellType: FeedbackCell.self)) {
-                
+
                 index, item, cell in
-                
+
                 cell.feedbackLabel.text = item.title
-                
+
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
-                
+
                 cell.dateLabel.text = dateFormatter.string(from: item.date)
-                
+
                 // 사실 bind안에 subscribe하는 방법은 좋지 않은 방법이라고 생각된다.
                 // 추후 바꿔줄 필요가 있을 것 같다.
                 cell.rx.longPressGesture()

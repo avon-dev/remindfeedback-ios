@@ -31,7 +31,10 @@ class BoardViewController: UIViewController {
         self.disposeBag = DisposeBag()
     }
 
+    /// 게시물 추가 버튼
     @IBOutlet weak var addCardBtn: UIButton!
+    /// 게시물 리스트
+    @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
