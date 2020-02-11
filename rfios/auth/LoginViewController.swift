@@ -79,12 +79,12 @@ extension LoginViewController {
             })
             .disposed(by: self.disposeBag)
         
-        self.appleBtn.rx.tap
-            .flatMap { self.viewModel.reqMe() }
-            .subscribe(onNext: {
-                print("ME", $0.0, $0.2 ?? "")
-            })
-            .disposed(by: self.disposeBag)
+//        self.appleBtn.rx.tap
+//            .flatMap { self.viewModel.reqMe() }
+//            .subscribe(onNext: {
+//                print("ME", $0.0, $0.2 ?? "")
+//            })
+//            .disposed(by: self.disposeBag)
         
         self.registerBtn.rx.tap
             .subscribe(onNext: { [weak self] in

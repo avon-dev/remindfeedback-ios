@@ -53,6 +53,10 @@ class MainViewController: UIViewController {
         setBinding()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if !isLogin { self.checkLogin() }
@@ -96,14 +100,7 @@ class MainViewController: UIViewController {
         // 화면에 플로팅 버튼 추가
         self.view.addSubview(self.floatingBtn)
         
-        
     }
-    
-
-    
-
-    
-
     
 
 }

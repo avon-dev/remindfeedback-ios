@@ -30,13 +30,15 @@ class TextCardViewController: UIViewController {
     deinit {
         self.disposeBag = DisposeBag()
     }
-
+    
+    @IBOutlet weak var titleDateLabel: UILabel!
+    @IBOutlet weak var contentTxtView: UITextView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUI()
         setBinding()
     }
-    
 
 }
 
@@ -61,5 +63,15 @@ extension TextCardViewController {
                 if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
             })
             .disposed(by: self.disposeBag)
+        
+        // VM to V
+        self.viewModel.titleDateOb
+            .bind(to: self.titleDateLabel.rx.text)
+            .disposed(by: self.disposeBag)
+        
+        self.viewModel.contentOb
+            .bind(to: self.contentTxtView.rx.text)
+            .disposed(by: self.disposeBag)
+        
     }
 }

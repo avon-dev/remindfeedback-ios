@@ -13,10 +13,20 @@ import RxSwift
 protocol CardViewModelType: BaseViewModelType {
     // V to VM
     
+    // For show
+    var titleOb: BehaviorSubject<String> { get }
+    var dateOb: BehaviorSubject<Date> { get }
+    var titleDateOb: BehaviorSubject<String> { get }
+    var contentOb: BehaviorSubject<String> { get }
+    
+    // For Edit
     /// 제목 텍스트 입력 옵져버블
     var titleInput: BehaviorSubject<String> { get }
     /// 내용 텍스트 입력 옵져버블
     var contentInput: BehaviorSubject<String> { get }
+    
+    // Binding
+    func setView()
     
     // Network
     func reqAddCard()
@@ -24,25 +34,49 @@ protocol CardViewModelType: BaseViewModelType {
 
 class CardViewModel: BaseViewModel, CardViewModelType {
     
+    let titleOb: BehaviorSubject<String>
+    let dateOb: BehaviorSubject<Date>
+    let titleDateOb: BehaviorSubject<String>
+    let contentOb: BehaviorSubject<String>
+    
     let titleInput: BehaviorSubject<String>
     let contentInput: BehaviorSubject<String>
     
     /// 현재 View에서 Card를 1개만 제어할 때, 해당 인스턴스를 담아둘 프로퍼티
     var card = Card()
     
+    var boardViewModel = BoardViewModel()
+    
     override init() {
+        self.titleOb = BehaviorSubject<String>(value: "")
+        self.dateOb = BehaviorSubject<Date>(value: Date())
+        self.titleDateOb = BehaviorSubject<String>(value: "")
+        self.contentOb = BehaviorSubject<String>(value: "")
+        
         self.titleInput = BehaviorSubject<String>(value: "")
         self.contentInput = BehaviorSubject<String>(value: "")
         
         super.init()
         
+        //
+        Observable.combineLatest(self.titleOb, self.dateOb, resultSelector: {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy년 MM월 dd일 HH시 mm분"
+            dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+            
+            return "[글] \($0)\n \(dateFormatter.string(from: $1))"
+        })
+            .bind(to: self.titleDateOb)
+            .disposed(by: self.disposeBag)
+        
         // [글] 형태의 card를 추가/수정할 때 필수요소 입력 여부를 확인하는 옵져버블
         Observable.combineLatest(titleInput, contentInput, resultSelector: {
-                let _card = self.card
-                _card.title = $0
-                _card.content = $1
-                return _card
-            })
+            let _card = self.card
+            _card.title = $0
+            _card.content = $1
+            return _card
+        })
             .subscribe(onNext: { [weak self] in
                 self?.card = $0
             })
@@ -51,13 +85,28 @@ class CardViewModel: BaseViewModel, CardViewModelType {
     
 }
 
-// -MARK : Network
+// - MARK: Binding
+extension CardViewModel {
+    func setView() {
+        self.titleOb.onNext(self.card.title)
+        self.dateOb.onNext(self.card.date)
+        self.contentOb.onNext(self.card.content)
+    }
+}
+
+// - MARK: Network
 extension CardViewModel {
     func reqAddCard() {
         APIHelper.sharedInstance.rxPullResponse(.addTextCard(self.card.toDictionary()))
-            .subscribe(onNext: {
+            .subscribe(onNext: { [weak self] in
                 NWLog.sLog(contentName: "card 추가 응답 결과", contents: $0.msg)
+                
+                guard let id = $0.data?["id"] as? Int else { return }
+                self?.card.id = id
+                self?.boardViewModel.addCard(self?.card ?? Card())
             })
             .disposed(by: self.disposeBag)
     }
 }
+
+

@@ -18,6 +18,7 @@ class Card: Object {
     @objc dynamic var date = Date()
     @objc dynamic var content = ""
     @objc dynamic var feedbackID = -1
+    @objc dynamic var category = -1
     
     override class func primaryKey() -> String? {
       return "seq"

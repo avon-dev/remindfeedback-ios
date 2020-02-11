@@ -46,6 +46,7 @@
 		E040851B2376F3E6008C9F8F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040851A2376F3E5008C9F8F /* MainViewModel.swift */; };
 		E040851F2377274C008C9F8F /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E040851E2377274C008C9F8F /* Feedback.storyboard */; };
 		E05A109023E99883005A5B08 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05A108F23E99883005A5B08 /* Card.swift */; };
+		E062293723EEF19A000B41C9 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E062293623EEF19A000B41C9 /* CardCell.swift */; };
 		E06D86A223C0B12500AB2D48 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D86A123C0B12500AB2D48 /* FeedbackViewModel.swift */; };
 		E06D86A423C0BB5400AB2D48 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D86A323C0BB5400AB2D48 /* Feedback.swift */; };
 		E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */; };
@@ -132,6 +133,7 @@
 		E040851A2376F3E5008C9F8F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		E040851E2377274C008C9F8F /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
 		E05A108F23E99883005A5B08 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E062293623EEF19A000B41C9 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
 		E06D86A123C0B12500AB2D48 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		E06D86A323C0BB5400AB2D48 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFeedbackViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				E0E667C923E697FF00934102 /* card */,
 				1CE7643623D6EB6F00D1F53F /* BoardViewController.swift */,
 				1CE7643823D6F74C00D1F53F /* BoardViewModel.swift */,
+				E062293623EEF19A000B41C9 /* CardCell.swift */,
 			);
 			path = board;
 			sourceTree = "<group>";
@@ -689,6 +692,7 @@
 				E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */,
 				1C1D3170239BA1F900F4C864 /* CategoryCell.swift in Sources */,
 				1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */,
+				E062293723EEF19A000B41C9 /* CardCell.swift in Sources */,
 				E03A08CF2386B57E0073477D /* RegisterViewModel.swift in Sources */,
 				1CE7643723D6EB6F00D1F53F /* BoardViewController.swift in Sources */,
 				E0E667CB23E6984400934102 /* TextCardViewController.swift in Sources */,
