@@ -18,8 +18,8 @@ enum Scene {
     
     case editFeedbackView(FeedbackViewModel)
     case boardView(BoardViewModel)
-    case textCardView(CardViewModel)
-    case editTextCardView(CardViewModel)
+    case textCardView(TextCardViewModel)
+    case editTextCardView(TextCardViewModel)
 }
 
 extension Scene {

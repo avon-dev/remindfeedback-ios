@@ -48,6 +48,11 @@ class BoardViewController: UIViewController {
         setBinding()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.viewModel.updateList()
+    }
+    
 }
 
 // - MARK: UI

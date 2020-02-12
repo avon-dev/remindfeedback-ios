@@ -40,6 +40,18 @@ class SceneCoordinator: SceneCoordinatorType {
     
     // - MARK: 화면 이동 관련 함수
     
+    func show() {
+        self.currentViewController?.showSpinner(onView: self.currentViewController?.view ?? UIView())
+    }
+    
+    func remove() {
+        self.currentViewController?.removeSpinner()
+    }
+    
+    func pop() {
+        self.currentViewController?.navigationController?.popViewController(animated: true)
+    }
+    
     ///
     func present(_ viewController: UIViewController) {
         viewController.modalPresentationStyle = .fullScreen
@@ -77,12 +89,12 @@ class SceneCoordinator: SceneCoordinatorType {
     }
     
     /// 글 형태의 게시물 상세 화면으로 이동
-    func showTextCardView(_ cardViewModel: CardViewModel) {
+    func showTextCardView(_ cardViewModel: TextCardViewModel) {
         self.currentViewController?.navigationController?.pushViewController(Scene.textCardView(cardViewModel).viewController(), animated: true)
     }
     
     /// 글 형태의 게시물을 추가/수정할 수 있는 화면으로 이동
-    func showEditTextCardView(_ cardViewModel: CardViewModel) {
+    func showEditTextCardView(_ cardViewModel: TextCardViewModel) {
         self.currentViewController?.navigationController?.pushViewController(Scene.editTextCardView(cardViewModel).viewController(), animated: true)
     }
     

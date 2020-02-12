@@ -27,6 +27,9 @@ protocol BoardViewModelType: BaseViewModelType {
     // Network
     func reqGetCards()
     
+    
+    func updateList()
+    
 }
 
 class BoardViewModel: BaseViewModel, BoardViewModelType {
@@ -37,6 +40,7 @@ class BoardViewModel: BaseViewModel, BoardViewModelType {
     
     var cardList = [Card]()
     let cardListOb: BehaviorRelay<[Card]>
+    var selectedIndex = -1
     
     override init() {
         self.titleOb = BehaviorSubject.init(value: "")
@@ -51,14 +55,16 @@ class BoardViewModel: BaseViewModel, BoardViewModelType {
 extension BoardViewModel {
     /// on 글 형태 게시물
     func onTextCard(_ index: Int) {
-        let cardViewModel = CardViewModel()
+        self.selectedIndex = index
+        
+        let cardViewModel = TextCardViewModel()
         cardViewModel.card = self.cardList[index]
         cardViewModel.setView()
         SceneCoordinator.sharedInstance.showTextCardView(cardViewModel)
     }
     
     func onEditTextCard() {
-        let cardViewModel = CardViewModel()
+        let cardViewModel = TextCardViewModel()
         cardViewModel.card.feedbackID = feedback.id
         cardViewModel.boardViewModel = self
         SceneCoordinator.sharedInstance.showEditTextCardView(cardViewModel)
@@ -130,6 +136,16 @@ extension BoardViewModel {
 extension BoardViewModel {
     func addCard(_ card: Card) {
         self.cardList.insert(card, at: 0)
+        updateList()
+    }
+    
+    func modCard(_ card: Card) {
+        guard self.selectedIndex != -1 else { return }
+        self.cardList[self.selectedIndex] = card
+        updateList()
+    }
+    
+    func updateList() {
         self.cardListOb.accept(self.cardList)
     }
 }

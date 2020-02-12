@@ -17,13 +17,13 @@ class TextCardViewController: UIViewController {
     var viewModel: CardViewModelType
     var disposeBag = DisposeBag()
     
-    init(viewModel: CardViewModelType = CardViewModel()) {
+    init(viewModel: CardViewModelType = TextCardViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        viewModel = CardViewModel() 
+        viewModel = TextCardViewModel() 
         super.init(coder: aDecoder)
     }
     
@@ -51,6 +51,17 @@ extension TextCardViewController {
     func setNavUI() {
         // 네비게이션 바 색상 지정
         self.navigationController?.navigationBar.tintColor = UIColor.white
+        // 네비게이션 바 우측버튼
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "수정", style: .done, target: self, action: nil)
+    }
+}
+
+// - MARK: Sence
+extension TextCardViewController {
+    func onModCard() {
+        guard let cardViewModel = self.viewModel as? TextCardViewModel else { return }
+        cardViewModel.isModify = true
+        SceneCoordinator.sharedInstance.showEditTextCardView(cardViewModel)
     }
 }
 
@@ -64,6 +75,13 @@ extension TextCardViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // V to VM
+        self.navigationItem.rightBarButtonItem?.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.onModCard()
+            })
+            .disposed(by: self.disposeBag)
+        
         // VM to V
         self.viewModel.titleDateOb
             .bind(to: self.titleDateLabel.rx.text)
@@ -72,6 +90,5 @@ extension TextCardViewController {
         self.viewModel.contentOb
             .bind(to: self.contentTxtView.rx.text)
             .disposed(by: self.disposeBag)
-        
     }
 }

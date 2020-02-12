@@ -54,7 +54,7 @@
 		E0D25C3823751063001697F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D25C3723751063001697F9 /* Login.storyboard */; };
 		E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3A2376A586001697F9 /* RegisterViewController.swift */; };
 		E0E667CB23E6984400934102 /* TextCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CA23E6984400934102 /* TextCardViewController.swift */; };
-		E0E667CD23E6985B00934102 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CC23E6985B00934102 /* CardViewModel.swift */; };
+		E0E667CD23E6985B00934102 /* TextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CC23E6985B00934102 /* TextCardViewModel.swift */; };
 		E0E667CF23E6995800934102 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CE23E6995800934102 /* CustomViewController.swift */; };
 		E0E667D123E6998700934102 /* CustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667D023E6998700934102 /* CustomViewModel.swift */; };
 		E0E667D323E69D2A00934102 /* EditTextCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */; };
@@ -141,7 +141,7 @@
 		E0D25C3723751063001697F9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E0D25C3A2376A586001697F9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		E0E667CA23E6984400934102 /* TextCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCardViewController.swift; sourceTree = "<group>"; };
-		E0E667CC23E6985B00934102 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
+		E0E667CC23E6985B00934102 /* TextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCardViewModel.swift; sourceTree = "<group>"; };
 		E0E667CE23E6995800934102 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		E0E667D023E6998700934102 /* CustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewModel.swift; sourceTree = "<group>"; };
 		E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextCardViewController.swift; sourceTree = "<group>"; };
@@ -334,7 +334,7 @@
 			children = (
 				E0E667CA23E6984400934102 /* TextCardViewController.swift */,
 				E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */,
-				E0E667CC23E6985B00934102 /* CardViewModel.swift */,
+				E0E667CC23E6985B00934102 /* TextCardViewModel.swift */,
 			);
 			path = card;
 			sourceTree = "<group>";
@@ -688,7 +688,7 @@
 				E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */,
 				E0E667D323E69D2A00934102 /* EditTextCardViewController.swift in Sources */,
 				1CE7643923D6F74C00D1F53F /* BoardViewModel.swift in Sources */,
-				E0E667CD23E6985B00934102 /* CardViewModel.swift in Sources */,
+				E0E667CD23E6985B00934102 /* TextCardViewModel.swift in Sources */,
 				E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */,
 				1C1D3170239BA1F900F4C864 /* CategoryCell.swift in Sources */,
 				1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */,

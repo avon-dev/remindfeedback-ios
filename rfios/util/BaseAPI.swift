@@ -36,6 +36,7 @@ enum BaseAPI {
     // Card
     case getCards(_ feedbackID: Int, _ lastID: Int)
     case addTextCard(_ params: [String:Any?]?)
+    case modTextCard(_ params: [String:Any?]?, id: String)
     case delCard(_ id: String)
 }
 
@@ -82,6 +83,8 @@ extension BaseAPI: TargetType {
             return "/board/cards/\(feedbackID)/\(lastID)/20"
         case .addTextCard:
             return "/board/cards/text"
+        case .modTextCard(_, let id):
+            return "/board/cards/text/\(id)"
         case .delCard(let id):
             return "/board/cards/\(id)"
         
@@ -97,7 +100,7 @@ extension BaseAPI: TargetType {
             return .get
         case .unregister, .delCategory, .delFeedback, .delCard:
             return .delete
-        case  .modCategory, .modFeedback:
+        case  .modCategory, .modFeedback, .modTextCard:
             return .put
         }
         
@@ -131,7 +134,7 @@ extension BaseAPI: TargetType {
         // card
         case .getCards, .delCard:
             return .requestPlain
-        case .addTextCard(let params):
+        case .addTextCard(let params), .modTextCard(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
             
         }
