@@ -61,7 +61,7 @@ extension TextCardViewController {
     func onModCard() {
         guard let cardViewModel = self.viewModel as? TextCardViewModel else { return }
         cardViewModel.isModify = true
-        SceneCoordinator.sharedInstance.showEditTextCardView(cardViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .editTextCardView(cardViewModel))
     }
 }
 

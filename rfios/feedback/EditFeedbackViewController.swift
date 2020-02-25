@@ -141,7 +141,6 @@ extension EditFeedbackViewController {
         //
         self.viewModel.feedbackOb
             .subscribe(onNext: { [weak self] in
-                print("cpzmzmzmzmmmzmzmzmzm", $0)
                 self?.titleTxtFld.text = $0.title
             })
             .disposed(by: self.disposeBag)

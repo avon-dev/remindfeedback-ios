@@ -60,31 +60,31 @@ class MainViewModel: BaseViewModel, MainViewModelType {
 extension MainViewModel {
     func onCategory() {
         let categoryViewModel = CategoryViewModel()
-        SceneCoordinator.sharedInstance.showCategoryView(categoryViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .categoryView(categoryViewModel))
     }
     
     func onAddFeedback() {
         let feedbackViewModel = FeedbackViewModel()
-        SceneCoordinator.sharedInstance.showEditFeedbackView(feedbackViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .editFeedbackView(feedbackViewModel))
     }
     
     func onModFeedback(_ selectedIndex: Int) {
         let feedbackViewModel = FeedbackViewModel()
         feedbackViewModel.feedback = self.feedbackList[selectedIndex]
-        SceneCoordinator.sharedInstance.showEditFeedbackView(feedbackViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .editFeedbackView(feedbackViewModel))
     }
     
     func onBoard(_ selectedIndex: Int) {
         let boardViewModel = BoardViewModel()
-        // - TODO: 아래의 2개 라인 코드를 이 영역에서 해도 되는지 의문
+        // TODO: 아래의 3개 라인 코드를 이 영역에서 해도 되는지 의문
         boardViewModel.feedback = self.feedbackList[selectedIndex]
         boardViewModel.titleOb.onNext(self.feedbackList[selectedIndex].title)
         boardViewModel.dateOb.onNext(self.feedbackList[selectedIndex].date)
-        SceneCoordinator.sharedInstance.showBoardView(boardViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .boardView(boardViewModel))
     }
 }
 
-// - MARK: CRUD
+// MARK: CRUD
 extension MainViewModel {
     func delFeedback(_ index: Int) {
         NWLog.sLog(contentName: "피드백 삭제", contents: nil)
@@ -95,7 +95,7 @@ extension MainViewModel {
     }
 }
 
-// - MARK: Network
+// MARK: Network
 extension MainViewModel {
     func reqGetMyFeedbacks() {
         APIHelper.sharedInstance.rxPullResponse(.getMyFeedbacks(lastID: String(lastFID)))

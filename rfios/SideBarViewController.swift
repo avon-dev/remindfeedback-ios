@@ -32,6 +32,7 @@ class SideBarViewController: UIViewController {
 //    @IBOutlet weak var completedBtn: UIButton!
     
     @IBOutlet weak var categoryBtn: UIButton!
+    @IBOutlet weak var mypageBtn: UIButton!
     @IBOutlet weak var friendListBtn: UIButton!
     
     override func viewDidLoad() {
@@ -57,28 +58,20 @@ extension SideBarViewController {
     func setBinding() {
         
         // Scene
-        
-        
-//        completedBtn.rx.tapGesture()
-//            .when(.recognized)
-//            .subscribe(onNext: { _ in
-//                self.sideMenuController?.hideMenu()
-//
-//                let vc = UIStoryboard(name: "Feedback", bundle: nil)
-//                    .instantiateViewController(withIdentifier: "completedVC")
-//
-//                self.present(vc, animated: false, completion: nil)
-//
-//            })
-//            .disposed(by: disposeBag)
-            
         categoryBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                print("on주제설정")
                 self?.sideMenuController?.hideMenu()
                 self?.viewModel.onCategory()
             })
             .disposed(by: self.disposeBag)
+        
+//        mypageBtn.rx.tap
+//            .subscribe(onNext: { [weak self] in
+//                self?.sideMenuController?.hideMenu()
+//                
+//            })
+//            .disposed(by: self.disposeBag)
+        
         
         friendListBtn.rx.tapGesture()
             .when(.recognized)

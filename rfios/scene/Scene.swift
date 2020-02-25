@@ -10,19 +10,26 @@
 import UIKit
 
 enum Scene {
+    
+    // Auth
     case loginView(LoginViewModel)
     case registerView(RegisterViewModel)
     
+    // Category
     case categoryView(CategoryViewModel)
     case editCategoryView(CategoryViewModel)
     
+    // Feedback
     case editFeedbackView(FeedbackViewModel)
+    
+    // Board
     case boardView(BoardViewModel)
     case textCardView(TextCardViewModel)
     case editTextCardView(TextCardViewModel)
 }
 
 extension Scene {
+    
     func viewController() -> UIViewController {
         
         let feedbackStoryboard = UIStoryboard(name: "Feedback", bundle: nil)
@@ -30,49 +37,75 @@ extension Scene {
         
         switch self {
         
-        // auth
+        // MARK: Auth
+            
+            // Login
         case .loginView(let viewModel):
-            let viewController = loginStoryboard.instantiateViewController(withIdentifier: "loginVC") as! LoginViewController
-            viewController.viewModel = viewModel
-            return viewController
-        case .registerView(let viewModel):
-            let viewController = loginStoryboard.instantiateViewController(withIdentifier: "registerVC") as! RegisterViewController
+            let viewController = loginStoryboard
+                .instantiateViewController(withIdentifier: "loginVC")
+                as! LoginViewController
             viewController.viewModel = viewModel
             return viewController
             
-        // category
-        case .categoryView(let viewModel):
-            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "categoryVC") as! CategoryListViewController
+            // Register
+        case .registerView(let viewModel):
+            let viewController = loginStoryboard
+                .instantiateViewController(withIdentifier: "registerVC")
+                as! RegisterViewController
             viewController.viewModel = viewModel
             return viewController
+            
+        // MARK: Category
+            
+            // Category List
+        case .categoryView(let viewModel):
+            let viewController = feedbackStoryboard
+                .instantiateViewController(withIdentifier: "categoryVC")
+                as! CategoryListViewController
+            viewController.viewModel = viewModel
+            return viewController
+            
+            // Edit category
         case .editCategoryView(let viewModel):
             let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "editCategoryVC") as! EditCategoryViewController
             viewController.viewModel = viewModel
             return viewController
             
-        // feedback
+        // MARK: Feedback
+            
+            // Edit Feedback
         case .editFeedbackView(let viewModel):
-            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "editFeedbackVC") as! EditFeedbackViewController
+            let viewController = feedbackStoryboard
+                .instantiateViewController(withIdentifier: "editFeedbackVC")
+                as! EditFeedbackViewController
             viewController.viewModel = viewModel
             return viewController
             
-        // board
+        // MARK: Board
+            
+            // Board(Card List)
         case .boardView(let viewModel):
-            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "boardVC") as! BoardViewController
+            let viewController = feedbackStoryboard
+                .instantiateViewController(withIdentifier: "boardVC")
+                as! BoardViewController
             viewController.viewModel = viewModel
             return viewController
+            
+            // Text card
         case .textCardView(let viewModel):
-            let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "textCardVC") as! TextCardViewController
+            let viewController = feedbackStoryboard
+                .instantiateViewController(withIdentifier: "textCardVC")
+                as! TextCardViewController
             viewController.viewModel = viewModel
             return viewController
+            
+            // Edit text card
         case .editTextCardView(let viewModel):
             let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "editTextCardVC") as! EditTextCardViewController
             viewController.viewModel = viewModel
             return viewController
 
         }
-        
-        
         
     }
 }

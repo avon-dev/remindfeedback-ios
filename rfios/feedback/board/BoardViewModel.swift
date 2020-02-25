@@ -60,14 +60,14 @@ extension BoardViewModel {
         let cardViewModel = TextCardViewModel()
         cardViewModel.card = self.cardList[index]
         cardViewModel.setView()
-        SceneCoordinator.sharedInstance.showTextCardView(cardViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .textCardView(cardViewModel))
     }
     
     func onEditTextCard() {
         let cardViewModel = TextCardViewModel()
         cardViewModel.card.feedbackID = feedback.id
         cardViewModel.boardViewModel = self
-        SceneCoordinator.sharedInstance.showEditTextCardView(cardViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .editTextCardView(cardViewModel))
     }
 }
 

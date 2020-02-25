@@ -66,7 +66,7 @@ extension LoginViewModel {
     // 회원가입 뷰컨으로 이동
     func onRegister() {
         let registerViewModel = RegisterViewModel()
-        SceneCoordinator.sharedInstance.showRegisterView(registerViewModel)
+        SceneCoordinator.sharedInstance.present(scene: .registerView(registerViewModel))
     }
     
 }

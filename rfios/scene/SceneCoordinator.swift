@@ -8,20 +8,15 @@
 
 import UIKit
 
-class SceneCoordinator: SceneCoordinatorType { 
+class SceneCoordinator { 
     
     fileprivate var currentViewController: UIViewController?
-    
-    fileprivate var sceneArray: [UIViewController]
     
     static let sharedInstance = SceneCoordinator()
     
     required init() {
         currentViewController = nil
-        sceneArray = []
     }
-    
-    // - MARK: 현재 화면 관련 함수
     
     /// 현재 Scene으로 등록되어 있는 뷰컨트롤러가 있는지 확인하는 함수
     func hasCurrentViewController() -> Bool {
@@ -38,7 +33,7 @@ class SceneCoordinator: SceneCoordinatorType {
         currentViewController = viewController
     }
     
-    // - MARK: 화면 이동 관련 함수
+    // MARK: Indicator
     
     func show() {
         self.currentViewController?.showSpinner(onView: self.currentViewController?.view ?? UIView())
@@ -48,54 +43,32 @@ class SceneCoordinator: SceneCoordinatorType {
         self.currentViewController?.removeSpinner()
     }
     
+    // MARK: Transition
+    
     func pop() {
-        self.currentViewController?.navigationController?.popViewController(animated: true)
+        if let navigationController = currentViewController?.navigationController {
+            
+            navigationController.popViewController(animated: true)
+            
+            if let lastViewController = navigationController.viewControllers.last {
+                setCurrentViewController(lastViewController)
+            }
+        }
     }
     
-    ///
-    func present(_ viewController: UIViewController) {
+    func push(scene: Scene) {
+        let nextViewController = scene.viewController()
+        currentViewController?.navigationController?
+            .pushViewController(nextViewController, animated: true)
+        setCurrentViewController(nextViewController)
+    }
+    
+    
+    func present(scene: Scene) {
+        let viewController = scene.viewController()
         viewController.modalPresentationStyle = .fullScreen
         self.currentViewController?.present(viewController, animated: true, completion: nil)
         SceneCoordinator.sharedInstance.setCurrentViewController(viewController)
-    }
-    
-    /// 회원가입 화면으로 이동
-    func showRegisterView(_ registerViewModel: RegisterViewModel) {
-        self.present(Scene.registerView(registerViewModel).viewController())
-    }
-    
-    /// 카테고리 리스트 화면으로 이동
-    func showCategoryView(_ categoryViewModel: CategoryViewModel) {
-        self.currentViewController?.navigationController?
-            .pushViewController(Scene.categoryView(categoryViewModel).viewController(), animated: true)
-        SceneCoordinator.sharedInstance.setCurrentViewController(self.currentViewController)
-    }
-    
-    /// 카테고리 편집 화면으로 이동
-    func showEditCategoryView(_ categoryViewModel: CategoryViewModel) {
-        self.present(Scene.editCategoryView(categoryViewModel).viewController())
-    }
-    
-    /// 피드백 편집 화면으로 이동
-    func showEditFeedbackView(_ feedbackViewModel: FeedbackViewModel) {
-        self.currentViewController?.navigationController?.pushViewController(Scene.editFeedbackView(feedbackViewModel).viewController(), animated: true)
-        
-        SceneCoordinator.sharedInstance.setCurrentViewController(self.currentViewController)
-    }
-    
-    /// 피드백별 게시물 리스트 화면으로 이동
-    func showBoardView(_ boardViewModel: BoardViewModel) {
-        self.currentViewController?.navigationController?.pushViewController(Scene.boardView(boardViewModel).viewController(), animated: true)
-    }
-    
-    /// 글 형태의 게시물 상세 화면으로 이동
-    func showTextCardView(_ cardViewModel: TextCardViewModel) {
-        self.currentViewController?.navigationController?.pushViewController(Scene.textCardView(cardViewModel).viewController(), animated: true)
-    }
-    
-    /// 글 형태의 게시물을 추가/수정할 수 있는 화면으로 이동
-    func showEditTextCardView(_ cardViewModel: TextCardViewModel) {
-        self.currentViewController?.navigationController?.pushViewController(Scene.editTextCardView(cardViewModel).viewController(), animated: true)
     }
     
 }
