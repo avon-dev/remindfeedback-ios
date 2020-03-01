@@ -100,7 +100,7 @@ extension EditCategoryViewController {
                     
                     for (offset,hex) in (self?.colorHexStringList ?? []).enumerated() {
                         if hex == $0.color {
-                            self?.colorBtnList[offset].setImage(.checkmark, for: .normal)
+//                            self?.colorBtnList[offset].setImage(.checkmark, for: .normal)
                         }
                     }
                     
@@ -151,7 +151,7 @@ extension EditCategoryViewController {
                     self?.selectedBtn?.setImage(nil, for: .normal)
                     self?.selectedBtn = nil
                     self?.selectedBtn = btn
-                    btn.setImage(.checkmark, for: .normal)
+//                    btn.setImage(.checkmark, for: .normal)
                     self?.viewModel.colorInput.onNext($0)
                 })
                 .disposed(by: self.disposeBag)

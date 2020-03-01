@@ -17,6 +17,7 @@ enum BaseAPI {
     case me
     case logout
     case unregister
+    case email(_ params: [String:Any?]?)
     
     // Category
     case getCategories
@@ -43,7 +44,7 @@ enum BaseAPI {
 extension BaseAPI: TargetType {
     
     var baseURL: URL {
-        return URL(string: "http://api.remindfeedback.com")! // 반드시 URL형태가 되기 때문에
+        return URL(string: "https://api.remindfeedback.com")! // 반드시 URL형태가 되기 때문에
     }
     
     var path: String {
@@ -59,6 +60,8 @@ extension BaseAPI: TargetType {
             return "/auth/logout"
         case .unregister:
             return "/auth/unregister"
+        case .email:
+            return "/auth/email"
             
             // category
         case .getCategories, .addCategory:
@@ -94,7 +97,7 @@ extension BaseAPI: TargetType {
     var method: Moya.Method {
         
         switch self {
-        case .register, .login, .addCategory, .addFeedback, .addTextCard:
+        case .register, .login, .email, .addCategory, .addFeedback, .addTextCard:
             return .post
         case .me, .logout, .getCategories, .getCategory, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks, .getCards:
             return .get
@@ -114,7 +117,7 @@ extension BaseAPI: TargetType {
         
         switch self {
         // auth
-        case .register(let params), .login(let params):
+        case .register(let params), .login(let params), .email(let params):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default) // ??
         case .me, .logout, .unregister:
             return .requestPlain

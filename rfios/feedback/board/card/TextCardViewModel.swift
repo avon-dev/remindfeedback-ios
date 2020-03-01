@@ -96,7 +96,6 @@ class TextCardViewModel: BaseViewModel, CardViewModelType {
 extension TextCardViewModel {
     func onModCard() {
         self.isModify = true
-        SceneCoordinator.sharedInstance.showEditTextCardView(self)
         SceneCoordinator.sharedInstance.push(scene: .editTextCardView(self))
     }
 }

@@ -29,7 +29,7 @@ class CardCell: UITableViewCell {
         data.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 
-                self?.icon.image = UIImage(systemName: "doc.text")
+//                self?.icon.image = UIImage(systemName: "doc.text")
                 self?.title.text = $0.title
                 
                 let dateFormatter = DateFormatter()

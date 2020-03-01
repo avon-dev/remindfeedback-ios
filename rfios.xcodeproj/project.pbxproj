@@ -34,6 +34,8 @@
 		E02F458B2382B7C3005F8CA0 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45892382B7C3005F8CA0 /* FriendCell.swift */; };
 		E02F458C2382B7C3005F8CA0 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E02F458A2382B7C3005F8CA0 /* FriendCell.xib */; };
 		E02F458E2382BE93005F8CA0 /* FriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */; };
+		E035116324064BBA008E4EB1 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08CE2386B57E0073477D /* RegisterViewModel.swift */; };
+		E035116424064BDE008E4EB1 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEE7238FB6D1001FB4C4 /* APIHelper.swift */; };
 		E03A08CD2386B5390073477D /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08CC2386B5390073477D /* Scene.swift */; };
 		E03A08CF2386B57E0073477D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08CE2386B57E0073477D /* RegisterViewModel.swift */; };
 		E03A08D12386B8500073477D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08D02386B8500073477D /* LoginViewModel.swift */; };
@@ -719,7 +721,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E035116424064BDE008E4EB1 /* APIHelper.swift in Sources */,
 				E0FB6F5F2374FAB100241EC7 /* rfiosTests.swift in Sources */,
+				E035116324064BBA008E4EB1 /* RegisterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -816,7 +820,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -870,7 +874,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -888,6 +892,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CS6F63S589;
 				INFOPLIST_FILE = rfios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -907,6 +912,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CS6F63S589;
 				INFOPLIST_FILE = rfios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

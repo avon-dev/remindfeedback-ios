@@ -53,10 +53,6 @@ class MainViewController: UIViewController {
         setBinding()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-    }
-    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         if !isLogin { self.checkLogin() }
@@ -168,14 +164,14 @@ extension MainViewController {
     }
 }
 
-// - MARK: Side Menu
+// MARK: Side Menu
 extension MainViewController {
     @IBAction func showSideMenu(_ sender: Any) {
         self.sideMenuController?.revealMenu()
     }
 }
 
-// - MARK: Login
+// MARK: Check login
 extension MainViewController {
     
     /// 로그인 여부를 체크하는 함수

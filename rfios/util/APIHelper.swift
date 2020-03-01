@@ -62,8 +62,6 @@ class APIHelper {
             do {
                 dic = try $0.mapJSON() as? [String: Any]
                 print("dictionary", dic)
-                
-                
             } catch {
                 print("mapJSON 실패")
                 dic = nil
@@ -94,6 +92,22 @@ class APIHelper {
             })
 //            .map { return APIResult($0.statusCode, data: try $0.mapString()) }
             .map { return APIResult($0.statusCode) }
+    }
+    
+    func rxGetEmailToken(_ task: BaseAPI) -> Observable<String> {
+        return provider.rx.request(task)
+            .asObservable()
+            .map {
+                var token = ""
+                
+                do {
+                    token = try ($0.mapJSON() as? String ?? "")
+                } catch {
+                    
+                }
+                print("token", token)
+                return token
+            }
     }
     
     func pushRequest(_ task: BaseAPI) {

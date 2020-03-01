@@ -46,3 +46,22 @@ extension UIViewController {
         }
     }
 }
+
+// MARK: Alert + rx
+extension UIViewController {
+    func alert(title: String, text: String?) -> Completable {
+        return Completable.create { [weak self] completable in
+            
+            let alertVC = UIAlertController(title: title, message: text, preferredStyle: .alert)
+            alertVC.addAction(UIAlertAction(title: "확인", style: .default, handler: {_ in
+                completable(.completed)
+            }))
+            
+            self?.present(alertVC, animated: true, completion: nil)
+            
+            return Disposables.create {
+                alertVC.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+}
