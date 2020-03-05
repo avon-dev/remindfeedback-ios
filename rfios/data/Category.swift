@@ -21,24 +21,6 @@ class Category: Object {
         return "seq"
     }
     
-//    init(title: String = "", color: String = "#000000") {
-//        self.title = title
-//        self.color = color
-//        super.init()
-//    }
-//
-//    required init() {
-//        fatalError("init() has not been implemented")
-//    }
-//
-//    required init(realm: RLMRealm, schema: RLMObjectSchema) {
-//        fatalError("init(realm:schema:) has not been implemented")
-//    }
-//
-//    required init(value: Any, schema: RLMSchema) {
-//        fatalError("init(value:schema:) has not been implemented")
-//    }
-    
     func toDictionary() -> [String: Any?] {
         var dic: [String: Any?] = [:]
         dic["seq"] = self.seq

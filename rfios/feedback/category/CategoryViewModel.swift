@@ -86,13 +86,13 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
 extension CategoryViewModel {
     func onAdd() {
         self.selectedIndex = nil
-        SceneCoordinator.sharedInstance.showEditCategoryView(self)
+        SceneCoordinator.sharedInstance.push(scene: .editCategoryView(self))
     }
     
     func onModify(_ selectedIndex: Int) {
         self.selectedIndex = selectedIndex
         self.category = self.categoryList[selectedIndex]
-        SceneCoordinator.sharedInstance.showEditCategoryView(self)
+        SceneCoordinator.sharedInstance.push(scene: .editCategoryView(self))
     }
 }
 

@@ -1,8 +1,8 @@
 //
-//  BoardViewController.swift
+//  CustomViewController.swift
 //  rfios
 //
-//  Created by Taeheon Woo on 2020/01/21.
+//  Created by Taeheon Woo on 2020/02/02.
 //  Copyright © 2020 avon. All rights reserved.
 //
 
@@ -12,18 +12,18 @@ import RxSwift
 import RxViewController
 import UIKit
 
-class BoardViewController: UIViewController {
+class ViewController: UIViewController {
     
-    var viewModel: BoardViewModelType
+    var viewModel: ViewModelType
     var disposeBag = DisposeBag()
     
-    init(viewModel: BoardViewModelType = BoardViewModel()) {
+    init(viewModel: ViewModelType = ViewModel()) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
     
     required init?(coder aDecoder: NSCoder) {
-        viewModel = BoardViewModel()
+        viewModel = ViewModel()
         super.init(coder: aDecoder)
     }
     
@@ -39,13 +39,15 @@ class BoardViewController: UIViewController {
     
 }
 
-extension BoardViewController {
+// - MARK: UI
+extension ViewController {
     func setUI() {
         
     }
 }
 
-extension BoardViewController {
+// - MARK: Binding
+extension ViewController {
     func setBinding() {
         
     }

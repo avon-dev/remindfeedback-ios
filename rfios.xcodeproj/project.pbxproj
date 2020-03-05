@@ -34,10 +34,11 @@
 		E02F458B2382B7C3005F8CA0 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45892382B7C3005F8CA0 /* FriendCell.swift */; };
 		E02F458C2382B7C3005F8CA0 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E02F458A2382B7C3005F8CA0 /* FriendCell.xib */; };
 		E02F458E2382BE93005F8CA0 /* FriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */; };
+		E035116324064BBA008E4EB1 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08CE2386B57E0073477D /* RegisterViewModel.swift */; };
+		E035116424064BDE008E4EB1 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEE7238FB6D1001FB4C4 /* APIHelper.swift */; };
 		E03A08CD2386B5390073477D /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08CC2386B5390073477D /* Scene.swift */; };
 		E03A08CF2386B57E0073477D /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08CE2386B57E0073477D /* RegisterViewModel.swift */; };
 		E03A08D12386B8500073477D /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08D02386B8500073477D /* LoginViewModel.swift */; };
-		E03A08D32386BDCA0073477D /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08D22386BDCA0073477D /* SceneCoordinatorType.swift */; };
 		E03A08D92386C1490073477D /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08D82386C1490073477D /* SceneCoordinator.swift */; };
 		E03A08DB23881B890073477D /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08DA23881B890073477D /* String+Extension.swift */; };
 		E04085122376E6B9008C9F8F /* FeedbackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04085102376E6B9008C9F8F /* FeedbackCell.swift */; };
@@ -45,12 +46,20 @@
 		E04085192376ED16008C9F8F /* SideBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E04085182376ED16008C9F8F /* SideBarViewController.swift */; };
 		E040851B2376F3E6008C9F8F /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E040851A2376F3E5008C9F8F /* MainViewModel.swift */; };
 		E040851F2377274C008C9F8F /* Feedback.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E040851E2377274C008C9F8F /* Feedback.storyboard */; };
+		E05A109023E99883005A5B08 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = E05A108F23E99883005A5B08 /* Card.swift */; };
+		E062293723EEF19A000B41C9 /* CardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E062293623EEF19A000B41C9 /* CardCell.swift */; };
+		E062F41A23F3DD0800DD6A01 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E062F41923F3DD0800DD6A01 /* MyPageViewController.swift */; };
 		E06D86A223C0B12500AB2D48 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D86A123C0B12500AB2D48 /* FeedbackViewModel.swift */; };
 		E06D86A423C0BB5400AB2D48 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D86A323C0BB5400AB2D48 /* Feedback.swift */; };
 		E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */; };
 		E0D25C3623750A71001697F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3523750A71001697F9 /* LoginViewController.swift */; };
 		E0D25C3823751063001697F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D25C3723751063001697F9 /* Login.storyboard */; };
 		E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3A2376A586001697F9 /* RegisterViewController.swift */; };
+		E0E667CB23E6984400934102 /* TextCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CA23E6984400934102 /* TextCardViewController.swift */; };
+		E0E667CD23E6985B00934102 /* TextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CC23E6985B00934102 /* TextCardViewModel.swift */; };
+		E0E667CF23E6995800934102 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CE23E6995800934102 /* CustomViewController.swift */; };
+		E0E667D123E6998700934102 /* CustomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667D023E6998700934102 /* CustomViewModel.swift */; };
+		E0E667D323E69D2A00934102 /* EditTextCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */; };
 		E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */; };
 		E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */; };
 		E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */; };
@@ -117,7 +126,6 @@
 		E03A08CC2386B5390073477D /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		E03A08CE2386B57E0073477D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		E03A08D02386B8500073477D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
-		E03A08D22386BDCA0073477D /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
 		E03A08D82386C1490073477D /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		E03A08DA23881B890073477D /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 		E04085102376E6B9008C9F8F /* FeedbackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackCell.swift; sourceTree = "<group>"; };
@@ -125,12 +133,20 @@
 		E04085182376ED16008C9F8F /* SideBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBarViewController.swift; sourceTree = "<group>"; };
 		E040851A2376F3E5008C9F8F /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		E040851E2377274C008C9F8F /* Feedback.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Feedback.storyboard; sourceTree = "<group>"; };
+		E05A108F23E99883005A5B08 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
+		E062293623EEF19A000B41C9 /* CardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardCell.swift; sourceTree = "<group>"; };
+		E062F41923F3DD0800DD6A01 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		E06D86A123C0B12500AB2D48 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		E06D86A323C0BB5400AB2D48 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFeedbackViewController.swift; sourceTree = "<group>"; };
 		E0D25C3523750A71001697F9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E0D25C3723751063001697F9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E0D25C3A2376A586001697F9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E0E667CA23E6984400934102 /* TextCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCardViewController.swift; sourceTree = "<group>"; };
+		E0E667CC23E6985B00934102 /* TextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCardViewModel.swift; sourceTree = "<group>"; };
+		E0E667CE23E6995800934102 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
+		E0E667D023E6998700934102 /* CustomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewModel.swift; sourceTree = "<group>"; };
+		E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTextCardViewController.swift; sourceTree = "<group>"; };
 		E0FB6F442374FAAF00241EC7 /* rfios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = rfios.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -191,6 +207,7 @@
 				1C1D316D239BA00400F4C864 /* Category.swift */,
 				E06D86A323C0BB5400AB2D48 /* Feedback.swift */,
 				1C922F8323CC77D1001177B8 /* User.swift */,
+				E05A108F23E99883005A5B08 /* Card.swift */,
 			);
 			path = data;
 			sourceTree = "<group>";
@@ -200,21 +217,23 @@
 			children = (
 				1C17BEE3238FB4BC001FB4C4 /* UserDefaultsHelper.swift */,
 				E006C2DC23D5DD8900DF5015 /* RealmHelper.swift */,
-				1C17BEE0238D16F2001FB4C4 /* BaseAPI.swift */,
 				1C17BEE7238FB6D1001FB4C4 /* APIHelper.swift */,
+				1C17BEE0238D16F2001FB4C4 /* BaseAPI.swift */,
 				1C1D31612393A85300F4C864 /* NWLog.swift */,
 				1C1D3171239BA4B000F4C864 /* UIUtil.swift */,
 			);
 			path = util;
 			sourceTree = "<group>";
 		};
-		1CE7643523D6EA6800D1F53F /* Board */ = {
+		1CE7643523D6EA6800D1F53F /* board */ = {
 			isa = PBXGroup;
 			children = (
+				E0E667C923E697FF00934102 /* card */,
 				1CE7643623D6EB6F00D1F53F /* BoardViewController.swift */,
 				1CE7643823D6F74C00D1F53F /* BoardViewModel.swift */,
+				E062293623EEF19A000B41C9 /* CardCell.swift */,
 			);
-			path = Board;
+			path = board;
 			sourceTree = "<group>";
 		};
 		2F337B3A097B9CC3D41BF923 /* Frameworks */ = {
@@ -247,6 +266,8 @@
 				E02F45822382971D005F8CA0 /* NWLabel.swift */,
 				1C17BED92383FDA0001FB4C4 /* EdgeInsetLabel.swift */,
 				1C1D3163239509B700F4C864 /* BaseViewModel.swift */,
+				E0E667CE23E6995800934102 /* CustomViewController.swift */,
+				E0E667D023E6998700934102 /* CustomViewModel.swift */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -259,6 +280,7 @@
 				E02F45852382AAE9005F8CA0 /* User.storyboard */,
 				E02F45872382AC51005F8CA0 /* FriendListViewController.swift */,
 				E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */,
+				E062F41923F3DD0800DD6A01 /* MyPageViewController.swift */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -267,7 +289,6 @@
 			isa = PBXGroup;
 			children = (
 				E03A08CC2386B5390073477D /* Scene.swift */,
-				E03A08D22386BDCA0073477D /* SceneCoordinatorType.swift */,
 				E03A08D82386C1490073477D /* SceneCoordinator.swift */,
 			);
 			path = scene;
@@ -276,8 +297,8 @@
 		E04085142376E6C8008C9F8F /* feedback */ = {
 			isa = PBXGroup;
 			children = (
-				1CE7643523D6EA6800D1F53F /* Board */,
-				E0717FA323A4FD6400E586F3 /* Category */,
+				1CE7643523D6EA6800D1F53F /* board */,
+				E0717FA323A4FD6400E586F3 /* category */,
 				E04085112376E6B9008C9F8F /* FeedbackCell.xib */,
 				E04085102376E6B9008C9F8F /* FeedbackCell.swift */,
 				E040851E2377274C008C9F8F /* Feedback.storyboard */,
@@ -287,7 +308,7 @@
 			path = feedback;
 			sourceTree = "<group>";
 		};
-		E0717FA323A4FD6400E586F3 /* Category */ = {
+		E0717FA323A4FD6400E586F3 /* category */ = {
 			isa = PBXGroup;
 			children = (
 				1C1D316F239BA1F900F4C864 /* CategoryCell.swift */,
@@ -295,7 +316,7 @@
 				1C1D3167239B902300F4C864 /* EditCategoryViewController.swift */,
 				1C1D3169239B952B00F4C864 /* CategoryViewModel.swift */,
 			);
-			path = Category;
+			path = category;
 			sourceTree = "<group>";
 		};
 		E0D25C392376A1FE001697F9 /* auth */ = {
@@ -308,6 +329,16 @@
 				E03A08CE2386B57E0073477D /* RegisterViewModel.swift */,
 			);
 			path = auth;
+			sourceTree = "<group>";
+		};
+		E0E667C923E697FF00934102 /* card */ = {
+			isa = PBXGroup;
+			children = (
+				E0E667CA23E6984400934102 /* TextCardViewController.swift */,
+				E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */,
+				E0E667CC23E6985B00934102 /* TextCardViewModel.swift */,
+			);
+			path = card;
 			sourceTree = "<group>";
 		};
 		E0FB6F3B2374FAAF00241EC7 = {
@@ -643,24 +674,30 @@
 				E06D86A223C0B12500AB2D48 /* FeedbackViewModel.swift in Sources */,
 				1C17BEDE23841741001FB4C4 /* UIViewController+Extension.swift in Sources */,
 				E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */,
+				E062F41A23F3DD0800DD6A01 /* MyPageViewController.swift in Sources */,
 				1C1D316A239B952B00F4C864 /* CategoryViewModel.swift in Sources */,
 				E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */,
 				1C1D31622393A85300F4C864 /* NWLog.swift in Sources */,
-				E03A08D32386BDCA0073477D /* SceneCoordinatorType.swift in Sources */,
+				E0E667D123E6998700934102 /* CustomViewModel.swift in Sources */,
 				E03A08CD2386B5390073477D /* Scene.swift in Sources */,
 				E03A08D92386C1490073477D /* SceneCoordinator.swift in Sources */,
+				E0E667CF23E6995800934102 /* CustomViewController.swift in Sources */,
 				E006C2DD23D5DD8900DF5015 /* RealmHelper.swift in Sources */,
 				1C17BED82383F5F1001FB4C4 /* UILabel+Extension.swift in Sources */,
 				1C17BEDC2383FEA3001FB4C4 /* RoundView.swift in Sources */,
 				E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */,
 				E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */,
 				E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */,
+				E0E667D323E69D2A00934102 /* EditTextCardViewController.swift in Sources */,
 				1CE7643923D6F74C00D1F53F /* BoardViewModel.swift in Sources */,
+				E0E667CD23E6985B00934102 /* TextCardViewModel.swift in Sources */,
 				E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */,
 				1C1D3170239BA1F900F4C864 /* CategoryCell.swift in Sources */,
 				1C17BEDA2383FDA0001FB4C4 /* EdgeInsetLabel.swift in Sources */,
+				E062293723EEF19A000B41C9 /* CardCell.swift in Sources */,
 				E03A08CF2386B57E0073477D /* RegisterViewModel.swift in Sources */,
 				1CE7643723D6EB6F00D1F53F /* BoardViewController.swift in Sources */,
+				E0E667CB23E6984400934102 /* TextCardViewController.swift in Sources */,
 				E04085192376ED16008C9F8F /* SideBarViewController.swift in Sources */,
 				1C922F8423CC77D1001177B8 /* User.swift in Sources */,
 				1C1D316C239B9DD100F4C864 /* CategoryListViewController.swift in Sources */,
@@ -672,6 +709,7 @@
 				E02F458E2382BE93005F8CA0 /* FriendListViewModel.swift in Sources */,
 				E0D25C3623750A71001697F9 /* LoginViewController.swift in Sources */,
 				E02F458B2382B7C3005F8CA0 /* FriendCell.swift in Sources */,
+				E05A109023E99883005A5B08 /* Card.swift in Sources */,
 				E040851B2376F3E6008C9F8F /* MainViewModel.swift in Sources */,
 				E03A08D12386B8500073477D /* LoginViewModel.swift in Sources */,
 				1C1D3172239BA4B000F4C864 /* UIUtil.swift in Sources */,
@@ -683,7 +721,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E035116424064BDE008E4EB1 /* APIHelper.swift in Sources */,
 				E0FB6F5F2374FAB100241EC7 /* rfiosTests.swift in Sources */,
+				E035116324064BBA008E4EB1 /* RegisterViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -780,7 +820,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -834,7 +874,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -852,6 +892,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CS6F63S589;
 				INFOPLIST_FILE = rfios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -871,6 +912,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CS6F63S589;
 				INFOPLIST_FILE = rfios/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

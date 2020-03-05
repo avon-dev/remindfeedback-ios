@@ -21,8 +21,8 @@ protocol LoginViewModelType: BaseViewModelType {
     func onRegister()
     
     // ViewModel to NetworkService
-    func reqLogin() -> Observable<(Bool, String?, String?)>
-    func reqMe() -> Observable<(Bool, String?, String?)>
+    func reqLogin() -> Observable<(Bool, String?, [String:Any]?)>
+//    func reqMe() -> Observable<(Bool, String?, String?)>
     
 }
 
@@ -66,7 +66,7 @@ extension LoginViewModel {
     // 회원가입 뷰컨으로 이동
     func onRegister() {
         let registerViewModel = RegisterViewModel()
-        SceneCoordinator.sharedInstance.showRegisterView(registerViewModel)
+        SceneCoordinator.sharedInstance.present(scene: .registerView(registerViewModel))
     }
     
 }
@@ -75,16 +75,16 @@ extension LoginViewModel {
 extension LoginViewModel {
     
     //
-    func reqLogin() -> Observable<(Bool, String?, String?)> {
+    func reqLogin() -> Observable<(Bool, String?, [String:Any]?)> {
         print("로그인 요청", self.params)
         return APIHelper.sharedInstance.rxSetSession(.login(self.params))
             .map { ($0.isSuccess, $0.msg, $0.data) }
     }
     
     //
-    func reqMe() -> Observable<(Bool, String?, String?)> {
-        return APIHelper.sharedInstance.rxPushRequest(.me)
-        .map { ($0.isSuccess, $0.msg, $0.data) }
-    }
+//    func reqMe() -> Observable<(Bool, String?, String?)> {
+//        return APIHelper.sharedInstance.rxPushRequest(.me)
+//        .map { ($0.isSuccess, $0.msg, $0.data) }
+//    }
     
 }

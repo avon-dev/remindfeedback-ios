@@ -34,6 +34,7 @@ class RegisterViewController: UIViewController {
     }
     
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var chkEmailBtn: UIButton!
     @IBOutlet weak var nicknameTextField: UITextField!
     @IBOutlet weak var pwdTextField: UITextField!
     @IBOutlet weak var chkPwdTextField: UITextField!
@@ -63,23 +64,40 @@ class RegisterViewController: UIViewController {
     
 }
 
-// UI 및 바인딩 세팅
+// MARK: UI
 extension RegisterViewController {
-    
     func setUI() {
-        // VIEW가 처음에 화면에 보여질 때는 회원가입이 불가능하게끔 만들어 놓음
-        // 그래서 버튼을 비활성화 처리함
-        self.reqRegisterBtn.isEnabled = false
+        func setUI() {
+            // VIEW가 처음에 화면에 보여질 때는 회원가입이 불가능하게끔 만들어 놓음
+            // 그래서 버튼을 비활성화 처리함
+            self.reqRegisterBtn.isEnabled = false
+        }
     }
-    
+}
+
+// MARK: Binding
+extension RegisterViewController {
     func setBinding() {
         
-        // Input
-        
+        // MARK: Input
+    
         self.emailTextField.rx.text.orEmpty
             .bind(to: viewModel.emailInput)
             .disposed(by: disposeBag)
         
+        self.chkEmailBtn.rx.tap
+//            .concatMap { self.viewModel.emailValid }
+//            .filter { $0 == true }
+            .concatMap{ _ in self.viewModel.reqChkEmail() }
+            .subscribe(onNext: { [weak self] in
+                if $0 == "" {
+                    self?.bindAlert(title: "이메일 확인", content: "사용 불가능한 이메일입니다.")
+                } else {
+                    self?.bindAlert(title: "이메일 확인", content: "사용가능한 이메일 입니다.")
+                }
+            })
+            .disposed(by: disposeBag)
+
         self.nicknameTextField.rx.text.orEmpty
             .bind(to: viewModel.nicknameInput)
             .disposed(by: disposeBag)
@@ -96,14 +114,12 @@ extension RegisterViewController {
         self.reqRegisterBtn.rx.tap
             .flatMap{ self.viewModel.reqRegister() }
             .subscribe(
-                onNext: {
-                    print("회원가입 시도", $0)
+                onNext: { [weak self] in
                     if $0.0 {
-                        self.dismiss(animated: true, completion: nil)
+                        self?.dismiss(animated: true, completion: nil)
                     } else {
-                        // - TODO: 회원가입 실패 시, Alert 실행
+                        self?.bindAlert(title: "회원가입 실패", content: "회원 가입을 다시 시도해 주세요.")
                     }
-                    
                 }
             )
             .disposed(by: disposeBag)
@@ -116,22 +132,20 @@ extension RegisterViewController {
             .disposed(by: self.disposeBag)
         
         
-        // Output
+        // MARK: Output
         
         // 가입가능 여부 체크
         viewModel.registerValid
-//            .subscribe(
-//                onNext: {
-//                print("가입가능?", $0)
-//                    self.reqRegisterBtn.isEnabled = $0
-//                }
-//            )
             .bind(to: self.reqRegisterBtn.rx.isEnabled)
             .disposed(by: disposeBag)
         
         
-        
-        
+    }
+    
+    func bindAlert(title: String, content: String) {
+        alert(title: title, text: content)
+            .subscribe()
+            .disposed(by: disposeBag)
     }
     
 }

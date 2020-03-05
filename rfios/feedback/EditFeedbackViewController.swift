@@ -77,7 +77,7 @@ extension EditFeedbackViewController {
         // 네비게이션 바 색상 지정
         self.navigationController?.navigationBar.tintColor = UIColor.white
         // 네비게이션 바 우측버튼
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .save, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "저장", style: .done, target: self, action: nil)
     }
     
 }
@@ -141,7 +141,6 @@ extension EditFeedbackViewController {
         //
         self.viewModel.feedbackOb
             .subscribe(onNext: { [weak self] in
-                print("cpzmzmzmzmmmzmzmzmzm", $0)
                 self?.titleTxtFld.text = $0.title
             })
             .disposed(by: self.disposeBag)

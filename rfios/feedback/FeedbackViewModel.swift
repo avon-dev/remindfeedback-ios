@@ -78,7 +78,7 @@ extension FeedbackViewModel {
         let categoryViewModel = CategoryViewModel()
         categoryViewModel.isSelection = true
         categoryViewModel.feedbackViewModel = self
-        SceneCoordinator.sharedInstance.showCategoryView(categoryViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .categoryView(categoryViewModel))
     }
 }
 

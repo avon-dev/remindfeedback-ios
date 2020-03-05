@@ -16,10 +16,10 @@ struct APIResult {
     var isSuccess = false
     var statusCode: Int
     var msg: String?
-    var data: String?
+    var data: [String:Any]?
     var dataDic: [[String:Any]]?
         
-    init(_ statusCode: Int, msg: String? = nil, data: String? = nil, dataDic: [[String:Any]]? = nil) {
+    init(_ statusCode: Int, msg: String? = nil, data: [String:Any]? = nil, dataDic: [[String:Any]]? = nil) {
         
         if statusCode == 200 || statusCode == 201 {
             self.isSuccess = true
@@ -46,7 +46,9 @@ class APIHelper {
         
         return provider.rx.request(task)
             .asObservable()
-            .map {  return APIResult($0.statusCode, data: try $0.mapString())  }
+            .map {
+                return APIResult($0.statusCode)
+            }
     }
     
     func rxPullResponse(_ task: BaseAPI) -> Observable<APIResult> {
@@ -64,8 +66,11 @@ class APIHelper {
                 print("mapJSON 실패")
                 dic = nil
             }
-            print(JSON(dic?["data"]))
-            return APIResult($0.statusCode, msg: dic?["message"] as? String, data: dic?["data"] as? String, dataDic: dic?["data"] as? [[String:Any]] )
+            
+            print("dic data", dic?["data"] as? [String:Any])
+            print("json", JSON(dic?["data"]))
+            
+            return APIResult($0.statusCode, msg: dic?["message"] as? String, data: dic?["data"] as? [String:Any], dataDic: dic?["data"] as? [[String:Any]] )
             
         }
     }
@@ -85,7 +90,24 @@ class APIHelper {
                     }
                 }
             })
-            .map { return APIResult($0.statusCode, data: try $0.mapString()) }
+//            .map { return APIResult($0.statusCode, data: try $0.mapString()) }
+            .map { return APIResult($0.statusCode) }
+    }
+    
+    func rxGetEmailToken(_ task: BaseAPI) -> Observable<String> {
+        return provider.rx.request(task)
+            .asObservable()
+            .map {
+                var token = ""
+                
+                do {
+                    token = try ($0.mapJSON() as? String ?? "")
+                } catch {
+                    
+                }
+                print("token", token)
+                return token
+            }
     }
     
     func pushRequest(_ task: BaseAPI) {

@@ -25,6 +25,7 @@ protocol RegisterViewModelType: BaseViewModelType {
     
     // ViewModel to NetworkService
     func reqRegister() -> Observable<(Bool, String?)>
+    func reqChkEmail() -> Observable<String>
     
 }
 
@@ -42,8 +43,9 @@ class RegisterViewModel: BaseViewModel, RegisterViewModelType {
     let chkPwdValid: Observable<Bool>
     let registerValid: Observable<Bool>
     
-    // 회원가입에 필요한
+    // 회원가입에 필요한 파라미터값
     var params: [String:Any] = [:]
+    var token = ""
      
     override init() {
         
@@ -73,11 +75,14 @@ class RegisterViewModel: BaseViewModel, RegisterViewModelType {
 
         // 회원가입 요청할 때 필요한 파라미터 값을 딕셔너리형태로 저장
         Observable.combineLatest(emailInput, nicknameInput, pwdInput, resultSelector: {
-
+            
+            [weak self] in
+            
             var params: [String:Any] = [:]
             params["email"] = $0
             params["nickname"] = $1
             params["password"] = $2
+            params["token"] = self?.token
             return params
 
             })
@@ -87,14 +92,26 @@ class RegisterViewModel: BaseViewModel, RegisterViewModelType {
             .disposed(by: self.disposeBag)
         
     }
-    
-    // ViewModel to NetworkService
-    // 회원가입을 요청하는 함수
+}
+
+// MARK: Network
+extension RegisterViewModel {
+    /// 회원가입을 요청하는 함수
     func reqRegister() -> Observable<(Bool, String?)> {
-        
-        return APIHelper.sharedInstance.rxPushRequest(.register(self.params))
+        return APIHelper.sharedInstance
+            .rxPushRequest(.register(self.params))
             .map { ($0.isSuccess, $0.msg) }
     }
-
+    
+    /// 이메일 중복 검사를 요청하는 함수
+    func reqChkEmail() -> Observable<String> {
+        
+        return APIHelper.sharedInstance
+            .rxGetEmailToken(.email(["email":params["email"]]))
+            .do(onNext: { [weak self] in
+                self?.token = $0
+            })
+        
+    }
 }
 

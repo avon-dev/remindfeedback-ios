@@ -1,8 +1,8 @@
 //
-//  BoardViewModel.swift
+//  CustomViewModel.swift
 //  rfios
 //
-//  Created by Taeheon Woo on 2020/01/21.
+//  Created by Taeheon Woo on 2020/02/02.
 //  Copyright © 2020 avon. All rights reserved.
 //
 
@@ -10,14 +10,15 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-protocol BoardViewModelType: BaseViewModelType {
+protocol ViewModelType: BaseViewModelType {
     
 }
 
-class BoardViewModel: BaseViewModel, BoardViewModelType {
+class ViewModel: BaseViewModel, ViewModelType {
     
     override init() {
         super.init()
     }
     
 }
+

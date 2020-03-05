@@ -12,30 +12,40 @@ import RxCocoa
 import RxDataSources
 import RxSwift
 
+// - MARK: Protocol
 protocol MainViewModelType: BaseViewModelType {
-    // Output
+    // VM to V
     var feedbackListOb: BehaviorRelay<[Feedback]> { get }
     
     // Scene
+    /// 피드백 주제 리스트 화면으로 이동
     func onCategory()
+    /// 피드백을 추가하는 화면으로 이동
     func onAddFeedback()
+    /// 피드백을 수정하는 화면으로 이동
     func onModFeedback(_ selectedIndex: Int)
+    /// 피드백 개선사항을 추가하는 화면으로 이동
     func onBoard(_ selectedIndex: Int)
     
     // CRUD
+    /// 피드백을 삭제하는 함수
     func delFeedback(_ index: Int)
     
     // Network
+    /// 사용자의 피드백만을 api서버에 조회 요청하는 함수
     func reqGetMyFeedbacks()
+    /// 피드백 삭제를 api서버에 요청하는 함수
     func reqDelFeedback()
 }
 
 // - MARK: Variable and init
 class MainViewModel: BaseViewModel, MainViewModelType {
     
+    /// 뷰에 출력할 피드백 리스트 옵저버블
     let feedbackListOb: BehaviorRelay<[Feedback]>
     var feedbackList: [Feedback] = []
     var feedback = Feedback()
+    /// 마지막으로 응답받은 피드백 ID 저장 변수
     let lastFID = 0
     
     override init() {
@@ -48,34 +58,33 @@ class MainViewModel: BaseViewModel, MainViewModelType {
 
 // - MARK: Scene
 extension MainViewModel {
-    
-    /// 피드백 주제 리스트 화면으로 이동
     func onCategory() {
         let categoryViewModel = CategoryViewModel()
-        SceneCoordinator.sharedInstance.showCategoryView(categoryViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .categoryView(categoryViewModel))
     }
     
-    /// 피드백을 추가하는 화면으로 이동
     func onAddFeedback() {
         let feedbackViewModel = FeedbackViewModel()
-        SceneCoordinator.sharedInstance.showEditFeedbackView(feedbackViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .editFeedbackView(feedbackViewModel))
     }
     
-    /// 피드백을 수정하는 화면으로 이동
     func onModFeedback(_ selectedIndex: Int) {
         let feedbackViewModel = FeedbackViewModel()
         feedbackViewModel.feedback = self.feedbackList[selectedIndex]
-        SceneCoordinator.sharedInstance.showEditFeedbackView(feedbackViewModel)
+        SceneCoordinator.sharedInstance.push(scene: .editFeedbackView(feedbackViewModel))
     }
     
-    /// 피드백 개선사항을 추가하는 화면으로 이동
     func onBoard(_ selectedIndex: Int) {
         let boardViewModel = BoardViewModel()
-        SceneCoordinator.sharedInstance.showBoardView(boardViewModel)
+        // TODO: 아래의 3개 라인 코드를 이 영역에서 해도 되는지 의문
+        boardViewModel.feedback = self.feedbackList[selectedIndex]
+        boardViewModel.titleOb.onNext(self.feedbackList[selectedIndex].title)
+        boardViewModel.dateOb.onNext(self.feedbackList[selectedIndex].date)
+        SceneCoordinator.sharedInstance.push(scene: .boardView(boardViewModel))
     }
 }
 
-// - MARK: CRUD
+// MARK: CRUD
 extension MainViewModel {
     func delFeedback(_ index: Int) {
         NWLog.sLog(contentName: "피드백 삭제", contents: nil)
@@ -86,14 +95,16 @@ extension MainViewModel {
     }
 }
 
-// - MARK: Network
+// MARK: Network
 extension MainViewModel {
     func reqGetMyFeedbacks() {
-        APIHelper.sharedInstance.rxPullResponse(.getMyFeedbacks(lastId: String(lastFID)))
+        APIHelper.sharedInstance.rxPullResponse(.getMyFeedbacks(lastID: String(lastFID)))
             .subscribe(onNext: { [weak self] in
+                
                 guard let dataList = $0.dataDic else { return }
                 
 //                self?.feedbackList.removeAll()
+                
                 
                 for data in dataList {
                     let feedback = Feedback()

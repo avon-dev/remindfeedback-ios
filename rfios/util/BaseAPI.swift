@@ -17,6 +17,7 @@ enum BaseAPI {
     case me
     case logout
     case unregister
+    case email(_ params: [String:Any?]?)
     
     // Category
     case getCategories
@@ -26,18 +27,24 @@ enum BaseAPI {
     case delCategory(_ id: String)
     
     // Feedback
-    case getFeedbacks(lastId: String)
-    case getMyFeedbacks(lastId: String)
-    case getYourFeedbacks(lastId: String)
+    case getFeedbacks(lastID: String)
+    case getMyFeedbacks(lastID: String)
+    case getYourFeedbacks(lastID: String)
     case addFeedback(_ params: [String:Any?]?)
     case modFeedback(_ params: [String:Any?]?, id: String)
     case delFeedback(_ id: String)
+    
+    // Card
+    case getCards(_ feedbackID: Int, _ lastID: Int)
+    case addTextCard(_ params: [String:Any?]?)
+    case modTextCard(_ params: [String:Any?]?, id: String)
+    case delCard(_ id: String)
 }
 
 extension BaseAPI: TargetType {
     
     var baseURL: URL {
-        return URL(string: "http://api.remindfeedback.com")! // 반드시 URL형태가 되기 때문에
+        return URL(string: "https://api.remindfeedback.com")! // 반드시 URL형태가 되기 때문에
     }
     
     var path: String {
@@ -53,6 +60,8 @@ extension BaseAPI: TargetType {
             return "/auth/logout"
         case .unregister:
             return "/auth/unregister"
+        case .email:
+            return "/auth/email"
             
             // category
         case .getCategories, .addCategory:
@@ -61,16 +70,26 @@ extension BaseAPI: TargetType {
             return "/categories/\(id)"
         
             // feedback
-        case .getFeedbacks(let lastId):
-            return "/feedbacks/\(lastId)/20"
-        case .getMyFeedbacks(let lastId):
-            return "/feedbacks/mine/\(lastId)/10"
-        case .getYourFeedbacks(let lastId):
-            return "/feedbacks/yours/\(lastId)/10"
+        case .getFeedbacks(let lastID):
+            return "/feedbacks/\(lastID)/20"
+        case .getMyFeedbacks(let lastID):
+            return "/feedbacks/mine/\(lastID)/10"
+        case .getYourFeedbacks(let lastID):
+            return "/feedbacks/yours/\(lastID)/10"
         case .addFeedback:
             return "/feedbacks"
         case .modFeedback(_, let id), .delFeedback(let id):
-            return "/feedback/\(id)"
+            return "/feedbacks/\(id)"
+            
+            // card
+        case .getCards(let feedbackID, let lastID):
+            return "/board/cards/\(feedbackID)/\(lastID)/20"
+        case .addTextCard:
+            return "/board/cards/text"
+        case .modTextCard(_, let id):
+            return "/board/cards/text/\(id)"
+        case .delCard(let id):
+            return "/board/cards/\(id)"
         
         }
     }
@@ -78,13 +97,13 @@ extension BaseAPI: TargetType {
     var method: Moya.Method {
         
         switch self {
-        case .register, .login, .addCategory, .addFeedback:
+        case .register, .login, .email, .addCategory, .addFeedback, .addTextCard:
             return .post
-        case .me, .logout, .getCategories, .getCategory, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks:
+        case .me, .logout, .getCategories, .getCategory, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks, .getCards:
             return .get
-        case .unregister, .delCategory, .delFeedback:
+        case .unregister, .delCategory, .delFeedback, .delCard:
             return .delete
-        case  .modCategory, .modFeedback:
+        case  .modCategory, .modFeedback, .modTextCard:
             return .put
         }
         
@@ -98,7 +117,7 @@ extension BaseAPI: TargetType {
         
         switch self {
         // auth
-        case .register(let params), .login(let params):
+        case .register(let params), .login(let params), .email(let params):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default) // ??
         case .me, .logout, .unregister:
             return .requestPlain
@@ -113,6 +132,12 @@ extension BaseAPI: TargetType {
         case .getFeedbacks(_), .getMyFeedbacks(_), .getYourFeedbacks(_), .delFeedback(_):
             return .requestPlain
         case .addFeedback(let params), .modFeedback(let params, _):
+            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+            
+        // card
+        case .getCards, .delCard:
+            return .requestPlain
+        case .addTextCard(let params), .modTextCard(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
             
         }
