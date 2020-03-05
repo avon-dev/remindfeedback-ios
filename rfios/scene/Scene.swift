@@ -26,6 +26,9 @@ enum Scene {
     case boardView(BoardViewModel)
     case textCardView(TextCardViewModel)
     case editTextCardView(TextCardViewModel)
+    
+    // Mypage
+    case mypageView
 }
 
 extension Scene {

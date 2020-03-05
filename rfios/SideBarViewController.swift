@@ -65,12 +65,12 @@ extension SideBarViewController {
             })
             .disposed(by: self.disposeBag)
         
-//        mypageBtn.rx.tap
-//            .subscribe(onNext: { [weak self] in
-//                self?.sideMenuController?.hideMenu()
-//                
-//            })
-//            .disposed(by: self.disposeBag)
+        mypageBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.sideMenuController?.hideMenu()
+                
+            })
+            .disposed(by: self.disposeBag)
         
         
         friendListBtn.rx.tapGesture()
