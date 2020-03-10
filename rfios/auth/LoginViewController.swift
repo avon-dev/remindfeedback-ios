@@ -93,6 +93,13 @@ extension LoginViewController {
             })
             .disposed(by: self.disposeBag)
         
+        keyboardHeight()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                self?.view.frame.origin.y = -$0/2
+            })
+            .disposed(by: disposeBag)
+        
         
 
     } // END : setBinding()

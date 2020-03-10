@@ -68,7 +68,7 @@ extension SideBarViewController {
         mypageBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.sideMenuController?.hideMenu()
-                
+                self?.viewModel.onMyPage()
             })
             .disposed(by: self.disposeBag)
         

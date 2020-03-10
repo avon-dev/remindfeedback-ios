@@ -28,7 +28,7 @@ enum Scene {
     case editTextCardView(TextCardViewModel)
     
     // Mypage
-    case mypageView
+    case myPageView(MyPageViewModel)
 }
 
 extension Scene {
@@ -37,6 +37,7 @@ extension Scene {
         
         let feedbackStoryboard = UIStoryboard(name: "Feedback", bundle: nil)
         let loginStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let userStoryboard = UIStoryboard(name: "User", bundle: nil)
         
         switch self {
         
@@ -107,8 +108,17 @@ extension Scene {
             let viewController = feedbackStoryboard.instantiateViewController(withIdentifier: "editTextCardVC") as! EditTextCardViewController
             viewController.viewModel = viewModel
             return viewController
+            
+        // MARK: Mypage
+            
+        case .myPageView(let viewModel):
+            let viewController = userStoryboard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
+            viewController.viewModel = viewModel
+            return viewController
 
         }
+        
+        
         
     }
 }

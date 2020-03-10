@@ -8,6 +8,7 @@
 
 import Floaty
 import iOSDropDown
+import Photos
 import RealmSwift
 import RxCocoa
 import RxDataSources
@@ -59,6 +60,8 @@ class MainViewController: UIViewController {
     }
     
     func setUI() {
+        self.navigationController?.navigationBar.tintColor = .white
+        
         // 드롭다운 설정
         // The list of array to display. Can be changed dynamically
         dropDown.optionArray = ["Option 1", "Option 2", "Option 3"]

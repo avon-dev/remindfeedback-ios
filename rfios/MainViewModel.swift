@@ -26,6 +26,8 @@ protocol MainViewModelType: BaseViewModelType {
     func onModFeedback(_ selectedIndex: Int)
     /// 피드백 개선사항을 추가하는 화면으로 이동
     func onBoard(_ selectedIndex: Int)
+    ///
+    func onMyPage()
     
     // CRUD
     /// 피드백을 삭제하는 함수
@@ -81,6 +83,11 @@ extension MainViewModel {
         boardViewModel.titleOb.onNext(self.feedbackList[selectedIndex].title)
         boardViewModel.dateOb.onNext(self.feedbackList[selectedIndex].date)
         SceneCoordinator.sharedInstance.push(scene: .boardView(boardViewModel))
+    }
+    
+    func onMyPage() {
+        let myPageViewModel = MyPageViewModel()
+        SceneCoordinator.sharedInstance.push(scene: .myPageView(myPageViewModel))
     }
 }
 

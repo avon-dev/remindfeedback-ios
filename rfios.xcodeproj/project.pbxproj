@@ -34,6 +34,7 @@
 		E02F458B2382B7C3005F8CA0 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F45892382B7C3005F8CA0 /* FriendCell.swift */; };
 		E02F458C2382B7C3005F8CA0 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E02F458A2382B7C3005F8CA0 /* FriendCell.xib */; };
 		E02F458E2382BE93005F8CA0 /* FriendListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */; };
+		E030691A2410F0C100E07D21 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03069192410F0C100E07D21 /* MyPageViewModel.swift */; };
 		E035116324064BBA008E4EB1 /* RegisterViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08CE2386B57E0073477D /* RegisterViewModel.swift */; };
 		E035116424064BDE008E4EB1 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEE7238FB6D1001FB4C4 /* APIHelper.swift */; };
 		E03A08CD2386B5390073477D /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03A08CC2386B5390073477D /* Scene.swift */; };
@@ -55,6 +56,8 @@
 		E0D25C3623750A71001697F9 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3523750A71001697F9 /* LoginViewController.swift */; };
 		E0D25C3823751063001697F9 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0D25C3723751063001697F9 /* Login.storyboard */; };
 		E0D25C3B2376A586001697F9 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0D25C3A2376A586001697F9 /* RegisterViewController.swift */; };
+		E0DD1C722417251800CE84D7 /* RxMediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD1C712417251800CE84D7 /* RxMediaPicker.swift */; };
+		E0DD1C7424178C3100CE84D7 /* RemindFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0DD1C7324178C3100CE84D7 /* RemindFeedback.swift */; };
 		E0E667CB23E6984400934102 /* TextCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CA23E6984400934102 /* TextCardViewController.swift */; };
 		E0E667CD23E6985B00934102 /* TextCardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CC23E6985B00934102 /* TextCardViewModel.swift */; };
 		E0E667CF23E6995800934102 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0E667CE23E6995800934102 /* CustomViewController.swift */; };
@@ -123,6 +126,7 @@
 		E02F45892382B7C3005F8CA0 /* FriendCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendCell.swift; sourceTree = "<group>"; };
 		E02F458A2382B7C3005F8CA0 /* FriendCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FriendCell.xib; sourceTree = "<group>"; };
 		E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendListViewModel.swift; sourceTree = "<group>"; };
+		E03069192410F0C100E07D21 /* MyPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewModel.swift; sourceTree = "<group>"; };
 		E03A08CC2386B5390073477D /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		E03A08CE2386B57E0073477D /* RegisterViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewModel.swift; sourceTree = "<group>"; };
 		E03A08D02386B8500073477D /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
@@ -142,6 +146,8 @@
 		E0D25C3523750A71001697F9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		E0D25C3723751063001697F9 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		E0D25C3A2376A586001697F9 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		E0DD1C712417251800CE84D7 /* RxMediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxMediaPicker.swift; sourceTree = "<group>"; };
+		E0DD1C7324178C3100CE84D7 /* RemindFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemindFeedback.swift; sourceTree = "<group>"; };
 		E0E667CA23E6984400934102 /* TextCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCardViewController.swift; sourceTree = "<group>"; };
 		E0E667CC23E6985B00934102 /* TextCardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextCardViewModel.swift; sourceTree = "<group>"; };
 		E0E667CE23E6995800934102 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
@@ -268,6 +274,7 @@
 				1C1D3163239509B700F4C864 /* BaseViewModel.swift */,
 				E0E667CE23E6995800934102 /* CustomViewController.swift */,
 				E0E667D023E6998700934102 /* CustomViewModel.swift */,
+				E0DD1C712417251800CE84D7 /* RxMediaPicker.swift */,
 			);
 			path = custom;
 			sourceTree = "<group>";
@@ -281,6 +288,7 @@
 				E02F45872382AC51005F8CA0 /* FriendListViewController.swift */,
 				E02F458D2382BE93005F8CA0 /* FriendListViewModel.swift */,
 				E062F41923F3DD0800DD6A01 /* MyPageViewController.swift */,
+				E03069192410F0C100E07D21 /* MyPageViewModel.swift */,
 			);
 			path = user;
 			sourceTree = "<group>";
@@ -366,6 +374,7 @@
 		E0FB6F462374FAAF00241EC7 /* rfios */ = {
 			isa = PBXGroup;
 			children = (
+				E0DD1C7324178C3100CE84D7 /* RemindFeedback.swift */,
 				E02F4581238294CF005F8CA0 /* custom */,
 				1C17BED62383F5C4001FB4C4 /* extension */,
 				1C17BEE5238FB576001FB4C4 /* data */,
@@ -675,6 +684,7 @@
 				1C17BEDE23841741001FB4C4 /* UIViewController+Extension.swift in Sources */,
 				E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */,
 				E062F41A23F3DD0800DD6A01 /* MyPageViewController.swift in Sources */,
+				E0DD1C722417251800CE84D7 /* RxMediaPicker.swift in Sources */,
 				1C1D316A239B952B00F4C864 /* CategoryViewModel.swift in Sources */,
 				E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */,
 				1C1D31622393A85300F4C864 /* NWLog.swift in Sources */,
@@ -707,6 +717,7 @@
 				1C17BEE1238D16F2001FB4C4 /* BaseAPI.swift in Sources */,
 				1C1D3164239509B700F4C864 /* BaseViewModel.swift in Sources */,
 				E02F458E2382BE93005F8CA0 /* FriendListViewModel.swift in Sources */,
+				E0DD1C7424178C3100CE84D7 /* RemindFeedback.swift in Sources */,
 				E0D25C3623750A71001697F9 /* LoginViewController.swift in Sources */,
 				E02F458B2382B7C3005F8CA0 /* FriendCell.swift in Sources */,
 				E05A109023E99883005A5B08 /* Card.swift in Sources */,
@@ -714,6 +725,7 @@
 				E03A08D12386B8500073477D /* LoginViewModel.swift in Sources */,
 				1C1D3172239BA4B000F4C864 /* UIUtil.swift in Sources */,
 				1C1D316E239BA00400F4C864 /* Category.swift in Sources */,
+				E030691A2410F0C100E07D21 /* MyPageViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,7 +832,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -874,7 +886,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -892,7 +904,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CS6F63S589;
 				INFOPLIST_FILE = rfios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -912,7 +924,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CS6F63S589;
 				INFOPLIST_FILE = rfios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

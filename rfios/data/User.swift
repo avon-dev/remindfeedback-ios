@@ -8,11 +8,16 @@
 
 import Foundation
 
-
-
-class User {
+struct User {
+    var portrait = ""
+    var introduction = ""
+    var nickname = ""
+    var email = ""
     
-    static var loginId = 0
-    
-    var id = 0
+    init(_ dic: [String:String]?) {
+        portrait = dic?["portrait"] ?? ""
+        introduction = dic?["introduction"] ?? ""
+        nickname = dic?["nickname"] ?? "NO NICKNAME"
+        email = dic?["email"] ?? "NO EMAIL"
+    }
 }
