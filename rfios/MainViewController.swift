@@ -9,7 +9,6 @@
 import Floaty
 import iOSDropDown
 import Photos
-import RealmSwift
 import RxCocoa
 import RxDataSources
 import RxSwift
@@ -49,7 +48,7 @@ class MainViewController: UIViewController {
     // - MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        NWLog.sLog(contentName: "기본 Realm 위치", contents: Realm.Configuration.defaultConfiguration.fileURL!)
+//        NWLog.sLog(contentName: "기본 Realm 위치", contents: Realm.Configuration.defaultConfiguration.fileURL!)
         setUI()
         setBinding()
     }

@@ -13,7 +13,6 @@ import RxViewController
 import UIKit
 
 import Moya
-import RealmSwift
 import SwiftyJSON
 
 class LoginViewController: UIViewController {

@@ -37,4 +37,8 @@ class UserDefaultsHelper {
         return cookie
     }
     
+    func delCookie() {
+        userDefaults.removeObject(forKey: "cookie")
+    }
+    
 }

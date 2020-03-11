@@ -13,7 +13,6 @@ target 'rfios' do
   pod 'RxViewController'
   pod 'RxGesture'
   pod 'RxAlamofire'
-  pod 'RxRealm'
   pod 'iOSDropDown'
   pod 'Action'
   pod 'Moya/RxSwift'

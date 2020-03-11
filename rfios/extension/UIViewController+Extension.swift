@@ -65,18 +65,26 @@ extension UIViewController {
         }
     }
     
-    func actionSheet(title: String, text: String?) -> Completable {
+    func actionSheet(title: String, text: String?, actions: [(text: String, action: (() -> Void)?)]) -> Completable {
         return Completable.create { [weak self] completable in
             
-            let alertVC = UIAlertController(title: title, message: text, preferredStyle: .actionSheet)
-            alertVC.addAction(UIAlertAction(title: "확인", style: .default, handler: {_ in
+            let alert = UIAlertController(title: title, message: text, preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { _ in
                 completable(.completed)
             }))
             
-            self?.present(alertVC, animated: true, completion: nil)
+            actions.forEach { (action) in
+                alert.addAction(UIAlertAction(title: action.text, style: .default, handler: { _ in
+                    completable(.completed)
+                    if let action = action.action { action() }
+                }))
+            }
+            
+            self?.present(alert, animated: true, completion: nil)
             
             return Disposables.create {
-                alertVC.dismiss(animated: true, completion: nil)
+                alert.dismiss(animated: true, completion: nil)
             }
         }
     }

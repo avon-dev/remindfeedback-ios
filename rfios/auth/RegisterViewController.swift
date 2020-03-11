@@ -14,7 +14,6 @@ import RxViewController
 import UIKit
 
 import Moya
-import RealmSwift
 import SwiftyJSON
 
 // 프로퍼티 초기화 및 생명주기

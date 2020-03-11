@@ -38,6 +38,8 @@ protocol MainViewModelType: BaseViewModelType {
     func reqGetMyFeedbacks()
     /// 피드백 삭제를 api서버에 요청하는 함수
     func reqDelFeedback()
+    /// 로그아웃
+    func logout()
 }
 
 // - MARK: Variable and init
@@ -60,6 +62,12 @@ class MainViewModel: BaseViewModel, MainViewModelType {
 
 // - MARK: Scene
 extension MainViewModel {
+    
+    func onLogin() {
+        let loginViewModel = LoginViewModel()
+        SceneCoordinator.sharedInstance.present(scene: .loginView(loginViewModel))
+    }
+    
     func onCategory() {
         let categoryViewModel = CategoryViewModel()
         SceneCoordinator.sharedInstance.push(scene: .categoryView(categoryViewModel))
@@ -100,6 +108,11 @@ extension MainViewModel {
         self.feedbackList.remove(at: index)
         self.feedbackListOb.accept(self.feedbackList)
     }
+    
+    func logout() {
+        UserDefaultsHelper.sharedInstantce.delCookie()
+        reqLogout()
+    }
 }
 
 // MARK: Network
@@ -111,7 +124,6 @@ extension MainViewModel {
                 guard let dataList = $0.dataDic else { return }
                 
 //                self?.feedbackList.removeAll()
-                
                 
                 for data in dataList {
                     let feedback = Feedback()
@@ -140,6 +152,16 @@ extension MainViewModel {
             .subscribe(onNext: {
                 NWLog.sLog(contentName: "피드백 삭제 요청 결과", contents: $0.msg)
             })
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
     }
+    
+    func reqLogout() {
+        APIHelper.sharedInstance.rxPullResponse(.logout)
+            .subscribe(onNext: { [weak self] in
+                NWLog.sLog(contentName: "로그아웃 결과", contents: $0.msg)
+                self?.onLogin()
+            })
+            .disposed(by: disposeBag)
+    }
+    
 }

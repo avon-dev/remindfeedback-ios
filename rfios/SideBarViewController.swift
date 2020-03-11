@@ -28,20 +28,18 @@ class SideBarViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-
-//    @IBOutlet weak var completedBtn: UIButton!
+    deinit {
+        self.disposeBag = DisposeBag()
+    }
     
     @IBOutlet weak var categoryBtn: UIButton!
     @IBOutlet weak var mypageBtn: UIButton!
     @IBOutlet weak var friendListBtn: UIButton!
+    @IBOutlet weak var logoutBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBinding()
-    }
-    
-    deinit {
-        self.disposeBag = DisposeBag()
     }
         
     @IBAction func showMainView(_ sender: Any) {
@@ -51,13 +49,17 @@ class SideBarViewController: UIViewController {
 
 }
 
-// - MARK: Binding
+// MARK: Binding
 extension SideBarViewController {
     
         
     func setBinding() {
         
-        // Scene
+        // MARK: Scene
+        
+        // MARK: Input
+        
+        // 카테고리 버튼
         categoryBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.sideMenuController?.hideMenu()
@@ -65,6 +67,7 @@ extension SideBarViewController {
             })
             .disposed(by: self.disposeBag)
         
+        // 마이페이지 버튼
         mypageBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.sideMenuController?.hideMenu()
@@ -72,7 +75,7 @@ extension SideBarViewController {
             })
             .disposed(by: self.disposeBag)
         
-        
+        // 친구리스트 버튼
         friendListBtn.rx.tapGesture()
             .when(.recognized)
             .subscribe(onNext: { _ in
@@ -87,8 +90,6 @@ extension SideBarViewController {
             
             let viewController = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "friendListVC")
             
-//                viewController.hero.modalAnimationType = .slide(direction: .left)
-//                self.hero.replaceViewController(with: viewController)
             
             viewController.modalPresentationStyle = .fullScreen
             self.present(viewController, animated: false, completion: nil)
@@ -96,6 +97,14 @@ extension SideBarViewController {
             
             })
             .disposed(by: disposeBag)
+        
+        // 로그아웃 버튼
+        logoutBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.sideMenuController?.hideMenu()
+                self?.viewModel.logout()
+            })
+            
             
     }
     

@@ -75,23 +75,25 @@ extension MyPageViewController {
             })
             .disposed(by: self.disposeBag)
         
-        //
+        // MARK: Set RxMediaPicker
         picker = RxMediaPicker(delegate: self)
         
         // MARK: Output
+        // 프로필 변경 버튼
         portraitBtn.rx.tap
-            .subscribe(onNext: { [weak self] in
-//                self?.viewModel.reqModPortrait()
-                self?.pickPhoto()
+            .subscribe(onNext: { [weak self] _ in
+                self?.bindActionSheet()
             })
             .disposed(by: disposeBag)
         
+        // 닉네임 변경 버튼
         nicknameBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.editNickName()
             })
             .disposed(by: disposeBag)
         
+        // 소개글 변경 버튼
         introBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.editIntro()
@@ -99,6 +101,7 @@ extension MyPageViewController {
             .disposed(by: disposeBag)
         
         // MARK: Input
+        // 로그인한 유저 정보 옵저버블
         viewModel.userOb
             .asObservable()
             .subscribe(onNext: { [weak self] in
@@ -146,6 +149,28 @@ extension MyPageViewController: RxMediaPickerDelegate {
             }, onDisposed: {
                 print("Disposed")
             })
+            .disposed(by: disposeBag)
+    }
+    
+    func pickCamera() {
+        picker.takePhoto(editable: true)
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] (image, editedImage) in
+                self?.portraitImg.image = editedImage ?? image
+                self?.viewModel.reqModPortrait(editedImage ?? image)
+            }, onError: { error in
+                print("Picker photo error: \(error)")
+            }, onCompleted: {
+                print("Completed")
+            }, onDisposed: {
+                print("Disposed")
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func bindActionSheet() {
+        actionSheet(title: "프로필 이미지 변경", text: "프로필 이미지를 변경합니다.", actions: [("사진 앱에서 이미지 선택", pickPhoto), ("카메라 앱에서 이미지 선택", pickCamera)])
+            .subscribe()
             .disposed(by: disposeBag)
     }
 }
