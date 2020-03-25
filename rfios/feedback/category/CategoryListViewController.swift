@@ -38,46 +38,53 @@ class CategoryListViewController: UIViewController {
         setUI()
         setBinding()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        updateUI()
+    }
    
 }
 
+// MARK: UI
 extension CategoryListViewController {
     func setUI() {
-        // 네비게이션 바 타이틀 설정
-        self.navigationItem.title = "피드백 주제" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
-        
-        // 네비게이션 바 색상 지정
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        setNavUI()
+    }
+    
+    func setNavUI() {
+        navigationController?.navigationBar.topItem?.title = ""
         
         // 네비게이션 바 우측버튼
-        if self.viewModel.isSelection {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: nil)
+        if viewModel.isSelection {
+            navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: nil)
         } else {
-            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
+            navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
         }
-        
+    }
+    
+    func updateUI() {
+        self.navigationItem.title = "피드백 주제 설정"
     }
 }
 
+// MARK: Binding
 extension CategoryListViewController {
     
     func setBinding() {
         
-        // Scene
+        // MARK: Scene
         self.rx.isVisible
             .subscribe(onNext: { [weak self] in
                 if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
             })
             .disposed(by: self.disposeBag)
         
-        // Output
+        // MARK: Output
         self.viewModel.categoryListOb
             .bind(to:
-            self.tableView.rx.items(cellIdentifier: CategoryCell.identifier, cellType: CategoryCell.self)) {
+            self.tableView.rx.items(cellIdentifier: CategoryCell.identifier, cellType: CategoryCell.self)) { index, item, cell in
                 
-                index, item, cell in
-                
-                print("카테고리 테이블 뷰 인덱스", index)
                 cell.onData.onNext(item)
                 cell.index = index
                 cell.viewModel = self.viewModel
@@ -87,7 +94,7 @@ extension CategoryListViewController {
             }
             .disposed(by: disposeBag)
         
-        // Input
+        // MARK: Input
         
         // 화면 상단의 추가버튼을 눌렀을 때
         self.navigationItem.rightBarButtonItem?.rx.tap
