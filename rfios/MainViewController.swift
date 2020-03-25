@@ -141,10 +141,9 @@ extension MainViewController {
         
         // 테이블뷰 설정
         viewModel.feedbackListOb
-            .bind(to: tableView.rx.items(cellIdentifier: FeedbackCell.identifier, cellType: FeedbackCell.self)) {
+            .bind(to: tableView.rx.items(cellIdentifier: FeedbackCell.identifier, cellType: FeedbackCell.self)) { index, item, cell in
 
-                index, item, cell in
-
+                cell.colorView.backgroundColor = UIUtil.hexStringToUIColor(item.category.color)
                 cell.feedbackLabel.text = item.title
 
                 let dateFormatter = DateFormatter()
