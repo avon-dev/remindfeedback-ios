@@ -10,7 +10,6 @@ import Foundation
 
 class Feedback {
     
-    var seq = -1
     var id = -1
     var uuid = ""
     var auid = ""
@@ -22,7 +21,6 @@ class Feedback {
     
     func toDictionary() -> [String: Any?] {
         var dic: [String: Any?] = [:]
-        dic["seq"] = self.seq
         dic["id"] = self.id
 //        dic["user_uid"] = self.uuid
 //        dic["adviser"] = self.auid
