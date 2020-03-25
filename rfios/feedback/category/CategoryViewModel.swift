@@ -60,7 +60,7 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
         super.init()
         
         Observable.combineLatest(titleInput, colorInput, resultSelector: {
-                let _category = self.category
+                var _category = self.category
                 _category.title = $0
                 _category.color = $1
                 return _category
@@ -138,7 +138,7 @@ extension CategoryViewModel {
                 guard let dataList = $0.dataDic else { return }
                 
                 for data in dataList {
-                    let category = Category()
+                    var category = Category()
                     category.id = data["category_id"] as? Int ?? -1
                     category.title = data["category_title"] as? String ?? ""
                     category.color = data["category_color"] as? String ?? ""
