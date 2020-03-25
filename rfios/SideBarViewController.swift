@@ -13,6 +13,8 @@ import RxSwift
 import RxViewController
 import UIKit
 
+import SideMenuSwift
+
 class SideBarViewController: UIViewController {
     
     var viewModel: MainViewModelType
@@ -76,25 +78,17 @@ extension SideBarViewController {
             .disposed(by: self.disposeBag)
         
         // 친구리스트 버튼
-        friendListBtn.rx.tapGesture()
-            .when(.recognized)
-            .subscribe(onNext: { _ in
-                
-//                let transition = CATransition()
-//                transition.duration = 0.2
-//                transition.type = CATransitionType.push
-//                transition.subtype = CATransitionSubtype.fromRight
-//                self.view.window!.layer.add(transition, forKey: kCATransition)
-                
-            self.sideMenuController?.hideMenu()
-            
-            let viewController = UIStoryboard(name: "User", bundle: nil).instantiateViewController(withIdentifier: "friendListVC")
-            
-            
-            viewController.modalPresentationStyle = .fullScreen
-            self.present(viewController, animated: false, completion: nil)
-            
-            
+//        friendListBtn.rx.tapGesture()
+//            .when(.recognized)
+//            .subscribe(onNext: { [weak self] in
+//                self?.sideMenuController?.hideMenu()
+//                self?.viewModel.onFriendList()
+//            })
+//            .disposed(by: disposeBag)
+        friendListBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.sideMenuController?.hideMenu()
+                self?.viewModel.onFriendList()
             })
             .disposed(by: disposeBag)
         
@@ -104,6 +98,7 @@ extension SideBarViewController {
                 self?.sideMenuController?.hideMenu()
                 self?.viewModel.logout()
             })
+            .disposed(by: disposeBag)
             
             
     }

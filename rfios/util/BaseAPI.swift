@@ -45,6 +45,11 @@ enum BaseAPI {
     case modNickName(_ params: [String:String])
     case modIntro(_ params: [String:String])
     case modPortrait(image: UIImage)
+    
+    // Friend
+    case getFriends
+    case findFriend(_ params: [String:String])
+    case addFriend(_ params: [String:Any?]?)
 }
 
 extension BaseAPI: TargetType {
@@ -106,6 +111,12 @@ extension BaseAPI: TargetType {
             return "/mypage/introduction"
         case .modPortrait:
             return "/mypage/portrait"
+            
+            // Friend
+        case .getFriends, .addFriend:
+            return "/friends"
+        case .findFriend:
+            return "/friends/search"
         
         }
     }
@@ -114,11 +125,11 @@ extension BaseAPI: TargetType {
         
         switch self {
         case .register, .login, .email, .addCategory,
-             .addFeedback, .addTextCard:
+             .addFeedback, .addTextCard, .addFriend, .findFriend:
             return .post
         case .me, .logout, .getCategories, .getCategory,
              .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks,
-             .getCards, .getMyPage:
+             .getCards, .getMyPage, .getFriends:
             return .get
         case .unregister, .delCategory, .delFeedback, .delCard:
             return .delete
@@ -144,13 +155,13 @@ extension BaseAPI: TargetType {
             return .requestPlain
         
         // category
-        case .getCategories, .getCategory(_), .delCategory(_):
+        case .getCategories, .getCategory, .delCategory:
             return .requestPlain
         case .addCategory(let params), .modCategory(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
             
         // feedback
-        case .getFeedbacks(_), .getMyFeedbacks(_), .getYourFeedbacks(_), .delFeedback(_):
+        case .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks, .delFeedback:
             return .requestPlain
         case .addFeedback(let params), .modFeedback(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
@@ -171,7 +182,14 @@ extension BaseAPI: TargetType {
             let formData = MultipartFormData(provider: .data(imageData!), name: "portrait", fileName: "file.jpg", mimeType: "image/jpeg")
             let updatefile = MultipartFormData(provider: .data("true".data(using: .utf8)!), name: "updatefile")
             return .uploadMultipart([formData, updatefile])
-
+            
+        // friend
+        case .getFriends:
+            return .requestPlain
+        case .addFriend(let params):
+            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+        case .findFriend(let params):
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
         }
         

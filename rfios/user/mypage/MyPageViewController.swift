@@ -58,6 +58,7 @@ extension MyPageViewController {
     
     func setNavUI() {
         self.navigationController?.navigationBar.topItem?.title = ""
+        navigationItem.title = "마이페이지"
     }
 }
 
@@ -70,6 +71,7 @@ extension MyPageViewController {
             .subscribe(onNext: { [weak self] in
                 if $0 {
                     self?.viewModel.setScene(self ?? UIViewController())
+                    SceneCoordinator.sharedInstance.show()
                     self?.viewModel.reqGetMyPage()
                 }
             })
@@ -89,6 +91,7 @@ extension MyPageViewController {
         // 닉네임 변경 버튼
         nicknameBtn.rx.tap
             .subscribe(onNext: { [weak self] in
+                SceneCoordinator.sharedInstance.show()
                 self?.editNickName()
             })
             .disposed(by: disposeBag)
@@ -96,6 +99,7 @@ extension MyPageViewController {
         // 소개글 변경 버튼
         introBtn.rx.tap
             .subscribe(onNext: { [weak self] in
+                SceneCoordinator.sharedInstance.show()
                 self?.editIntro()
             })
             .disposed(by: disposeBag)

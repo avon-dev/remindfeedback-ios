@@ -146,23 +146,23 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zJ1-oM-MZK" userLabel="headerView">
-                                <rect key="frame" x="114" y="44" width="300" height="204.5"/>
+                                <rect key="frame" x="194" y="44" width="220" height="204.5"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-white" translatesAutoresizingMaskIntoConstraints="NO" id="Auo-g8-maY" userLabel="userPic">
-                                        <rect key="frame" x="99" y="20" width="102" height="102.5"/>
+                                        <rect key="frame" x="59" y="20" width="102" height="102.5"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Auo-g8-maY" secondAttribute="height" multiplier="1:1" id="gyo-CR-OJ4"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4월 라이언" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sfc-hF-s4F" userLabel="userName">
-                                        <rect key="frame" x="111" y="142" width="78.5" height="21.5"/>
+                                        <rect key="frame" x="71" y="142" width="78.5" height="21.5"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="avon.commu@gmail.com" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ThR-K4-WbI" userLabel="userEmail">
-                                        <rect key="frame" x="45" y="167" width="210" height="17"/>
+                                        <rect key="frame" x="33" y="167" width="154" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -177,23 +177,23 @@
                                     <constraint firstItem="ThR-K4-WbI" firstAttribute="bottom" secondItem="zJ1-oM-MZK" secondAttribute="bottom" multiplier="0.9" id="W4D-ka-zgo"/>
                                     <constraint firstItem="sfc-hF-s4F" firstAttribute="bottom" secondItem="zJ1-oM-MZK" secondAttribute="bottom" multiplier="0.8" id="aYe-Gi-V0S"/>
                                     <constraint firstItem="Auo-g8-maY" firstAttribute="height" secondItem="zJ1-oM-MZK" secondAttribute="height" multiplier="0.5" id="npW-Bd-JZd"/>
-                                    <constraint firstAttribute="width" constant="300" id="sTr-Fb-YCT"/>
+                                    <constraint firstAttribute="width" constant="220" id="sTr-Fb-YCT"/>
                                     <constraint firstItem="sfc-hF-s4F" firstAttribute="centerX" secondItem="zJ1-oM-MZK" secondAttribute="centerX" id="sxK-7w-erZ"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feedback" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HZI-hz-geD" userLabel="feedbackSection">
-                                <rect key="frame" x="134" y="248.5" width="280" height="41"/>
+                                <rect key="frame" x="214" y="248.5" width="200" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="KJL-nf-pby"/>
+                                    <constraint firstAttribute="width" constant="200" id="KJL-nf-pby"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JSk-cE-36b">
-                                <rect key="frame" x="134" y="289.5" width="280" height="41"/>
+                                <rect key="frame" x="214" y="289.5" width="200" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="Gjg-eS-gfM"/>
+                                    <constraint firstAttribute="width" constant="200" id="Gjg-eS-gfM"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -205,9 +205,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afq-s3-1h3">
-                                <rect key="frame" x="134" y="330.5" width="280" height="40.5"/>
+                                <rect key="frame" x="214" y="330.5" width="200" height="40.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="CVh-Hu-7aZ"/>
+                                    <constraint firstAttribute="width" constant="200" id="CVh-Hu-7aZ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -216,9 +216,9 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gul-Xe-AE9">
-                                <rect key="frame" x="134" y="371" width="280" height="41"/>
+                                <rect key="frame" x="214" y="371" width="200" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="5sY-Rw-fOo"/>
+                                    <constraint firstAttribute="width" constant="200" id="5sY-Rw-fOo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -227,18 +227,18 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQ2-Lq-woX" userLabel="notiSection">
-                                <rect key="frame" x="134" y="412" width="280" height="41"/>
+                                <rect key="frame" x="214" y="412" width="200" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="p46-PF-mSs"/>
+                                    <constraint firstAttribute="width" constant="200" id="p46-PF-mSs"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gz-Cs-xzt">
-                                <rect key="frame" x="134" y="453" width="280" height="41"/>
+                                <rect key="frame" x="214" y="453" width="200" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="GNF-FQ-Z5B"/>
+                                    <constraint firstAttribute="width" constant="200" id="GNF-FQ-Z5B"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -247,18 +247,18 @@
                                 </state>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="General" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vGZ-jT-taA" userLabel="gnlSection">
-                                <rect key="frame" x="134" y="494" width="280" height="41"/>
+                                <rect key="frame" x="214" y="494" width="200" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="zU2-5h-Etw"/>
+                                    <constraint firstAttribute="width" constant="200" id="zU2-5h-Etw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ccW-6d-smo">
-                                <rect key="frame" x="134" y="535" width="280" height="40.5"/>
+                                <rect key="frame" x="214" y="535" width="200" height="40.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="5p7-cH-Q8N"/>
+                                    <constraint firstAttribute="width" constant="200" id="5p7-cH-Q8N"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -267,9 +267,9 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GfZ-kp-uEM">
-                                <rect key="frame" x="134" y="575.5" width="280" height="41.5"/>
+                                <rect key="frame" x="214" y="575.5" width="200" height="41.5"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="DBZ-aB-gdo"/>
+                                    <constraint firstAttribute="width" constant="200" id="DBZ-aB-gdo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -278,9 +278,9 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mh0-04-8z5">
-                                <rect key="frame" x="134" y="617" width="280" height="41"/>
+                                <rect key="frame" x="214" y="617" width="200" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="zuo-9e-QDP"/>
+                                    <constraint firstAttribute="width" constant="200" id="zuo-9e-QDP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -289,9 +289,9 @@
                                 </state>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="p6G-Js-I9R">
-                                <rect key="frame" x="134" y="658" width="280" height="41"/>
+                                <rect key="frame" x="214" y="658" width="200" height="41"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="280" id="zeP-di-Q5C"/>
+                                    <constraint firstAttribute="width" constant="200" id="zeP-di-Q5C"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="tintColor" red="0.074509803920000006" green="0.53725490200000003" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

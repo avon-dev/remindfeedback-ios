@@ -37,8 +37,25 @@ class UserDefaultsHelper {
         return cookie
     }
     
+    /// 쿠키 삭제함수
     func delCookie() {
         userDefaults.removeObject(forKey: "cookie")
+    }
+    
+    /// uuid 저장함수
+    func setUUID(_ uuid: String) {
+        userDefaults.setValue("uuid", forKey: uuid)
+    }
+    
+    /// uuid 호출함수
+    func getUUID() -> String {
+        guard let uuid = userDefaults.string(forKey: "uuid") else { return "" }
+        return uuid
+    }
+    
+    /// uuid 삭제함수
+    func delUUID() {
+        userDefaults.removeObject(forKey: "uuid")
     }
     
 }

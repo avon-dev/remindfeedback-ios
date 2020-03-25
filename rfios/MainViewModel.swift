@@ -28,6 +28,8 @@ protocol MainViewModelType: BaseViewModelType {
     func onBoard(_ selectedIndex: Int)
     ///
     func onMyPage()
+    ///
+    func onFriendList()
     
     // CRUD
     /// 피드백을 삭제하는 함수
@@ -97,6 +99,11 @@ extension MainViewModel {
         let myPageViewModel = MyPageViewModel()
         SceneCoordinator.sharedInstance.push(scene: .myPageView(myPageViewModel))
     }
+    
+    func onFriendList() {
+        let friendListViewModel = FriendViewModel()
+        SceneCoordinator.sharedInstance.push(scene: .friendListView(friendListViewModel))
+    }
 }
 
 // MARK: CRUD
@@ -121,9 +128,7 @@ extension MainViewModel {
         APIHelper.sharedInstance.rxPullResponse(.getMyFeedbacks(lastID: String(lastFID)))
             .subscribe(onNext: { [weak self] in
                 
-                guard let dataList = $0.dataDic else { return }
-                
-//                self?.feedbackList.removeAll()
+                guard $0.isSuccess, let dataList = $0.dataDic else { return }
                 
                 for data in dataList {
                     let feedback = Feedback()
@@ -159,6 +164,7 @@ extension MainViewModel {
         APIHelper.sharedInstance.rxPullResponse(.logout)
             .subscribe(onNext: { [weak self] in
                 NWLog.sLog(contentName: "로그아웃 결과", contents: $0.msg)
+                self?.feedbackList.removeAll()
                 self?.onLogin()
             })
             .disposed(by: disposeBag)

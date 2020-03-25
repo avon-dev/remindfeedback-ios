@@ -29,6 +29,13 @@ enum Scene {
     
     // Mypage
     case myPageView(MyPageViewModel)
+    
+    // Friend
+    case friendListView(FriendViewModel)
+    case addFriendView(FriendViewModel)
+    case requestFriendView(FriendViewModel)
+    case blockFriendView(FriendViewModel)
+    
 }
 
 extension Scene {
@@ -77,7 +84,7 @@ extension Scene {
             
         // MARK: Feedback
             
-            // Edit Feedback
+            /// Edit Feedback
         case .editFeedbackView(let viewModel):
             let viewController = feedbackStoryboard
                 .instantiateViewController(withIdentifier: "editFeedbackVC")
@@ -115,9 +122,29 @@ extension Scene {
             let viewController = userStoryboard.instantiateViewController(withIdentifier: "myPageVC") as! MyPageViewController
             viewController.viewModel = viewModel
             return viewController
+            
+        // MARK: Friend
+        case .friendListView(let viewModel):
+            let viewController = userStoryboard.instantiateViewController(withIdentifier: "friendListVC") as! FriendListViewController
+            viewController.viewModel = viewModel
+            return viewController
+            
+        case .addFriendView(let viewModel):
+            let viewController = userStoryboard.instantiateViewController(withIdentifier: "addFriendVC") as! AddFriendViewController
+            viewController.viewModel = viewModel
+            return viewController
+            
+        case .requestFriendView(let viewModel):
+            let viewController = userStoryboard.instantiateViewController(withIdentifier: "requestFriendVC") as! RequestFriendViewController
+            viewController.viewModel = viewModel
+            return viewController
+            
+        case .blockFriendView(let viewModel):
+            let viewController = userStoryboard.instantiateViewController(withIdentifier: "blockFriendVC") as! BlockFriendViewController
+            viewController.viewModel = viewModel
+            return viewController
 
         }
-        
         
         
     }

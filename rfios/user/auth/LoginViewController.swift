@@ -74,7 +74,10 @@ extension LoginViewController {
             .flatMap { self.viewModel.reqLogin() }
             .subscribe(onNext: {
                 print("로그인", $0.0, $0.2 ?? "")
-                if $0.0 { self.dismiss(animated: true, completion: nil) }
+                if $0.0 {
+                    self.dismiss(animated: true, completion: nil)
+                    UserDefaultsHelper.sharedInstantce.setUUID($0.2?["user_uid"] as? String ?? "")
+                }
             })
             .disposed(by: self.disposeBag)
         
