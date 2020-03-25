@@ -105,9 +105,21 @@ class APIHelper {
                 } catch {
                     
                 }
+                
+                print(try String(data: $0.data, encoding: String.Encoding.utf8))
                 print("token", token)
                 return token
             }
+    }
+    
+    func rxUploadImage(_ task: BaseAPI) -> Observable<String> {
+        return provider.rx.request(task)
+            .asObservable()
+            .do(onNext: {
+                print("upload", $0)
+            })
+            .map { $0.description }
+            
     }
     
     func pushRequest(_ task: BaseAPI) {
@@ -116,7 +128,7 @@ class APIHelper {
             
             print("요청 url", result.value?.request?.url)
             print("요청 method", result.value?.request?.httpMethod)
-            print("요청 body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
+//            print("요청 body", NSString(data: (result.value?.request?.httpBody)!, encoding:  String.Encoding.utf8.rawValue))
             
             switch result {
             case let .success(moyaResponse):

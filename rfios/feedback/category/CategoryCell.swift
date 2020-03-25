@@ -29,7 +29,6 @@ class CategoryCell: UITableViewCell {
         data.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.titleLabel.text = $0.title
-                NWLog.sLog(contentName: "헥스스트링 디버그", contents: $0.color)
                 if $0.color == "" {
                     self?.colorView.backgroundColor = UIUtil.hexStringToUIColor("#000000")
                 } else {
@@ -68,7 +67,6 @@ class CategoryCell: UITableViewCell {
     func setBindings() {
         self.modifyBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                print("on주제 수정")
                 self?.viewModel?.onModify(self?.index ?? -1)
             })
             .disposed(by: self.disposeBag)

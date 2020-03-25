@@ -1,18 +1,21 @@
 //
-//  rfiosTests.swift
+//  NetworkTests.swift
 //  rfiosTests
 //
-//  Created by Taeheon Woo on 2019/11/08.
-//  Copyright © 2019 avon. All rights reserved.
+//  Created by Taeheon Woo on 2020/03/11.
+//  Copyright © 2020 avon. All rights reserved.
 //
 
-import XCTest
-//@testable import rfios 
+import Foundation
+import XCTest 
 
-class rfiosTests: XCTestCase {
+class NetworkTests: XCTestCase {
+    
+    var cookie: HTTPCookie?
 
     override func setUp() {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        cookie = UserDefaultsHelper.sharedInstantce.getCookie()
     }
 
     override func tearDown() {
@@ -20,9 +23,8 @@ class rfiosTests: XCTestCase {
     }
 
     func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        
+        print("cookie", cookie)
+        APIHelper.sharedInstance.pushRequest(.findFriend(["email":"test1@naver.com"]))
     }
 
     func testPerformanceExample() {

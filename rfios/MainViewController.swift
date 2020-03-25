@@ -8,7 +8,7 @@
 
 import Floaty
 import iOSDropDown
-import RealmSwift
+import Photos
 import RxCocoa
 import RxDataSources
 import RxSwift
@@ -48,17 +48,22 @@ class MainViewController: UIViewController {
     // - MARK: Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        NWLog.sLog(contentName: "기본 Realm 위치", contents: Realm.Configuration.defaultConfiguration.fileURL!)
+//        NWLog.sLog(contentName: "기본 Realm 위치", contents: Realm.Configuration.defaultConfiguration.fileURL!)
+        
         setUI()
         setBinding()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
+        navigationItem.title = "RemindFeedback"
         if !isLogin { self.checkLogin() }
     }
     
     func setUI() {
+        self.navigationController?.navigationBar.tintColor = .white
+        SideMenuController.preferences.basic.menuWidth = 250
+        
         // 드롭다운 설정
         // The list of array to display. Can be changed dynamically
         dropDown.optionArray = ["Option 1", "Option 2", "Option 3"]

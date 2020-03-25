@@ -7,22 +7,16 @@
 //
 
 import Foundation
-import RealmSwift
-import RxDataSources
 
-class Card: Object {
+class Card {
     
-    @objc dynamic var seq = -1
-    @objc dynamic var id = -1
-    @objc dynamic var title = ""
-    @objc dynamic var date = Date()
-    @objc dynamic var content = ""
-    @objc dynamic var feedbackID = -1
-    @objc dynamic var category = -1
-    
-    override class func primaryKey() -> String? {
-      return "seq"
-    }
+    var seq = -1
+    var id = -1
+    var title = ""
+    var date = Date()
+    var content = ""
+    var feedbackID = -1
+    var category = -1
     
     
     func toDictionary() -> [String: Any?] {

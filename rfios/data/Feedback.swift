@@ -7,23 +7,17 @@
 //
 
 import Foundation
-import RealmSwift
-import RxDataSources
 
-class Feedback: Object {
+class Feedback {
     
-    @objc dynamic var seq = -1
-    @objc dynamic var id = -1
-    @objc dynamic var uuid = ""
-    @objc dynamic var auid = ""
-    @objc dynamic var title = ""
-    @objc dynamic var category = 0
-    @objc dynamic var categoryColor = "#000000"
-    @objc dynamic var date = Date()
-    
-    override class func primaryKey() -> String? {
-      return "seq"
-    }
+    var seq = -1
+    var id = -1
+    var uuid = ""
+    var auid = ""
+    var title = ""
+    var category = 0
+    var categoryColor = "#000000"
+    var date = Date()
     
     
     func toDictionary() -> [String: Any?] {
@@ -41,25 +35,5 @@ class Feedback: Object {
         dic["write_date"] = dateFormatter.string(from: self.date)
         
         return dic
-    }
-}
-
-extension Feedback: IdentifiableType {
-  var identity: Int {
-    return self.isInvalidated ? 0 : id
-  }
-}
-
-struct SectionOfFeedback {
-    var header: String
-    var items: [Item]
-}
-
-extension SectionOfFeedback: SectionModelType {
-    typealias Item = Feedback
-    
-    init(original: Self, items: [Self.Item]) {
-        self = original
-        self.items = items
     }
 }

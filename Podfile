@@ -10,20 +10,17 @@ target 'rfios' do
   pod 'SideMenuSwift'
   pod 'RxSwift'
   pod 'RxCocoa'
-  pod 'RxRelay'
-  pod 'RxOptional'
   pod 'RxViewController'
   pod 'RxGesture'
   pod 'RxAlamofire'
-  pod 'RxRealm'
-  # pod 'Hero'
   pod 'iOSDropDown'
   pod 'Action'
-  pod 'RxFlow'
   pod 'Moya/RxSwift'
   pod 'SwiftyJSON'
   pod 'Floaty', '~> 4.2.0'
   pod 'RxDataSources'
+  pod 'SCLAlertView'
+  pod 'RxKingfisher'
 
   target 'rfiosTests' do
     inherit! :search_paths

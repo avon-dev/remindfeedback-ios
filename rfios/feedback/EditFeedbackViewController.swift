@@ -72,6 +72,8 @@ extension EditFeedbackViewController {
     }
     
     func setNavUI() {
+        
+        self.navigationController?.navigationBar.topItem?.title = ""
         // 네비게이션 바 타이틀 설정
         self.navigationItem.title = "새로운 피드백" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
         // 네비게이션 바 색상 지정

@@ -8,7 +8,6 @@
 
 import Foundation
 import RxCocoa
-import RxRealm
 import RxSwift
 import SwiftyJSON
 

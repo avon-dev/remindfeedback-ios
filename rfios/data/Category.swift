@@ -7,19 +7,13 @@
 //
 
 import Foundation
-import RealmSwift
-import RxDataSources
 
-class Category: Object {
+class Category {
     
-    @objc dynamic var seq = -1
-    @objc dynamic var id = -1
-    @objc dynamic var title = ""
-    @objc dynamic var color = "#000000"
-    
-    override static func primaryKey() -> String? {
-        return "seq"
-    }
+    var seq = -1
+    var id = -1
+    var title = ""
+    var color = "#000000"
     
     func toDictionary() -> [String: Any?] {
         var dic: [String: Any?] = [:]
@@ -30,10 +24,4 @@ class Category: Object {
         
         return dic
     }
-}
-
-extension Category: IdentifiableType {
-  var identity: Int {
-    return self.isInvalidated ? 0 : id
-  }
 }
