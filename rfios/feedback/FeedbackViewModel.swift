@@ -52,8 +52,10 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
         super.init()
         
         Observable.combineLatest(self.categoryInput, self.titleInput, self.dateInput, resultSelector: {
-            let _feedback = self.feedback
-            _feedback.category = $0
+            var _feedback = self.feedback
+            var _category = Category()
+            _category.id = $0 
+            _feedback.category = _category
             _feedback.title = $1
             _feedback.date = $2
             return _feedback
