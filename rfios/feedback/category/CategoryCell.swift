@@ -65,11 +65,14 @@ class CategoryCell: UITableViewCell {
     }
     
     func setBindings() {
-        self.modifyBtn.rx.tap
+        
+//        if index > 0 {
+            modifyBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.viewModel?.onModify(self?.index ?? -1)
             })
             .disposed(by: self.disposeBag)
+//        }
     }
 
 }

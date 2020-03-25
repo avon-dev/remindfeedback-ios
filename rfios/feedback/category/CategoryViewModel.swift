@@ -81,7 +81,7 @@ class CategoryViewModel: BaseViewModel, CategoryViewModelType {
     
 }
 
-// -MARK: Scene
+// MARK: Scene
 extension CategoryViewModel {
     func onAdd() {
         self.selectedIndex = nil
@@ -95,18 +95,16 @@ extension CategoryViewModel {
     }
 }
 
-// -MARK: CRUD
+// MARK: CRUD
 extension CategoryViewModel {
     
     func addCategory() {
-        print("주제 추가")
         self.reqAddCategory()
         self.categoryList.append(self.category)
         self.categoryListOb.accept(self.categoryList)
     }
     
     func modCategory() {
-        NWLog.dLog(contentName: "주제 수정", contents: nil)
         self.reqModCategory()
         if let index = selectedIndex {
             self.categoryList[index] = self.category
@@ -116,7 +114,6 @@ extension CategoryViewModel {
     }
     
     func delCategory(_ index: Int) {
-        print("주제 삭제")
         self.category = self.categoryList[index]
         reqDelCategory()
         self.categoryList.remove(at: index)
@@ -124,7 +121,6 @@ extension CategoryViewModel {
     }
     
     func selCategory() {
-        print("주제 선택 완료", self.category.title)
         self.category = self.categoryList[selectedIndex ?? 0]
         self.feedbackViewModel?.categoryOb.accept(self.category)
     }
@@ -136,7 +132,6 @@ extension CategoryViewModel {
     
     // 카테고리 리스트 불러오기
     func reqGetCategories() {
-        print("카테고리 리스트 서버에 요청")
         APIHelper.sharedInstance.rxPullResponse(.getCategories)
             .subscribe(onNext: { [weak self] in
                 
@@ -152,7 +147,6 @@ extension CategoryViewModel {
                 }
                 
                 self?.categoryListOb.accept(self?.categoryList ?? [])
-//                RealmHelper.sharedInstantce.overwrite(Category.self, objs: self?.categoryList ?? [])
                 
             })
             .disposed(by: self.disposeBag)
@@ -161,7 +155,6 @@ extension CategoryViewModel {
     
     // 카테고리 추가 요청
     func reqAddCategory() {
-        print("카테고리 추가 서버에 요청")
         APIHelper.sharedInstance.rxPullResponse(.addCategory(self.category.toDictionary()))
             .subscribe(onNext: {
                 print($0.msg)
@@ -171,7 +164,6 @@ extension CategoryViewModel {
     
     // 카테고리 수정 요청
     func reqModCategory() {
-        NWLog.dLog(contentName: "카테고리 수정 서버에 수정", contents: nil)
 //        APIHelper.sharedInstance.rxPullResponse(.modCategory(self.category.toDistionary(), id: String(self.category.id)))
 //            .subscribe(onNext: {
 //                print($0.msg)

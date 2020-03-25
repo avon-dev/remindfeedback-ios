@@ -59,13 +59,20 @@ class EditCategoryViewController: UIViewController {
 //        UIApplication.statusBarBackgroundColor = .blue
         setUI()
         setBinding()
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        updateUI()
     }
 
 }
 
+// MARK: UI
 extension EditCategoryViewController {
     func setUI() {
+        setNavUI()
+        
         colorHexStringList = ["#E51C23", "#FF5722", "#FFFF00", "#259B24", "#18FFFF", "#3F51B5", "#9C27B0", "#FF4081", "#964B00", "#000000"]
         colorBtnList = [self.colorBtn11, self.colorBtn12, self.colorBtn13, self.colorBtn14, self.colorBtn15, self.colorBtn21, self.colorBtn22, self.colorBtn23, self.colorBtn24, self.colorBtn25]
         
@@ -75,23 +82,32 @@ extension EditCategoryViewController {
         }
         
     }
+    
+    func setNavUI() {
+        navigationController?.navigationBar.topItem?.title = ""
+        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: nil)
+    }
+    
+    func updateUI() {
+        self.navigationItem.title = "피드백 주제 설정"
+    }
 }
 
-
+// MARK: Binding
 extension EditCategoryViewController {
     
     func setBinding() {
         
-        // Scene
+        // MARK: Scene
         self.rx.isVisible
             .subscribe(onNext: { [weak self] in
                 if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
             })
             .disposed(by: self.disposeBag)
         
-        // Output
-        if let index = self.viewModel.selectedIndex {
-            self.viewModel.categoryListOb
+        // MARK: Input
+        if let index = viewModel.selectedIndex {
+            viewModel.categoryListOb
                 .flatMap{ Observable.of($0[index]) }
                 .take(1) // 왜 했더라...
                 .subscribe(onNext: { [weak self] in
@@ -100,7 +116,7 @@ extension EditCategoryViewController {
                     
                     for (offset,hex) in (self?.colorHexStringList ?? []).enumerated() {
                         if hex == $0.color {
-//                            self?.colorBtnList[offset].setImage(.checkmark, for: .normal)
+                            self?.colorBtnList[offset].setImage(UIImage(named: "check-mark-white"), for: .normal)
                         }
                     }
                     
@@ -110,17 +126,10 @@ extension EditCategoryViewController {
         }
         
         
-        // Input
-        
-        // 주제 추가 및 수정 취소
-        self.xBtn.rx.tap
-            .subscribe(onNext: { [weak self] in
-                self?.dismiss(animated: true, completion: nil)
-            })
-            .disposed(by: self.disposeBag)
+        // MARK: Output
         
         // 주제 추가 및 수정 완료
-        self.completedBtn.rx.tap
+        navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: { [weak self] in
                 
                 if self?.viewModel.selectedIndex != nil {
@@ -136,7 +145,7 @@ extension EditCategoryViewController {
             .disposed(by: self.disposeBag)
         
         // 주제 제목
-        self.titleTxtFld.rx.text.orEmpty
+        titleTxtFld.rx.text.orEmpty
             .bind(to: self.viewModel.titleInput)
             .disposed(by: self.disposeBag)
         

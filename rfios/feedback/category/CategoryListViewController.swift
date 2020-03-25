@@ -64,7 +64,7 @@ extension CategoryListViewController {
     }
     
     func updateUI() {
-        self.navigationItem.title = "피드백 주제 설정"
+        self.navigationItem.title = "피드백 주제"
     }
 }
 

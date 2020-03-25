@@ -84,28 +84,19 @@ extension EditFeedbackViewController {
     
 }
 
-// - MARK: Binding
+// MARK: Binding
 extension EditFeedbackViewController {
     func setBinding() {
         
-        // Scene
+        // MARK: Scene
         self.rx.isVisible
             .subscribe(onNext: { [weak self] in
                 if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
             })
             .disposed(by: self.disposeBag)
         
-        //
-        self.viewModel.categoryOb
-            .skip(1) // 디폴트값 걷어내기
-            .subscribe(onNext: { [weak self] in
-                print($0.title)
-                self?.categoryColor.backgroundColor = UIUtil.hexStringToUIColor($0.color)
-                self?.categoryTitle.text = $0.title
-            })
-            .disposed(by: self.disposeBag)
-        
-        // 피드백 주제 선택
+        // MARK: Output
+        /// 피드백 주제 선택
         self.categoryBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.onCategory()
@@ -118,11 +109,6 @@ extension EditFeedbackViewController {
             .disposed(by: self.disposeBag)
         
         // 피드백 날짜 선택
-//        self.dateBtn.rx.tap
-//            .subscribe(onNext: {
-//
-//            })
-//            .disposed(by: self.disposeBag)
         self.datePicker.rx.value // value대산에 date를 사용해도 되는듯
             .bind(to: self.viewModel.dateInput)
             .disposed(by: self.disposeBag)
@@ -133,14 +119,25 @@ extension EditFeedbackViewController {
         
         // 피드백 추가
         self.navigationItem.rightBarButtonItem?.rx.tap
-//            .flatMap{  }
             .subscribe(onNext: {
                 self.viewModel.reqAddFeedback()
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: self.disposeBag)
         
-        //
+        
+        // MARK: Input
+        ///
+        self.viewModel.categoryOb
+            .skip(1) // 디폴트값 걷어내기
+            .subscribe(onNext: { [weak self] in
+                print($0.title)
+                self?.categoryColor.backgroundColor = UIUtil.hexStringToUIColor($0.color)
+                self?.categoryTitle.text = $0.title
+            })
+            .disposed(by: self.disposeBag)
+        
+        ///
         self.viewModel.feedbackOb
             .subscribe(onNext: { [weak self] in
                 self?.titleTxtFld.text = $0.title
@@ -149,13 +146,6 @@ extension EditFeedbackViewController {
             
     }
 }
-
-
-
-
-
-
-
 
 // - MARK: LEGACY
 

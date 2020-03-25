@@ -367,13 +367,13 @@
 		E04085142376E6C8008C9F8F /* feedback */ = {
 			isa = PBXGroup;
 			children = (
+				E040851E2377274C008C9F8F /* Feedback.storyboard */,
 				1CE7643523D6EA6800D1F53F /* board */,
 				E0717FA323A4FD6400E586F3 /* category */,
 				E04085112376E6B9008C9F8F /* FeedbackCell.xib */,
 				E04085102376E6B9008C9F8F /* FeedbackCell.swift */,
-				E040851E2377274C008C9F8F /* Feedback.storyboard */,
-				E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */,
 				E06D86A123C0B12500AB2D48 /* FeedbackViewModel.swift */,
+				E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */,
 			);
 			path = feedback;
 			sourceTree = "<group>";
@@ -406,9 +406,9 @@
 			isa = PBXGroup;
 			children = (
 				1C1D316F239BA1F900F4C864 /* CategoryCell.swift */,
+				1C1D3169239B952B00F4C864 /* CategoryViewModel.swift */,
 				1C1D316B239B9DD100F4C864 /* CategoryListViewController.swift */,
 				1C1D3167239B902300F4C864 /* EditCategoryViewController.swift */,
-				1C1D3169239B952B00F4C864 /* CategoryViewModel.swift */,
 			);
 			path = category;
 			sourceTree = "<group>";
