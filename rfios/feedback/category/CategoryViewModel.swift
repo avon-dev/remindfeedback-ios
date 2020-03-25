@@ -138,10 +138,12 @@ extension CategoryViewModel {
                 guard let dataList = $0.dataDic else { return }
                 
                 for data in dataList {
-                    var category = Category()
-                    category.id = data["category_id"] as? Int ?? -1
-                    category.title = data["category_title"] as? String ?? ""
-                    category.color = data["category_color"] as? String ?? ""
+                    
+                    
+                    let category = Category(data)
+//                    category.id = data["category_id"] as? Int ?? -1
+//                    category.title = data["category_title"] as? String ?? ""
+//                    category.color = data["category_color"] as? String ?? ""
                     
                     self?.categoryList.append(category)
                 }
