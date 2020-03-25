@@ -125,17 +125,26 @@ extension MainViewModel {
 // MARK: Network
 extension MainViewModel {
     func reqGetMyFeedbacks() {
-        APIHelper.sharedInstance.rxPullResponse(.getMyFeedbacks(lastID: String(lastFID)))
+        APIHelper.sharedInstance
+            .rxPullResponse(.getMyFeedbacks(lastID: String(lastFID)))
             .subscribe(onNext: { [weak self] in
                 
                 guard $0.isSuccess, let dataList = $0.dataDic else { return }
                 
                 for data in dataList {
-                    let feedback = Feedback()
+                    var feedback = Feedback()
                     feedback.id = data["id"] as? Int ?? -1
                     feedback.uuid = data["user_uid"] as? String ?? ""
                     feedback.title = data["title"] as? String ?? ""
-                    feedback.category = data["category"] as? Int ?? 0
+                    
+                    let categories: [[String:Any]?]
+                        = data["category"] as! [[String : Any]?]
+                    if let categoryOpt = categories.first
+                        , let category = categoryOpt {
+                        
+                        feedback.category = Category(category)
+                    }
+                    
                     
                     let dateFormatter = DateFormatter()
                     dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
