@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Category {
+struct Category {
     
     var id = -1
     var title = ""
