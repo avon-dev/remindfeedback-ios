@@ -105,7 +105,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" title="Feedback" id="J4D-TB-VQ6">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="line.horizontal.3" catalog="system" id="HKd-4C-upl" userLabel="sidemenuBtn">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="burger-menu" id="HKd-4C-upl" userLabel="sidemenuBtn">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="showSideMenu:" destination="BYZ-38-t0r" id="uyK-rc-kor"/>
@@ -397,10 +397,10 @@
     </scenes>
     <resources>
         <image name="bell" catalog="system" width="64" height="62"/>
+        <image name="burger-menu" width="16" height="16"/>
         <image name="chevron.left" catalog="system" width="48" height="64"/>
         <image name="chevron.right" catalog="system" width="48" height="64"/>
         <image name="gear" catalog="system" width="64" height="58"/>
-        <image name="line.horizontal.3" catalog="system" width="64" height="32"/>
         <image name="logout" width="32" height="32"/>
         <image name="person" catalog="system" width="64" height="58"/>
         <image name="person.2" catalog="system" width="64" height="40"/>
