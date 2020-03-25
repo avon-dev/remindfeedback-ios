@@ -64,4 +64,45 @@ extension UIViewController {
             }
         }
     }
+    
+    func actionSheet(title: String, text: String?, actions: [(text: String, action: (() -> Void)?)]) -> Completable {
+        return Completable.create { [weak self] completable in
+            
+            let alert = UIAlertController(title: title, message: text, preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: { _ in
+                completable(.completed)
+            }))
+            
+            actions.forEach { (action) in
+                alert.addAction(UIAlertAction(title: action.text, style: .default, handler: { _ in
+                    completable(.completed)
+                    if let action = action.action { action() }
+                }))
+            }
+            
+            self?.present(alert, animated: true, completion: nil)
+            
+            return Disposables.create {
+                alert.dismiss(animated: true, completion: nil)
+            }
+        }
+    }
+}
+
+extension UIViewController {
+    func keyboardHeight() -> Observable<CGFloat> {
+        return Observable
+            .from([
+                NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+                    .map { notification -> CGFloat in
+                        (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue.height ?? 0
+                },
+                NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+                    .map { _ -> CGFloat in
+                        0
+                }
+            ])
+            .merge()
+    }
 }

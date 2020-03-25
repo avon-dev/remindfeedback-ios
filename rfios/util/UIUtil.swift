@@ -19,7 +19,7 @@ class UIUtil {
     /// 단말기 화면의 세로 크기
     static var screenHeight: CGFloat!
     
-    static func hexStringToUIColor (_ hex:String) -> UIColor {
+    static func hexStringToUIColor(_ hex:String) -> UIColor {
         var hexFormatted = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()
 
         if hexFormatted.hasPrefix("#") {
@@ -37,6 +37,10 @@ class UIUtil {
             blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
             alpha: CGFloat(1.0)
         )
+    }
+    
+    static func hexStringToUInt(_ hex: String) -> UInt? {
+        return  UInt(String(hex.suffix(6)), radix: 16)
     }
     
 }

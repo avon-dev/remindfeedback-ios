@@ -13,7 +13,6 @@ import RxViewController
 import UIKit
 
 import Moya
-import RealmSwift
 import SwiftyJSON
 
 class LoginViewController: UIViewController {
@@ -75,7 +74,10 @@ extension LoginViewController {
             .flatMap { self.viewModel.reqLogin() }
             .subscribe(onNext: {
                 print("로그인", $0.0, $0.2 ?? "")
-                if $0.0 { self.dismiss(animated: true, completion: nil) }
+                if $0.0 {
+                    self.dismiss(animated: true, completion: nil)
+                    UserDefaultsHelper.sharedInstantce.setUUID($0.2?["user_uid"] as? String ?? "")
+                }
             })
             .disposed(by: self.disposeBag)
         
@@ -92,6 +94,13 @@ extension LoginViewController {
                 self?.viewModel.onRegister()
             })
             .disposed(by: self.disposeBag)
+        
+        keyboardHeight()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                self?.view.frame.origin.y = -$0/2
+            })
+            .disposed(by: disposeBag)
         
         
 

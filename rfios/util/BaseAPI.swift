@@ -39,12 +39,23 @@ enum BaseAPI {
     case addTextCard(_ params: [String:Any?]?)
     case modTextCard(_ params: [String:Any?]?, id: String)
     case delCard(_ id: String)
+    
+    // MyPage
+    case getMyPage
+    case modNickName(_ params: [String:String])
+    case modIntro(_ params: [String:String])
+    case modPortrait(image: UIImage)
+    
+    // Friend
+    case getFriends
+    case findFriend(_ params: [String:String])
+    case addFriend(_ params: [String:Any?]?)
 }
 
 extension BaseAPI: TargetType {
     
     var baseURL: URL {
-        return URL(string: "https://api.remindfeedback.com")! // 반드시 URL형태가 되기 때문에
+        return URL(string: RemindFeedback.baseURL)! // 반드시 URL형태가 되기 때문에
     }
     
     var path: String {
@@ -90,6 +101,22 @@ extension BaseAPI: TargetType {
             return "/board/cards/text/\(id)"
         case .delCard(let id):
             return "/board/cards/\(id)"
+            
+            // MyPage
+        case .getMyPage:
+            return "/mypage"
+        case .modNickName:
+            return "/mypage/nickname"
+        case .modIntro:
+            return "/mypage/introduction"
+        case .modPortrait:
+            return "/mypage/portrait"
+            
+            // Friend
+        case .getFriends, .addFriend:
+            return "/friends"
+        case .findFriend:
+            return "/friends/search"
         
         }
     }
@@ -97,14 +124,19 @@ extension BaseAPI: TargetType {
     var method: Moya.Method {
         
         switch self {
-        case .register, .login, .email, .addCategory, .addFeedback, .addTextCard:
+        case .register, .login, .email, .addCategory,
+             .addFeedback, .addTextCard, .addFriend, .findFriend:
             return .post
-        case .me, .logout, .getCategories, .getCategory, .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks, .getCards:
+        case .me, .logout, .getCategories, .getCategory,
+             .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks,
+             .getCards, .getMyPage, .getFriends:
             return .get
         case .unregister, .delCategory, .delFeedback, .delCard:
             return .delete
         case  .modCategory, .modFeedback, .modTextCard:
             return .put
+        case .modNickName, .modIntro, .modPortrait:
+            return .patch
         }
         
     }
@@ -123,13 +155,13 @@ extension BaseAPI: TargetType {
             return .requestPlain
         
         // category
-        case .getCategories, .getCategory(_), .delCategory(_):
+        case .getCategories, .getCategory, .delCategory:
             return .requestPlain
         case .addCategory(let params), .modCategory(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
             
         // feedback
-        case .getFeedbacks(_), .getMyFeedbacks(_), .getYourFeedbacks(_), .delFeedback(_):
+        case .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks, .delFeedback:
             return .requestPlain
         case .addFeedback(let params), .modFeedback(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
@@ -139,6 +171,25 @@ extension BaseAPI: TargetType {
             return .requestPlain
         case .addTextCard(let params), .modTextCard(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+        
+        // mypage
+        case .getMyPage:
+            return .requestPlain
+        case .modNickName(let params), .modIntro(let params):
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
+        case .modPortrait(let image):
+            let imageData = image.jpegData(compressionQuality: 1.0)
+            let formData = MultipartFormData(provider: .data(imageData!), name: "portrait", fileName: "file.jpg", mimeType: "image/jpeg")
+            let updatefile = MultipartFormData(provider: .data("true".data(using: .utf8)!), name: "updatefile")
+            return .uploadMultipart([formData, updatefile])
+            
+        // friend
+        case .getFriends:
+            return .requestPlain
+        case .addFriend(let params):
+            return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
+        case .findFriend(let params):
+            return .requestParameters(parameters: params, encoding: JSONEncoding.default)
             
         }
         
