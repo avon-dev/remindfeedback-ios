@@ -140,7 +140,8 @@ extension EditCategoryViewController {
                     self?.viewModel.addCategory()
                 }
                 
-                self?.dismiss(animated: true, completion: nil)
+            }, onCompleted: {
+                SceneCoordinator.sharedInstance.pop()
             })
             .disposed(by: self.disposeBag)
         
