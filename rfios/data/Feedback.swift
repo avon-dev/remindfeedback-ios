@@ -8,16 +8,19 @@
 
 import Foundation
 
-class Feedback {
+struct Feedback {
     
     var id = -1
     var uuid = ""
     var auid = ""
     var title = ""
-    var category = 0
+    var category = Category()
     var categoryColor = "#000000"
     var date = Date()
     
+    init() {
+        
+    }
     
     func toDictionary() -> [String: Any?] {
         var dic: [String: Any?] = [:]
@@ -25,7 +28,7 @@ class Feedback {
 //        dic["user_uid"] = self.uuid
 //        dic["adviser"] = self.auid
         dic["title"] = self.title
-        dic["category"] = self.category
+        dic["category"] = self.category.id
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
