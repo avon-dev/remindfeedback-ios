@@ -19,6 +19,7 @@ protocol CategoryViewModelType: BaseViewModelType {
     var titleInput: BehaviorSubject<String> { get }
     var colorInput: BehaviorSubject<String> { get }
     
+    // Scene
     func onAdd()
     func onModify(_ selectedIndex: Int)
     var selectedIndex: Int? { get set }
@@ -123,6 +124,7 @@ extension CategoryViewModel {
     func selCategory() {
         self.category = self.categoryList[selectedIndex ?? 0]
         self.feedbackViewModel?.categoryOb.accept(self.category)
+        self.feedbackViewModel?.categoryInput.onNext(self.category.id)
     }
     
 }
@@ -137,14 +139,8 @@ extension CategoryViewModel {
                 
                 guard let dataList = $0.dataDic else { return }
                 
-                for data in dataList {
-                    
-                    
-                    let category = Category(data)
-//                    category.id = data["category_id"] as? Int ?? -1
-//                    category.title = data["category_title"] as? String ?? ""
-//                    category.color = data["category_color"] as? String ?? ""
-                    
+                dataList.forEach { [weak self] in
+                    let category = Category($0)
                     self?.categoryList.append(category)
                 }
                 

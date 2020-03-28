@@ -134,11 +134,13 @@ extension MainViewModel {
                 for data in dataList {
                     var feedback = Feedback()
                     feedback.id = data["id"] as? Int ?? -1
-                    feedback.uuid = data["user_uid"] as? String ?? ""
+                    feedback.auid = data["adviser_uid"] as? String ?? ""
                     feedback.title = data["title"] as? String ?? ""
                     
-                    let categories: [[String:Any]?]
+                    var categories: [[String:Any]?]
                         = data["category"] as! [[String : Any]?]
+                    categories = categories.filter{ $0 != nil }
+                    
                     if let categoryOpt = categories.first
                         , let category = categoryOpt {
                         

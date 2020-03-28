@@ -131,7 +131,6 @@ extension EditFeedbackViewController {
         self.viewModel.categoryOb
             .skip(1) // 디폴트값 걷어내기
             .subscribe(onNext: { [weak self] in
-                print($0.title)
                 self?.categoryColor.backgroundColor = UIUtil.hexStringToUIColor($0.color)
                 self?.categoryTitle.text = $0.title
             })

@@ -11,22 +11,26 @@ import Foundation
 struct Feedback {
     
     var id = -1
-    var uuid = ""
     var auid = ""
     var title = ""
     var category = Category()
-    var categoryColor = "#000000"
     var date = Date()
     
     init() {
         
     }
     
+    init(_ dic: [String:Any]) {
+        id = dic["id"] as? Int ?? -1
+        auid = dic["adviser_uid"] as? String ?? ""
+        title = dic["title"] as? String ?? ""
+        category = dic["category"] as? Category ?? Category()
+    }
+    
     func toDictionary() -> [String: Any?] {
         var dic: [String: Any?] = [:]
         dic["id"] = self.id
-//        dic["user_uid"] = self.uuid
-//        dic["adviser"] = self.auid
+        dic["adviser"] = self.auid
         dic["title"] = self.title
         dic["category"] = self.category.id
         

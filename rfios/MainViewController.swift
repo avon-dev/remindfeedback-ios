@@ -74,8 +74,6 @@ class MainViewController: UIViewController {
         let cellName = UINib(nibName: "FeedbackCell", bundle: nil)
         tableView.register(cellName, forCellReuseIdentifier: "feedbackCell")
         tableView.estimatedRowHeight = 80.0
-//        tableView.rowHeight = UITableView.automaticDimension
-//        self.tableView.rowHeight = 80
         
         // 플로팅 버튼 설정
         // 플로팅 버튼 위치 상향 조정
