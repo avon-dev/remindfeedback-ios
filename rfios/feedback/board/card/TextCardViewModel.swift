@@ -134,7 +134,7 @@ extension TextCardViewModel {
                 self?.boardViewModel.addCard(self?.card ?? Card())
                 }, onCompleted: {
                     
-                    SceneCoordinator.sharedInstance.remove()
+                    SceneCoordinator.sharedInstance.hide()
                     SceneCoordinator.sharedInstance.pop()
             })
             .disposed(by: self.disposeBag)
@@ -154,7 +154,7 @@ extension TextCardViewModel {
                 
                 }, onCompleted: {
                     
-                    SceneCoordinator.sharedInstance.remove()
+                    SceneCoordinator.sharedInstance.hide()
                     SceneCoordinator.sharedInstance.pop()
             })
             .disposed(by: self.disposeBag)

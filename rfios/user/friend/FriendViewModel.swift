@@ -125,7 +125,7 @@ extension FriendViewModel {
             .rxPullResponse(.getFriends)
             .subscribe(onNext: { [weak self] in
                 guard $0.isSuccess, let dataList = $0.dataDic else {
-                    SceneCoordinator.sharedInstance.remove()
+                    SceneCoordinator.sharedInstance.hide()
                     self?.msgOutput.accept($0.msg ?? "알 수 없는 오류가 발생했습니다.")
                     return
                 }
@@ -135,7 +135,7 @@ extension FriendViewModel {
                 self?.friendListOutput.accept(self?.friendList ?? [])
                 
             }, onCompleted: {
-                SceneCoordinator.sharedInstance.remove()
+                SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)
     }
@@ -151,7 +151,7 @@ extension FriendViewModel {
             .subscribe(onNext: { [weak self] in
                 
                 guard $0.isSuccess, let data = $0.data else {
-                    SceneCoordinator.sharedInstance.remove()
+                    SceneCoordinator.sharedInstance.hide()
                     self?.msgOutput.accept($0.msg ?? "알 수 없는 오류가 발생했습니다.")
                     return
                 }
@@ -170,7 +170,7 @@ extension FriendViewModel {
                 self?.typeOutput.accept(self?.friend.type ?? -2)
                     
             }, onCompleted: {
-                SceneCoordinator.sharedInstance.remove()
+                SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)
     }
@@ -182,12 +182,12 @@ extension FriendViewModel {
             .rxPullResponse(.addFriend(["user_uid" : friend.uid]))
             .subscribe(onNext: { [weak self] in
                 guard $0.isSuccess, let data = $0.data else {
-                    SceneCoordinator.sharedInstance.remove()
+                    SceneCoordinator.sharedInstance.hide()
                     self?.msgOutput.accept($0.msg ?? "알 수 없는 오류가 발생했습니다.")
                     return
                 }
             }, onCompleted: {
-                SceneCoordinator.sharedInstance.remove()
+                SceneCoordinator.sharedInstance.hide()
                 SceneCoordinator.sharedInstance.pop()
             })
             .disposed(by: disposeBag)

@@ -39,7 +39,7 @@ extension UIViewController {
         vSpinner = spinnerView
     }
     
-    func removeSpinner() {
+    func hideSpinner() {
         DispatchQueue.main.async {
             vSpinner?.removeFromSuperview()
             vSpinner = nil

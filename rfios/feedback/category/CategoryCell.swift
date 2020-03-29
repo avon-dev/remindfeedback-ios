@@ -12,21 +12,21 @@ import UIKit
 class CategoryCell: UITableViewCell {
     
     static let identifier = "categoryCell"
-
-    private let cellDisposeBag = DisposeBag()
+    private var cellDisposeBag = DisposeBag()
     
     var viewModel: CategoryViewModelType? = nil
     var disposeBag = DisposeBag()
-    let onData: AnyObserver<Category>
+//    let dataInput: AnyObserver<Category>
+    let dataInput: PublishSubject<Category>
     
     required init?(coder aDecoder: NSCoder) {
         
-        let data = PublishSubject<Category>()
-        onData = data.asObserver()
+//        let data = PublishSubject<Category>()
+        dataInput = PublishSubject<Category>()
         
         super.init(coder: aDecoder)
 
-        data.observeOn(MainScheduler.instance)
+        dataInput.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 self?.titleLabel.text = $0.title
                 if $0.color == "" {
@@ -41,11 +41,13 @@ class CategoryCell: UITableViewCell {
 
     override func prepareForReuse() {
         super.prepareForReuse()
+        // 아래의 코드를 지우니 셀 내용이 수정이 됨... 추후 원인 규명 필요
         disposeBag = DisposeBag()
     }
     
     deinit {
-        self.disposeBag = DisposeBag()
+        cellDisposeBag = DisposeBag()
+        disposeBag = DisposeBag()
     }
     
 
@@ -65,14 +67,26 @@ class CategoryCell: UITableViewCell {
     }
     
     func setBindings() {
-        
-//        if index > 0 {
-            modifyBtn.rx.tap
+        modifyBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                self?.viewModel?.onModify(self?.index ?? -1)
+                
+                guard let index = self?.index else { return }
+                
+                if index > 0 {
+                    self?.viewModel?.onModify(index)
+                } else if index == 0 {
+                    self?.bindAlert()
+                }
             })
-            .disposed(by: self.disposeBag)
-//        }
+            .disposed(by: disposeBag)
+    }
+    
+    func bindAlert() {
+        SceneCoordinator.sharedInstance
+            .getCurrentViewController()?
+            .alert(title: "안내", text: "기본 주제는 변경할 수 없습니다.")
+            .subscribe()
+            .disposed(by: disposeBag)
     }
 
 }

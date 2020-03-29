@@ -76,16 +76,20 @@ extension CategoryListViewController {
         // MARK: Scene
         self.rx.isVisible
             .subscribe(onNext: { [weak self] in
-                if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
+                if $0 {
+                    self?.viewModel.setScene(self ?? UIViewController())
+                    self?.viewModel.getList()
+                }
             })
             .disposed(by: self.disposeBag)
         
         // MARK: Output
-        self.viewModel.categoryListOb
+        self.viewModel.categoryListOutput
             .bind(to:
-            self.tableView.rx.items(cellIdentifier: CategoryCell.identifier, cellType: CategoryCell.self)) { index, item, cell in
-                
-                cell.onData.onNext(item)
+            self.tableView.rx.items(cellIdentifier: CategoryCell.identifier
+                , cellType: CategoryCell.self)) { index, item, cell in
+                    
+                cell.dataInput.onNext(item)
                 cell.index = index
                 cell.viewModel = self.viewModel
                 if self.viewModel.isSelection {
@@ -100,13 +104,11 @@ extension CategoryListViewController {
         self.navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: { [weak self] in
                 if self?.viewModel.isSelection ?? false {
-                    print("주제 선택 완료")
                     if let vm = self?.viewModel.feedbackViewModel {
-                        self?.viewModel.selCategory()
+                        self?.viewModel.choose()
                         self?.navigationController?.popViewController(animated: true)
                     }
                 } else {
-                    print("on주제 추가")
                     self?.viewModel.onAdd()
                 }
             })
@@ -115,7 +117,7 @@ extension CategoryListViewController {
         // 테이블 뷰 셀을 좌측으로 스와이프할 때
         self.tableView.rx.itemDeleted
             .subscribe(onNext: {
-                self.viewModel.delCategory($0.item)
+                self.viewModel.remove($0.item)
             })
             .disposed(by: self.disposeBag)
         

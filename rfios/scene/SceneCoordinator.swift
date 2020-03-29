@@ -39,8 +39,8 @@ class SceneCoordinator {
         self.currentViewController?.showSpinner(onView: self.currentViewController?.view ?? UIView())
     }
     
-    func remove() {
-        self.currentViewController?.removeSpinner()
+    func hide() {
+        self.currentViewController?.hideSpinner()
     }
     
     // MARK: Transition
@@ -58,6 +58,9 @@ class SceneCoordinator {
     
     func push(scene: Scene) {
         let nextViewController = scene.viewController()
+        
+        guard nextViewController != currentViewController else { return }
+        
         currentViewController?.navigationController?
             .pushViewController(nextViewController, animated: true)
         setCurrentViewController(nextViewController)

@@ -35,7 +35,7 @@ class EditCategoryViewController: UIViewController {
     @IBOutlet weak var completedBtn: UIBarButtonItem!
     
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var titleTxtFld: UITextField!
+    @IBOutlet weak var titleField: UITextField!
     @IBOutlet weak var colorLabel: UILabel!
     
     var colorBtnList: [UIButton] = []
@@ -54,7 +54,6 @@ class EditCategoryViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 //        guard let statusBarView = UIApplication.statusBarView else { return }
 //        UIApplication.statusBarBackgroundColor = .blue
         setUI()
@@ -85,7 +84,7 @@ extension EditCategoryViewController {
     
     func setNavUI() {
         navigationController?.navigationBar.topItem?.title = ""
-        navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: nil)
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "완료", style: .done, target: self, action: nil)
     }
     
     func updateUI() {
@@ -107,20 +106,19 @@ extension EditCategoryViewController {
         
         // MARK: Input
         if let index = viewModel.selectedIndex {
-            viewModel.categoryListOb
+            viewModel.categoryListOutput
                 .flatMap{ Observable.of($0[index]) }
                 .take(1) // 왜 했더라...
                 .subscribe(onNext: { [weak self] in
                     // 화면에 기존 데이터가 보이기 위한 코드
-                    self?.titleTxtFld.text = $0.title
+                    self?.titleField.text = $0.title
                     
                     for (offset,hex) in (self?.colorHexStringList ?? []).enumerated() {
                         if hex == $0.color {
+                            self?.selectedBtn = self?.colorBtnList[offset]
                             self?.colorBtnList[offset].setImage(UIImage(named: "check-mark-white"), for: .normal)
                         }
                     }
-                    
-                    // 기존의 데이터 중 일부만 수정해도 에러없이 저장할 수 있도록 특정 인스턴스에 기존의 값 저장
                 })
                 .disposed(by: self.disposeBag)
         }
@@ -131,22 +129,18 @@ extension EditCategoryViewController {
         // 주제 추가 및 수정 완료
         navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: { [weak self] in
-                
                 if self?.viewModel.selectedIndex != nil {
                     // 주제 수정
-                    self?.viewModel.modCategory()
+                    self?.viewModel.modify()
                 } else {
                     // 주제 추가
-                    self?.viewModel.addCategory()
+                    self?.viewModel.add()
                 }
-                
-            }, onCompleted: {
-                SceneCoordinator.sharedInstance.pop()
             })
             .disposed(by: self.disposeBag)
         
         // 주제 제목
-        titleTxtFld.rx.text.orEmpty
+        titleField.rx.text.orEmpty
             .bind(to: self.viewModel.titleInput)
             .disposed(by: self.disposeBag)
         
@@ -154,18 +148,17 @@ extension EditCategoryViewController {
         for btn in colorBtnList {
             
             btn.rx.tap
-                .flatMap{ [weak self] in
+                .flatMap { [weak self] in
                     Observable.of(self?.colorHexStringList[btn.tag] ?? "")
                 }
                 .subscribe(onNext:{ [weak self] in
                     self?.selectedBtn?.setImage(nil, for: .normal)
                     self?.selectedBtn = nil
                     self?.selectedBtn = btn
-//                    btn.setImage(.checkmark, for: .normal)
+                    self?.selectedBtn?.setImage(UIImage(named: "check-mark-white"), for: .normal)
                     self?.viewModel.colorInput.onNext($0)
                 })
                 .disposed(by: self.disposeBag)
-            
         }
         
     }

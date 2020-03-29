@@ -44,7 +44,7 @@ extension MyPageViewModel {
                     self?.userOb.onNext(self?.user ?? User([:]))
                 }
             }, onCompleted: {
-                SceneCoordinator.sharedInstance.remove()
+                SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)
     }
@@ -57,7 +57,7 @@ extension MyPageViewModel {
                     self?.userOb.onNext(self?.user ?? User([:]))
                 }
             }, onCompleted: {
-                SceneCoordinator.sharedInstance.remove()
+                SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)
     }
@@ -70,7 +70,7 @@ extension MyPageViewModel {
                     self?.userOb.onNext(self?.user ?? User([:]))
                 }
             }, onCompleted: {
-                SceneCoordinator.sharedInstance.remove()
+                SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)
     }
@@ -78,7 +78,7 @@ extension MyPageViewModel {
     func reqModPortrait(_ image: UIImage) {
         APIHelper.sharedInstance.rxUploadImage(.modPortrait(image: image))
             .subscribe(onCompleted: {
-                SceneCoordinator.sharedInstance.remove()
+                SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)
     }
