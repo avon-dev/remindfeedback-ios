@@ -84,9 +84,9 @@ extension BaseAPI: TargetType {
         case .getFeedbacks(let lastID):
             return "/feedbacks/\(lastID)/20"
         case .getMyFeedbacks(let lastID):
-            return "/feedbacks/mine/\(lastID)/10"
+            return "/feedbacks/mine/\(lastID)/6"
         case .getYourFeedbacks(let lastID):
-            return "/feedbacks/yours/\(lastID)/10"
+            return "/feedbacks/yours/\(lastID)/20"
         case .addFeedback:
             return "/feedbacks"
         case .modFeedback(_, let id), .delFeedback(let id):

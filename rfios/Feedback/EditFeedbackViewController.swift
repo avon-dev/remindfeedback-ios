@@ -75,7 +75,7 @@ extension EditFeedbackViewController {
         
         self.navigationController?.navigationBar.topItem?.title = ""
         // 네비게이션 바 타이틀 설정
-        self.navigationItem.title = "새로운 피드백" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
+        self.navigationItem.title = "피드백 설정" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
         // 네비게이션 바 색상 지정
         self.navigationController?.navigationBar.tintColor = UIColor.white
         // 네비게이션 바 우측버튼
@@ -120,7 +120,7 @@ extension EditFeedbackViewController {
         // 피드백 추가
         self.navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: {
-                self.viewModel.reqAddFeedback()
+                self.viewModel.requestAddition()
                 self.dismiss(animated: true, completion: nil)
             })
             .disposed(by: self.disposeBag)
@@ -128,7 +128,7 @@ extension EditFeedbackViewController {
         
         // MARK: Input
         ///
-        self.viewModel.categoryOb
+        self.viewModel.categoryOutput
             .skip(1) // 디폴트값 걷어내기
             .subscribe(onNext: { [weak self] in
                 self?.categoryColor.backgroundColor = UIUtil.hexStringToUIColor($0.color)
@@ -137,7 +137,7 @@ extension EditFeedbackViewController {
             .disposed(by: self.disposeBag)
         
         ///
-        self.viewModel.feedbackOb
+        self.viewModel.feedbackOutput
             .subscribe(onNext: { [weak self] in
                 self?.titleTxtFld.text = $0.title
             })

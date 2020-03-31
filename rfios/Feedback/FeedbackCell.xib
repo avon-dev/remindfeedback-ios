@@ -58,10 +58,10 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="advisorImage" destination="BS7-D4-KBh" id="SsJ-p5-kuB"/>
                 <outlet property="colorView" destination="96K-4w-oHQ" id="njQ-UB-I7u"/>
                 <outlet property="dateLabel" destination="oYh-U1-ZFv" id="Sfl-Cz-A6l"/>
                 <outlet property="feedbackLabel" destination="i3o-WB-1D4" id="3Xa-7c-u00"/>
-                <outlet property="userPic" destination="BS7-D4-KBh" id="SsJ-p5-kuB"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="141.29464285714286"/>
         </tableViewCell>

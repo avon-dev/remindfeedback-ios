@@ -14,48 +14,51 @@ protocol FeedbackViewModelType: BaseViewModelType {
     // Output
     
     // Input
-    var categoryInput: BehaviorSubject<Int> { get }
+    var categoryInput: BehaviorSubject<Category> { get }
     var titleInput: BehaviorSubject<String> { get }
     var dateInput: BehaviorSubject<Date> { get }
     
     var feedback: Feedback { get }
-    var categoryOb: BehaviorRelay<Category> { get }
-    var feedbackOb: BehaviorRelay<Feedback> { get }
+    var categoryOutput: BehaviorRelay<Category> { get }
+    var feedbackOutput: BehaviorRelay<Feedback> { get }
     
     //
     func setFeedback()
+    
+    // Scene
     func onCategory()
     
     //
-    func reqAddFeedback()
+    func requestAddition()
 }
 
 class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
     
     var feedback = Feedback()
     
-    let categoryInput: BehaviorSubject<Int>
+    let categoryInput: BehaviorSubject<Category>
     let titleInput: BehaviorSubject<String>
     let dateInput: BehaviorSubject<Date>
     
-    var categoryOb: BehaviorRelay<Category>
-    var feedbackOb: BehaviorRelay<Feedback>
+    var categoryOutput: BehaviorRelay<Category>
+    var feedbackOutput: BehaviorRelay<Feedback>
+    
+    
+    var mainViewModel: MainViewModelType?
     
     override init() {
-        self.categoryInput = BehaviorSubject(value: 0)
+        self.categoryInput = BehaviorSubject(value: Category())
         self.titleInput = BehaviorSubject(value: "")
         self.dateInput = BehaviorSubject(value: Date())
         
-        self.categoryOb = BehaviorRelay<Category>(value: Category())
-        self.feedbackOb = BehaviorRelay<Feedback>(value: self.feedback)
+        self.categoryOutput = BehaviorRelay<Category>(value: Category())
+        self.feedbackOutput = BehaviorRelay<Feedback>(value: feedback)
         
         super.init()
         
         Observable.combineLatest(self.categoryInput, self.titleInput, self.dateInput, resultSelector: {
             var _feedback = self.feedback
-            var _category = Category()
-            _category.id = $0 
-            _feedback.category = _category
+            _feedback.category = $0
             _feedback.title = $1
             _feedback.date = $2
             return _feedback
@@ -70,10 +73,11 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
     
 }
 
+// MARK: Scene
 extension FeedbackViewModel {
     
     func setFeedback() {
-        self.feedbackOb.accept(self.feedback)
+        feedbackOutput.accept(feedback)
     }
     
     func onCategory() {
@@ -82,19 +86,36 @@ extension FeedbackViewModel {
         categoryViewModel.feedbackViewModel = self
         SceneCoordinator.sharedInstance.push(scene: .categoryView(categoryViewModel))
     }
+    
+    private func bindAlert(title: String, text: String) {
+        SceneCoordinator.sharedInstance
+            .getCurrentViewController()?
+            .alert(title: title, text: text)
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
 }
 
+// MARK: Network
 extension FeedbackViewModel {
-    func reqAddFeedback() {
+    func requestAddition() {
         
-        APIHelper.sharedInstance.rxPullResponse(.addFeedback(self.feedback.toDictionary()))
-            .subscribe(onNext: {
-                NWLog.sLog(contentName: "피드백 추가 응답 결과", contents: $0.msg)
-                
-                guard $0.isSuccess else {
-                    SceneCoordinator.sharedInstance.pop()
+        SceneCoordinator.sharedInstance.show()
+        
+        APIHelper.sharedInstance
+            .rxPullResponse(.addFeedback(feedback.toDictionary()))
+            .subscribe(onNext: { [weak self] in
+                guard $0.isSuccess, let data = $0.data else {
+                    self?.bindAlert(title: "안내"
+                        , text: $0.msg ?? "알 수 없는 오류가 발생했습니다.")
                     return
                 }
+                
+                self?.feedback.id = data["id"] as? Int ?? -1
+                self?.mainViewModel?.addFeedback(self?.feedback)
+                SceneCoordinator.sharedInstance.pop()
+                }, onDisposed: {
+                    SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: self.disposeBag)
     }

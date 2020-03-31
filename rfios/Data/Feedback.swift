@@ -15,6 +15,8 @@ struct Feedback {
     var title = ""
     var category = Category()
     var date = Date()
+    var complete = -10
+    var advisor = User()
     
     init() {
         
@@ -24,7 +26,24 @@ struct Feedback {
         id = dic["id"] as? Int ?? -1
         auid = dic["adviser_uid"] as? String ?? ""
         title = dic["title"] as? String ?? ""
-        category = dic["category"] as? Category ?? Category()
+        
+        var categories = dic["category"] as! [[String : Any]?]
+        categories = categories.filter{ $0 != nil }
+        
+        if let categoryOpt = categories.first
+            , let category = categoryOpt {
+            
+            self.category = Category(category)
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
+        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+        let dateStr = dic["write_date"] as? String ?? ""
+        date = dateFormatter.date(from: dateStr) ?? Date()
+        
+        complete = dic["complete"] as? Int ?? -10
+        advisor = User(dic["adviser"] as? [String : Any] ?? [:])
     }
     
     func toDictionary() -> [String: Any?] {

@@ -6,16 +6,14 @@
 //  Copyright © 2019 avon. All rights reserved.
 //
 
-import Action
 import Foundation
 import RxCocoa
-import RxDataSources
 import RxSwift
 
 // - MARK: Protocol
 protocol MainViewModelType: BaseViewModelType {
-    // VM to V
-    var feedbackListOb: BehaviorRelay<[Feedback]> { get }
+    // Output
+    var feedbackListOutput: BehaviorRelay<[Feedback]> { get }
     
     // Scene
     /// 피드백 주제 리스트 화면으로 이동
@@ -32,37 +30,32 @@ protocol MainViewModelType: BaseViewModelType {
     func onFriendList()
     
     // CRUD
-    /// 피드백을 삭제하는 함수
-    func delFeedback(_ index: Int)
+    func addFeedback(_ feedback: Feedback?)
     
-    // Network
-    /// 사용자의 피드백만을 api서버에 조회 요청하는 함수
-    func reqGetMyFeedbacks()
-    /// 피드백 삭제를 api서버에 요청하는 함수
-    func reqDelFeedback()
+    func getFeedbackList()
+    /// 피드백을 삭제하는 함수
+    func removeFeedback(_ index: Int)
     /// 로그아웃
     func logout()
 }
 
-// - MARK: Variable and init
 class MainViewModel: BaseViewModel, MainViewModelType {
     
-    /// 뷰에 출력할 피드백 리스트 옵저버블
-    let feedbackListOb: BehaviorRelay<[Feedback]>
+    let feedbackListOutput: BehaviorRelay<[Feedback]>
     var feedbackList: [Feedback] = []
     var feedback = Feedback()
+    var selectedIndex = -1
     /// 마지막으로 응답받은 피드백 ID 저장 변수
-    let lastFID = 0
+    var lastFID = 0
+    var isFetching = false
     
     override init() {
-        self.feedbackListOb = BehaviorRelay<[Feedback]>(value: feedbackList)
+        self.feedbackListOutput = BehaviorRelay<[Feedback]>(value: feedbackList)
         super.init()
     }
-    
-    
 }
 
-// - MARK: Scene
+// MARK: Scene
 extension MainViewModel {
     
     func onLogin() {
@@ -77,11 +70,13 @@ extension MainViewModel {
     
     func onAddFeedback() {
         let feedbackViewModel = FeedbackViewModel()
+        feedbackViewModel.mainViewModel = self
         SceneCoordinator.sharedInstance.push(scene: .editFeedbackView(feedbackViewModel))
     }
     
     func onModFeedback(_ selectedIndex: Int) {
         let feedbackViewModel = FeedbackViewModel()
+        feedbackViewModel.mainViewModel = self
         feedbackViewModel.feedback = self.feedbackList[selectedIndex]
         SceneCoordinator.sharedInstance.push(scene: .editFeedbackView(feedbackViewModel))
     }
@@ -104,77 +99,93 @@ extension MainViewModel {
         let friendListViewModel = FriendViewModel()
         SceneCoordinator.sharedInstance.push(scene: .friendListView(friendListViewModel))
     }
+    
+    private func bindAlert(title: String, text: String) {
+        SceneCoordinator.sharedInstance
+            .getCurrentViewController()?
+            .alert(title: title, text: text)
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
 }
 
-// MARK: CRUD
+// MARK: Control
 extension MainViewModel {
-    func delFeedback(_ index: Int) {
-        NWLog.sLog(contentName: "피드백 삭제", contents: nil)
+    
+    func addFeedback(_ feedback: Feedback?) {
+        
+        guard let feedback = feedback else { return }
+        
+        feedbackList.insert(feedback, at: 0) 
+        feedbackListOutput.accept(feedbackList)
+    }
+    
+    func getFeedbackList() {
+        requestList()
+    }
+    
+    func removeFeedback(_ index: Int) {
+        self.selectedIndex = index
         self.feedback = self.feedbackList[index]
-        self.reqDelFeedback()
-        self.feedbackList.remove(at: index)
-        self.feedbackListOb.accept(self.feedbackList)
+        self.requestRemoval()
     }
     
     func logout() {
         UserDefaultsHelper.sharedInstantce.delCookie()
-        reqLogout()
+        requestLogout()
     }
 }
 
 // MARK: Network
 extension MainViewModel {
-    func reqGetMyFeedbacks() {
+    func requestList() {
+        
+        guard !isFetching else { return }
+        
+        isFetching = true
+        
         APIHelper.sharedInstance
             .rxPullResponse(.getMyFeedbacks(lastID: String(lastFID)))
             .subscribe(onNext: { [weak self] in
                 
-                guard $0.isSuccess, let dataList = $0.dataDic else { return }
-                
-                for data in dataList {
-                    var feedback = Feedback()
-                    feedback.id = data["id"] as? Int ?? -1
-                    feedback.auid = data["adviser_uid"] as? String ?? ""
-                    feedback.title = data["title"] as? String ?? ""
-                    
-                    var categories: [[String:Any]?]
-                        = data["category"] as! [[String : Any]?]
-                    categories = categories.filter{ $0 != nil }
-                    
-                    if let categoryOpt = categories.first
-                        , let category = categoryOpt {
-                        
-                        feedback.category = Category(category)
-                    }
-                    
-                    
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
-                    dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
-                    
-                    let dateStr: String = data["write_date"] as? String ?? ""
-                    feedback.date = dateFormatter.date(from: dateStr) ?? Date()
-                    
+                guard $0.isSuccess, let dataList = $0.dataDic else {
+                    self?.bindAlert(title: "안내", text: $0.msg ?? "알 수 없는 오류가 발생했습니다.")
+                    return
+                }
+                dataList.forEach {
+                    let feedback = Feedback($0)
                     self?.feedbackList.append(feedback)
                 }
-                
-                self?.feedbackListOb.accept(self?.feedbackList ?? [])
+                self?.lastFID = self?.feedbackList.last?.id ?? self?.lastFID ?? 0
+                self?.feedbackListOutput.accept(self?.feedbackList ?? [])
+                }, onDisposed: { [weak self] in
+                    self?.isFetching = false
             })
             .disposed(by: self.disposeBag)
     }
     
-    func reqDelFeedback() {
+    func requestRemoval() {
         APIHelper.sharedInstance.rxPullResponse(.delFeedback(String(self.feedback.id)))
-            .subscribe(onNext: {
-                NWLog.sLog(contentName: "피드백 삭제 요청 결과", contents: $0.msg)
+            .subscribe(onNext: { [weak self] in
+                guard $0.isSuccess else {
+                    self?.bindAlert(title: "안내", text: $0.msg ?? "알 수 없는 오류가 발생했습니다.")
+                    return
+                }
+                
+                self?.feedbackList.remove(at: self?.selectedIndex ?? -1)
+                self?.feedbackListOutput.accept(self?.feedbackList ?? [])
             })
             .disposed(by: disposeBag)
     }
     
-    func reqLogout() {
+    func requestLogout() {
         APIHelper.sharedInstance.rxPullResponse(.logout)
             .subscribe(onNext: { [weak self] in
-                NWLog.sLog(contentName: "로그아웃 결과", contents: $0.msg)
+                guard $0.isSuccess else {
+                    self?.bindAlert(title: "안내", text: $0.msg ?? "알 수 없는 오류가 발생했습니다.")
+                    return
+                }
+                
                 self?.feedbackList.removeAll()
                 self?.onLogin()
             })

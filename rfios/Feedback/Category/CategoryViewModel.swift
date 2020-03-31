@@ -134,8 +134,8 @@ extension CategoryViewModel {
     
     func choose() {
         self.category = self.categoryList[selectedIndex ?? 0]
-        self.feedbackViewModel?.categoryOb.accept(self.category)
-        self.feedbackViewModel?.categoryInput.onNext(self.category.id)
+        self.feedbackViewModel?.categoryOutput.accept(self.category)
+        self.feedbackViewModel?.categoryInput.onNext(self.category) 
     }
     
 }
