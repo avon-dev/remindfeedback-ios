@@ -39,14 +39,14 @@ class ViewController: UIViewController {
     
 }
 
-// - MARK: UI
+// MARK: UI
 extension ViewController {
     func setUI() {
         
     }
 }
 
-// - MARK: Binding
+// MARK: Binding
 extension ViewController {
     func setBinding() {
         

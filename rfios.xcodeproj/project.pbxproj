@@ -34,7 +34,7 @@
 		E030691A2410F0C100E07D21 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03069192410F0C100E07D21 /* MyPageViewModel.swift */; };
 		E03226AC241E164900A4C933 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03226AB241E164900A4C933 /* AddFriendViewController.swift */; };
 		E03226AE24289B1C00A4C933 /* FriendType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03226AD24289B1C00A4C933 /* FriendType.swift */; };
-		E03226AF2428AEDF00A4C933 /* user.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* user.xcassets */; };
+		E03226AF2428AEDF00A4C933 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* Assets.xcassets */; };
 		E03226B52428C74900A4C933 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03226B32428C74900A4C933 /* FriendCell.swift */; };
 		E03226B62428C74900A4C933 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03226B32428C74900A4C933 /* FriendCell.swift */; };
 		E03226B72428C74900A4C933 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E03226B42428C74900A4C933 /* FriendCell.xib */; };
@@ -127,7 +127,7 @@
 		E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */; };
 		E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */; };
 		E0FB6F4F2374FAAF00241EC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F4D2374FAAF00241EC7 /* Main.storyboard */; };
-		E0FB6F512374FAB100241EC7 /* user.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* user.xcassets */; };
+		E0FB6F512374FAB100241EC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* Assets.xcassets */; };
 		E0FB6F542374FAB100241EC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F522374FAB100241EC7 /* LaunchScreen.storyboard */; };
 		E0FB6F5F2374FAB100241EC7 /* rfiosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F5E2374FAB100241EC7 /* rfiosTests.swift */; };
 		E0FB6F6A2374FAB100241EC7 /* rfiosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F692374FAB100241EC7 /* rfiosUITests.swift */; };
@@ -223,7 +223,7 @@
 		E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E0FB6F4E2374FAAF00241EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E0FB6F502374FAB100241EC7 /* user.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = user.xcassets; sourceTree = "<group>"; };
+		E0FB6F502374FAB100241EC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0FB6F532374FAB100241EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0FB6F552374FAB100241EC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0FB6F5A2374FAB100241EC7 /* rfiosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rfiosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -475,7 +475,7 @@
 				E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */,
 				E040851A2376F3E5008C9F8F /* MainViewModel.swift */,
 				E04085182376ED16008C9F8F /* SideBarViewController.swift */,
-				E0FB6F502374FAB100241EC7 /* user.xcassets */,
+				E0FB6F502374FAB100241EC7 /* Assets.xcassets */,
 				E0FB6F552374FAB100241EC7 /* Info.plist */,
 			);
 			path = rfios;
@@ -613,7 +613,7 @@
 				E0D25C3823751063001697F9 /* Login.storyboard in Resources */,
 				E04085132376E6B9008C9F8F /* FeedbackCell.xib in Resources */,
 				E0FB6F542374FAB100241EC7 /* LaunchScreen.storyboard in Resources */,
-				E0FB6F512374FAB100241EC7 /* user.xcassets in Resources */,
+				E0FB6F512374FAB100241EC7 /* Assets.xcassets in Resources */,
 				E0FB6F4F2374FAAF00241EC7 /* Main.storyboard in Resources */,
 				E02F45862382AAE9005F8CA0 /* User.storyboard in Resources */,
 				E040851F2377274C008C9F8F /* Feedback.storyboard in Resources */,
@@ -627,7 +627,7 @@
 			files = (
 				E0545B95241890F000417414 /* FeedbackCell.xib in Resources */,
 				E0545B9C2418910B00417414 /* User.storyboard in Resources */,
-				E03226AF2428AEDF00A4C933 /* user.xcassets in Resources */,
+				E03226AF2428AEDF00A4C933 /* Assets.xcassets in Resources */,
 				E03226B82428C74900A4C933 /* FriendCell.xib in Resources */,
 				E0545B87241890BE00417414 /* Login.storyboard in Resources */,
 				E0545BA12418911F00417414 /* Main.storyboard in Resources */,
