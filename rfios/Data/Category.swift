@@ -10,8 +10,8 @@ import Foundation
 
 struct Category {
     
-    var id = -1
-    var title = ""
+    var id = 0
+    var title = "기본"
     var color = "#000000"
     
     init() {

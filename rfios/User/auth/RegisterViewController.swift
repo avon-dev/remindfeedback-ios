@@ -87,7 +87,7 @@ extension RegisterViewController {
         self.chkEmailBtn.rx.tap
 //            .concatMap { self.viewModel.emailValid }
 //            .filter { $0 == true }
-            .concatMap{ _ in self.viewModel.reqChkEmail() }
+            .concatMap{ _ in self.viewModel.requestCheckEmail() }
             .subscribe(onNext: { [weak self] in
                 if $0 == "" {
                     self?.bindAlert(title: "이메일 확인", content: "사용 불가능한 이메일입니다.")
@@ -111,7 +111,7 @@ extension RegisterViewController {
         
         /// 회원가입 요청
         self.reqRegisterBtn.rx.tap
-            .flatMap{ self.viewModel.reqRegister() }
+            .flatMap{ self.viewModel.requestRegister() }
             .subscribe(
                 onNext: { [weak self] in
                     if $0.0 {

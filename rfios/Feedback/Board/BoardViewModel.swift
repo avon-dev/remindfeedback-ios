@@ -13,19 +13,19 @@ import RxSwift
 protocol BoardViewModelType: BaseViewModelType {
     
     // VM to V
-    var titleOb: BehaviorSubject<String> { get }
-    var dateOb: BehaviorSubject<Date> { get }
-    var cardListOb: BehaviorRelay<[Card]> { get }
+    var titleOutput: BehaviorSubject<String> { get }
+    var dateOutput: BehaviorSubject<Date> { get }
+    var cardListOutput: BehaviorRelay<[Card]> { get }
     
     // Scene
     func onTextCard(_ index: Int)
     func onEditTextCard()
     
     // CRUD
-    func delCard(_ index: Int)
+    func deleteCard(_ index: Int)
     
     // Network
-    func reqGetCards()
+    func requestCards()
     
     
     func updateList()
@@ -35,17 +35,17 @@ protocol BoardViewModelType: BaseViewModelType {
 class BoardViewModel: BaseViewModel, BoardViewModelType {
     
     var feedback = Feedback()
-    let titleOb: BehaviorSubject<String>
-    let dateOb: BehaviorSubject<Date>
+    let titleOutput: BehaviorSubject<String>
+    let dateOutput: BehaviorSubject<Date>
     
     var cardList = [Card]()
-    let cardListOb: BehaviorRelay<[Card]>
+    let cardListOutput: BehaviorRelay<[Card]>
     var selectedIndex = -1
     
     override init() {
-        self.titleOb = BehaviorSubject.init(value: "")
-        self.dateOb = BehaviorSubject.init(value: Date())
-        self.cardListOb = BehaviorRelay<[Card]>(value: cardList)
+        self.titleOutput = BehaviorSubject.init(value: "")
+        self.dateOutput = BehaviorSubject.init(value: Date())
+        self.cardListOutput = BehaviorRelay<[Card]>(value: cardList)
         super.init()
     }
     
@@ -72,18 +72,18 @@ extension BoardViewModel {
 }
 
 extension BoardViewModel {
-    func delCard(_ index: Int) {
+    func deleteCard(_ index: Int) {
         NWLog.sLog(contentName: "게시물 삭제", contents: nil)
         self.reqDelCard(index)
         self.cardList.remove(at: index)
-        self.cardListOb.accept(self.cardList)
+        self.cardListOutput.accept(self.cardList)
     }
 }
 
 // - MARK: Network
 extension BoardViewModel {
     /// 피드백에 대한 게시물 리스트
-    func reqGetCards() {
+    func requestCards() {
         APIHelper.sharedInstance.rxPullResponse(.getCards(self.feedback.id, 0))
             .subscribe(onNext: { [weak self] in
                 guard let dataList = $0.dataDic else { return }
@@ -114,7 +114,7 @@ extension BoardViewModel {
                     self?.cardList.append(card)
                 }
                 
-                self?.cardListOb.accept(self?.cardList ?? [])
+                self?.cardListOutput.accept(self?.cardList ?? [])
                 
             })
             .disposed(by: self.disposeBag)
@@ -146,6 +146,6 @@ extension BoardViewModel {
     }
     
     func updateList() {
-        self.cardListOb.accept(self.cardList)
+        self.cardListOutput.accept(self.cardList)
     }
 }

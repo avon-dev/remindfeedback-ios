@@ -81,19 +81,19 @@ extension BoardViewController {
         // VM to V
         
         // 네비게이션 바 타이틀 설정
-        self.viewModel.titleOb
+        self.viewModel.titleOutput
             .bind(to: self.navigationItem.rx.title)
             .disposed(by: self.disposeBag)
         
         // 피드백 제목 설정
-        self.viewModel.titleOb
+        self.viewModel.titleOutput
             .subscribe(onNext: { [weak self] in
                 self?.titleLabel.text = "[" + $0 + "]의 개선사항"
             })
             .disposed(by: self.disposeBag)
         
         // 피드백 날짜 설정
-        self.viewModel.dateOb
+        self.viewModel.dateOutput
             .subscribe(onNext: { [weak self] in
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = "yyyy년 MM월 dd일"
@@ -104,8 +104,8 @@ extension BoardViewController {
             .disposed(by: self.disposeBag)
         
         // 게시물 리스트
-        self.viewModel.reqGetCards()
-        self.viewModel.cardListOb
+        self.viewModel.requestCards()
+        self.viewModel.cardListOutput
             .bind(to: tableView.rx.items(cellIdentifier: CardCell.identifier, cellType: CardCell.self)) {
 
                 index, item, cell in
@@ -127,7 +127,7 @@ extension BoardViewController {
         self.tableView.rx.itemDeleted
             .subscribe(onNext: {
                 // 해당 피드백을 삭제
-                self.viewModel.delCard($0.item)
+                self.viewModel.deleteCard($0.item)
             })
             .disposed(by: self.disposeBag)
         

@@ -21,7 +21,7 @@ protocol LoginViewModelType: BaseViewModelType {
     func onRegister()
     
     // ViewModel to NetworkService
-    func reqLogin() -> Observable<(Bool, String?, [String:Any]?)>
+    func requestLogin() -> Observable<(Bool, String?, [String:Any]?)>
 //    func reqMe() -> Observable<(Bool, String?, String?)>
     
 }
@@ -75,7 +75,7 @@ extension LoginViewModel {
 extension LoginViewModel {
     
     //
-    func reqLogin() -> Observable<(Bool, String?, [String:Any]?)> {
+    func requestLogin() -> Observable<(Bool, String?, [String:Any]?)> {
         print("로그인 요청", self.params)
         return APIHelper.sharedInstance.rxSetSession(.login(self.params))
             .map { ($0.isSuccess, $0.msg, $0.data) }

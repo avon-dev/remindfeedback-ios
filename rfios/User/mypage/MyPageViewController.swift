@@ -72,7 +72,7 @@ extension MyPageViewController {
                 if $0 {
                     self?.viewModel.setScene(self ?? UIViewController())
                     SceneCoordinator.sharedInstance.show()
-                    self?.viewModel.reqGetMyPage()
+                    self?.viewModel.requestMyPage()
                 }
             })
             .disposed(by: self.disposeBag)
@@ -106,7 +106,7 @@ extension MyPageViewController {
         
         // MARK: Input
         // 로그인한 유저 정보 옵저버블
-        viewModel.userOb
+        viewModel.userOutput
             .asObservable()
             .subscribe(onNext: { [weak self] in
                 self?.nicknameLabel.text = $0.nickname
@@ -145,7 +145,7 @@ extension MyPageViewController: RxMediaPickerDelegate {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (image, editedImage) in
                 self?.portraitImg.image = editedImage ?? image
-                self?.viewModel.reqModPortrait(editedImage ?? image)
+                self?.viewModel.requestPortraitModification(editedImage ?? image)
             }, onError: { error in
                 print("Picker photo error: \(error)")
             }, onCompleted: {
@@ -161,7 +161,7 @@ extension MyPageViewController: RxMediaPickerDelegate {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (image, editedImage) in
                 self?.portraitImg.image = editedImage ?? image
-                self?.viewModel.reqModPortrait(editedImage ?? image)
+                self?.viewModel.requestPortraitModification(editedImage ?? image)
             }, onError: { error in
                 print("Picker photo error: \(error)")
             }, onCompleted: {
@@ -192,7 +192,7 @@ extension MyPageViewController {
         editField?.textColor = .black
         alert.addButton("변경") { [weak self] in
             if let txt = editField?.text {
-                self?.viewModel.reqModNickName(txt)
+                self?.viewModel.requestNicknameModification(txt)
             }
         }
         
@@ -209,7 +209,7 @@ extension MyPageViewController {
         editField?.textColor = .black
         alert.addButton("변경") { [weak self] in
             if let txt = editField?.text {
-                self?.viewModel.reqModIntro(txt)
+                self?.viewModel.requestIntroductionModification(txt)
             }
         }
         

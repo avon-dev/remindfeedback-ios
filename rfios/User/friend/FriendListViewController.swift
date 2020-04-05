@@ -91,7 +91,7 @@ extension FriendListViewController {
                 if $0 {
                     self?.viewModel.setScene(self ?? UIViewController())
                     SceneCoordinator.sharedInstance.show()
-                    self?.viewModel.setFriendList()
+                    self?.viewModel.fetchFriendList()
                 }
             })
             .disposed(by: self.disposeBag)

@@ -50,6 +50,11 @@ class CategoryListViewController: UIViewController {
 extension CategoryListViewController {
     func setUI() {
         setNavUI()
+        if viewModel.isSelection {
+            tableView.allowsSelection = true
+        } else {
+            tableView.allowsSelection = false
+        }
     }
     
     func setNavUI() {
@@ -80,28 +85,25 @@ extension CategoryListViewController {
                     self?.viewModel.setScene(self ?? UIViewController())
                     self?.viewModel.getList()
                 }
-            })
-            .disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
         
         // MARK: Output
         self.viewModel.categoryListOutput
-            .bind(to:
-            self.tableView.rx.items(cellIdentifier: CategoryCell.identifier
+            .bind(to: tableView.rx.items(cellIdentifier: CategoryCell.identifier
                 , cellType: CategoryCell.self)) { index, item, cell in
                     
-                cell.dataInput.onNext(item)
-                cell.index = index
-                cell.viewModel = self.viewModel
-                if self.viewModel.isSelection {
-                    cell.modifyBtn.isHidden = true
-                }
-            }
-            .disposed(by: disposeBag)
+                    cell.dataInput.onNext(item)
+                    cell.index = index
+                    cell.viewModel = self.viewModel
+                    if self.viewModel.isSelection {
+                        cell.modifyBtn.isHidden = true
+                    }
+            }.disposed(by: disposeBag)
         
         // MARK: Input
         
         // 화면 상단의 추가버튼을 눌렀을 때
-        self.navigationItem.rightBarButtonItem?.rx.tap
+        navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: { [weak self] in
                 if self?.viewModel.isSelection ?? false {
                     if let vm = self?.viewModel.feedbackViewModel {
@@ -111,15 +113,26 @@ extension CategoryListViewController {
                 } else {
                     self?.viewModel.onAdd()
                 }
-            })
-            .disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
         
         // 테이블 뷰 셀을 좌측으로 스와이프할 때
-        self.tableView.rx.itemDeleted
-            .subscribe(onNext: {
-                self.viewModel.remove($0.item)
-            })
-            .disposed(by: self.disposeBag)
+        tableView.rx.itemDeleted
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.remove($0.item)
+            }).disposed(by: disposeBag)
+        
+        if viewModel.isSelection {
+            tableView.rx.itemSelected
+                .subscribe(onNext: { [weak self] in
+                    self?.tableView.cellForRow(at: $0)?.backgroundColor = .gray
+                }).disposed(by: disposeBag)
+            
+            tableView.rx.itemDeselected
+                .subscribe(onNext: { [weak self] in
+                    self?.tableView.cellForRow(at: $0)?.backgroundColor = .clear
+                }).disposed(by: disposeBag)
+        }
+        
         
         
     }

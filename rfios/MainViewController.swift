@@ -100,7 +100,6 @@ extension MainViewController {
             .subscribe(onNext: { [weak self] in
                 if $0 {
                     self?.viewModel.setScene(self ?? UIViewController())
-                    
                 }
             })
             .disposed(by: self.disposeBag)
@@ -129,12 +128,10 @@ extension MainViewController {
                 
                 guard let vc = self else { return }
                 
-//                let offset: CGFloat = 200
                 let offset: CGFloat = 100
                 let bottomEdge = vc.tableView.contentOffset.y + vc.tableView.frame.size.height
                 if (bottomEdge + offset >= vc.tableView.contentSize.height) {
-//                if (bottomEdge + offset == vc.tableView.contentSize.height) {
-                    vc.viewModel.getFeedbackList()
+                    vc.viewModel.fetchFeedbackList()
                 }
             })
             .disposed(by: disposeBag)
@@ -184,7 +181,7 @@ extension MainViewController {
         NWLog.sLog(contentName: "쿠키", contents: cookie)
         
         // 사용자의 피드백 요청
-        self.viewModel.getFeedbackList()
+        self.viewModel.fetchFeedbackList()
         
         // 로그인 여부 : true
         self.isLogin = true

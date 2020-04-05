@@ -24,8 +24,8 @@ protocol RegisterViewModelType: BaseViewModelType {
     var registerValid: Observable<Bool> { get }
     
     // ViewModel to NetworkService
-    func reqRegister() -> Observable<(Bool, String?)>
-    func reqChkEmail() -> Observable<String>
+    func requestRegister() -> Observable<(Bool, String?)>
+    func requestCheckEmail() -> Observable<String>
     
 }
 
@@ -97,14 +97,14 @@ class RegisterViewModel: BaseViewModel, RegisterViewModelType {
 // MARK: Network
 extension RegisterViewModel {
     /// 회원가입을 요청하는 함수
-    func reqRegister() -> Observable<(Bool, String?)> {
+    func requestRegister() -> Observable<(Bool, String?)> {
         return APIHelper.sharedInstance
             .rxPushRequest(.register(self.params))
             .map { ($0.isSuccess, $0.msg) }
     }
     
     /// 이메일 중복 검사를 요청하는 함수
-    func reqChkEmail() -> Observable<String> {
+    func requestCheckEmail() -> Observable<String> {
         
         return APIHelper.sharedInstance
             .rxGetEmailToken(.email(["email":params["email"]]))

@@ -35,7 +35,11 @@ class FeedbackCell: UITableViewCell {
                 dateFormatter.dateFormat = "yyyy-MM-dd"
                 dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
                 self?.dateLabel.text = dateFormatter.string(from: $0.date)
-                self?.advisorImage.kf.setImage(with: URL(string: RemindFeedback.imgURL + $0.advisor.portrait)!, placeholder: UIImage(named: "user-black"))
+                
+                if let url = URL(string: RemindFeedback.imgURL + $0.advisor.portrait) {
+                    self?.advisorImage.kf.setImage(with: url, placeholder: UIImage(named: "user-black"))
+                }
+                
                 
                 self?.setBinding()
                 

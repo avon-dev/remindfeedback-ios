@@ -71,7 +71,7 @@ extension LoginViewController {
             .disposed(by: self.disposeBag)
         
         self.loginBtn.rx.tap
-            .flatMap { self.viewModel.reqLogin() }
+            .flatMap { self.viewModel.requestLogin() }
             .subscribe(onNext: {
                 print("로그인", $0.0, $0.2 ?? "")
                 if $0.0 {
@@ -90,7 +90,6 @@ extension LoginViewController {
         
         self.registerBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                print("on회원가입")
                 self?.viewModel.onRegister()
             })
             .disposed(by: self.disposeBag)

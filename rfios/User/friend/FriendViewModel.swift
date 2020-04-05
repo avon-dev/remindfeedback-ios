@@ -37,7 +37,7 @@ protocol FriendViewModelType: BaseViewModelType {
     func onBlockFriend()
     
     // CRUD
-    func setFriendList()
+    func fetchFriendList()
     func findFriend()
     func addFriend()
 }
@@ -104,7 +104,7 @@ extension FriendViewModel {
 // MARK: CRUD
 extension FriendViewModel {
     
-    func setFriendList() {
+    func fetchFriendList() {
         reqList()
     }
     

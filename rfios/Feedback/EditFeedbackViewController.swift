@@ -29,11 +29,10 @@ class EditFeedbackViewController: UIViewController {
         self.disposeBag = DisposeBag()
     }
     
-//    @IBOutlet weak var titleTextview: UITextView!
     @IBOutlet weak var categoryColor: UIView! // 피드백 주제 컬러를 표시하는 이미지뷰
     @IBOutlet weak var categoryTitle: UILabel! // 피드백 주제 이름을 표시하는 이미지뷰
     @IBOutlet weak var categoryBtn: UIButton! // 피드백 주제를 선택할 수 있게 하는 버튼
-    @IBOutlet weak var titleTxtFld: UITextField! // 피드백 제목을 입력하는 버튼
+    @IBOutlet weak var titleField: UITextField! // 피드백 제목을 입력하는 버튼
     @IBOutlet weak var dateLabel: UILabel! // 피드백 날짜가 표시되는 레이블
     @IBOutlet weak var dateBtn: UIButton! // 피드백 날짜를 선택할 수 있게 하는 버튼
     @IBOutlet weak var friendBtn: UIButton! // 피드백 조언자를 선택할 수 있게 하는 버튼
@@ -47,11 +46,6 @@ class EditFeedbackViewController: UIViewController {
         self.setUI()
         self.setBinding()
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        self.viewModel.setFeedback()
-    }
 
 }
 
@@ -61,18 +55,10 @@ extension EditFeedbackViewController {
     func setUI() {
 //        self.titleTextview.textContainer.maximumNumberOfLines = 2
 //        self.titleTextview.textContainer.lineBreakMode = .byTruncatingTail
-        self.setNavUI()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"    // date format
-        dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
-        
-        self.dateLabel.text = dateFormatter.string(from: Date())
-        
+        setNavUI()
     }
     
     func setNavUI() {
-        
         self.navigationController?.navigationBar.topItem?.title = ""
         // 네비게이션 바 타이틀 설정
         self.navigationItem.title = "피드백 설정" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
@@ -93,60 +79,63 @@ extension EditFeedbackViewController {
             .subscribe(onNext: { [weak self] in
                 if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
             })
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
         
         // MARK: Output
         /// 피드백 주제 선택
-        self.categoryBtn.rx.tap
+        categoryBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.onCategory()
             })
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
         
         // 피드백 제목 입력
-        self.titleTxtFld.rx.text.orEmpty
-            .bind(to: self.viewModel.titleInput)
-            .disposed(by: self.disposeBag)
+        titleField.rx.text.orEmpty
+            .bind(to: viewModel.titleInput)
+            .disposed(by: disposeBag)
         
         // 피드백 날짜 선택
-        self.datePicker.rx.value // value대산에 date를 사용해도 되는듯
-            .bind(to: self.viewModel.dateInput)
-            .disposed(by: self.disposeBag)
+        datePicker.rx.date // value대산에 date를 사용해도 되는듯
+            .filter { !Calendar.current.isDateInToday($0) } // 기존 피드백의 날짜 데이터가 오늘 날짜로 덮어씌어지는 경우가 있기에 추가
+            .bind(to: viewModel.dateInput)
+            .disposed(by: disposeBag)
         
         
         // 피드백 조언자 선택
         // - TODO: 친구기능 완성 후
         
         // 피드백 추가
-        self.navigationItem.rightBarButtonItem?.rx.tap
-            .subscribe(onNext: {
-                self.viewModel.requestAddition()
-                self.dismiss(animated: true, completion: nil)
+        navigationItem.rightBarButtonItem?.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.doneEdition()
             })
-            .disposed(by: self.disposeBag)
-        
+            .disposed(by: disposeBag)
         
         // MARK: Input
-        ///
-        self.viewModel.categoryOutput
-            .skip(1) // 디폴트값 걷어내기
-            .subscribe(onNext: { [weak self] in
-                self?.categoryColor.backgroundColor = UIUtil.hexStringToUIColor($0.color)
-                self?.categoryTitle.text = $0.title
-            })
-            .disposed(by: self.disposeBag)
+        viewModel.colorOutput
+            .asDriver()
+            .drive(categoryColor.rx.backgroundColor)
+            .disposed(by: disposeBag)
         
-        ///
-        self.viewModel.feedbackOutput
-            .subscribe(onNext: { [weak self] in
-                self?.titleTxtFld.text = $0.title
-            })
-            .disposed(by: self.disposeBag)
+        viewModel.categoryTitleOutput
+            .asDriver()
+            .drive(categoryTitle.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.feedbackTitleOutput
+            .asDriver()
+            .drive(titleField.rx.text)
+            .disposed(by: disposeBag)
+        
+        viewModel.dateOutput
+            .asDriver()
+            .drive(datePicker.rx.date)
+            .disposed(by: disposeBag)
             
     }
 }
 
-// - MARK: LEGACY
+// MARK: LEGACY
 
 // - MARK: TextView Option
 extension EditFeedbackViewController: UITextViewDelegate {

@@ -10,7 +10,6 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-// - MARK: Protocol
 protocol MainViewModelType: BaseViewModelType {
     // Output
     var feedbackListOutput: BehaviorRelay<[Feedback]> { get }
@@ -24,15 +23,18 @@ protocol MainViewModelType: BaseViewModelType {
     func onModFeedback(_ selectedIndex: Int)
     /// 피드백 개선사항을 추가하는 화면으로 이동
     func onBoard(_ selectedIndex: Int)
-    ///
+    /// 마이페이지로 이동
     func onMyPage()
-    ///
+    /// 친구리스트로 이동
     func onFriendList()
     
     // CRUD
+    /// 피드백 리스트에 새 피드백을 추가하는 함수
     func addFeedback(_ feedback: Feedback?)
-    
-    func getFeedbackList()
+    /// 피드백 리스트의 피드백을 수정하는 함수
+    func modifyFeedback(_ feedback: Feedback?)
+    /// 피드백 리스트를 가져오는 함수
+    func fetchFeedbackList()
     /// 피드백을 삭제하는 함수
     func removeFeedback(_ index: Int)
     /// 로그아웃
@@ -47,6 +49,7 @@ class MainViewModel: BaseViewModel, MainViewModelType {
     var selectedIndex = -1
     /// 마지막으로 응답받은 피드백 ID 저장 변수
     var lastFID = 0
+    /// 피드백을 가져오는 중인지 확인하는 함수
     var isFetching = false
     
     override init() {
@@ -76,6 +79,7 @@ extension MainViewModel {
     
     func onModFeedback(_ selectedIndex: Int) {
         let feedbackViewModel = FeedbackViewModel()
+        feedbackViewModel.isModification = true 
         feedbackViewModel.mainViewModel = self
         feedbackViewModel.feedback = self.feedbackList[selectedIndex]
         SceneCoordinator.sharedInstance.push(scene: .editFeedbackView(feedbackViewModel))
@@ -85,8 +89,8 @@ extension MainViewModel {
         let boardViewModel = BoardViewModel()
         // TODO: 아래의 3개 라인 코드를 이 영역에서 해도 되는지 의문
         boardViewModel.feedback = self.feedbackList[selectedIndex]
-        boardViewModel.titleOb.onNext(self.feedbackList[selectedIndex].title)
-        boardViewModel.dateOb.onNext(self.feedbackList[selectedIndex].date)
+        boardViewModel.titleOutput.onNext(self.feedbackList[selectedIndex].title)
+        boardViewModel.dateOutput.onNext(self.feedbackList[selectedIndex].date)
         SceneCoordinator.sharedInstance.push(scene: .boardView(boardViewModel))
     }
     
@@ -113,14 +117,18 @@ extension MainViewModel {
 extension MainViewModel {
     
     func addFeedback(_ feedback: Feedback?) {
-        
         guard let feedback = feedback else { return }
-        
         feedbackList.insert(feedback, at: 0) 
         feedbackListOutput.accept(feedbackList)
     }
     
-    func getFeedbackList() {
+    func modifyFeedback(_ feedback: Feedback?) {
+        guard let feedback = feedback else { return }
+        feedbackList[selectedIndex] = feedback
+        feedbackListOutput.accept(feedbackList)
+    }
+    
+    func fetchFeedbackList() {
         requestList()
     }
     

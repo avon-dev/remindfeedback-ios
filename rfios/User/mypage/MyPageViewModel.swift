@@ -12,22 +12,22 @@ import RxSwift
 
 protocol MyPageViewModelType: BaseViewModelType {
     var user: User { get set }
-    var userOb: BehaviorSubject<User> { get }
+    var userOutput: BehaviorSubject<User> { get }
     
-    func reqGetMyPage()
-    func reqModNickName(_ nickname: String)
-    func reqModIntro(_ introduction: String)
-    func reqModPortrait(_ image: UIImage)
+    func requestMyPage()
+    func requestNicknameModification(_ nickname: String)
+    func requestIntroductionModification(_ introduction: String)
+    func requestPortraitModification(_ image: UIImage)
 }
 
 class MyPageViewModel: BaseViewModel, MyPageViewModelType {
     
     var user = User([:])
     
-    let userOb: BehaviorSubject<User>
+    let userOutput: BehaviorSubject<User>
     
     override init() {
-        userOb = BehaviorSubject<User>(value: user)
+        userOutput = BehaviorSubject<User>(value: user)
         super.init()
     }
     
@@ -36,12 +36,12 @@ class MyPageViewModel: BaseViewModel, MyPageViewModelType {
 // MARK: Network
 extension MyPageViewModel {
     
-    func reqGetMyPage() {
+    func requestMyPage() {
         return APIHelper.sharedInstance.rxPullResponse(.getMyPage)
             .subscribe(onNext: { [weak self] in
                 if $0.isSuccess {
                     self?.user = User($0.data as? [String:String])
-                    self?.userOb.onNext(self?.user ?? User([:]))
+                    self?.userOutput.onNext(self?.user ?? User([:]))
                 }
             }, onCompleted: {
                 SceneCoordinator.sharedInstance.hide()
@@ -49,12 +49,12 @@ extension MyPageViewModel {
             .disposed(by: disposeBag)
     }
     
-    func reqModNickName(_ nickname: String) {
+    func requestNicknameModification(_ nickname: String) {
         APIHelper.sharedInstance.rxPullResponse(.modNickName(["nickname":nickname]))
             .subscribe(onNext: { [weak self] in
                 if $0.isSuccess {
                     self?.user = User($0.data as? [String:String])
-                    self?.userOb.onNext(self?.user ?? User([:]))
+                    self?.userOutput.onNext(self?.user ?? User([:]))
                 }
             }, onCompleted: {
                 SceneCoordinator.sharedInstance.hide()
@@ -62,12 +62,12 @@ extension MyPageViewModel {
             .disposed(by: disposeBag)
     }
     
-    func reqModIntro(_ introduction: String) {
+    func requestIntroductionModification(_ introduction: String) {
         APIHelper.sharedInstance.rxPullResponse(.modIntro(["introduction":introduction]))
             .subscribe(onNext: { [weak self] in
                 if $0.isSuccess {
                     self?.user = User($0.data as? [String:String])
-                    self?.userOb.onNext(self?.user ?? User([:]))
+                    self?.userOutput.onNext(self?.user ?? User([:]))
                 }
             }, onCompleted: {
                 SceneCoordinator.sharedInstance.hide()
@@ -75,7 +75,7 @@ extension MyPageViewModel {
             .disposed(by: disposeBag)
     }
     
-    func reqModPortrait(_ image: UIImage) {
+    func requestPortraitModification(_ image: UIImage) {
         APIHelper.sharedInstance.rxUploadImage(.modPortrait(image: image))
             .subscribe(onCompleted: {
                 SceneCoordinator.sharedInstance.hide()

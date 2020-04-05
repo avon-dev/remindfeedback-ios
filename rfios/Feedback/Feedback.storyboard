@@ -530,7 +530,7 @@
                         <outlet property="dateLabel" destination="s4t-vP-BiV" id="UWm-Vl-q1u"/>
                         <outlet property="datePicker" destination="Y5h-6x-MPs" id="cuH-Mh-SD8"/>
                         <outlet property="friendBtn" destination="3CU-Kd-uey" id="qjv-sG-lTU"/>
-                        <outlet property="titleTxtFld" destination="hbD-uk-Pie" id="ivA-jG-UcX"/>
+                        <outlet property="titleField" destination="hbD-uk-Pie" id="ivA-jG-UcX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="egy-C3-6jT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

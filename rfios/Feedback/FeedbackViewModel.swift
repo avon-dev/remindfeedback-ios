@@ -12,6 +12,12 @@ import RxSwift
 
 protocol FeedbackViewModelType: BaseViewModelType {
     // Output
+    var feedbackOutput: BehaviorRelay<Feedback> { get }
+    
+    var colorOutput: BehaviorRelay<UIColor> { get }
+    var categoryTitleOutput: BehaviorRelay<String> { get }
+    var feedbackTitleOutput: BehaviorRelay<String> { get }
+    var dateOutput: BehaviorRelay<Date> { get }
     
     // Input
     var categoryInput: BehaviorSubject<Category> { get }
@@ -19,55 +25,72 @@ protocol FeedbackViewModelType: BaseViewModelType {
     var dateInput: BehaviorSubject<Date> { get }
     
     var feedback: Feedback { get }
-    var categoryOutput: BehaviorRelay<Category> { get }
-    var feedbackOutput: BehaviorRelay<Feedback> { get }
-    
-    //
-    func setFeedback()
     
     // Scene
     func onCategory()
     
     //
-    func requestAddition()
+    func doneEdition()
 }
 
 class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
     
-    var feedback = Feedback()
+    var feedbackOutput: BehaviorRelay<Feedback>
+    
+    let colorOutput: BehaviorRelay<UIColor>
+    let categoryTitleOutput: BehaviorRelay<String>
+    let feedbackTitleOutput: BehaviorRelay<String>
+    let dateOutput: BehaviorRelay<Date>
+    
+    var feedback = Feedback() {
+        didSet {
+            let color = UIUtil.hexStringToUIColor(feedback.category.color)
+            colorOutput.accept(color)
+            categoryTitleOutput.accept(feedback.category.title)
+            feedbackTitleOutput.accept(feedback.title)
+            dateOutput.accept(feedback.date)
+        }
+    }
     
     let categoryInput: BehaviorSubject<Category>
     let titleInput: BehaviorSubject<String>
     let dateInput: BehaviorSubject<Date>
     
-    var categoryOutput: BehaviorRelay<Category>
-    var feedbackOutput: BehaviorRelay<Feedback>
-    
-    
     var mainViewModel: MainViewModelType?
     
+    var isModification = false
+    
     override init() {
+        
+        self.feedbackOutput = BehaviorRelay<Feedback>(value: feedback)
+        
+        let color = UIUtil.hexStringToUIColor(feedback.category.color)
+        colorOutput = BehaviorRelay<UIColor>(value: color)
+        categoryTitleOutput = BehaviorRelay<String>(value: feedback.category.title)
+        feedbackTitleOutput = BehaviorRelay<String>(value: feedback.title)
+        dateOutput = BehaviorRelay<Date>(value: feedback.date)
+        
         self.categoryInput = BehaviorSubject(value: Category())
         self.titleInput = BehaviorSubject(value: "")
         self.dateInput = BehaviorSubject(value: Date())
         
-        self.categoryOutput = BehaviorRelay<Category>(value: Category())
-        self.feedbackOutput = BehaviorRelay<Feedback>(value: feedback)
+        
         
         super.init()
         
-        Observable.combineLatest(self.categoryInput, self.titleInput, self.dateInput, resultSelector: {
-            var _feedback = self.feedback
-            _feedback.category = $0
-            _feedback.title = $1
-            _feedback.date = $2
-            return _feedback
-        })
-        .filter{ $0.title != "" }
-        .subscribe(onNext: { [weak self] in
-            self?.feedback = $0
-        })
-        .disposed(by: self.disposeBag)
+        categoryInput.subscribe(onNext: { [weak self] in
+                self?.feedback.category = $0
+            }).disposed(by: disposeBag)
+        
+        titleInput.filter { !$0.isEmpty }
+            .subscribe(onNext: { [weak self] in
+                self?.feedback.title = $0
+            }).disposed(by: disposeBag)
+        
+        dateInput
+            .subscribe(onNext: { [weak self] in
+            self?.feedback.date = $0
+        }).disposed(by: disposeBag)
         
     }
     
@@ -75,10 +98,6 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
 
 // MARK: Scene
 extension FeedbackViewModel {
-    
-    func setFeedback() {
-        feedbackOutput.accept(feedback)
-    }
     
     func onCategory() {
         let categoryViewModel = CategoryViewModel()
@@ -93,6 +112,13 @@ extension FeedbackViewModel {
             .alert(title: title, text: text)
             .subscribe()
             .disposed(by: disposeBag)
+    }
+}
+
+//
+extension FeedbackViewModel {
+    func doneEdition() {
+        isModification ? requestModification() : requestAddition()
     }
 }
 
@@ -116,7 +142,25 @@ extension FeedbackViewModel {
                 SceneCoordinator.sharedInstance.pop()
                 }, onDisposed: {
                     SceneCoordinator.sharedInstance.hide()
-            })
-            .disposed(by: self.disposeBag)
+            }).disposed(by: disposeBag)
+    }
+    
+    func requestModification() {
+        SceneCoordinator.sharedInstance.show()
+        
+        APIHelper.sharedInstance
+            .rxPullResponse(.modFeedback(feedback.toDictionary(), id: String(feedback.id)))
+            .subscribe(onNext: { [weak self] in
+                guard $0.isSuccess else {
+                    self?.bindAlert(title: "안내"
+                        , text: $0.msg ?? "알 수 없는 오류가 발생했습니다.")
+                    return
+                }
+                
+                self?.mainViewModel?.modifyFeedback(self?.feedback) 
+                SceneCoordinator.sharedInstance.pop()
+                    }, onDisposed: {
+                        SceneCoordinator.sharedInstance.hide()
+            }).disposed(by: disposeBag)
     }
 }
