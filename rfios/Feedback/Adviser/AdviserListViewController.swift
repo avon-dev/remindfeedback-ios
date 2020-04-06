@@ -88,9 +88,16 @@ extension AdviserListViewController {
             }).disposed(by: disposeBag)
         
         // MARK: Output
+        navigationItem.rightBarButtonItem?.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.choose()
+                SceneCoordinator.sharedInstance.pop()
+            }).disposed(by: disposeBag)
+        
         tableView.rx.itemSelected
             .subscribe(onNext: { [weak self] in
                 self?.tableView.cellForRow(at: $0)?.backgroundColor = .gray
+                self?.viewModel.selectedIndex = $0.item
             }).disposed(by: disposeBag)
         
         tableView.rx.itemDeselected

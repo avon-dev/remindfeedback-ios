@@ -18,6 +18,7 @@ protocol AdviserListViewModelType: BaseViewModelType {
     
     // CRUD
     func fetchList()
+    func choose()
 }
 
 class AdviserListViewModel: BaseViewModel, AdviserListViewModelType {
@@ -25,6 +26,8 @@ class AdviserListViewModel: BaseViewModel, AdviserListViewModelType {
     let adviserListOutput: BehaviorRelay<[User]>
     var adviserList: [User] = []
     var selectedIndex: Int? = -1
+    
+    var feedbackViewModel: FeedbackViewModel?
     
     override init() {
         adviserListOutput = BehaviorRelay<[User]>(value: [])
@@ -48,6 +51,14 @@ extension AdviserListViewModel {
 extension AdviserListViewModel {
     func fetchList() {
         requestList()
+    }
+    
+    func choose() {
+        
+        guard let index = selectedIndex else { return }
+        
+        let adviser = adviserList[index]
+        feedbackViewModel?.adviserInput.onNext(adviser)
     }
 }
 

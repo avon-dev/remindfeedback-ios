@@ -108,7 +108,7 @@ extension CategoryListViewController {
                 if self?.viewModel.isSelection ?? false {
                     if let vm = self?.viewModel.feedbackViewModel {
                         self?.viewModel.choose()
-                        self?.navigationController?.popViewController(animated: true)
+                        SceneCoordinator.sharedInstance.pop()
                     }
                 } else {
                     self?.viewModel.onAdd()

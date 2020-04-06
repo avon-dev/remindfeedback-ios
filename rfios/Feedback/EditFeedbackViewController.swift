@@ -6,6 +6,7 @@
 //  Copyright © 2019 avon. All rights reserved.
 //
 
+import Kingfisher
 import RxCocoa
 import RxSwift
 import UIKit
@@ -36,6 +37,9 @@ class EditFeedbackViewController: UIViewController {
     @IBOutlet weak var dateLabel: UILabel! // 피드백 날짜가 표시되는 레이블
     @IBOutlet weak var dateBtn: UIButton! // 피드백 날짜를 선택할 수 있게 하는 버튼
     @IBOutlet weak var adviserBtn: UIButton! // 피드백 조언자를 선택할 수 있게 하는 버튼
+     
+    @IBOutlet weak var adviserPortrait: UIImageView!
+    @IBOutlet weak var adviserNickname: UILabel!
     
     // 추가사항. 피드백 날짜를 datepicker형태로 변경
     @IBOutlet weak var datePicker: UIDatePicker! // 피드백 날짜를 선택하고 표시하는 뷰
@@ -56,6 +60,8 @@ extension EditFeedbackViewController {
 //        self.titleTextview.textContainer.maximumNumberOfLines = 2
 //        self.titleTextview.textContainer.lineBreakMode = .byTruncatingTail
         setNavUI()
+        adviserPortrait.layer.cornerRadius = adviserPortrait.frame.height / 2
+        adviserPortrait.clipsToBounds = true
     }
     
     func setNavUI() {
@@ -137,6 +143,22 @@ extension EditFeedbackViewController {
             .asDriver()
             .drive(datePicker.rx.date)
             .disposed(by: disposeBag)
+        
+        viewModel.adviserOutput
+            .subscribe(onNext: { [weak self] in
+                
+                guard !$0.uid.isEmpty else {
+                    self?.adviserPortrait.image = UIImage(named: "plus-main")
+                    self?.adviserNickname.text = "조언자 추가하기"
+                    self?.adviserNickname.textAlignment = .center
+                    return
+                }
+                
+                let url = URL(string: RemindFeedback.imgURL + $0.portrait)!
+                self?.adviserPortrait.kf.setImage(with: url, placeholder: UIImage(named: "user-black"))
+                self?.adviserNickname.text = $0.nickname
+                self?.adviserNickname.textAlignment = .natural
+            }).disposed(by: disposeBag)
             
     }
 }

@@ -18,11 +18,13 @@ protocol FeedbackViewModelType: BaseViewModelType {
     var categoryTitleOutput: BehaviorRelay<String> { get }
     var feedbackTitleOutput: BehaviorRelay<String> { get }
     var dateOutput: BehaviorRelay<Date> { get }
+    var adviserOutput: BehaviorRelay<User> { get }
     
     // Input
     var categoryInput: BehaviorSubject<Category> { get }
     var titleInput: BehaviorSubject<String> { get }
     var dateInput: BehaviorSubject<Date> { get }
+    var adviserInput: BehaviorSubject<User> { get }
     
     var feedback: Feedback { get }
     
@@ -42,6 +44,7 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
     let categoryTitleOutput: BehaviorRelay<String>
     let feedbackTitleOutput: BehaviorRelay<String>
     let dateOutput: BehaviorRelay<Date>
+    let adviserOutput: BehaviorRelay<User>
     
     var feedback = Feedback() {
         didSet {
@@ -50,12 +53,14 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
             categoryTitleOutput.accept(feedback.category.title)
             feedbackTitleOutput.accept(feedback.title)
             dateOutput.accept(feedback.date)
+            adviserOutput.accept(feedback.adviser)
         }
     }
     
     let categoryInput: BehaviorSubject<Category>
     let titleInput: BehaviorSubject<String>
     let dateInput: BehaviorSubject<Date>
+    let adviserInput: BehaviorSubject<User>
     
     var mainViewModel: MainViewModelType?
     
@@ -68,10 +73,12 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
         categoryTitleOutput = BehaviorRelay<String>(value: feedback.category.title)
         feedbackTitleOutput = BehaviorRelay<String>(value: feedback.title)
         dateOutput = BehaviorRelay<Date>(value: feedback.date)
+        adviserOutput = BehaviorRelay<User>(value: feedback.adviser)
         
-        self.categoryInput = BehaviorSubject(value: Category())
-        self.titleInput = BehaviorSubject(value: "")
-        self.dateInput = BehaviorSubject(value: Date())
+        categoryInput = BehaviorSubject(value: Category())
+        titleInput = BehaviorSubject(value: "")
+        dateInput = BehaviorSubject(value: Date())
+        adviserInput = BehaviorSubject(value: User())
         
         super.init()
         
@@ -86,6 +93,10 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
         
         dateInput.subscribe(onNext: { [weak self] in
             self?.feedback.date = $0
+        }).disposed(by: disposeBag)
+        
+        adviserInput.subscribe(onNext: { [weak self] in
+            self?.feedback.adviser = $0
         }).disposed(by: disposeBag)
         
     }
@@ -103,8 +114,9 @@ extension FeedbackViewModel {
     }
     
     func onAdviser() {
-        let adviserModel = AdviserListViewModel()
-        SceneCoordinator.sharedInstance.push(scene: .adviserListView(adviserModel))
+        let adviserListModel = AdviserListViewModel()
+        adviserListModel.feedbackViewModel = self
+        SceneCoordinator.sharedInstance.push(scene: .adviserListView(adviserListModel))
     }
     
     private func bindAlert(title: String, text: String) {

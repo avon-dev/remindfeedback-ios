@@ -64,11 +64,6 @@ class AdviserCell: UITableViewCell {
         initialUI()
         disposeBag = DisposeBag()
     }
-    
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-        self.viewModel?.selectedIndex = self.index
-    }
 
 }
 

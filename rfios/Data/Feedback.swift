@@ -11,6 +11,7 @@ import Foundation
 struct Feedback {
     
     var id = -1
+    var uuid = ""
     var auid = ""
     var title = ""
     var category = Category()
@@ -24,6 +25,7 @@ struct Feedback {
     
     init(_ dic: [String:Any]) {
         id = dic["id"] as? Int ?? -1
+        uuid = dic["user_uid"] as? String ?? ""
         auid = dic["adviser_uid"] as? String ?? ""
         title = dic["title"] as? String ?? ""
         
@@ -49,9 +51,9 @@ struct Feedback {
     func toDictionary() -> [String: Any?] {
         var dic: [String: Any?] = [:]
         dic["id"] = self.id
-        dic["adviser"] = self.auid
         dic["title"] = self.title
         dic["category"] = self.category.id
+        dic["adviser"] = self.adviser.uid
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"

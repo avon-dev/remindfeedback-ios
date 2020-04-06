@@ -168,8 +168,7 @@ extension MainViewModel {
                 self?.feedbackListOutput.accept(self?.feedbackList ?? [])
                 }, onDisposed: { [weak self] in
                     self?.isFetching = false
-            })
-            .disposed(by: self.disposeBag)
+            }).disposed(by: self.disposeBag)
     }
     
     func requestRemoval() {
@@ -182,8 +181,7 @@ extension MainViewModel {
                 
                 self?.feedbackList.remove(at: self?.selectedIndex ?? -1)
                 self?.feedbackListOutput.accept(self?.feedbackList ?? [])
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
     
     func requestLogout() {
@@ -196,8 +194,7 @@ extension MainViewModel {
                 
                 self?.feedbackList.removeAll()
                 self?.onLogin()
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
     
 }

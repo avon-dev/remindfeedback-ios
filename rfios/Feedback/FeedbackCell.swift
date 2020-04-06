@@ -20,31 +20,9 @@ class FeedbackCell: UITableViewCell {
     let dataInput: PublishSubject<Feedback>
     
     required init?(coder aDecoder: NSCoder) {
-        
         dataInput = PublishSubject<Feedback>()
-        
         super.init(coder: aDecoder)
-
-        dataInput.observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self] in
-                
-                self?.colorView.backgroundColor = UIUtil.hexStringToUIColor($0.category.color)
-                self?.feedbackLabel.text = $0.title
-                
-                let dateFormatter = DateFormatter()
-                dateFormatter.dateFormat = "yyyy-MM-dd"
-                dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
-                self?.dateLabel.text = dateFormatter.string(from: $0.date)
-                
-                if let url = URL(string: RemindFeedback.imgURL + $0.adviser.portrait) {
-                    self?.adviserImage.kf.setImage(with: url, placeholder: UIImage(named: "user-black"))
-                }
-                
-                
-                self?.setBinding()
-                
-            })
-            .disposed(by: cellDisposeBag)
+        setBinding()
     }
 
     override func prepareForReuse() {
@@ -54,7 +32,7 @@ class FeedbackCell: UITableViewCell {
     
     deinit {
         cellDisposeBag = DisposeBag()
-        self.disposeBag = DisposeBag()
+        disposeBag = DisposeBag()
     }
 
     @IBOutlet weak var colorView: UIView!
@@ -65,21 +43,51 @@ class FeedbackCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        setUI()
     }
     
 }
 
+// MARK: UI
 extension FeedbackCell {
-    func setBinding() {
+    func setUI() {
+        adviserImage.layer.cornerRadius = adviserImage.frame.height / 2
+        adviserImage.clipsToBounds = true
+    }
+}
+
+// MARK: Binding
+extension FeedbackCell {
+    private func setBinding() {
+        
+        dataInput.observeOn(MainScheduler.instance)
+            .subscribe(onNext: { [weak self] in
+                
+                self?.colorView.backgroundColor =
+                    UIUtil.hexStringToUIColor($0.category.color)
+                self?.feedbackLabel.text = $0.title
+                
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "yyyy-MM-dd"
+                dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
+                self?.dateLabel.text = dateFormatter.string(from: $0.date)
+                
+                guard let url =
+                    URL(string: RemindFeedback.imgURL + $0.adviser.portrait) else { return }
+                self?.adviserImage.kf
+                    .setImage(with: url, placeholder: UIImage(named: "user-black"))
+                
+                self?.setLongTapListener()
+                
+            }).disposed(by: cellDisposeBag)
+    }
+    
+    private func setLongTapListener() {
         self.rx.longPressGesture()
             .when(.recognized)
             .subscribe({ [weak self] _ in // 음... onNext가 필요없네...
                 self?.viewModel?.onModFeedback(self?.index ?? -1)
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
     }
+    
 }
