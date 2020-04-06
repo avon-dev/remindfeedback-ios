@@ -34,7 +34,7 @@
 		E030691A2410F0C100E07D21 /* MyPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03069192410F0C100E07D21 /* MyPageViewModel.swift */; };
 		E03226AC241E164900A4C933 /* AddFriendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03226AB241E164900A4C933 /* AddFriendViewController.swift */; };
 		E03226AE24289B1C00A4C933 /* FriendType.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03226AD24289B1C00A4C933 /* FriendType.swift */; };
-		E03226AF2428AEDF00A4C933 /* user.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* user.xcassets */; };
+		E03226AF2428AEDF00A4C933 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* Assets.xcassets */; };
 		E03226B52428C74900A4C933 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03226B32428C74900A4C933 /* FriendCell.swift */; };
 		E03226B62428C74900A4C933 /* FriendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E03226B32428C74900A4C933 /* FriendCell.swift */; };
 		E03226B72428C74900A4C933 /* FriendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E03226B42428C74900A4C933 /* FriendCell.xib */; };
@@ -106,6 +106,12 @@
 		E062F41A23F3DD0800DD6A01 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E062F41923F3DD0800DD6A01 /* MyPageViewController.swift */; };
 		E06D86A223C0B12500AB2D48 /* FeedbackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D86A123C0B12500AB2D48 /* FeedbackViewModel.swift */; };
 		E06D86A423C0BB5400AB2D48 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = E06D86A323C0BB5400AB2D48 /* Feedback.swift */; };
+		E08B04F7243AEFF800BF0777 /* AdviserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B04F6243AEFF800BF0777 /* AdviserListViewController.swift */; };
+		E08B04F8243AEFF800BF0777 /* AdviserListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B04F6243AEFF800BF0777 /* AdviserListViewController.swift */; };
+		E08B04FA243AF00F00BF0777 /* AdviserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B04F9243AF00F00BF0777 /* AdviserListViewModel.swift */; };
+		E08B04FB243AF00F00BF0777 /* AdviserListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B04F9243AF00F00BF0777 /* AdviserListViewModel.swift */; };
+		E08B04FD243B0CD500BF0777 /* AdviserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B04FC243B0CD500BF0777 /* AdviserCell.swift */; };
+		E08B04FE243B0CD500BF0777 /* AdviserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E08B04FC243B0CD500BF0777 /* AdviserCell.swift */; };
 		E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */; };
 		E0B1DD3724188BFA00C1EB56 /* UserDefaultsHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C17BEE3238FB4BC001FB4C4 /* UserDefaultsHelper.swift */; };
 		E0B1DD3924188C9500C1EB56 /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0B1DD3824188C9500C1EB56 /* NetworkTests.swift */; };
@@ -127,7 +133,7 @@
 		E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */; };
 		E0FB6F4C2374FAAF00241EC7 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */; };
 		E0FB6F4F2374FAAF00241EC7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F4D2374FAAF00241EC7 /* Main.storyboard */; };
-		E0FB6F512374FAB100241EC7 /* user.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* user.xcassets */; };
+		E0FB6F512374FAB100241EC7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F502374FAB100241EC7 /* Assets.xcassets */; };
 		E0FB6F542374FAB100241EC7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E0FB6F522374FAB100241EC7 /* LaunchScreen.storyboard */; };
 		E0FB6F5F2374FAB100241EC7 /* rfiosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F5E2374FAB100241EC7 /* rfiosTests.swift */; };
 		E0FB6F6A2374FAB100241EC7 /* rfiosUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0FB6F692374FAB100241EC7 /* rfiosUITests.swift */; };
@@ -206,6 +212,9 @@
 		E062F41923F3DD0800DD6A01 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		E06D86A123C0B12500AB2D48 /* FeedbackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedbackViewModel.swift; sourceTree = "<group>"; };
 		E06D86A323C0BB5400AB2D48 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
+		E08B04F6243AEFF800BF0777 /* AdviserListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdviserListViewController.swift; sourceTree = "<group>"; };
+		E08B04F9243AF00F00BF0777 /* AdviserListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdviserListViewModel.swift; sourceTree = "<group>"; };
+		E08B04FC243B0CD500BF0777 /* AdviserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdviserCell.swift; sourceTree = "<group>"; };
 		E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditFeedbackViewController.swift; sourceTree = "<group>"; };
 		E0B1DD3824188C9500C1EB56 /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		E0D25C3523750A71001697F9 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -223,7 +232,7 @@
 		E0FB6F492374FAAF00241EC7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		E0FB6F4E2374FAAF00241EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		E0FB6F502374FAB100241EC7 /* user.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = user.xcassets; sourceTree = "<group>"; };
+		E0FB6F502374FAB100241EC7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E0FB6F532374FAB100241EC7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E0FB6F552374FAB100241EC7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E0FB6F5A2374FAB100241EC7 /* rfiosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = rfiosTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -262,17 +271,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C17BED62383F5C4001FB4C4 /* extension */ = {
+		1C17BED62383F5C4001FB4C4 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				1C17BED72383F5F1001FB4C4 /* UILabel+Extension.swift */,
 				1C17BEDD23841741001FB4C4 /* UIViewController+Extension.swift */,
 				E03A08DA23881B890073477D /* String+Extension.swift */,
 			);
-			path = extension;
+			path = Extension;
 			sourceTree = "<group>";
 		};
-		1C17BEE5238FB576001FB4C4 /* data */ = {
+		1C17BEE5238FB576001FB4C4 /* Data */ = {
 			isa = PBXGroup;
 			children = (
 				1C1D316D239BA00400F4C864 /* Category.swift */,
@@ -281,10 +290,10 @@
 				1C922F8323CC77D1001177B8 /* User.swift */,
 				E03226AD24289B1C00A4C933 /* FriendType.swift */,
 			);
-			path = data;
+			path = Data;
 			sourceTree = "<group>";
 		};
-		1C17BEE6238FB5E8001FB4C4 /* util */ = {
+		1C17BEE6238FB5E8001FB4C4 /* Util */ = {
 			isa = PBXGroup;
 			children = (
 				1C17BEE3238FB4BC001FB4C4 /* UserDefaultsHelper.swift */,
@@ -293,18 +302,18 @@
 				1C1D31612393A85300F4C864 /* NWLog.swift */,
 				1C1D3171239BA4B000F4C864 /* UIUtil.swift */,
 			);
-			path = util;
+			path = Util;
 			sourceTree = "<group>";
 		};
-		1CE7643523D6EA6800D1F53F /* board */ = {
+		1CE7643523D6EA6800D1F53F /* Board */ = {
 			isa = PBXGroup;
 			children = (
-				E0E667C923E697FF00934102 /* card */,
+				E0E667C923E697FF00934102 /* Card */,
 				1CE7643623D6EB6F00D1F53F /* BoardViewController.swift */,
 				1CE7643823D6F74C00D1F53F /* BoardViewModel.swift */,
 				E062293623EEF19A000B41C9 /* CardCell.swift */,
 			);
-			path = board;
+			path = Board;
 			sourceTree = "<group>";
 		};
 		2F337B3A097B9CC3D41BF923 /* Frameworks */ = {
@@ -330,7 +339,7 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		E02F4581238294CF005F8CA0 /* custom */ = {
+		E02F4581238294CF005F8CA0 /* Custom */ = {
 			isa = PBXGroup;
 			children = (
 				1C17BEDB2383FEA3001FB4C4 /* RoundView.swift */,
@@ -341,10 +350,10 @@
 				E0E667D023E6998700934102 /* CustomViewModel.swift */,
 				E0DD1C712417251800CE84D7 /* RxMediaPicker.swift */,
 			);
-			path = custom;
+			path = Custom;
 			sourceTree = "<group>";
 		};
-		E02F45842382A616005F8CA0 /* user */ = {
+		E02F45842382A616005F8CA0 /* User */ = {
 			isa = PBXGroup;
 			children = (
 				E02F45852382AAE9005F8CA0 /* User.storyboard */,
@@ -352,30 +361,31 @@
 				E0410253242A47FC00064316 /* mypage */,
 				E0410254242A481700064316 /* friend */,
 			);
-			path = user;
+			path = User;
 			sourceTree = "<group>";
 		};
-		E03A08CB2386B5060073477D /* scene */ = {
+		E03A08CB2386B5060073477D /* Scene */ = {
 			isa = PBXGroup;
 			children = (
 				E03A08CC2386B5390073477D /* Scene.swift */,
 				E03A08D82386C1490073477D /* SceneCoordinator.swift */,
 			);
-			path = scene;
+			path = Scene;
 			sourceTree = "<group>";
 		};
-		E04085142376E6C8008C9F8F /* feedback */ = {
+		E04085142376E6C8008C9F8F /* Feedback */ = {
 			isa = PBXGroup;
 			children = (
-				1CE7643523D6EA6800D1F53F /* board */,
-				E0717FA323A4FD6400E586F3 /* category */,
+				E040851E2377274C008C9F8F /* Feedback.storyboard */,
+				E08B04F5243AEFD500BF0777 /* Adviser */,
+				1CE7643523D6EA6800D1F53F /* Board */,
+				E0717FA323A4FD6400E586F3 /* Category */,
 				E04085112376E6B9008C9F8F /* FeedbackCell.xib */,
 				E04085102376E6B9008C9F8F /* FeedbackCell.swift */,
-				E040851E2377274C008C9F8F /* Feedback.storyboard */,
-				E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */,
 				E06D86A123C0B12500AB2D48 /* FeedbackViewModel.swift */,
+				E0A244A623784E77003505E3 /* EditFeedbackViewController.swift */,
 			);
-			path = feedback;
+			path = Feedback;
 			sourceTree = "<group>";
 		};
 		E0410253242A47FC00064316 /* mypage */ = {
@@ -402,15 +412,25 @@
 			path = friend;
 			sourceTree = "<group>";
 		};
-		E0717FA323A4FD6400E586F3 /* category */ = {
+		E0717FA323A4FD6400E586F3 /* Category */ = {
 			isa = PBXGroup;
 			children = (
 				1C1D316F239BA1F900F4C864 /* CategoryCell.swift */,
+				1C1D3169239B952B00F4C864 /* CategoryViewModel.swift */,
 				1C1D316B239B9DD100F4C864 /* CategoryListViewController.swift */,
 				1C1D3167239B902300F4C864 /* EditCategoryViewController.swift */,
-				1C1D3169239B952B00F4C864 /* CategoryViewModel.swift */,
 			);
-			path = category;
+			path = Category;
+			sourceTree = "<group>";
+		};
+		E08B04F5243AEFD500BF0777 /* Adviser */ = {
+			isa = PBXGroup;
+			children = (
+				E08B04FC243B0CD500BF0777 /* AdviserCell.swift */,
+				E08B04F6243AEFF800BF0777 /* AdviserListViewController.swift */,
+				E08B04F9243AF00F00BF0777 /* AdviserListViewModel.swift */,
+			);
+			path = Adviser;
 			sourceTree = "<group>";
 		};
 		E0D25C392376A1FE001697F9 /* auth */ = {
@@ -425,14 +445,14 @@
 			path = auth;
 			sourceTree = "<group>";
 		};
-		E0E667C923E697FF00934102 /* card */ = {
+		E0E667C923E697FF00934102 /* Card */ = {
 			isa = PBXGroup;
 			children = (
 				E0E667CA23E6984400934102 /* TextCardViewController.swift */,
 				E0E667D223E69D2A00934102 /* EditTextCardViewController.swift */,
 				E0E667CC23E6985B00934102 /* TextCardViewModel.swift */,
 			);
-			path = card;
+			path = Card;
 			sourceTree = "<group>";
 		};
 		E0FB6F3B2374FAAF00241EC7 = {
@@ -461,13 +481,13 @@
 			isa = PBXGroup;
 			children = (
 				E0DD1C7324178C3100CE84D7 /* RemindFeedback.swift */,
-				E02F4581238294CF005F8CA0 /* custom */,
-				1C17BED62383F5C4001FB4C4 /* extension */,
-				1C17BEE5238FB576001FB4C4 /* data */,
-				1C17BEE6238FB5E8001FB4C4 /* util */,
-				E03A08CB2386B5060073477D /* scene */,
-				E04085142376E6C8008C9F8F /* feedback */,
-				E02F45842382A616005F8CA0 /* user */,
+				E02F4581238294CF005F8CA0 /* Custom */,
+				1C17BED62383F5C4001FB4C4 /* Extension */,
+				1C17BEE5238FB576001FB4C4 /* Data */,
+				1C17BEE6238FB5E8001FB4C4 /* Util */,
+				E03A08CB2386B5060073477D /* Scene */,
+				E02F45842382A616005F8CA0 /* User */,
+				E04085142376E6C8008C9F8F /* Feedback */,
 				E0FB6F522374FAB100241EC7 /* LaunchScreen.storyboard */,
 				E0FB6F4D2374FAAF00241EC7 /* Main.storyboard */,
 				E0FB6F472374FAAF00241EC7 /* AppDelegate.swift */,
@@ -475,7 +495,7 @@
 				E0FB6F4B2374FAAF00241EC7 /* MainViewController.swift */,
 				E040851A2376F3E5008C9F8F /* MainViewModel.swift */,
 				E04085182376ED16008C9F8F /* SideBarViewController.swift */,
-				E0FB6F502374FAB100241EC7 /* user.xcassets */,
+				E0FB6F502374FAB100241EC7 /* Assets.xcassets */,
 				E0FB6F552374FAB100241EC7 /* Info.plist */,
 			);
 			path = rfios;
@@ -613,7 +633,7 @@
 				E0D25C3823751063001697F9 /* Login.storyboard in Resources */,
 				E04085132376E6B9008C9F8F /* FeedbackCell.xib in Resources */,
 				E0FB6F542374FAB100241EC7 /* LaunchScreen.storyboard in Resources */,
-				E0FB6F512374FAB100241EC7 /* user.xcassets in Resources */,
+				E0FB6F512374FAB100241EC7 /* Assets.xcassets in Resources */,
 				E0FB6F4F2374FAAF00241EC7 /* Main.storyboard in Resources */,
 				E02F45862382AAE9005F8CA0 /* User.storyboard in Resources */,
 				E040851F2377274C008C9F8F /* Feedback.storyboard in Resources */,
@@ -627,7 +647,7 @@
 			files = (
 				E0545B95241890F000417414 /* FeedbackCell.xib in Resources */,
 				E0545B9C2418910B00417414 /* User.storyboard in Resources */,
-				E03226AF2428AEDF00A4C933 /* user.xcassets in Resources */,
+				E03226AF2428AEDF00A4C933 /* Assets.xcassets in Resources */,
 				E03226B82428C74900A4C933 /* FriendCell.xib in Resources */,
 				E0545B87241890BE00417414 /* Login.storyboard in Resources */,
 				E0545BA12418911F00417414 /* Main.storyboard in Resources */,
@@ -778,9 +798,11 @@
 				E041025D242B393C00064316 /* BlockFriendViewController.swift in Sources */,
 				E02F45832382971D005F8CA0 /* NWLabel.swift in Sources */,
 				E062F41A23F3DD0800DD6A01 /* MyPageViewController.swift in Sources */,
+				E08B04F7243AEFF800BF0777 /* AdviserListViewController.swift in Sources */,
 				E0DD1C722417251800CE84D7 /* RxMediaPicker.swift in Sources */,
 				1C1D316A239B952B00F4C864 /* CategoryViewModel.swift in Sources */,
 				E0A244A723784E77003505E3 /* EditFeedbackViewController.swift in Sources */,
+				E08B04FA243AF00F00BF0777 /* AdviserListViewModel.swift in Sources */,
 				1C1D31622393A85300F4C864 /* NWLog.swift in Sources */,
 				E0E667D123E6998700934102 /* CustomViewModel.swift in Sources */,
 				E03A08CD2386B5390073477D /* Scene.swift in Sources */,
@@ -796,6 +818,7 @@
 				E0FB6F482374FAAF00241EC7 /* AppDelegate.swift in Sources */,
 				E0E667D323E69D2A00934102 /* EditTextCardViewController.swift in Sources */,
 				1CE7643923D6F74C00D1F53F /* BoardViewModel.swift in Sources */,
+				E08B04FD243B0CD500BF0777 /* AdviserCell.swift in Sources */,
 				E0E667CD23E6985B00934102 /* TextCardViewModel.swift in Sources */,
 				E0FB6F4A2374FAAF00241EC7 /* SceneDelegate.swift in Sources */,
 				E0410256242A487700064316 /* FriendViewController.swift in Sources */,
@@ -841,6 +864,7 @@
 				E0545B92241890E600417414 /* CategoryListViewController.swift in Sources */,
 				E0545B93241890E800417414 /* EditCategoryViewController.swift in Sources */,
 				E0545B83241890A000417414 /* Feedback.swift in Sources */,
+				E08B04FE243B0CD500BF0777 /* AdviserCell.swift in Sources */,
 				E0545B822418909E00417414 /* Category.swift in Sources */,
 				E041025E242B393C00064316 /* BlockFriendViewController.swift in Sources */,
 				E035116424064BDE008E4EB1 /* APIHelper.swift in Sources */,
@@ -855,6 +879,7 @@
 				E0545B9D2418910E00417414 /* FriendListViewController.swift in Sources */,
 				E0B1DD3A24188D4A00C1EB56 /* BaseAPI.swift in Sources */,
 				E0545B94241890EA00417414 /* CategoryViewModel.swift in Sources */,
+				E08B04F8243AEFF800BF0777 /* AdviserListViewController.swift in Sources */,
 				E0545B88241890C100417414 /* LoginViewController.swift in Sources */,
 				E0545B89241890C300417414 /* LoginViewModel.swift in Sources */,
 				E0B1DD3E24188E4800C1EB56 /* BaseViewModel.swift in Sources */,
@@ -866,6 +891,7 @@
 				E0545B7D2418908D00417414 /* NWLabel.swift in Sources */,
 				E0545B7F2418909200417414 /* RoundView.swift in Sources */,
 				E041025A242B375F00064316 /* FriendViewController.swift in Sources */,
+				E08B04FB243AF00F00BF0777 /* AdviserListViewModel.swift in Sources */,
 				E035116324064BBA008E4EB1 /* RegisterViewModel.swift in Sources */,
 				E0545B96241890F300417414 /* FeedbackCell.swift in Sources */,
 				E0545B99241890FE00417414 /* FeedbackViewModel.swift in Sources */,
@@ -978,7 +1004,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1032,7 +1058,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1050,7 +1076,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CS6F63S589;
 				INFOPLIST_FILE = rfios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1070,7 +1096,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CS6F63S589;
 				INFOPLIST_FILE = rfios/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

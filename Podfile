@@ -21,6 +21,7 @@ target 'rfios' do
   pod 'RxDataSources'
   pod 'SCLAlertView'
   pod 'RxKingfisher'
+  pod 'SnapKit', '~> 5.0.0'
 
   target 'rfiosTests' do
     inherit! :search_paths

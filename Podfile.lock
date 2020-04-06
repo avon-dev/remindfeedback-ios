@@ -44,6 +44,7 @@ PODS:
     - RxSwift (>= 4.0.0)
   - SCLAlertView (0.8)
   - SideMenuSwift (2.0.5)
+  - SnapKit (5.0.1)
   - SwiftyJSON (5.0.0)
 
 DEPENDENCIES:
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - RxViewController
   - SCLAlertView
   - SideMenuSwift
+  - SnapKit (~> 5.0.0)
   - SwiftyJSON
 
 SPEC REPOS:
@@ -85,6 +87,7 @@ SPEC REPOS:
     - RxViewController
     - SCLAlertView
     - SideMenuSwift
+    - SnapKit
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -107,8 +110,9 @@ SPEC CHECKSUMS:
   RxViewController: e93e7c233d5b5b62c32231d69726d55f54081bc6
   SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SideMenuSwift: c7d99c270e0fad922a14b81f1dcc7a84c764bcd5
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
 
-PODFILE CHECKSUM: 43ed2ac3eb629114a752ddf50a4b49f17cbc4484
+PODFILE CHECKSUM: b29ca4ebbfe2aa9bc6f62e6df6d6e7de6707659e
 
 COCOAPODS: 1.9.0
