@@ -28,8 +28,9 @@ protocol FeedbackViewModelType: BaseViewModelType {
     
     // Scene
     func onCategory()
+    func onAdviser()
     
-    //
+    // CRUD
     func doneEdition()
 }
 
@@ -58,8 +59,6 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
     
     var mainViewModel: MainViewModelType?
     
-    var isModification = false
-    
     override init() {
         
         self.feedbackOutput = BehaviorRelay<Feedback>(value: feedback)
@@ -74,21 +73,18 @@ class FeedbackViewModel: BaseViewModel, FeedbackViewModelType {
         self.titleInput = BehaviorSubject(value: "")
         self.dateInput = BehaviorSubject(value: Date())
         
-        
-        
         super.init()
         
         categoryInput.subscribe(onNext: { [weak self] in
-                self?.feedback.category = $0
-            }).disposed(by: disposeBag)
+            self?.feedback.category = $0
+        }).disposed(by: disposeBag)
         
         titleInput.filter { !$0.isEmpty }
             .subscribe(onNext: { [weak self] in
                 self?.feedback.title = $0
             }).disposed(by: disposeBag)
         
-        dateInput
-            .subscribe(onNext: { [weak self] in
+        dateInput.subscribe(onNext: { [weak self] in
             self?.feedback.date = $0
         }).disposed(by: disposeBag)
         
@@ -106,6 +102,11 @@ extension FeedbackViewModel {
         SceneCoordinator.sharedInstance.push(scene: .categoryView(categoryViewModel))
     }
     
+    func onAdviser() {
+        let adviserModel = AdviserListViewModel()
+        SceneCoordinator.sharedInstance.push(scene: .adviserListView(adviserModel))
+    }
+    
     private func bindAlert(title: String, text: String) {
         SceneCoordinator.sharedInstance
             .getCurrentViewController()?
@@ -115,10 +116,10 @@ extension FeedbackViewModel {
     }
 }
 
-//
+// MARK: CRUD
 extension FeedbackViewModel {
     func doneEdition() {
-        isModification ? requestModification() : requestAddition()
+        feedback.id == -1 ? requestAddition() : requestModification()
     }
 }
 
@@ -159,8 +160,8 @@ extension FeedbackViewModel {
                 
                 self?.mainViewModel?.modifyFeedback(self?.feedback) 
                 SceneCoordinator.sharedInstance.pop()
-                    }, onDisposed: {
-                        SceneCoordinator.sharedInstance.hide()
+                }, onDisposed: {
+                    SceneCoordinator.sharedInstance.hide()
             }).disposed(by: disposeBag)
     }
 }

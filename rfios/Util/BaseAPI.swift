@@ -33,6 +33,7 @@ enum BaseAPI {
     case addFeedback(_ params: [String:Any?]?)
     case modFeedback(_ params: [String:Any?]?, id: String)
     case delFeedback(_ id: String)
+    case getAdvisers
     
     // Card
     case getCards(_ feedbackID: Int, _ lastID: Int)
@@ -82,15 +83,17 @@ extension BaseAPI: TargetType {
         
             // feedback
         case .getFeedbacks(let lastID):
-            return "/feedbacks/\(lastID)/20"
+            return "/feedbacks/\(lastID)/6"
         case .getMyFeedbacks(let lastID):
-            return "/feedbacks/mine/\(lastID)/6"
+            return "/feedbacks/mine/\(lastID)/10"
         case .getYourFeedbacks(let lastID):
-            return "/feedbacks/yours/\(lastID)/20"
+            return "/feedbacks/yours/\(lastID)/6"
         case .addFeedback:
             return "/feedbacks"
         case .modFeedback(_, let id), .delFeedback(let id):
             return "/feedbacks/\(id)"
+        case .getAdvisers:
+            return "/adviser"
             
             // card
         case .getCards(let feedbackID, let lastID):
@@ -129,7 +132,7 @@ extension BaseAPI: TargetType {
             return .post
         case .me, .logout, .getCategories, .getCategory,
              .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks,
-             .getCards, .getMyPage, .getFriends:
+             .getCards, .getMyPage, .getFriends, .getAdvisers:
             return .get
         case .unregister, .delCategory, .delFeedback, .delCard:
             return .delete
@@ -161,7 +164,7 @@ extension BaseAPI: TargetType {
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
             
         // feedback
-        case .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks, .delFeedback:
+        case .getFeedbacks, .getMyFeedbacks, .getYourFeedbacks, .delFeedback, .getAdvisers:
             return .requestPlain
         case .addFeedback(let params), .modFeedback(let params, _):
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
@@ -190,7 +193,6 @@ extension BaseAPI: TargetType {
             return .requestParameters(parameters: params!, encoding: JSONEncoding.default)
         case .findFriend(let params):
             return .requestParameters(parameters: params, encoding: JSONEncoding.default)
-            
         }
         
         

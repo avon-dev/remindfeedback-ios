@@ -62,7 +62,7 @@ extension CategoryListViewController {
         
         // 네비게이션 바 우측버튼
         if viewModel.isSelection {
-            navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .done, target: self, action: nil)
+            self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "완료", style: .done, target: self, action: nil)
         } else {
             navigationItem.rightBarButtonItem = UIBarButtonItem.init(barButtonSystemItem: .add, target: self, action: nil)
         }

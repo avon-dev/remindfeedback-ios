@@ -79,7 +79,7 @@ extension MainViewModel {
     
     func onModFeedback(_ selectedIndex: Int) {
         let feedbackViewModel = FeedbackViewModel()
-        feedbackViewModel.isModification = true 
+        self.selectedIndex = selectedIndex
         feedbackViewModel.mainViewModel = self
         feedbackViewModel.feedback = self.feedbackList[selectedIndex]
         SceneCoordinator.sharedInstance.push(scene: .editFeedbackView(feedbackViewModel))

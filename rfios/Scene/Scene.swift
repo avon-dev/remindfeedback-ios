@@ -21,6 +21,7 @@ enum Scene {
     
     // Feedback
     case editFeedbackView(FeedbackViewModel)
+    case adviserListView(AdviserListViewModel)
     
     // Board
     case boardView(BoardViewModel)
@@ -89,6 +90,11 @@ extension Scene {
             let viewController = feedbackStoryboard
                 .instantiateViewController(withIdentifier: "editFeedbackVC")
                 as! EditFeedbackViewController
+            viewController.viewModel = viewModel
+            return viewController
+            
+        case .adviserListView(let viewModel):
+            let viewController = AdviserListViewController()
             viewController.viewModel = viewModel
             return viewController
             

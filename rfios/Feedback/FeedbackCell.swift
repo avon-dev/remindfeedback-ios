@@ -36,8 +36,8 @@ class FeedbackCell: UITableViewCell {
                 dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
                 self?.dateLabel.text = dateFormatter.string(from: $0.date)
                 
-                if let url = URL(string: RemindFeedback.imgURL + $0.advisor.portrait) {
-                    self?.advisorImage.kf.setImage(with: url, placeholder: UIImage(named: "user-black"))
+                if let url = URL(string: RemindFeedback.imgURL + $0.adviser.portrait) {
+                    self?.adviserImage.kf.setImage(with: url, placeholder: UIImage(named: "user-black"))
                 }
                 
                 
@@ -60,7 +60,7 @@ class FeedbackCell: UITableViewCell {
     @IBOutlet weak var colorView: UIView!
     @IBOutlet weak var feedbackLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var advisorImage: UIImageView!
+    @IBOutlet weak var adviserImage: UIImageView!
     var index = -1
     
     override func awakeFromNib() {

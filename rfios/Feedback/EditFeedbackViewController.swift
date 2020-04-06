@@ -35,7 +35,7 @@ class EditFeedbackViewController: UIViewController {
     @IBOutlet weak var titleField: UITextField! // 피드백 제목을 입력하는 버튼
     @IBOutlet weak var dateLabel: UILabel! // 피드백 날짜가 표시되는 레이블
     @IBOutlet weak var dateBtn: UIButton! // 피드백 날짜를 선택할 수 있게 하는 버튼
-    @IBOutlet weak var friendBtn: UIButton! // 피드백 조언자를 선택할 수 있게 하는 버튼
+    @IBOutlet weak var adviserBtn: UIButton! // 피드백 조언자를 선택할 수 있게 하는 버튼
     
     // 추가사항. 피드백 날짜를 datepicker형태로 변경
     @IBOutlet weak var datePicker: UIDatePicker! // 피드백 날짜를 선택하고 표시하는 뷰
@@ -43,8 +43,8 @@ class EditFeedbackViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 //        self.titleTextview.delegate = self
-        self.setUI()
-        self.setBinding()
+        setUI()
+        setBinding()
     }
 
 }
@@ -60,12 +60,15 @@ extension EditFeedbackViewController {
     
     func setNavUI() {
         self.navigationController?.navigationBar.topItem?.title = ""
-        // 네비게이션 바 타이틀 설정
-        self.navigationItem.title = "피드백 설정" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
         // 네비게이션 바 색상 지정
         self.navigationController?.navigationBar.tintColor = UIColor.white
         // 네비게이션 바 우측버튼
         self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "저장", style: .done, target: self, action: nil)
+    }
+    
+    func updateUI() {
+        // 네비게이션 바 타이틀 설정
+        self.navigationItem.title = "피드백 설정" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
     }
     
 }
@@ -77,17 +80,18 @@ extension EditFeedbackViewController {
         // MARK: Scene
         self.rx.isVisible
             .subscribe(onNext: { [weak self] in
-                if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
-            })
-            .disposed(by: disposeBag)
+                if $0 {
+                    self?.viewModel.setScene(self ?? UIViewController())
+                    self?.updateUI()
+                }
+            }).disposed(by: disposeBag)
         
         // MARK: Output
         /// 피드백 주제 선택
         categoryBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.onCategory()
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
         // 피드백 제목 입력
         titleField.rx.text.orEmpty
@@ -102,14 +106,16 @@ extension EditFeedbackViewController {
         
         
         // 피드백 조언자 선택
-        // - TODO: 친구기능 완성 후
+        adviserBtn.rx.tap
+            .subscribe(onNext: { [weak self] in
+                self?.viewModel.onAdviser()
+            }).disposed(by: disposeBag)
         
-        // 피드백 추가
+        // 피드백 추가 및 수정
         navigationItem.rightBarButtonItem?.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.doneEdition()
-            })
-            .disposed(by: disposeBag)
+            }).disposed(by: disposeBag)
         
         // MARK: Input
         viewModel.colorOutput

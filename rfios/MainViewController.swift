@@ -145,8 +145,7 @@ extension MainViewController {
                 cell.dataInput.onNext(item)
                 cell.viewModel = self?.viewModel
                 cell.index = index
-            }
-        .disposed(by: self.disposeBag)
+            }.disposed(by: disposeBag)
 
     }
 }

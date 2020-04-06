@@ -16,7 +16,7 @@ struct Feedback {
     var category = Category()
     var date = Date()
     var complete = -10
-    var advisor = User()
+    var adviser = User()
     
     init() {
         
@@ -43,7 +43,7 @@ struct Feedback {
         date = dateFormatter.date(from: dateStr) ?? Date()
         
         complete = dic["complete"] as? Int ?? -10
-        advisor = User(dic["adviser"] as? [String : Any] ?? [:])
+        adviser = User(dic["adviser"] as? [String : Any] ?? [:])
     }
     
     func toDictionary() -> [String: Any?] {
