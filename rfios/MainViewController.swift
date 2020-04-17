@@ -49,7 +49,7 @@ class MainViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
+        super.viewDidAppear(animated)
         navigationItem.title = "RemindFeedback"
         if !isLogin { self.checkLogin() }
     }

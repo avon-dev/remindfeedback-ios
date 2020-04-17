@@ -71,11 +71,10 @@ extension MyPageViewController {
             .subscribe(onNext: { [weak self] in
                 if $0 {
                     self?.viewModel.setScene(self ?? UIViewController())
-                    SceneCoordinator.sharedInstance.show()
-                    self?.viewModel.requestMyPage()
+                    self?.viewModel.fetchMyPage()
                 }
             })
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
         
         // MARK: Set RxMediaPicker
         picker = RxMediaPicker(delegate: self)
@@ -91,7 +90,6 @@ extension MyPageViewController {
         // 닉네임 변경 버튼
         nicknameBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                SceneCoordinator.sharedInstance.show()
                 self?.editNickName()
             })
             .disposed(by: disposeBag)
@@ -99,7 +97,6 @@ extension MyPageViewController {
         // 소개글 변경 버튼
         introBtn.rx.tap
             .subscribe(onNext: { [weak self] in
-                SceneCoordinator.sharedInstance.show()
                 self?.editIntro()
             })
             .disposed(by: disposeBag)
@@ -115,7 +112,6 @@ extension MyPageViewController {
                 if !$0.portrait.isEmpty {
                     self?.portraitImg.kf.setImage(with: URL(string: RemindFeedback.imgURL + $0.portrait))
                     self?.portraitImg.layer.cornerRadius = (self?.portraitImg.frame.height ?? 40)/2
-//                    self?.portraitImg.layer.masksToBounds = true
                     self?.portraitImg.clipsToBounds = true
                 }
             })
@@ -145,7 +141,7 @@ extension MyPageViewController: RxMediaPickerDelegate {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (image, editedImage) in
                 self?.portraitImg.image = editedImage ?? image
-                self?.viewModel.requestPortraitModification(editedImage ?? image)
+                self?.viewModel.modifyPortrait(editedImage ?? image)
             }, onError: { error in
                 print("Picker photo error: \(error)")
             }, onCompleted: {
@@ -161,7 +157,7 @@ extension MyPageViewController: RxMediaPickerDelegate {
             .observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] (image, editedImage) in
                 self?.portraitImg.image = editedImage ?? image
-                self?.viewModel.requestPortraitModification(editedImage ?? image)
+                self?.viewModel.modifyPortrait(editedImage ?? image)
             }, onError: { error in
                 print("Picker photo error: \(error)")
             }, onCompleted: {
@@ -173,7 +169,8 @@ extension MyPageViewController: RxMediaPickerDelegate {
     }
     
     func bindActionSheet() {
-        actionSheet(title: "프로필 이미지 변경", text: "프로필 이미지를 변경합니다.", actions: [("사진 앱에서 이미지 선택", pickPhoto), ("카메라 앱에서 이미지 선택", pickCamera)])
+        actionSheet(title: "프로필 이미지 변경", text: "프로필 이미지를 변경합니다.",
+                    actions: [("사진 앱에서 이미지 선택", pickPhoto), ("카메라 앱에서 이미지 선택", pickCamera)])
             .subscribe()
             .disposed(by: disposeBag)
     }
@@ -192,7 +189,7 @@ extension MyPageViewController {
         editField?.textColor = .black
         alert.addButton("변경") { [weak self] in
             if let txt = editField?.text {
-                self?.viewModel.requestNicknameModification(txt)
+                self?.viewModel.modifyNickname(txt)
             }
         }
         
@@ -209,7 +206,7 @@ extension MyPageViewController {
         editField?.textColor = .black
         alert.addButton("변경") { [weak self] in
             if let txt = editField?.text {
-                self?.viewModel.requestIntroductionModification(txt)
+                self?.viewModel.modifyIntroduction(txt)
             }
         }
         

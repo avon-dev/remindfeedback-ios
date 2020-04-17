@@ -79,7 +79,7 @@ class TextCardViewModel: BaseViewModel, CardViewModelType {
         
         // [글] 형태의 card를 추가/수정할 때 필수요소 입력 여부를 확인하는 옵져버블
         Observable.combineLatest(titleInput, contentInput, resultSelector: {
-            let _card = self.card
+            var _card = self.card
             _card.title = $0
             _card.content = $1
             return _card
@@ -131,7 +131,7 @@ extension TextCardViewModel {
                 NWLog.sLog(contentName: "card 추가 응답 결과", contents: $0.msg)
                 guard let id = $0.data?["id"] as? Int else { return }
                 self?.card.id = id
-                self?.boardViewModel.addCard(self?.card ?? Card())
+                self?.boardViewModel.addedCard(self?.card ?? Card())
                 }, onCompleted: {
                     
                     SceneCoordinator.sharedInstance.hide()
@@ -150,7 +150,7 @@ extension TextCardViewModel {
                 self?.titleOb.onNext(self?.card.title ?? "")
                 self?.contentOb.onNext(self?.card.content ?? "")
                 // 게시물 리스트 화면에 데이터 업데이트
-                self?.boardViewModel.modCard(self?.card ?? Card())
+                self?.boardViewModel.modifiedCard(self?.card ?? Card())
                 
                 }, onCompleted: {
                     

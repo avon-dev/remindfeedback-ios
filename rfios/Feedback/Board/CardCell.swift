@@ -13,11 +13,14 @@ class CardCell: UITableViewCell {
     
     static let identifier = "cardCell"
     
-    private let cellDisposeBag = DisposeBag()
+    private var cellDisposeBag = DisposeBag()
     
     var viewModel: BoardViewModelType? = nil
-    var disposeBag = DisposeBag()
     let onData: AnyObserver<Card>
+    
+    @IBOutlet weak var icon: UIImageView!
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var date: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         
@@ -29,7 +32,8 @@ class CardCell: UITableViewCell {
         data.observeOn(MainScheduler.instance)
             .subscribe(onNext: { [weak self] in
                 
-//                self?.icon.image = UIImage(systemName: "doc.text")
+                
+                self?.icon.image = UIImage(named: "txt-large")
                 self?.title.text = $0.title
                 
                 let dateFormatter = DateFormatter()
@@ -40,29 +44,8 @@ class CardCell: UITableViewCell {
             })
             .disposed(by: cellDisposeBag)
     }
-
-    override func prepareForReuse() {
-        super.prepareForReuse()
-        disposeBag = DisposeBag()
-    }
     
     deinit {
-        self.disposeBag = DisposeBag()
+        cellDisposeBag = DisposeBag()
     }
-    
-    @IBOutlet weak var icon: UIImageView!
-    @IBOutlet weak var title: UILabel!
-    @IBOutlet weak var date: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
 }

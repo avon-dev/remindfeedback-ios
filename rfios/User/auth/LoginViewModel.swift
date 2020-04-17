@@ -17,7 +17,6 @@ protocol LoginViewModelType: BaseViewModelType {
     // Output
     
     // Scene
-//    func setScene(_ viewController: UIViewController)
     func onRegister()
     
     // ViewModel to NetworkService

@@ -65,16 +65,17 @@ extension EditFeedbackViewController {
     }
     
     func setNavUI() {
-        self.navigationController?.navigationBar.topItem?.title = ""
+        navigationController?.navigationBar.topItem?.title = ""
         // 네비게이션 바 색상 지정
-        self.navigationController?.navigationBar.tintColor = UIColor.white
+        navigationController?.navigationBar.tintColor = UIColor.white
         // 네비게이션 바 우측버튼
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem.init(title: "저장", style: .done, target: self, action: nil)
+        navigationItem.rightBarButtonItem
+            = UIBarButtonItem.init(title: "저장", style: .done, target: self, action: nil)
     }
     
     func updateUI() {
         // 네비게이션 바 타이틀 설정
-        self.navigationItem.title = "피드백 설정" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
+        navigationItem.title = "피드백 설정" // -TODO: 추후 해당 리터럴값을 뷰 모델에서 가져올 수 있도록 수정 필요
     }
     
 }

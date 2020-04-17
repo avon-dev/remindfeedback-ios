@@ -12,23 +12,20 @@ import RxSwift
 
 protocol BoardViewModelType: BaseViewModelType {
     
-    // VM to V
+    // Output
     var titleOutput: BehaviorSubject<String> { get }
     var dateOutput: BehaviorSubject<Date> { get }
     var cardListOutput: BehaviorRelay<[Card]> { get }
     
     // Scene
     func onTextCard(_ index: Int)
+    func onEditCard()
     func onEditTextCard()
     
     // CRUD
-    func deleteCard(_ index: Int)
-    
-    // Network
-    func requestCards()
-    
-    
+    func fetchList()
     func updateList()
+    func deleteCard(_ index: Int)
     
 }
 
@@ -51,9 +48,8 @@ class BoardViewModel: BaseViewModel, BoardViewModelType {
     
 }
 
-// - MARK: Scene
+// MARK: Scene
 extension BoardViewModel {
-    /// on 글 형태 게시물
     func onTextCard(_ index: Int) {
         self.selectedIndex = index
         
@@ -63,89 +59,87 @@ extension BoardViewModel {
         SceneCoordinator.sharedInstance.push(scene: .textCardView(cardViewModel))
     }
     
+    func onEditCard() {
+        bindActionSheet()
+    }
+    
     func onEditTextCard() {
         let cardViewModel = TextCardViewModel()
         cardViewModel.card.feedbackID = feedback.id
         cardViewModel.boardViewModel = self
         SceneCoordinator.sharedInstance.push(scene: .editTextCardView(cardViewModel))
     }
-}
-
-extension BoardViewModel {
-    func deleteCard(_ index: Int) {
-        NWLog.sLog(contentName: "게시물 삭제", contents: nil)
-        self.reqDelCard(index)
-        self.cardList.remove(at: index)
-        self.cardListOutput.accept(self.cardList)
-    }
-}
-
-// - MARK: Network
-extension BoardViewModel {
-    /// 피드백에 대한 게시물 리스트
-    func requestCards() {
-        APIHelper.sharedInstance.rxPullResponse(.getCards(self.feedback.id, 0))
-            .subscribe(onNext: { [weak self] in
-                guard let dataList = $0.dataDic else { return }
-                
-                for data in dataList {
-                    let card = Card()
-                    card.id = data["id"] as? Int ?? -1
-                    card.category = data["board_category"] as? Int ?? -1
-                    card.title = data["board_title"] as? String ?? ""
-                    card.content = data["board_content"] as? String ?? ""
-                    card.feedbackID = data["fk_feedbackId"] as? Int ?? -1
-                    
-                    let dateFormatter = DateFormatter()
-                    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.sssZ"
-                    dateFormatter.timeZone = TimeZone(identifier: "Asia/Seoul")
-                    
-                    let dateStr: String = data["createdAt"] as? String ?? ""
-                    card.date = dateFormatter.date(from: dateStr) ?? Date()
-                    
-                    /**
-                     TODO
-                     board_file1=[string] 1번째 사진파일, 영상, 녹음파일
-                     board_file2=[string] (사진게시물) 2번째 사진파일
-                     board_file3=[string] (사진게시물) 3번째 사진파일
-                     confirm=[boolean] 게시물 확인 여부
-                     */
-                    
-                    self?.cardList.append(card)
-                }
-                
-                self?.cardListOutput.accept(self?.cardList ?? [])
-                
-            })
-            .disposed(by: self.disposeBag)
+    
+    private func bindAlert(title: String, text: String) {
+        SceneCoordinator.sharedInstance
+            .getCurrentViewController()?
+            .alert(title: title, text: text)
+            .subscribe()
+            .disposed(by: disposeBag)
     }
     
-    //
-    func reqDelCard(_ index: Int) {
-        APIHelper.sharedInstance.rxPullResponse(.delCard(String(self.cardList[index].id)))
-            .subscribe(onNext: {
-                NWLog.sLog(contentName: "게시물 삭제 요청 결과", contents: $0.msg)
-            })
-            .disposed(by: self.disposeBag)
+    private func bindActionSheet() {
+        SceneCoordinator.sharedInstance
+            .getCurrentViewController()?.actionSheet(title: "게시물 추가", text: nil, actions: [("글 게시물 추가", onEditTextCard)])
+            .subscribe()
+            .disposed(by: disposeBag)
+        
     }
-    
-   
 }
 
-//
+// MARK: CRUD
 extension BoardViewModel {
-    func addCard(_ card: Card) {
-        self.cardList.insert(card, at: 0)
-        updateList()
-    }
-    
-    func modCard(_ card: Card) {
-        guard self.selectedIndex != -1 else { return }
-        self.cardList[self.selectedIndex] = card
-        updateList()
+    func fetchList() {
+        requestList()
     }
     
     func updateList() {
-        self.cardListOutput.accept(self.cardList)
+        cardListOutput.accept(cardList)
     }
+    
+    func addedCard(_ card: Card) {
+        cardList.insert(card, at: 0)
+        cardListOutput.accept(cardList)
+    }
+    
+    func modifiedCard(_ card: Card) {
+        guard self.selectedIndex != -1 else { return }
+        cardList[selectedIndex] = card
+        cardListOutput.accept(cardList)
+    }
+    
+    func deleteCard(_ index: Int) {
+        requestDeletion(index)
+        cardList.remove(at: index)
+        cardListOutput.accept(cardList)
+    }
+}
+
+// MARK: Network
+extension BoardViewModel {
+    /// 피드백에 대한 게시물 리스트
+    func requestList() {
+        APIHelper.sharedInstance.rxPullResponse(.getCards(feedback.id, 0))
+            .subscribe(onNext: { [weak self] in
+                
+                guard $0.isSuccess, let dataList = $0.dataDic else {
+                    self?.bindAlert(title: "안내", text: $0.msg ?? "알 수 없는 오류가 발생했습니다.")
+                    return
+                }
+                
+                self?.cardList = dataList.map { Card($0) }
+                self?.cardListOutput.accept(self?.cardList ?? [])
+                
+            })
+            .disposed(by: disposeBag)
+    }
+    
+    func requestDeletion(_ index: Int) {
+        APIHelper.sharedInstance.rxPullResponse(.delCard(String(cardList[index].id)))
+            .subscribe(onNext: {
+                NWLog.sLog(contentName: "게시물 삭제 요청 결과", contents: $0.msg)
+            })
+            .disposed(by: disposeBag)
+    }
+    
 }

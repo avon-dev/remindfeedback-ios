@@ -160,10 +160,12 @@ extension MainViewModel {
                     self?.bindAlert(title: "안내", text: $0.msg ?? "알 수 없는 오류가 발생했습니다.")
                     return
                 }
+                
                 dataList.forEach {
                     let feedback = Feedback($0)
                     self?.feedbackList.append(feedback)
                 }
+                
                 self?.lastFID = self?.feedbackList.last?.id ?? self?.lastFID ?? 0
                 self?.feedbackListOutput.accept(self?.feedbackList ?? [])
                 }, onDisposed: { [weak self] in

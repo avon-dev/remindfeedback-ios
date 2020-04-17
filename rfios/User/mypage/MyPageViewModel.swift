@@ -14,10 +14,10 @@ protocol MyPageViewModelType: BaseViewModelType {
     var user: User { get set }
     var userOutput: BehaviorSubject<User> { get }
     
-    func requestMyPage()
-    func requestNicknameModification(_ nickname: String)
-    func requestIntroductionModification(_ introduction: String)
-    func requestPortraitModification(_ image: UIImage)
+    func fetchMyPage()
+    func modifyNickname(_ nickname: String)
+    func modifyIntroduction(_ introduction: String)
+    func modifyPortrait(_ image: UIImage)
 }
 
 class MyPageViewModel: BaseViewModel, MyPageViewModelType {
@@ -33,10 +33,43 @@ class MyPageViewModel: BaseViewModel, MyPageViewModelType {
     
 }
 
+// MARK: Scene
+extension MyPageViewModel {
+    private func bindAlert(title: String, text: String) {
+        SceneCoordinator.sharedInstance
+            .getCurrentViewController()?
+            .alert(title: title, text: text)
+            .subscribe()
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: CRUD
+extension MyPageViewModel {
+    func fetchMyPage() {
+        requestMyPage()
+    }
+    
+    func modifyNickname(_ nickname: String) {
+        requestNicknameModification(user.nickname)
+    }
+    
+    func modifyIntroduction(_ introduction: String) {
+        requestIntroductionModification(user.introduction)
+    }
+    
+    func modifyPortrait(_ image: UIImage) {
+        requestPortraitModification(image)
+    }
+}
+
 // MARK: Network
 extension MyPageViewModel {
     
     func requestMyPage() {
+        
+        SceneCoordinator.sharedInstance.show()
+        
         return APIHelper.sharedInstance.rxPullResponse(.getMyPage)
             .subscribe(onNext: { [weak self] in
                 if $0.isSuccess {
@@ -50,34 +83,46 @@ extension MyPageViewModel {
     }
     
     func requestNicknameModification(_ nickname: String) {
+        
+        SceneCoordinator.sharedInstance.show()
+        
         APIHelper.sharedInstance.rxPullResponse(.modNickName(["nickname":nickname]))
             .subscribe(onNext: { [weak self] in
                 if $0.isSuccess {
                     self?.user = User($0.data as? [String:String])
                     self?.userOutput.onNext(self?.user ?? User([:]))
                 }
-            }, onCompleted: {
+            }, onDisposed: {
                 SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)
     }
     
     func requestIntroductionModification(_ introduction: String) {
+        
+        SceneCoordinator.sharedInstance.show()
+        
         APIHelper.sharedInstance.rxPullResponse(.modIntro(["introduction":introduction]))
             .subscribe(onNext: { [weak self] in
-                if $0.isSuccess {
-                    self?.user = User($0.data as? [String:String])
-                    self?.userOutput.onNext(self?.user ?? User([:]))
+                guard $0.isSuccess else {
+                    self?.bindAlert(title: "안내", text: $0.msg ?? "알 수 없는 오류가 발생했습니다.")
+                    return
                 }
-            }, onCompleted: {
+                
+                self?.user = User($0.data as? [String:String])
+                self?.userOutput.onNext(self?.user ?? User([:]))
+            }, onDisposed: {
                 SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)
     }
     
     func requestPortraitModification(_ image: UIImage) {
+        
+        SceneCoordinator.sharedInstance.show()
+        
         APIHelper.sharedInstance.rxUploadImage(.modPortrait(image: image))
-            .subscribe(onCompleted: {
+            .subscribe(onDisposed: {
                 SceneCoordinator.sharedInstance.hide()
             })
             .disposed(by: disposeBag)

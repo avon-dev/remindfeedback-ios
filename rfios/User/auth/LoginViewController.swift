@@ -12,9 +12,6 @@ import RxSwift
 import RxViewController
 import UIKit
 
-import Moya
-import SwiftyJSON
-
 class LoginViewController: UIViewController {
     
     var viewModel: LoginViewModelType
@@ -39,41 +36,38 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var registerBtn: UIButton!
-    @IBOutlet weak var appleBtn: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setBinding()
     }
     
-
-    
 }
 
+// MARK: Binding
 extension LoginViewController {
 
     func setBinding() {
         
-        // Scene
+        // MARK: Scene
         self.rx.isVisible
             .subscribe(onNext: { [weak self] in
                 if $0 { self?.viewModel.setScene(self ?? UIViewController()) }
             })
             .disposed(by: self.disposeBag)
         
-        // Input
-        self.emailTxtField.rx.text.orEmpty
+        // MARK: Input
+        emailTxtField.rx.text.orEmpty
             .bind(to: self.viewModel.emailInput)
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
         
-        self.pwdTxtField.rx.text.orEmpty
+        pwdTxtField.rx.text.orEmpty
             .bind(to: self.viewModel.pwdInput)
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
         
-        self.loginBtn.rx.tap
+        loginBtn.rx.tap
             .flatMap { self.viewModel.requestLogin() }
             .subscribe(onNext: {
-                print("로그인", $0.0, $0.2 ?? "")
                 if $0.0 {
                     self.dismiss(animated: true, completion: nil)
                     UserDefaultsHelper.sharedInstantce.setUUID($0.2?["user_uid"] as? String ?? "")
@@ -81,18 +75,11 @@ extension LoginViewController {
             })
             .disposed(by: self.disposeBag)
         
-//        self.appleBtn.rx.tap
-//            .flatMap { self.viewModel.reqMe() }
-//            .subscribe(onNext: {
-//                print("ME", $0.0, $0.2 ?? "")
-//            })
-//            .disposed(by: self.disposeBag)
-        
-        self.registerBtn.rx.tap
+        registerBtn.rx.tap
             .subscribe(onNext: { [weak self] in
                 self?.viewModel.onRegister()
             })
-            .disposed(by: self.disposeBag)
+            .disposed(by: disposeBag)
         
         keyboardHeight()
             .observeOn(MainScheduler.instance)
@@ -100,10 +87,7 @@ extension LoginViewController {
                 self?.view.frame.origin.y = -$0/2
             })
             .disposed(by: disposeBag)
-        
-        
-
-    } // END : setBinding()
+    }
 
 }
 
